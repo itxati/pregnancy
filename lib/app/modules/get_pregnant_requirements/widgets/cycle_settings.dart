@@ -1,0 +1,244 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:babysafe/app/utils/neo_safe_theme.dart';
+import '../controllers/get_pregnant_requirements_controller.dart';
+
+class CycleSettingsWidget extends StatelessWidget {
+  final GetPregnantRequirementsController controller;
+  const CycleSettingsWidget({Key? key, required this.controller})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: NeoSafeColors.creamWhite,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: NeoSafeColors.softGray.withOpacity(0.3),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: NeoSafeColors.lightPink.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(
+                    Icons.settings,
+                    color: NeoSafeColors.primaryPink,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  'Cycle Settings',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: NeoSafeColors.primaryText,
+                      ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+
+            // Cycle Length Setting
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Cycle Length',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: NeoSafeColors.primaryText,
+                            ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        '${controller.cycleLength} days',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: NeoSafeColors.secondaryText,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        if (controller.cycleLength > 21) {
+                          controller.updateCycleSettings(
+                            newCycleLength: controller.cycleLength - 1,
+                          );
+                        }
+                      },
+                      icon: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: NeoSafeColors.lightPink.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.remove,
+                          color: NeoSafeColors.primaryPink,
+                          size: 16,
+                        ),
+                      ),
+                    ),
+                                         Container(
+                       width: 50,
+                       padding: const EdgeInsets.symmetric(
+                           horizontal: 12, vertical: 8),
+                       decoration: BoxDecoration(
+                         color: NeoSafeColors.lightPink.withOpacity(0.2),
+                         borderRadius: BorderRadius.circular(12),
+                       ),
+                       child: Text(
+                         '${controller.cycleLength}',
+                         textAlign: TextAlign.center,
+                         style:
+                             Theme.of(context).textTheme.titleMedium?.copyWith(
+                                   fontWeight: FontWeight.w700,
+                                   color: NeoSafeColors.primaryPink,
+                                 ),
+                       ),
+                     ),
+                    IconButton(
+                      onPressed: () {
+                        if (controller.cycleLength < 35) {
+                          controller.updateCycleSettings(
+                            newCycleLength: controller.cycleLength + 1,
+                          );
+                        }
+                      },
+                      icon: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: NeoSafeColors.lightPink.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.add,
+                          color: NeoSafeColors.primaryPink,
+                          size: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+
+            // Period Length Setting
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Period Length',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: NeoSafeColors.primaryText,
+                            ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        '${controller.periodLength} days',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: NeoSafeColors.secondaryText,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        if (controller.periodLength > 3) {
+                          controller.updateCycleSettings(
+                            newPeriodLength: controller.periodLength - 1,
+                          );
+                        }
+                      },
+                      icon: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: NeoSafeColors.lightPink.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.remove,
+                          color: NeoSafeColors.primaryPink,
+                          size: 16,
+                        ),
+                      ),
+                    ),
+                                         Container(
+                       width: 50,
+                       padding: const EdgeInsets.symmetric(
+                           horizontal: 12, vertical: 8),
+                       decoration: BoxDecoration(
+                         color: NeoSafeColors.lightPink.withOpacity(0.2),
+                         borderRadius: BorderRadius.circular(12),
+                       ),
+                       child: Text(
+                         '${controller.periodLength}',
+                         textAlign: TextAlign.center,
+                         style:
+                             Theme.of(context).textTheme.titleMedium?.copyWith(
+                                   fontWeight: FontWeight.w700,
+                                   color: NeoSafeColors.primaryPink,
+                                 ),
+                       ),
+                     ),
+                    IconButton(
+                      onPressed: () {
+                        if (controller.periodLength < 7) {
+                          controller.updateCycleSettings(
+                            newPeriodLength: controller.periodLength + 1,
+                          );
+                        }
+                      },
+                      icon: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: NeoSafeColors.lightPink.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.add,
+                          color: NeoSafeColors.primaryPink,
+                          size: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

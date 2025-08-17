@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
+import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
+import 'app/routes/app_pages.dart';
+import 'app/utils/neo_safe_theme.dart';
+import 'app/translations/app_translations.dart';
+import 'app/services/notification_service.dart';
+import 'app/services/auth_service.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Make status bar icons black (Android) and adjust iOS accordingly
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark, // Android dark icons
+    statusBarBrightness: Brightness.light, // iOS dark icons
+    systemNavigationBarIconBrightness: Brightness.dark,
+  ));
+
+  await GetStorage.init();
+  // Request notification permission on Android 13+
+  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.requestNotificationsPermission();
+
+  await NotificationService.instance.initialize();
+  // Mark app ready so pending notification taps can navigate
+  NotificationService.instance.markAppReady();
+
+  // Initialize AuthService
+  Get.put(AuthService());
+
+  final box = GetStorage();
+  final savedLang = box.read('locale');
+  Locale initialLocale;
+  if (savedLang == 'ur') {
+    initialLocale = const Locale('ur', 'PK');
+  } else {
+    initialLocale = const Locale('en', 'US');
+  }
+  runApp(MyApp(initialLocale: initialLocale));
+}
+
+class MyApp extends StatelessWidget {
+  final Locale initialLocale;
+  const MyApp({super.key, required this.initialLocale});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'Sardar Trust',
+      theme: NeoSafeTheme.lightTheme,
+      translations: AppTranslations(),
+      locale: initialLocale,
+      fallbackLocale: const Locale('en', 'US'),
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('ur', 'PK'),
+      ],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      initialRoute: AppPages.initial,
+      getPages: AppPages.routes,
+    );
+  }
+}
