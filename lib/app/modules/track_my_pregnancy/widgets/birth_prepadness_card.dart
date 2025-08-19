@@ -341,19 +341,6 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
                                 ],
                               ),
                             ),
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color:
-                                    NeoSafeColors.lavenderPink.withOpacity(0.2),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                color: NeoSafeColors.lavenderPink,
-                                size: 16,
-                              ),
-                            ),
                           ],
                         ),
                       ),

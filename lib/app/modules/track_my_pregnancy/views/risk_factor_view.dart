@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/data/const/risk_factor.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
+import 'package:babysafe/app/services/auth_service.dart';
 
 class RiskFactorView extends StatelessWidget {
   const RiskFactorView({super.key});
@@ -39,6 +41,40 @@ class RiskFactorView extends StatelessWidget {
     return Icons.warning_amber_rounded;
   }
 
+  // Determine which categories apply to the current user
+  Set<String> _getUserRiskCategories() {
+    final authService = Get.find<AuthService>();
+    final user = authService.currentUser.value;
+    final Set<String> categories = {};
+
+    if (user == null) return categories;
+
+    // Rh-negative mother
+    if (user.motherBloodGroup?.contains('-') == true) {
+      categories.add('Rh-negative Mothers');
+    }
+
+    // Relation-based
+    switch (user.relation?.toLowerCase()) {
+      case 'first cousin':
+        categories.add('First Cousin Marriage');
+        break;
+      case 'second cousin':
+        categories.add('Second Cousin Marriage');
+        break;
+      case 'relative':
+        categories.add('Relative Marriage');
+        break;
+      case 'no relation':
+        categories.add('No Relation');
+        break;
+      default:
+        break;
+    }
+
+    return categories;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -71,21 +107,6 @@ class RiskFactorView extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 16),
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Icon(
-              Icons.info_outline_rounded,
-              color: Colors.white,
-              size: 20,
-            ),
-          ),
-        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -183,6 +204,7 @@ class RiskFactorView extends StatelessWidget {
   }
 
   Widget _buildRiskFactorsList(BuildContext context, ThemeData theme) {
+    final Set<String> userRiskCategories = _getUserRiskCategories();
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
@@ -249,26 +271,38 @@ class RiskFactorView extends StatelessWidget {
         // Risk factor categories
         ...riskFactorGroups.entries.map((entry) {
           final categoryIcon = _getIconForCategory(entry.key);
+          final bool isUserRisk = userRiskCategories.contains(entry.key);
 
           return Container(
             margin: const EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  NeoSafeColors.creamWhite,
-                  NeoSafeColors.palePink.withOpacity(0.3),
-                ],
+                colors: isUserRisk
+                    ? [
+                        NeoSafeColors.warning.withOpacity(0.12),
+                        NeoSafeColors.palePink.withOpacity(0.4),
+                      ]
+                    : [
+                        NeoSafeColors.creamWhite,
+                        NeoSafeColors.palePink.withOpacity(0.3),
+                      ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                color: (isUserRisk
+                        ? NeoSafeColors.warning
+                        : NeoSafeColors.primaryPink)
+                    .withOpacity(0.2),
                 width: 1.5,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: NeoSafeColors.primaryPink.withOpacity(0.08),
+                  color: (isUserRisk
+                          ? NeoSafeColors.warning
+                          : NeoSafeColors.primaryPink)
+                      .withOpacity(0.08),
                   blurRadius: 15,
                   offset: const Offset(0, 5),
                 ),
@@ -282,10 +316,15 @@ class RiskFactorView extends StatelessWidget {
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [
-                        NeoSafeColors.primaryPink.withOpacity(0.1),
-                        NeoSafeColors.roseAccent.withOpacity(0.05),
-                      ],
+                      colors: isUserRisk
+                          ? [
+                              NeoSafeColors.warning.withOpacity(0.12),
+                              NeoSafeColors.warning.withOpacity(0.06),
+                            ]
+                          : [
+                              NeoSafeColors.primaryPink.withOpacity(0.1),
+                              NeoSafeColors.roseAccent.withOpacity(0.05),
+                            ],
                     ),
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
@@ -298,15 +337,23 @@ class RiskFactorView extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [
-                              NeoSafeColors.primaryPink.withOpacity(0.9),
-                              NeoSafeColors.roseAccent.withOpacity(0.8),
-                            ],
+                            colors: isUserRisk
+                                ? [
+                                    NeoSafeColors.warning.withOpacity(0.95),
+                                    NeoSafeColors.warning.withOpacity(0.75),
+                                  ]
+                                : [
+                                    NeoSafeColors.primaryPink.withOpacity(0.9),
+                                    NeoSafeColors.roseAccent.withOpacity(0.8),
+                                  ],
                           ),
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
-                              color: NeoSafeColors.primaryPink.withOpacity(0.3),
+                              color: (isUserRisk
+                                      ? NeoSafeColors.warning
+                                      : NeoSafeColors.primaryPink)
+                                  .withOpacity(0.3),
                               blurRadius: 8,
                               offset: const Offset(0, 3),
                             ),
@@ -332,13 +379,18 @@ class RiskFactorView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: NeoSafeColors.primaryPink.withOpacity(0.2),
+                          color: (isUserRisk
+                                  ? NeoSafeColors.warning
+                                  : NeoSafeColors.primaryPink)
+                              .withOpacity(0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
                           "${entry.value.length}",
                           style: theme.textTheme.labelMedium?.copyWith(
-                            color: NeoSafeColors.primaryPink,
+                            color: isUserRisk
+                                ? NeoSafeColors.warning
+                                : NeoSafeColors.primaryPink,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -359,7 +411,10 @@ class RiskFactorView extends StatelessWidget {
                           color: Colors.white.withOpacity(0.7),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                            color: (isUserRisk
+                                    ? NeoSafeColors.warning
+                                    : NeoSafeColors.primaryPink)
+                                .withOpacity(0.15),
                             width: 1,
                           ),
                         ),
@@ -372,10 +427,16 @@ class RiskFactorView extends StatelessWidget {
                               height: 6,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                  colors: [
-                                    NeoSafeColors.primaryPink,
-                                    NeoSafeColors.roseAccent,
-                                  ],
+                                  colors: isUserRisk
+                                      ? [
+                                          NeoSafeColors.warning,
+                                          NeoSafeColors.warning
+                                              .withOpacity(0.8),
+                                        ]
+                                      : [
+                                          NeoSafeColors.primaryPink,
+                                          NeoSafeColors.roseAccent,
+                                        ],
                                 ),
                                 shape: BoxShape.circle,
                               ),
