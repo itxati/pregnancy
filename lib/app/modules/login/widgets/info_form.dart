@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/neo_safe_theme.dart';
 import 'login_gradient_button.dart';
+import 'login_logo.dart';
 
 class InfoForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -11,8 +12,6 @@ class InfoForm extends StatelessWidget {
   final ValueChanged<String?> onMotherBloodGroupChanged;
   final ValueChanged<String?> onRelationChanged;
   final VoidCallback onContinue;
-  final ImageProvider? avatarImage;
-  final VoidCallback onAvatarTap;
 
   const InfoForm({
     super.key,
@@ -24,8 +23,6 @@ class InfoForm extends StatelessWidget {
     required this.onMotherBloodGroupChanged,
     required this.onRelationChanged,
     required this.onContinue,
-    required this.avatarImage,
-    required this.onAvatarTap,
   });
 
   @override
@@ -43,70 +40,7 @@ class InfoForm extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Center(
-            child: GestureDetector(
-              onTap: onAvatarTap,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: NeoSafeColors.softGray,
-                      border: Border.all(
-                        color: NeoSafeColors.primaryPink.withOpacity(0.3),
-                        width: 3,
-                      ),
-                    ),
-                    child: avatarImage != null
-                        ? ClipOval(
-                            child: Image(
-                              image: avatarImage!,
-                              fit: BoxFit.cover,
-                              width: 100,
-                              height: 100,
-                            ),
-                          )
-                        : Icon(
-                            Icons.person,
-                            size: 60,
-                            color: NeoSafeColors.primaryPink.withOpacity(0.6),
-                          ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 32,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        color: NeoSafeColors.primaryPink,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 2,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: NeoSafeColors.primaryPink.withOpacity(0.3),
-                            blurRadius: 6,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: const Icon(
-                        Icons.camera_alt,
-                        color: Colors.white,
-                        size: 16,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const Center(child: LoginLogo()),
           const SizedBox(height: 18),
           Text(
             'Personal Info',

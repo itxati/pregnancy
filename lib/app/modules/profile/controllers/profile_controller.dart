@@ -1,14 +1,11 @@
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utils/neo_safe_theme.dart';
 import '../../../services/auth_service.dart';
 
 class ProfileController extends GetxController {
   late AuthService authService;
-  late ImagePicker imagePicker;
+  // Removed image picking in simplified profile
 
   // User information
   RxString userName = "".obs;
@@ -50,7 +47,10 @@ class ProfileController extends GetxController {
   void onInit() {
     super.onInit();
     authService = Get.find<AuthService>();
-    imagePicker = ImagePicker();
+    // Auto-sync when authService.currentUser changes
+    ever(authService.currentUser, (_) {
+      _loadUserData();
+    });
     _loadUserData();
     _loadProfileData();
   }
@@ -393,89 +393,7 @@ class ProfileController extends GetxController {
     );
   }
 
-  void changeProfileImage() {
-    _showImageSourceDialog();
-  }
-
-  void _showImageSourceDialog() {
-    Get.bottomSheet(
-      Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 8),
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(height: 20),
-            ListTile(
-              leading: const Icon(Icons.camera_alt,
-                  color: NeoSafeColors.primaryPink),
-              title: const Text('Take Photo'),
-              onTap: () {
-                Get.back();
-                _pickImage(ImageSource.camera);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.photo_library,
-                  color: NeoSafeColors.primaryPink),
-              title: const Text('Choose from Gallery'),
-              onTap: () {
-                Get.back();
-                _pickImage(ImageSource.gallery);
-              },
-            ),
-            const SizedBox(height: 20),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Future<void> _pickImage(ImageSource source) async {
-    try {
-      final XFile? pickedFile = await imagePicker.pickImage(
-        source: source,
-        maxWidth: 512,
-        maxHeight: 512,
-        imageQuality: 80,
-      );
-
-      if (pickedFile != null) {
-        // Save image path to SharedPreferences
-        await _saveProfileImage(pickedFile.path);
-
-        Get.snackbar(
-          'Success',
-          'Profile image updated successfully!',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: NeoSafeColors.success.withOpacity(0.1),
-          colorText: NeoSafeColors.success,
-        );
-      }
-    } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to pick image. Please try again.',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: NeoSafeColors.error.withOpacity(0.1),
-        colorText: NeoSafeColors.error,
-      );
-    }
-  }
+  // Avatar/image picking removed
 
   Future<void> _saveProfileImage(String imagePath) async {
     try {

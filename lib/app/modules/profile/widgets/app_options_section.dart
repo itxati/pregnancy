@@ -15,67 +15,39 @@ class AppOptionsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 24),
+          // const SizedBox(height: 24),
 
           // Settings Section Title
-          Text(
-            "Settings",
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: NeoSafeColors.primaryText,
-                  fontWeight: FontWeight.w700,
-                ),
-          ),
-          const SizedBox(height: 16),
+          // Text(
+          //   "Settings",
+          //   style: Theme.of(context).textTheme.titleLarge?.copyWith(
+          //         color: NeoSafeColors.primaryText,
+          //         fontWeight: FontWeight.w800,
+          //         letterSpacing: 0.3,
+          //       ),
+          // ),
+          // const SizedBox(height: 16),
 
-          // Settings Items
-          _buildToggleItem(
-            context,
-            icon: Icons.notifications,
-            iconColor: NeoSafeColors.primaryPink,
-            title: "Notifications",
-            value: controller.notificationsEnabled.value,
-            onChanged: (value) => controller.toggleNotifications(),
-          ),
+          // // Settings Items
+          // _buildToggleItem(
+          //   context,
+          //   icon: Icons.notifications,
+          //   iconColor: NeoSafeColors.primaryPink,
+          //   title: "Notifications",
+          //   value: controller.notificationsEnabled.value,
+          //   onChanged: (value) => controller.toggleNotifications(),
+          // ),
 
-          _buildToggleItem(
-            context,
-            icon: Icons.dark_mode,
-            iconColor: NeoSafeColors.roseAccent,
-            title: "Dark Mode",
-            value: controller.darkModeEnabled.value,
-            onChanged: (value) => controller.toggleDarkMode(),
-          ),
+          // // Simplified: removed Dark Mode toggle
 
-          const SizedBox(height: 24),
+          // const SizedBox(height: 24),
 
           // App Options Items
-          _buildOptionItem(
-            context,
-            icon: Icons.share,
-            iconColor: NeoSafeColors.primaryPink,
-            title: "Tell a friend",
-            onTap: controller.tellAFriend,
-          ),
-
-          _buildOptionItem(
-            context,
-            icon: Icons.star,
-            iconColor: NeoSafeColors.roseAccent,
-            title: "Please rate us here",
-            onTap: controller.rateApp,
-          ),
-
-          _buildOptionItem(
-            context,
-            icon: Icons.open_in_new,
-            iconColor: NeoSafeColors.info,
-            title: "Find out about Baby+",
-            onTap: controller.findOutAboutBabyPlus,
-          ),
+          // Simplified: remove coming-soon options
 
           const SizedBox(height: 24),
 
@@ -102,36 +74,11 @@ class AppOptionsSection extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // Export Profile Data Section
-          _buildOptionItem(
-            context,
-            icon: Icons.download,
-            iconColor: NeoSafeColors.info,
-            title: "Export Profile Data",
-            onTap: () => _showExportDataDialog(context),
-          ),
+          // Simplified: removed Export and Clear Profile Data options
 
           const SizedBox(height: 16),
 
-          // Clear Profile Data Section
-          _buildOptionItem(
-            context,
-            icon: Icons.clear_all,
-            iconColor: NeoSafeColors.warning,
-            title: "Clear Profile Data",
-            onTap: () => _showClearDataDialog(context),
-          ),
-
-          const SizedBox(height: 16),
-
-          // Offers Section
-          _buildOptionItem(
-            context,
-            icon: Icons.local_offer,
-            iconColor: NeoSafeColors.coralPink,
-            title: "Offers",
-            onTap: controller.showOffers,
-          ),
+          // Simplified: remove offers for now
         ],
       ),
     );
@@ -147,30 +94,30 @@ class AppOptionsSection extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        margin: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+        margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
+          color: Colors.white.withOpacity(0.95),
+          borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: NeoSafeColors.softGray.withOpacity(0.3),
+            color: NeoSafeColors.softGray.withOpacity(0.25),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: iconColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(8),
+                color: iconColor.withOpacity(0.12),
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
                 icon,
@@ -184,7 +131,7 @@ class AppOptionsSection extends StatelessWidget {
                 title,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: NeoSafeColors.primaryText,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
               ),
             ),
@@ -208,30 +155,30 @@ class AppOptionsSection extends StatelessWidget {
     required ValueChanged<bool> onChanged,
   }) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        color: Colors.white.withOpacity(0.95),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: NeoSafeColors.softGray.withOpacity(0.3),
+          color: NeoSafeColors.softGray.withOpacity(0.25),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: iconColor.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
+              color: iconColor.withOpacity(0.12),
+              borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(
               icon,
@@ -259,82 +206,5 @@ class AppOptionsSection extends StatelessWidget {
     );
   }
 
-  void _showClearDataDialog(BuildContext context) {
-    Get.dialog(
-      AlertDialog(
-        title: const Text('Clear Profile Data'),
-        content: const Text(
-            'Are you sure you want to clear all your profile data? This action cannot be undone.'),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              Get.back();
-              controller.clearProfileData();
-            },
-            child: const Text('Clear Data'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showExportDataDialog(BuildContext context) {
-    final profileData = controller.exportProfileData();
-    final jsonString = profileData.toString();
-    
-    Get.dialog(
-      AlertDialog(
-        title: const Text('Export Profile Data'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Your profile data has been prepared for export.'),
-            const SizedBox(height: 16),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: NeoSafeColors.softGray.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                jsonString,
-                style: const TextStyle(fontSize: 12, fontFamily: 'monospace'),
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Text('You can copy this data or share it as needed.'),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: const Text('Close'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Copy to clipboard
-              // In a real app, you might want to use a clipboard plugin
-              Get.snackbar(
-                'Copied',
-                'Profile data copied to clipboard!',
-                snackPosition: SnackPosition.BOTTOM,
-                backgroundColor: NeoSafeColors.success.withOpacity(0.1),
-                colorText: NeoSafeColors.success,
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: NeoSafeColors.primaryPink,
-              foregroundColor: Colors.white,
-            ),
-            child: const Text('Copy'),
-          ),
-        ],
-      ),
-    );
-  }
+  // Removed export and clear dialogs as options are not present anymore
 }

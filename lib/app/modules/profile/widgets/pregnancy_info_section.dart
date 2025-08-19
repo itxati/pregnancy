@@ -14,7 +14,7 @@ class PregnancyInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -23,10 +23,11 @@ class PregnancyInfoSection extends StatelessWidget {
                 "Pregnancy",
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: NeoSafeColors.primaryText,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.3,
                     ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
 
               // Pregnancy Info Items
               _buildInfoItem(
@@ -38,59 +39,9 @@ class PregnancyInfoSection extends StatelessWidget {
                 onTap: () => _showDatePicker(context),
               ),
 
-              _buildInfoItem(
-                context,
-                icon: Icons.calculate,
-                iconColor: NeoSafeColors.info,
-                title: "Due date calculator",
-                value: "",
-                onTap: controller.navigateToDueDateCalculator,
-              ),
+              // Simplified: removed Baby's sex, Baby's name, and First Child options
 
-              _buildInfoItem(
-                context,
-                icon: Icons.pregnant_woman,
-                iconColor: NeoSafeColors.roseAccent,
-                title: "Baby's sex:",
-                value: controller.babySex.value,
-                onTap: () => _showSexSelector(context),
-              ),
-
-              _buildInfoItem(
-                context,
-                icon: Icons.child_care,
-                iconColor: NeoSafeColors.coralPink,
-                title: "Baby's name:",
-                value: controller.babyName.value,
-                onTap: () => _showNameInput(context),
-              ),
-
-              _buildInfoItem(
-                context,
-                icon: Icons.family_restroom,
-                iconColor: NeoSafeColors.lavenderPink,
-                title: "First Child?",
-                value: controller.isFirstChild.value,
-                onTap: () => _showFirstChildSelector(context),
-              ),
-
-              _buildToggleItem(
-                context,
-                icon: Icons.circle,
-                iconColor: NeoSafeColors.primaryText,
-                title: "Pregnancy loss?",
-                value: controller.hasPregnancyLoss.value,
-                onChanged: (value) => controller.togglePregnancyLoss(),
-              ),
-
-              _buildToggleItem(
-                context,
-                icon: Icons.child_care,
-                iconColor: NeoSafeColors.coralPink,
-                title: "Baby already born?",
-                value: controller.isBabyBorn.value,
-                onChanged: (value) => controller.toggleBabyBorn(),
-              ),
+              // Simplify: remove less-used toggles
 
               // Additional pregnancy information
               _buildInfoItem(
@@ -144,30 +95,30 @@ class PregnancyInfoSection extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        margin: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+        margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
+          color: Colors.white.withOpacity(0.95),
+          borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: NeoSafeColors.softGray.withOpacity(0.3),
+            color: NeoSafeColors.softGray.withOpacity(0.25),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: iconColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(8),
+                color: iconColor.withOpacity(0.12),
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
                 icon,
@@ -181,7 +132,7 @@ class PregnancyInfoSection extends StatelessWidget {
                 title,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: NeoSafeColors.primaryText,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
               ),
             ),
@@ -189,6 +140,7 @@ class PregnancyInfoSection extends StatelessWidget {
               value,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: NeoSafeColors.secondaryText,
+                    fontWeight: FontWeight.w500,
                   ),
             ),
             const SizedBox(width: 8),
@@ -212,30 +164,30 @@ class PregnancyInfoSection extends StatelessWidget {
     required Function(bool) onChanged,
   }) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        color: Colors.white.withOpacity(0.95),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: NeoSafeColors.softGray.withOpacity(0.3),
+          color: NeoSafeColors.softGray.withOpacity(0.25),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: iconColor.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
+              color: iconColor.withOpacity(0.12),
+              borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(
               icon,

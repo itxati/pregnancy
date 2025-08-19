@@ -12,9 +12,30 @@ class BabySizeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final weekData = controller.currentWeekData.value;
+    final String? comparison = weekData?.comparison;
+
+    // If no fruit/size comparison available for this week, hide the card
+    if (comparison == null || comparison.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    String _titleCase(String input) {
+      final words = input.replaceAll('_', ' ').split(' ');
+      return words
+          .where((w) => w.isNotEmpty)
+          .map((w) => w[0].toUpperCase() + w.substring(1))
+          .join(' ');
+    }
+
+    final String fruitName = _titleCase(comparison);
+    final int weekNumber = weekData!.week;
+    // Expecting assets to be added later like assets/fruit/week{N}.png
+    final String fruitImageAsset = 'assets/Safe/week$weekNumber.jpg';
+
     return GestureDetector(
       onTap: () {
-        Get.toNamed('/baby_size_discovery');
+        // Get.toNamed('/baby_size_discovery');
       },
       child: Container(
         height: 280,
@@ -40,12 +61,12 @@ class BabySizeCard extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // Size image as background
+            // Fruit image as background for current week
             Positioned.fill(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(24),
                 child: Image.asset(
-                  'assets/logos/size.png',
+                  fruitImageAsset,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(
                     decoration: BoxDecoration(
@@ -92,7 +113,7 @@ class BabySizeCard extends StatelessWidget {
                       padding:
                           const EdgeInsets.only(top: 4, left: 12, right: 12),
                       child: Text(
-                        "Tap to discover the size of your baby!",
+                        "The size of your baby is",
                         style:
                             Theme.of(context).textTheme.headlineSmall?.copyWith(
                                   color: Colors.white,
@@ -102,6 +123,16 @@ class BabySizeCard extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    fruitName,
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 0.5,
+                        ),
+                    textAlign: TextAlign.center,
                   ),
                   const Spacer(),
                 ],

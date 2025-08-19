@@ -90,10 +90,11 @@ class WeeklyDetailsContent extends StatelessWidget {
             // Baby Development
             _buildInfoSection(
               title: "Baby Development",
-              description: weekData.details?.join("\n\n") ??
-                  "Your baby is developing rapidly this week.",
+              description: "", // We'll handle the content differently
               icon: Icons.child_care,
               color: const Color(0xFFEC407A),
+              customContent:
+                  _buildBabyDevelopmentContent(weekData.details ?? []),
             ),
             const SizedBox(height: 24),
 
@@ -148,11 +149,76 @@ class WeeklyDetailsContent extends StatelessWidget {
     });
   }
 
+  Widget _buildBabyDevelopmentContent(List<String> details) {
+    if (details.isEmpty) {
+      return Text(
+        "Your baby is developing rapidly this week.",
+        style: Get.textTheme.bodyMedium?.copyWith(
+          color: NeoSafeColors.secondaryText,
+          height: 1.5,
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: details.map((detail) {
+        // Split by colon to separate the header from the content
+        final parts = detail.split(':');
+
+        if (parts.length >= 2) {
+          final header = parts[0].trim();
+          final content = parts.sublist(1).join(':').trim();
+
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: '$header: ',
+                    style: Get.textTheme.bodyMedium?.copyWith(
+                      color: NeoSafeColors.primaryText,
+                      fontWeight: FontWeight.bold,
+                      height: 1.5,
+                    ),
+                  ),
+                  TextSpan(
+                    text: content,
+                    style: Get.textTheme.bodyMedium?.copyWith(
+                      color: NeoSafeColors.secondaryText,
+                      height: 1.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        } else {
+          // If no colon found, display as regular text
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: Text(
+              detail,
+              style: Get.textTheme.bodyMedium?.copyWith(
+                color: NeoSafeColors.secondaryText,
+                height: 1.5,
+              ),
+            ),
+          );
+        }
+      }).toList(),
+    );
+  }
+
+// Also update your _buildInfoSection method to accept optional customContent:
+
   Widget _buildInfoSection({
     required String title,
     required String description,
     required IconData icon,
     required Color color,
+    Widget? customContent,
   }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 0),
@@ -198,13 +264,15 @@ class WeeklyDetailsContent extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 14),
-          Text(
-            description,
-            style: Get.textTheme.bodyMedium?.copyWith(
-              color: NeoSafeColors.secondaryText,
-              height: 1.5,
-            ),
-          ),
+          // Use customContent if provided, otherwise use description
+          customContent ??
+              Text(
+                description,
+                style: Get.textTheme.bodyMedium?.copyWith(
+                  color: NeoSafeColors.secondaryText,
+                  height: 1.5,
+                ),
+              ),
         ],
       ),
     );

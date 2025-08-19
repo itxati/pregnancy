@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 import '../../../services/auth_service.dart';
 
 class InfoController extends GetxController {
@@ -9,9 +7,7 @@ class InfoController extends GetxController {
   String? BabyBloodGroup;
   String? motherBloodGroup;
   String? relation;
-  String? profileImagePath;
-
-  final Rxn<ImageProvider> avatarImage = Rxn<ImageProvider>();
+  String? profileImagePath; // deprecated usage removed from UI
 
   void setBabyBloodGroup(String? value) {
     BabyBloodGroup = value;
@@ -28,37 +24,7 @@ class InfoController extends GetxController {
     update();
   }
 
-  Future<void> pickImage(BuildContext context) async {
-    final picker = ImagePicker();
-    final source = await showModalBottomSheet<ImageSource>(
-      context: context,
-      builder: (ctx) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.camera_alt),
-              title: const Text('Take Photo'),
-              onTap: () => Navigator.of(ctx).pop(ImageSource.camera),
-            ),
-            ListTile(
-              leading: const Icon(Icons.photo_library),
-              title: const Text('Choose from Gallery'),
-              onTap: () => Navigator.of(ctx).pop(ImageSource.gallery),
-            ),
-          ],
-        ),
-      ),
-    );
-    if (source != null) {
-      final picked = await picker.pickImage(source: source, imageQuality: 80);
-      if (picked != null) {
-        avatarImage.value = FileImage(File(picked.path));
-        profileImagePath = picked.path;
-        update();
-      }
-    }
-  }
+  // Removed image picking functionality for Info page
 
   bool validateAndSave() {
     // All fields are optional now, so always return true

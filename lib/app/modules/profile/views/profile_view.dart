@@ -35,21 +35,7 @@ class ProfileView extends StatelessWidget {
                   Get.back();
                 },
               ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.refresh, color: Colors.white),
-                  onPressed: () async {
-                    await controller.refreshProfileData();
-                    Get.snackbar(
-                      'Refreshed',
-                      'Profile data refreshed successfully!',
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: NeoSafeColors.success.withOpacity(0.1),
-                      colorText: NeoSafeColors.success,
-                    );
-                  },
-                ),
-              ],
+              actions: const [],
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
                   decoration: const BoxDecoration(
@@ -100,12 +86,12 @@ class ProfileView extends StatelessWidget {
                   // Pregnancy Info Section
                   PregnancyInfoSection(controller: controller),
 
-                  const SizedBox(height: 24),
+                  // const SizedBox(height: 24),
 
                   // App Options Section
                   AppOptionsSection(controller: controller),
 
-                  const SizedBox(height: 40),
+                  // const SizedBox(height: 40),
                 ]),
               ),
             ),

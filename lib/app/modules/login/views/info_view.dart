@@ -77,8 +77,6 @@ class InfoView extends StatelessWidget {
                           await controller.saveUserInfo();
                           Get.toNamed('/goal_selection');
                         },
-                        avatarImage: controller.avatarImage.value,
-                        onAvatarTap: () => controller.pickImage(context),
                       ),
                     ),
                   ),

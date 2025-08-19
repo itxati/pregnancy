@@ -166,12 +166,12 @@ class TrackMyPregnancyView extends StatelessWidget {
                     currentWeek: controller.pregnancyWeekNumber.value,
                   ),
 
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 8),
                   // Risk Factor Card
                   RiskFactorCard(),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 8),
                   DangerSignsCard(),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 8),
 
                   LifeStyleAdviceCard(),
 
