@@ -138,13 +138,14 @@ class LoginView extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           // Login button with gradient
-                          LoginGradientButton(
+                          Obx(() => LoginGradientButton(
                             text: 'login'.tr,
+                            isLoading: controller.isLoading.value,
                             onTap: () {
                               // Use controller's validateAndLogin method
                               controller.validateAndLogin();
                             },
-                          ),
+                          )),
                           const SizedBox(height: 8),
                           // Sign up link
                           Row(

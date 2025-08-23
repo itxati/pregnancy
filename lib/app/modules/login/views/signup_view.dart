@@ -146,13 +146,14 @@ class SignUpView extends StatelessWidget {
                         ),
                         const SizedBox(height: 18),
                         // Sign Up button with gradient
-                        LoginGradientButton(
+                        Obx(() => LoginGradientButton(
                           text: 'sign_up'.tr,
+                          isLoading: controller.isLoading.value,
                           onTap: () {
                             // Use controller's signUp method
                             controller.signUp();
                           },
-                        ),
+                        )),
                         const SizedBox(height: 8),
                         // Login link
                         Row(

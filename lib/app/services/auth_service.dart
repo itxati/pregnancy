@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/models/user_model.dart';
 import 'notification_service.dart';
@@ -9,16 +10,50 @@ class AuthService extends GetxService {
 
   final Rx<UserModel?> currentUser = Rx<UserModel?>(null);
   final RxBool isLoading = false.obs;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // SharedPreferences keys
   static const String _userKey = 'current_user';
   static const String _isLoggedInKey = 'is_logged_in';
-  static const String _usersKey = 'registered_users';
 
   @override
   void onInit() {
     super.onInit();
     _loadCurrentUser();
+    _setupAuthStateListener();
+  }
+
+  // Setup Firebase Auth state listener
+  void _setupAuthStateListener() {
+    _auth.authStateChanges().listen((User? firebaseUser) {
+      if (firebaseUser != null) {
+        // User is signed in
+        _loadUserFromFirebase(firebaseUser);
+      } else {
+        // User is signed out
+        currentUser.value = null;
+        _clearLocalUserData();
+      }
+    });
+  }
+
+  // Load user data from Firebase user
+  Future<void> _loadUserFromFirebase(User firebaseUser) async {
+    try {
+      // Create user model from Firebase user
+      final user = UserModel(
+        id: firebaseUser.uid,
+        fullName: firebaseUser.displayName ?? '',
+        email: firebaseUser.email ?? '',
+        createdAt: firebaseUser.metadata.creationTime ?? DateTime.now(),
+        isLoggedIn: true,
+      );
+
+      // Save to local storage and update current user
+      await _saveCurrentUser(user);
+    } catch (e) {
+      print('Error loading user from Firebase: $e');
+    }
   }
 
   // Load current user from SharedPreferences
@@ -51,43 +86,21 @@ class AuthService extends GetxService {
     }
   }
 
+  // Clear local user data
+  Future<void> _clearLocalUserData() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove(_userKey);
+      await prefs.setBool(_isLoggedInKey, false);
+    } catch (e) {
+      print('Error clearing local user data: $e');
+    }
+  }
+
   // Public method to save current user
   Future<void> saveCurrentUser(UserModel user) => _saveCurrentUser(user);
 
-  // Get all registered users
-  Future<List<UserModel>> _getRegisteredUsers() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final usersJson = prefs.getString(_usersKey);
-      if (usersJson != null) {
-        final List<dynamic> usersList = json.decode(usersJson);
-        return usersList.map((user) => UserModel.fromJson(user)).toList();
-      }
-    } catch (e) {
-      print('Error getting registered users: $e');
-    }
-    return [];
-  }
-
-  // Save all registered users
-  Future<void> _saveRegisteredUsers(List<UserModel> users) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final usersJson =
-          json.encode(users.map((user) => user.toJson()).toList());
-      await prefs.setString(_usersKey, usersJson);
-    } catch (e) {
-      print('Error saving registered users: $e');
-    }
-  }
-
-  // Check if user exists
-  Future<bool> _userExists(String email) async {
-    final users = await _getRegisteredUsers();
-    return users.any((user) => user.email.toLowerCase() == email.toLowerCase());
-  }
-
-  // User Registration
+  // User Registration with Firebase
   Future<bool> registerUser({
     required String fullName,
     required String email,
@@ -96,32 +109,26 @@ class AuthService extends GetxService {
     try {
       isLoading.value = true;
 
-      // Check if user already exists
-      if (await _userExists(email)) {
-        Get.snackbar(
-          'Registration Failed',
-          'User with this email already exists',
-          snackPosition: SnackPosition.BOTTOM,
-        );
-        return false;
-      }
+      // Create user with Firebase Auth
+      final UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: email.trim(),
+        password: password,
+      );
 
-      // Create new user
+      // Update display name
+      await userCredential.user?.updateDisplayName(fullName.trim());
+
+      // Create user model
       final newUser = UserModel(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        id: userCredential.user!.uid,
         fullName: fullName.trim(),
         email: email.trim().toLowerCase(),
-        password: password, // In production, this should be hashed
         createdAt: DateTime.now(),
         isLoggedIn: true,
       );
 
-      // Get existing users and add new user
-      final users = await _getRegisteredUsers();
-      users.add(newUser);
-      await _saveRegisteredUsers(users);
-
-      // Set as current user
+      // Save to local storage
       await _saveCurrentUser(newUser);
 
       Get.snackbar(
@@ -131,6 +138,30 @@ class AuthService extends GetxService {
       );
 
       return true;
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = 'An error occurred during registration.';
+
+      switch (e.code) {
+        case 'weak-password':
+          errorMessage = 'The password provided is too weak.';
+          break;
+        case 'email-already-in-use':
+          errorMessage = 'An account already exists for that email.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'The email address is invalid.';
+          break;
+        case 'operation-not-allowed':
+          errorMessage = 'Email/password accounts are not enabled.';
+          break;
+      }
+
+      Get.snackbar(
+        'Registration Failed',
+        errorMessage,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return false;
     } catch (e) {
       print('Registration error: $e');
       Get.snackbar(
@@ -144,7 +175,7 @@ class AuthService extends GetxService {
     }
   }
 
-  // User Login
+  // User Login with Firebase
   Future<bool> loginUser({
     required String email,
     required String password,
@@ -152,43 +183,24 @@ class AuthService extends GetxService {
     try {
       isLoading.value = true;
 
-      // Get registered users
-      final users = await _getRegisteredUsers();
-
-      // Find user with matching email and password
-      final user = users.firstWhere(
-        (u) =>
-            u.email.toLowerCase() == email.toLowerCase() &&
-            u.password == password,
-        orElse: () => UserModel(
-          id: '',
-          fullName: '',
-          email: '',
-          createdAt: DateTime.now(),
-        ),
+      // Sign in with Firebase Auth
+      final UserCredential userCredential =
+          await _auth.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password,
       );
 
-      if (user.id.isEmpty) {
-        Get.snackbar(
-          'Login Failed',
-          'Invalid email or password',
-          snackPosition: SnackPosition.BOTTOM,
-        );
-        return false;
-      }
+      // Create user model
+      final user = UserModel(
+        id: userCredential.user!.uid,
+        fullName: userCredential.user!.displayName ?? '',
+        email: userCredential.user!.email ?? '',
+        createdAt: userCredential.user!.metadata.creationTime ?? DateTime.now(),
+        isLoggedIn: true,
+      );
 
-      // Update user login status
-      final updatedUser = user.copyWith(isLoggedIn: true);
-
-      // Update in registered users list
-      final userIndex = users.indexWhere((u) => u.id == user.id);
-      if (userIndex != -1) {
-        users[userIndex] = updatedUser;
-        await _saveRegisteredUsers(users);
-      }
-
-      // Set as current user
-      await _saveCurrentUser(updatedUser);
+      // Save to local storage
+      await _saveCurrentUser(user);
 
       Get.snackbar(
         'Success',
@@ -197,6 +209,33 @@ class AuthService extends GetxService {
       );
 
       return true;
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = 'An error occurred during login.';
+
+      switch (e.code) {
+        case 'user-not-found':
+          errorMessage = 'No user found for that email.';
+          break;
+        case 'wrong-password':
+          errorMessage = 'Wrong password provided.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'The email address is invalid.';
+          break;
+        case 'user-disabled':
+          errorMessage = 'This user account has been disabled.';
+          break;
+        case 'too-many-requests':
+          errorMessage = 'Too many attempts. Please try again later.';
+          break;
+      }
+
+      Get.snackbar(
+        'Login Failed',
+        errorMessage,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return false;
     } catch (e) {
       print('Login error: $e');
       Get.snackbar(
@@ -213,26 +252,14 @@ class AuthService extends GetxService {
   // User Logout
   Future<void> logout() async {
     try {
-      if (currentUser.value != null) {
-        // Update user login status
-        final updatedUser = currentUser.value!.copyWith(isLoggedIn: false);
-
-        // Update in registered users list
-        final users = await _getRegisteredUsers();
-        final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-        if (userIndex != -1) {
-          users[userIndex] = updatedUser;
-          await _saveRegisteredUsers(users);
-        }
-      }
+      // Sign out from Firebase
+      await _auth.signOut();
 
       // Clear current user
       currentUser.value = null;
 
-      // Clear SharedPreferences
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove(_userKey);
-      await prefs.setBool(_isLoggedInKey, false);
+      // Clear local storage
+      await _clearLocalUserData();
 
       Get.snackbar(
         'Logged Out',
@@ -244,17 +271,61 @@ class AuthService extends GetxService {
     }
   }
 
+  // Password Reset
+  Future<bool> resetPassword(String email) async {
+    try {
+      isLoading.value = true;
+
+      await _auth.sendPasswordResetEmail(email: email.trim());
+
+      return true;
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = 'An error occurred while sending reset link.';
+
+      switch (e.code) {
+        case 'user-not-found':
+          errorMessage = 'No user found for that email.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'The email address is invalid.';
+          break;
+        case 'too-many-requests':
+          errorMessage = 'Too many attempts. Please try again later.';
+          break;
+      }
+
+      Get.snackbar(
+        'Reset Failed',
+        errorMessage,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return false;
+    } catch (e) {
+      print('Password reset error: $e');
+      Get.snackbar(
+        'Error',
+        'Failed to send reset link. Please try again.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return false;
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
   // Check if user is logged in
-  bool get isLoggedIn => currentUser.value?.isLoggedIn ?? false;
+  bool get isLoggedIn => _auth.currentUser != null;
 
   // Get current user
   UserModel? get user => currentUser.value;
 
+  // Get Firebase user
+  User? get firebaseUser => _auth.currentUser;
+
   // Clear all data (for testing or app reset)
   Future<void> clearAllData() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.clear();
+      await _clearLocalUserData();
       currentUser.value = null;
     } catch (e) {
       print('Error clearing data: $e');
@@ -268,14 +339,6 @@ class AuthService extends GetxService {
         lastPeriodStart: periodStart,
       );
       await _saveCurrentUser(updatedUser);
-
-      // Update in registered users list
-      final users = await _getRegisteredUsers();
-      final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-      if (userIndex != -1) {
-        users[userIndex] = updatedUser;
-        await _saveRegisteredUsers(users);
-      }
     }
   }
 
@@ -287,14 +350,6 @@ class AuthService extends GetxService {
         periodLength: periodLength,
       );
       await _saveCurrentUser(updatedUser);
-
-      // Update in registered users list
-      final users = await _getRegisteredUsers();
-      final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-      if (userIndex != -1) {
-        users[userIndex] = updatedUser;
-        await _saveRegisteredUsers(users);
-      }
     }
   }
 
@@ -308,14 +363,6 @@ class AuthService extends GetxService {
           intercourseLog: currentLogs,
         );
         await _saveCurrentUser(updatedUser);
-
-        // Update in registered users list
-        final users = await _getRegisteredUsers();
-        final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-        if (userIndex != -1) {
-          users[userIndex] = updatedUser;
-          await _saveRegisteredUsers(users);
-        }
       }
     }
   }
@@ -329,14 +376,6 @@ class AuthService extends GetxService {
         intercourseLog: currentLogs,
       );
       await _saveCurrentUser(updatedUser);
-
-      // Update in registered users list
-      final users = await _getRegisteredUsers();
-      final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-      if (userIndex != -1) {
-        users[userIndex] = updatedUser;
-        await _saveRegisteredUsers(users);
-      }
     }
   }
 
@@ -370,14 +409,6 @@ class AuthService extends GetxService {
         dueDate: dueDate,
       );
       await _saveCurrentUser(updatedUser);
-
-      // Update in registered users list
-      final users = await _getRegisteredUsers();
-      final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-      if (userIndex != -1) {
-        users[userIndex] = updatedUser;
-        await _saveRegisteredUsers(users);
-      }
     }
   }
 
@@ -421,13 +452,6 @@ class AuthService extends GetxService {
         babyBirthDate: birthDate,
       );
       await _saveCurrentUser(updatedUser);
-      // Update in registered users list
-      final users = await _getRegisteredUsers();
-      final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-      if (userIndex != -1) {
-        users[userIndex] = updatedUser;
-        await _saveRegisteredUsers(users);
-      }
     }
   }
 
@@ -438,13 +462,6 @@ class AuthService extends GetxService {
         babyBloodGroup: bloodGroup,
       );
       await _saveCurrentUser(updatedUser);
-      // Update in registered users list
-      final users = await _getRegisteredUsers();
-      final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-      if (userIndex != -1) {
-        users[userIndex] = updatedUser;
-        await _saveRegisteredUsers(users);
-      }
     }
   }
 
@@ -455,13 +472,6 @@ class AuthService extends GetxService {
         motherBloodGroup: bloodGroup,
       );
       await _saveCurrentUser(updatedUser);
-      // Update in registered users list
-      final users = await _getRegisteredUsers();
-      final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-      if (userIndex != -1) {
-        users[userIndex] = updatedUser;
-        await _saveRegisteredUsers(users);
-      }
     }
   }
 
@@ -472,13 +482,6 @@ class AuthService extends GetxService {
         relation: relation,
       );
       await _saveCurrentUser(updatedUser);
-      // Update in registered users list
-      final users = await _getRegisteredUsers();
-      final userIndex = users.indexWhere((u) => u.id == updatedUser.id);
-      if (userIndex != -1) {
-        users[userIndex] = updatedUser;
-        await _saveRegisteredUsers(users);
-      }
     }
   }
 }

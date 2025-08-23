@@ -134,7 +134,7 @@ class ForgetPasswordView extends StatelessWidget {
                                 hintText: 'email'.tr,
                                 keyboardType: TextInputType.emailAddress,
                                 onChanged: (val) =>
-                                    controller.email.value = val,
+                                    controller.onEmailChanged(val),
                                 errorText:
                                     controller.emailError.value.isNotEmpty
                                         ? controller.emailError.value.tr
@@ -142,19 +142,87 @@ class ForgetPasswordView extends StatelessWidget {
                               )),
                           const SizedBox(height: 22),
                           // Send Reset Link button with gradient
-                          LoginGradientButton(
-                            text: 'send_reset_link'.tr,
-                            onTap: () {
-                              controller.validateAndSendReset();
-                              // Also trigger form validation to show errorText
-                              controller.formKey.currentState?.validate();
-                            },
+                          Obx(() => LoginGradientButton(
+                                text: controller.resendCountdown.value < 60
+                                    ? 'reset_link_sent'.tr
+                                    : 'send_reset_link'.tr,
+                                isLoading: controller.isLoading.value ||
+                                    controller.resendCountdown.value < 60,
+                                onTap: () {
+                                  if (!controller.isLoading.value &&
+                                      controller.resendCountdown.value >= 60) {
+                                    controller.validateAndSendReset();
+                                    // Also trigger form validation to show errorText
+                                    controller.formKey.currentState?.validate();
+                                  }
+                                },
+                              )),
+                          const SizedBox(height: 16),
+                          // Resend option with countdown
+                          Obx(
+                            () => controller.canResend.value ||
+                                    controller.resendCountdown.value < 60
+                                ? Column(
+                                    children: [
+                                      Text(
+                                        'didnt_receive_email'.tr,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.copyWith(
+                                              color:
+                                                  NeoSafeColors.secondaryText,
+                                            ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      if (controller.canResend.value)
+                                        TextButton(
+                                          onPressed: (controller
+                                                      .isLoading.value ||
+                                                  !controller.canResend.value)
+                                              ? null
+                                              : () =>
+                                                  controller.resendResetEmail(),
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: (controller
+                                                        .isLoading.value ||
+                                                    !controller.canResend.value)
+                                                ? NeoSafeColors.secondaryText
+                                                : NeoSafeColors.primaryPink,
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                          child: controller.isLoading.value
+                                              ? Text('sending...'.tr)
+                                              : Text('resend_email'.tr),
+                                        )
+                                      else
+                                        Text(
+                                          'resend_available_in'.tr.replaceAll(
+                                              '{seconds}',
+                                              controller.resendCountdown.value
+                                                  .toString()),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall
+                                              ?.copyWith(
+                                                color:
+                                                    NeoSafeColors.secondaryText,
+                                              ),
+                                        ),
+                                    ],
+                                  )
+                                : const SizedBox.shrink(),
                           ),
                           const SizedBox(height: 10),
                           // Back to Login button
                           TextButton(
                             onPressed: () {
-                              Get.back();
+                              controller.onBackPressed();
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: NeoSafeColors.primaryPink,

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "718958764929",
+    "project_id": "babysafe-2b431",
+    "storage_bucket": "babysafe-2b431.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718958764929:android:1c4e08d1ac124d3fc43e80",
+        "android_client_info": {
+          "package_name": "com.example.babysafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmCHzwxjMH3uhtCiwMLQGky5wamcq2yEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

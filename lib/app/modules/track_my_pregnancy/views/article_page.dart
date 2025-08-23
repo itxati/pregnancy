@@ -41,33 +41,33 @@ class ArticlePage extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
-        actions: [
-          Container(
-            margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.9),
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: IconButton(
-              icon: Icon(Icons.share, color: NeoSafeColors.primaryPink),
-              onPressed: () {
-                // TODO: Implement share functionality
-                Get.snackbar(
-                  'Share',
-                  'Sharing article...',
-                  snackPosition: SnackPosition.BOTTOM,
-                );
-              },
-            ),
-          ),
-        ],
+        // actions: [
+        //   Container(
+        //     margin: const EdgeInsets.all(8),
+        //     decoration: BoxDecoration(
+        //       color: Colors.white.withOpacity(0.9),
+        //       shape: BoxShape.circle,
+        //       boxShadow: [
+        //         BoxShadow(
+        //           color: Colors.black.withOpacity(0.1),
+        //           blurRadius: 8,
+        //           offset: const Offset(0, 2),
+        //         ),
+        //       ],
+        //     ),
+        //     child: IconButton(
+        //       icon: Icon(Icons.share, color: NeoSafeColors.primaryPink),
+        //       onPressed: () {
+        //         // TODO: Implement share functionality
+        //         Get.snackbar(
+        //           'Share',
+        //           'Sharing article...',
+        //           snackPosition: SnackPosition.BOTTOM,
+        //         );
+        //       },
+        //     ),
+        //   ),
+        // ],
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -240,39 +240,39 @@ class ArticlePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Reading Time Indicator
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: NeoSafeColors.primaryPink.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: NeoSafeColors.primaryPink.withOpacity(0.2),
-                          width: 1,
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.access_time,
-                            size: 16,
-                            color: NeoSafeColors.primaryPink,
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            "${_calculateReadingTime(content)} min read",
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: NeoSafeColors.primaryPink,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   padding: const EdgeInsets.symmetric(
+                    //       horizontal: 16, vertical: 8),
+                    //   decoration: BoxDecoration(
+                    //     color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                    //     borderRadius: BorderRadius.circular(20),
+                    //     border: Border.all(
+                    //       color: NeoSafeColors.primaryPink.withOpacity(0.2),
+                    //       width: 1,
+                    //     ),
+                    //   ),
+                    //   child: Row(
+                    //     mainAxisSize: MainAxisSize.min,
+                    //     children: [
+                    //       Icon(
+                    //         Icons.access_time,
+                    //         size: 16,
+                    //         color: NeoSafeColors.primaryPink,
+                    //       ),
+                    //       const SizedBox(width: 6),
+                    //       Text(
+                    //         "${_calculateReadingTime(content)} min read",
+                    //         style:
+                    //             Theme.of(context).textTheme.bodySmall?.copyWith(
+                    //                   color: NeoSafeColors.primaryPink,
+                    //                   fontWeight: FontWeight.w600,
+                    //                 ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
 
-                    const SizedBox(height: 24),
+                    // const SizedBox(height: 24),
 
                     // Article Content
                     Container(
@@ -347,7 +347,7 @@ class ArticlePage extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Did you find this helpful?",
+                                      "Thanks for reading this article!",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium
@@ -357,7 +357,7 @@ class ArticlePage extends StatelessWidget {
                                           ),
                                     ),
                                     Text(
-                                      "Share your thoughts with us",
+                                      "Brought to you by Sphere",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodySmall

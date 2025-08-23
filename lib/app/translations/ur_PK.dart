@@ -48,4 +48,15 @@ final Map<String, String> urPK = {
   'enter_your_password': 'اپنا پاس ورڈ درج کریں',
   'invalid_email': 'درست ای میل درج کریں',
   'error': 'غلطی',
+  'sending': 'بھیج رہا ہے...',
+  'logging_in': 'لاگ ان ہو رہا ہے...',
+  'reset_email_sent_title': 'ری سیٹ لنک بھیج دیا گیا!',
+  'reset_email_sent_message':
+      'ہم نے آپ کے ای میل ایڈریس پر پاس ورڈ ری سیٹ لنک بھیج دیا ہے۔ براہ کرم اپنا ان باکس چیک کریں اور اپنا پاس ورڈ ری سیٹ کرنے کے لیے ہدایات پر عمل کریں۔',
+  'didnt_receive_email': 'ای میل نہیں ملا؟',
+  'resend_email': 'ای میل دوبارہ بھیجیں',
+  'resend_available_in':
+      '{seconds} سیکنڈ میں دوبارہ بھیجنے کا آپشن دستیاب ہوگا',
+  'reset_link_sent': 'ری سیٹ لنک بھیج دیا گیا',
+  'ok': 'ٹھیک ہے',
 };

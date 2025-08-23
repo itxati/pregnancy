@@ -41,7 +41,6 @@ class EssentialReadsSection extends StatelessWidget {
                     onTap: () {
                       Get.to(() => ArticlePage(
                             title: article.title,
-                            subtitle: article.subtitle,
                             imageAsset: article.image,
                             content: article.content,
                           ));
@@ -59,7 +58,7 @@ class EssentialReadsSection extends StatelessWidget {
                 context,
                 article.title,
                 article.image,
-                subtitle: article.subtitle,
+                subtitle: article.content,
                 aspectRatio: 2.5,
                 onTap: () {
                   Get.to(() => ArticlePage(

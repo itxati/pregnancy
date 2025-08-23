@@ -47,5 +47,14 @@ final Map<String, String> enUS = {
   'enter_your_email': 'Enter your email',
   'enter_your_password': 'Enter your password',
   'invalid_email': 'Please enter a valid email',
+  'sending': 'Sending...',
+  'logging_in': 'Logging in...',
+  'reset_email_sent_title': 'Reset Link Sent!',
+  'reset_email_sent_message':
+      'We have sent a password reset link to your email address. Please check your inbox and follow the instructions to reset your password.',
+  'didnt_receive_email': "Didn't receive the email?",
+  'resend_email': 'Resend Email',
+  'resend_available_in': 'Resend available in {seconds} seconds',
+  'reset_link_sent': 'Reset Link Sent',
+  'ok': 'OK',
 };
- 
