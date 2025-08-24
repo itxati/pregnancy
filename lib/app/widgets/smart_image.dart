@@ -25,10 +25,10 @@ class SmartImage extends StatelessWidget {
     this.errorWidget,
   }) : super(key: key);
 
-    bool get _isNetworkImage {
-    return imageSource.startsWith('http://') || 
-           imageSource.startsWith('https://') ||
-           imageSource.startsWith('gs://');
+  bool get _isNetworkImage {
+    return imageSource.startsWith('http://') ||
+        imageSource.startsWith('https://') ||
+        imageSource.startsWith('gs://');
   }
 
   /// Convert Google Drive share links to direct download links
@@ -110,24 +110,25 @@ class SmartImage extends StatelessWidget {
     Widget imageWidget;
 
     if (_isNetworkImage) {
-        // Handle network images with caching
-        if (ImageUrlHelper.isGoogleDriveUrl(imageSource)) {
-          // For Google Drive, use a fallback mechanism
-          imageWidget = _buildGoogleDriveImageWithFallback();
-        } else {
-          // For other network images
-          imageWidget = CachedNetworkImage(
-            imageUrl: imageSource,
-            width: width,
-            height: height,
-            fit: fit,
-            placeholder: (context, url) => placeholder ?? defaultPlaceholder,
-            errorWidget: (context, url, error) => errorWidget ?? defaultErrorWidget,
-            memCacheWidth: 800,
-            memCacheHeight: 600,
-          );
-        }
+      // Handle network images with caching
+      if (ImageUrlHelper.isGoogleDriveUrl(imageSource)) {
+        // For Google Drive, use a fallback mechanism
+        imageWidget = _buildGoogleDriveImageWithFallback();
       } else {
+        // For other network images
+        imageWidget = CachedNetworkImage(
+          imageUrl: imageSource,
+          width: width,
+          height: height,
+          fit: fit,
+          placeholder: (context, url) => placeholder ?? defaultPlaceholder,
+          errorWidget: (context, url, error) =>
+              errorWidget ?? defaultErrorWidget,
+          memCacheWidth: 800,
+          memCacheHeight: 600,
+        );
+      }
+    } else {
       // Handle local asset images
       imageWidget = Image.asset(
         imageSource,
@@ -193,38 +194,39 @@ class SmartImage extends StatelessWidget {
       future: ImageDownloadService.to.downloadImage(imageSource),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return placeholder ?? Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  NeoSafeColors.primaryPink.withOpacity(0.3),
-                  NeoSafeColors.lightPink.withOpacity(0.2),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: const Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    color: NeoSafeColors.primaryPink,
-                    strokeWidth: 2,
+          return placeholder ??
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      NeoSafeColors.primaryPink.withOpacity(0.3),
+                      NeoSafeColors.lightPink.withOpacity(0.2),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Loading...',
-                    style: TextStyle(
-                      color: NeoSafeColors.primaryPink,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                    ),
+                ),
+                child: const Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        color: NeoSafeColors.primaryPink,
+                        strokeWidth: 2,
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        'Loading...',
+                        style: TextStyle(
+                          color: NeoSafeColors.primaryPink,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          );
+                ),
+              );
         }
 
         if (snapshot.hasError || snapshot.data == null) {

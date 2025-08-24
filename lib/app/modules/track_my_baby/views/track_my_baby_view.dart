@@ -15,6 +15,7 @@ import 'dart:io';
 import '../../../services/auth_service.dart';
 import '../../profile/views/profile_view.dart';
 import '../../profile/controllers/profile_controller.dart';
+import 'package:babysafe/app/widgets/speech_button.dart';
 
 // TODO: Replace image placeholders with actual baby images from assets:
 // - Baby profile image in overview card
@@ -141,7 +142,7 @@ class TrackMyBabyView extends StatelessWidget {
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
                   // Offline Indicator
-                  const OfflineIndicator(),
+                  // const OfflineIndicator(),
 
                   // Baby Overview Card
                   _BabyOverviewCard(controller: controller),
@@ -470,7 +471,17 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
                         ),
                   ),
                 ),
-                _monthBadge(context, m.month),
+                // _monthBadge(context, m.month),
+                SpeechButton(
+                  text: m.description! +
+                      " " +
+                      "Milestones" +
+                      ",  " +
+                      m.milestones.join(",  "),
+                  color: NeoSafeColors.primaryPink,
+                  size: 22,
+                  padding: const EdgeInsets.all(4),
+                ),
               ],
             ),
             if (m.description != null) ...[

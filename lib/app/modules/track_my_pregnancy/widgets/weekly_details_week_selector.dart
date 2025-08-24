@@ -6,7 +6,8 @@ import '../controllers/weekly_details_controller.dart';
 class WeeklyDetailsWeekSelector extends StatelessWidget {
   final WeeklyDetailsController controller;
 
-  const WeeklyDetailsWeekSelector({Key? key, required this.controller}) : super(key: key);
+  const WeeklyDetailsWeekSelector({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,13 @@ class WeeklyDetailsWeekSelector extends StatelessWidget {
           itemBuilder: (context, index) {
             final week = index + 1;
             final isSelected = week == currentWeek;
-            
+
             return GestureDetector(
               onTap: () => controller.changeWeek(week),
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 6),
-                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                 decoration: BoxDecoration(
                   color: isSelected
                       ? NeoSafeColors.primaryPink
@@ -83,4 +85,4 @@ class WeeklyDetailsWeekSelector extends StatelessWidget {
       );
     });
   }
-} 
+}

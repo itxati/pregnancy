@@ -140,7 +140,7 @@ class TrackMyPregnancyView extends StatelessWidget {
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
                   // Offline Indicator
-                  const OfflineIndicator(),
+                  // const OfflineIndicator(),
 
                   // Main Pregnancy Card
                   MainPregnancyCard(controller: controller),

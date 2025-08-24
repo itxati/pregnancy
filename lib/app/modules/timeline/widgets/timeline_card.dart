@@ -154,4 +154,4 @@ class TimelineCard extends StatelessWidget {
       ),
     );
   }
-} 
+}

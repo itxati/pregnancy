@@ -45,9 +45,10 @@ class ProfileHeader extends StatelessWidget {
                         const SizedBox(width: 6),
                         Text(
                           'Tap to edit name',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: NeoSafeColors.secondaryText,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: NeoSafeColors.secondaryText,
+                                  ),
                         ),
                       ],
                     ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import '../controllers/weekly_details_controller.dart';
+import '../../../widgets/speech_button.dart';
+import '../../../services/speech_service.dart';
 
 class WeeklyDetailsContent extends StatelessWidget {
   final WeeklyDetailsController controller;
@@ -32,55 +34,75 @@ class WeeklyDetailsContent extends StatelessWidget {
                 ],
               ),
               padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 18),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: Stack(
                 children: [
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Icon(Icons.straighten,
-                          color: NeoSafeColors.primaryPink, size: 22),
-                      const SizedBox(height: 4),
-                      Text(
-                        weekData.length ?? "Length",
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: NeoSafeColors.primaryText,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10,
-                            ),
+                      Column(
+                        children: [
+                          Icon(Icons.straighten,
+                              color: NeoSafeColors.primaryPink, size: 22),
+                          const SizedBox(height: 4),
+                          Text(
+                            weekData.length ?? "Length",
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: NeoSafeColors.primaryText,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10,
+                                    ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  if (weekData.weight.trim().isNotEmpty)
-                    Column(
-                      children: [
-                        Icon(Icons.monitor_weight,
-                            color: NeoSafeColors.roseAccent, size: 22),
-                        const SizedBox(height: 4),
-                        Text(
-                          weekData.weight ?? "Weight",
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                      if (weekData.weight.trim().isNotEmpty)
+                        Column(
+                          children: [
+                            Icon(Icons.monitor_weight,
+                                color: NeoSafeColors.roseAccent, size: 22),
+                            const SizedBox(height: 4),
+                            Text(
+                              weekData.weight ?? "Weight",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
                                     color: NeoSafeColors.primaryText,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 10,
                                   ),
-                        ),
-                      ],
-                    ),
-                  Column(
-                    children: [
-                      Icon(Icons.circle, color: NeoSafeColors.info, size: 22),
-                      const SizedBox(height: 4),
-                      Text(
-                        weekData.size ?? "Size",
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: NeoSafeColors.primaryText,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10,
                             ),
+                          ],
+                        ),
+                      Column(
+                        children: [
+                          Icon(Icons.circle,
+                              color: NeoSafeColors.info, size: 22),
+                          const SizedBox(height: 4),
+                          Text(
+                            weekData.size ?? "Size",
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: NeoSafeColors.primaryText,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10,
+                                    ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  // Speech button in top right corner
+                  // Positioned(
+                  //   top: 0,
+                  //   right: 0,
+                  //   child: SpeechButton(
+                  //     text: _getBabySizeSpeechText(weekData),
+                  //     color: NeoSafeColors.primaryPink,
+                  //     size: 18,
+                  //     padding: const EdgeInsets.all(4),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -95,6 +117,7 @@ class WeeklyDetailsContent extends StatelessWidget {
               color: const Color(0xFFEC407A),
               customContent:
                   _buildBabyDevelopmentContent(weekData.details ?? []),
+              speechText: _getBabyDevelopmentSpeechText(weekData.details ?? []),
             ),
             const SizedBox(height: 24),
 
@@ -211,6 +234,50 @@ class WeeklyDetailsContent extends StatelessWidget {
     );
   }
 
+  String _getBabyDevelopmentSpeechText(List<String> details) {
+    if (details.isEmpty) {
+      return "Your baby is developing rapidly this week.";
+    }
+
+    // Convert the details to a more natural speech format
+    List<String> speechParts = [];
+    for (String detail in details) {
+      final parts = detail.split(':');
+      if (parts.length >= 2) {
+        final header = parts[0].trim();
+        final content = parts.sublist(1).join(':').trim();
+        speechParts.add('$header: $content');
+      } else {
+        speechParts.add(detail);
+      }
+    }
+
+    return "Baby Development. ${speechParts.join('. ')}";
+  }
+
+  String _getBabySizeSpeechText(dynamic weekData) {
+    List<String> sizeInfo = [];
+
+    if (weekData.length != null && weekData.length.toString().isNotEmpty) {
+      sizeInfo.add("Length: ${weekData.length}");
+    }
+
+    if (weekData.weight != null &&
+        weekData.weight.toString().trim().isNotEmpty) {
+      sizeInfo.add("Weight: ${weekData.weight}");
+    }
+
+    if (weekData.size != null && weekData.size.toString().isNotEmpty) {
+      sizeInfo.add("Size: ${weekData.size}");
+    }
+
+    if (sizeInfo.isEmpty) {
+      return "Baby size information is not available for this week.";
+    }
+
+    return "Baby size information. ${sizeInfo.join('. ')}";
+  }
+
 // Also update your _buildInfoSection method to accept optional customContent:
 
   Widget _buildInfoSection({
@@ -219,7 +286,20 @@ class WeeklyDetailsContent extends StatelessWidget {
     required IconData icon,
     required Color color,
     Widget? customContent,
+    String? speechText,
   }) {
+    // Prepare text content for speech
+    String finalSpeechText = speechText ?? '';
+    if (finalSpeechText.isEmpty) {
+      if (customContent != null) {
+        // For custom content, we'll need to extract text from the widget
+        // For now, we'll use the title as a fallback
+        finalSpeechText = title;
+      } else {
+        finalSpeechText = '$title. $description';
+      }
+    }
+
     return Container(
       margin: const EdgeInsets.only(bottom: 0),
       padding: const EdgeInsets.all(20),
@@ -260,6 +340,13 @@ class WeeklyDetailsContent extends StatelessWidget {
                     color: NeoSafeColors.primaryText,
                   ),
                 ),
+              ),
+              // Speech button in top right corner
+              SpeechButton(
+                text: finalSpeechText,
+                color: color,
+                size: 20,
+                padding: const EdgeInsets.all(6),
               ),
             ],
           ),
@@ -316,6 +403,9 @@ class WeeklyDetailsContent extends StatelessWidget {
     required Color color,
     required List<String> items,
   }) {
+    // Prepare text content for speech
+    String speechText = '$title. ${items.join('. ')}';
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -355,6 +445,13 @@ class WeeklyDetailsContent extends StatelessWidget {
                     color: NeoSafeColors.primaryText,
                   ),
                 ),
+              ),
+              // Speech button in top right corner
+              SpeechButton(
+                text: speechText,
+                color: color,
+                size: 20,
+                padding: const EdgeInsets.all(6),
               ),
             ],
           ),
