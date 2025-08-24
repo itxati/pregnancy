@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/data/models/baby_milestone_data_list.dart';
-import 'package:babysafe/app/data/models/baby_article_data.dart';
+import 'package:babysafe/app/services/article_service.dart';
 import 'package:babysafe/app/data/models/baby_milestone_data.dart';
+import '../../../widgets/sync_indicator.dart';
+import '../../../widgets/offline_indicator.dart';
+import '../../../widgets/smart_image.dart';
 import 'package:babysafe/app/data/models/newborn_responsibilities.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/views/article_page.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
@@ -102,19 +105,30 @@ class TrackMyBabyView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(
-                          "Track My Baby",
-                          style: theme.textTheme.displaySmall?.copyWith(
-                            color: NeoSafeColors.primaryText,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          controller.getGreeting(),
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: NeoSafeColors.secondaryText,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Track My Baby",
+                                  style: theme.textTheme.displaySmall?.copyWith(
+                                    color: NeoSafeColors.primaryText,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  controller.getGreeting(),
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    color: NeoSafeColors.secondaryText,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // const SyncIndicator(),
+                          ],
                         ),
                       ],
                     ),
@@ -126,6 +140,9 @@ class TrackMyBabyView extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
+                  // Offline Indicator
+                  const OfflineIndicator(),
+
                   // Baby Overview Card
                   _BabyOverviewCard(controller: controller),
                   const SizedBox(height: 24),
@@ -1622,64 +1639,79 @@ class _TipsDetailPage extends StatelessWidget {
 class _EssentialReadsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "This week's essential reads",
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-                color: NeoSafeColors.primaryText,
+    final articleService = Get.find<ArticleService>();
+
+    return Obx(() {
+      final smallArticles = articleService.getSmallBabyArticles();
+      final largeArticles = articleService.getLargeBabyArticles();
+
+      // Show nothing if no articles
+      if (smallArticles.isEmpty && largeArticles.isEmpty) {
+        return const SizedBox.shrink();
+      }
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "This week's essential reads",
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: NeoSafeColors.primaryText,
+                ),
+          ),
+          const SizedBox(height: 16),
+          if (smallArticles.isNotEmpty)
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: smallArticles.map((article) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: SizedBox(
+                      width: 180,
+                      child: _buildArticleCard(
+                        context,
+                        article.title,
+                        article.image,
+                        aspectRatio: 1.2,
+                        onTap: () {
+                          Get.to(() => ArticlePage(
+                                title: article.title,
+                                // subtitle: article.subtitle,
+                                imageAsset: article.image,
+                                content: article.content,
+                              ));
+                        },
+                      ),
+                    ),
+                  );
+                }).toList(),
               ),
-        ),
-        const SizedBox(height: 16),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: smallBabyArticles.map((article) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: SizedBox(
-                  width: 180,
+            ),
+          if (largeArticles.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            ...largeArticles.map((article) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
                   child: _buildArticleCard(
                     context,
                     article.title,
                     article.image,
-                    aspectRatio: 1.2,
+                    subtitle: article.content,
+                    aspectRatio: 2.5,
                     onTap: () {
                       Get.to(() => ArticlePage(
                             title: article.title,
-                            // subtitle: article.subtitle,
                             imageAsset: article.image,
                             content: article.content,
                           ));
                     },
                   ),
-                ),
-              );
-            }).toList(),
-          ),
-        ),
-        const SizedBox(height: 16),
-        ...largeBabyArticles.map((article) => Padding(
-              padding: const EdgeInsets.only(bottom: 16),
-              child: _buildArticleCard(
-                context,
-                article.title,
-                article.image,
-                subtitle: article.content,
-                aspectRatio: 2.5,
-                onTap: () {
-                  Get.to(() => ArticlePage(
-                        title: article.title,
-                        imageAsset: article.image,
-                        content: article.content,
-                      ));
-                },
-              ),
-            )),
-      ],
-    );
+                )),
+          ],
+        ],
+      );
+    });
   }
 
   Widget _buildArticleCard(
@@ -1736,30 +1768,9 @@ class _EssentialReadsSection extends StatelessWidget {
                           topLeft: Radius.circular(16),
                           topRight: Radius.circular(16),
                         ),
-                        child: Image.asset(
-                          imageAsset,
+                        child: SmartImage(
+                          imageSource: imageAsset,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  NeoSafeColors.maternalGlow.withOpacity(0.8),
-                                  NeoSafeColors.babyPink.withOpacity(0.6),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.photo_library_outlined,
-                                size: 40,
-                                color:
-                                    NeoSafeColors.primaryPink.withOpacity(0.7),
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                     ),
@@ -1972,9 +1983,10 @@ class _ArticlesDetailPage extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     // Combine small and large articles for the detail page
+                    final articleService = Get.find<ArticleService>();
                     final allArticles = [
-                      ...smallBabyArticles,
-                      ...largeBabyArticles
+                      ...articleService.getSmallBabyArticles(),
+                      ...articleService.getLargeBabyArticles(),
                     ];
                     final article = allArticles[index];
                     return Container(
@@ -2013,32 +2025,9 @@ class _ArticlesDetailPage extends StatelessWidget {
                                 // Article Image
                                 AspectRatio(
                                   aspectRatio: 16 / 9,
-                                  child: Image.asset(
-                                    article.image,
+                                  child: SmartImage(
+                                    imageSource: article.image,
                                     fit: BoxFit.cover,
-                                    errorBuilder:
-                                        (context, error, stackTrace) =>
-                                            Container(
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            NeoSafeColors.primaryPink
-                                                .withOpacity(0.3),
-                                            NeoSafeColors.lightPink
-                                                .withOpacity(0.2),
-                                          ],
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                        ),
-                                      ),
-                                      child: const Center(
-                                        child: Icon(
-                                          Icons.article_outlined,
-                                          size: 60,
-                                          color: NeoSafeColors.primaryPink,
-                                        ),
-                                      ),
-                                    ),
                                   ),
                                 ),
 
@@ -2173,7 +2162,7 @@ class _ArticlesDetailPage extends StatelessWidget {
                     );
                   },
                   childCount:
-                      smallBabyArticles.length + largeBabyArticles.length,
+                      Get.find<ArticleService>().getBabyArticles().length,
                 ),
               ),
             ),

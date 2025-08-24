@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/models/user_model.dart';
 import 'notification_service.dart';
+import 'article_service.dart';
 
 class AuthService extends GetxService {
   static AuthService get to => Get.find();
@@ -201,6 +202,14 @@ class AuthService extends GetxService {
 
       // Save to local storage
       await _saveCurrentUser(user);
+
+      // Download articles on first login
+      try {
+        final articleService = Get.find<ArticleService>();
+        await articleService.downloadArticlesOnFirstLogin();
+      } catch (e) {
+        print('Error downloading articles: $e');
+      }
 
       Get.snackbar(
         'Success',

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:babysafe/app/data/models/articles_data.dart';
+import 'package:babysafe/app/services/article_service.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/views/article_page.dart';
+import 'package:babysafe/app/widgets/smart_image.dart';
 import '../controllers/track_my_pregnancy_controller.dart';
 
 class EssentialReadsSection extends StatelessWidget {
@@ -14,30 +15,65 @@ class EssentialReadsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "This week's essential reads",
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-                color: const Color(0xFF3D2929),
+    final articleService = Get.find<ArticleService>();
+    
+    return Obx(() {
+      final smallArticles = articleService.getSmallPregnancyArticles();
+      final largeArticles = articleService.getLargePregnancyArticles();
+      
+      // Show nothing if no articles
+      if (smallArticles.isEmpty && largeArticles.isEmpty) {
+        return const SizedBox.shrink();
+      }
+      
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "This week's essential reads",
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF3D2929),
+                ),
+          ),
+          const SizedBox(height: 16),
+          if (smallArticles.isNotEmpty)
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: smallArticles.map((article) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: SizedBox(
+                      width: 180,
+                      child: _buildArticleCard(
+                        context,
+                        article.title,
+                        article.image,
+                        aspectRatio: 1.2,
+                        onTap: () {
+                          Get.to(() => ArticlePage(
+                                title: article.title,
+                                imageAsset: article.image,
+                                content: article.content,
+                              ));
+                        },
+                      ),
+                    ),
+                  );
+                }).toList(),
               ),
-        ),
-        const SizedBox(height: 16),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: smallArticles.map((article) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: SizedBox(
-                  width: 180,
+            ),
+          if (largeArticles.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            ...largeArticles.map((article) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
                   child: _buildArticleCard(
                     context,
                     article.title,
                     article.image,
-                    aspectRatio: 1.2,
+                    subtitle: article.content,
+                    aspectRatio: 2.5,
                     onTap: () {
                       Get.to(() => ArticlePage(
                             title: article.title,
@@ -46,31 +82,11 @@ class EssentialReadsSection extends StatelessWidget {
                           ));
                     },
                   ),
-                ),
-              );
-            }).toList(),
-          ),
-        ),
-        const SizedBox(height: 16),
-        ...largeArticles.map((article) => Padding(
-              padding: const EdgeInsets.only(bottom: 16),
-              child: _buildArticleCard(
-                context,
-                article.title,
-                article.image,
-                subtitle: article.content,
-                aspectRatio: 2.5,
-                onTap: () {
-                  Get.to(() => ArticlePage(
-                        title: article.title,
-                        imageAsset: article.image,
-                        content: article.content,
-                      ));
-                },
-              ),
-            )),
-      ],
-    );
+                )),
+          ],
+        ],
+      );
+    });
   }
 
   Widget _buildArticleCard(
@@ -127,29 +143,9 @@ class EssentialReadsSection extends StatelessWidget {
                           topLeft: Radius.circular(16),
                           topRight: Radius.circular(16),
                         ),
-                        child: Image.asset(
-                          imageAsset,
+                        child: SmartImage(
+                          imageSource: imageAsset,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0xFFFFF0F0).withOpacity(0.8),
-                                  Color(0xFFFFCCCB).withOpacity(0.6),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.photo_library_outlined,
-                                size: 40,
-                                color: const Color(0xFFE8A5A5).withOpacity(0.7),
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                     ),

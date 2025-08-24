@@ -11,6 +11,9 @@ import 'app/utils/neo_safe_theme.dart';
 import 'app/translations/app_translations.dart';
 import 'app/services/notification_service.dart';
 import 'app/services/auth_service.dart';
+import 'app/services/article_service.dart';
+import 'app/services/connectivity_service.dart';
+import 'app/services/image_download_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +45,15 @@ void main() async {
 
   // Initialize AuthService
   Get.put(AuthService());
+
+  // Initialize ArticleService
+  Get.put(ArticleService());
+
+  // Initialize ConnectivityService
+  Get.put(ConnectivityService());
+
+  // Initialize ImageDownloadService
+  Get.put(ImageDownloadService());
 
   final box = GetStorage();
   final savedLang = box.read('locale');

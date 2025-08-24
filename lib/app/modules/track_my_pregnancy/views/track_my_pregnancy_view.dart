@@ -14,6 +14,8 @@ import '../widgets/weekly_update_card.dart';
 import '../widgets/timeline_card.dart';
 import '../widgets/baby_size_card.dart';
 import '../widgets/essential_reads_section.dart';
+import '../../../widgets/sync_indicator.dart';
+import '../../../widgets/offline_indicator.dart';
 import '../../../routes/app_pages.dart';
 import '../../../services/auth_service.dart';
 import '../../profile/views/profile_view.dart';
@@ -112,13 +114,19 @@ class TrackMyPregnancyView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(
-                          "Today",
-                          style: theme.textTheme.displaySmall?.copyWith(
-                            color: const Color(
-                                0xFF3D2929), // NeoSafeColors.primaryText
-                            fontWeight: FontWeight.w700,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Today",
+                              style: theme.textTheme.displaySmall?.copyWith(
+                                color: const Color(
+                                    0xFF3D2929), // NeoSafeColors.primaryText
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            // const SyncIndicator(),
+                          ],
                         ),
                       ],
                     ),
@@ -131,6 +139,9 @@ class TrackMyPregnancyView extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
+                  // Offline Indicator
+                  const OfflineIndicator(),
+
                   // Main Pregnancy Card
                   MainPregnancyCard(controller: controller),
 

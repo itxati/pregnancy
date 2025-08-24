@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
+import 'package:babysafe/app/widgets/smart_image.dart';
 
 class BabyArticlePage extends StatelessWidget {
   final String title;
@@ -88,28 +89,9 @@ class BabyArticlePage extends StatelessWidget {
                         bottomLeft: Radius.circular(32),
                         bottomRight: Radius.circular(32),
                       ),
-                      child: Image.asset(
-                        imageAsset,
+                      child: SmartImage(
+                        imageSource: imageAsset,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                NeoSafeColors.primaryPink.withOpacity(0.3),
-                                NeoSafeColors.lightPink.withOpacity(0.2),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          child: const Center(
-                            child: Icon(
-                              Icons.article_outlined,
-                              size: 60,
-                              color: NeoSafeColors.primaryPink,
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ),
