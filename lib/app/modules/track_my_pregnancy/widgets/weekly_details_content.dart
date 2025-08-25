@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import '../controllers/weekly_details_controller.dart';
 import '../../../widgets/speech_button.dart';
-import '../../../services/speech_service.dart';
 
 class WeeklyDetailsContent extends StatelessWidget {
   final WeeklyDetailsController controller;
@@ -45,7 +44,7 @@ class WeeklyDetailsContent extends StatelessWidget {
                               color: NeoSafeColors.primaryPink, size: 22),
                           const SizedBox(height: 4),
                           Text(
-                            weekData.length ?? "Length",
+                            weekData.length,
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: NeoSafeColors.primaryText,
@@ -62,7 +61,7 @@ class WeeklyDetailsContent extends StatelessWidget {
                                 color: NeoSafeColors.roseAccent, size: 22),
                             const SizedBox(height: 4),
                             Text(
-                              weekData.weight ?? "Weight",
+                              weekData.weight,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
@@ -80,7 +79,7 @@ class WeeklyDetailsContent extends StatelessWidget {
                               color: NeoSafeColors.info, size: 22),
                           const SizedBox(height: 4),
                           Text(
-                            weekData.size ?? "Size",
+                            weekData.size,
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: NeoSafeColors.primaryText,
@@ -111,27 +110,28 @@ class WeeklyDetailsContent extends StatelessWidget {
 
             // Baby Development
             _buildInfoSection(
-              title: "Baby Development",
-              description: "", // We'll handle the content differently
+              title: 'pregnancy_week_baby_development'.tr,
+              description: '', // We'll handle the content differently
               icon: Icons.child_care,
               color: const Color(0xFFEC407A),
-              customContent:
-                  _buildBabyDevelopmentContent(weekData.details ?? []),
-              speechText: _getBabyDevelopmentSpeechText(weekData.details ?? []),
+              customContent: _buildBabyDevelopmentContent(
+                  _getTranslatedList('details', controller.currentWeek.value)),
+              speechText: _getBabyDevelopmentSpeechText(
+                  _getTranslatedList('details', controller.currentWeek.value)),
             ),
             const SizedBox(height: 24),
 
             _buildDosDontsSupplementsSection(
-              dos: weekData.dos ?? [],
-              donts: weekData.donts ?? [],
-              supplements: weekData.suppliments ?? [],
+              dos: _getTranslatedList('dos', controller.currentWeek.value),
+              donts: _getTranslatedList('donts', controller.currentWeek.value),
+              supplements: _getTranslatedList(
+                  'suppliments', controller.currentWeek.value),
             ),
             const SizedBox(height: 24),
             // Body Changes
             _buildInfoSection(
-              title: "Your Body",
-              description: weekData.body ??
-                  "Your body is adapting to support your growing baby.",
+              title: 'pregnancy_week_your_body'.tr,
+              description: _getTranslated('body', controller.currentWeek.value),
               icon: Icons.pregnant_woman,
               color: const Color(0xFF9C27B0),
             ),
@@ -139,9 +139,9 @@ class WeeklyDetailsContent extends StatelessWidget {
 
             // Health Tips
             _buildInfoSection(
-              title: "Health & Tips",
-              description: weekData.healthTips ??
-                  "Stay healthy and take care of yourself during this important time.",
+              title: 'pregnancy_week_health_tips'.tr,
+              description:
+                  _getTranslated('healthTips', controller.currentWeek.value),
               icon: Icons.favorite,
               color: const Color(0xFF4CAF50),
             ),
@@ -149,9 +149,9 @@ class WeeklyDetailsContent extends StatelessWidget {
 
             // Partner Info
             _buildInfoSection(
-              title: "Partner's Info",
-              description: weekData.partnersInfo ??
-                  "Support and understanding are key during this journey.",
+              title: 'pregnancy_week_partners_info'.tr,
+              description:
+                  _getTranslated('partnersInfo', controller.currentWeek.value),
               icon: Icons.people,
               color: const Color(0xFF2196F3),
             ),
@@ -159,9 +159,9 @@ class WeeklyDetailsContent extends StatelessWidget {
 
             // Twins Info
             _buildInfoSection(
-              title: "Twins Info",
-              description: weekData.twinsInfo ??
-                  "If you're carrying twins, you may need extra care and attention.",
+              title: 'pregnancy_week_twins_info'.tr,
+              description:
+                  _getTranslated('twinsInfo', controller.currentWeek.value),
               icon: Icons.child_care,
               color: const Color(0xFFFF9800),
             ),
@@ -175,7 +175,7 @@ class WeeklyDetailsContent extends StatelessWidget {
   Widget _buildBabyDevelopmentContent(List<String> details) {
     if (details.isEmpty) {
       return Text(
-        "Your baby is developing rapidly this week.",
+        'pregnancy_week_baby_dev_fallback'.tr,
         style: Get.textTheme.bodyMedium?.copyWith(
           color: NeoSafeColors.secondaryText,
           height: 1.5,
@@ -236,7 +236,7 @@ class WeeklyDetailsContent extends StatelessWidget {
 
   String _getBabyDevelopmentSpeechText(List<String> details) {
     if (details.isEmpty) {
-      return "Your baby is developing rapidly this week.";
+      return 'pregnancy_week_baby_dev_fallback'.tr;
     }
 
     // Convert the details to a more natural speech format
@@ -272,10 +272,10 @@ class WeeklyDetailsContent extends StatelessWidget {
     }
 
     if (sizeInfo.isEmpty) {
-      return "Baby size information is not available for this week.";
+      return 'baby_size_info_fallback'.tr;
     }
 
-    return "Baby size information. ${sizeInfo.join('. ')}";
+    return "${'baby_size_info_title'.tr} ${sizeInfo.join('. ')}";
   }
 
 // Also update your _buildInfoSection method to accept optional customContent:
@@ -374,21 +374,21 @@ class WeeklyDetailsContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildInfoSectionWithBullets(
-          title: 'Do’s',
+          title: 'dos'.tr,
           icon: Icons.check_circle_outline,
           color: Colors.green,
           items: dos,
         ),
         const SizedBox(height: 16),
         _buildInfoSectionWithBullets(
-          title: 'Don’ts',
+          title: 'donts'.tr,
           icon: Icons.cancel_outlined,
           color: Colors.redAccent,
           items: donts,
         ),
         const SizedBox(height: 16),
         _buildInfoSectionWithBullets(
-          title: 'Supplements',
+          title: 'supplements'.tr,
           icon: Icons.medical_services_outlined,
           color: Colors.blueAccent,
           items: supplements,
@@ -477,5 +477,64 @@ class WeeklyDetailsContent extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _getTranslated(String field, int week) {
+    final key = 'pregnancy_week_${week}_$field';
+    final value = key.tr;
+    // If translation is missing, fallback to original weekData
+    if (value == key) {
+      final weekData = controller.currentWeekData;
+      switch (field) {
+        case 'body':
+          return weekData.body ?? '';
+        case 'healthTips':
+          return weekData.healthTips ?? '';
+        case 'partnersInfo':
+          return weekData.partnersInfo ?? '';
+        case 'twinsInfo':
+          return weekData.twinsInfo ?? '';
+        default:
+          return '';
+      }
+    }
+    return value;
+  }
+
+  List<String> _getTranslatedList(String field, int week) {
+    final keyPrefix = 'pregnancy_week_${week}_${field}_';
+    List<String> result = [];
+    for (int i = 0; i < 10; i++) {
+      final key = keyPrefix + i.toString();
+      final value = key.tr;
+      if (value != key) {
+        result.add(value);
+      } else {
+        // If no translation, fallback to original weekData
+        final weekData = controller.currentWeekData;
+        List<String>? originalList;
+        switch (field) {
+          case 'details':
+            originalList = weekData.details;
+            break;
+          case 'dos':
+            originalList = weekData.dos;
+            break;
+          case 'donts':
+            originalList = weekData.donts;
+            break;
+          case 'suppliments':
+            originalList = weekData.suppliments;
+            break;
+          default:
+            originalList = [];
+        }
+        if (originalList != null && i < originalList.length) {
+          result.add(originalList[i]);
+        }
+      }
+    }
+    // Remove empty strings
+    return result.where((e) => e.trim().isNotEmpty).toList();
   }
 }

@@ -14,7 +14,6 @@ class WeeklyDetailsHeader extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Obx(() {
-      final weekData = controller.currentWeekData;
       final currentWeek = controller.currentWeek.value;
 
       return Stack(
@@ -93,7 +92,7 @@ class WeeklyDetailsHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "$currentWeek weeks pregnant",
+                  'weeks_pregnant'.trParams({'week': '$currentWeek'}),
                   style: theme.textTheme.displaySmall?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,

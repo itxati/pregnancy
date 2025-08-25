@@ -69,7 +69,7 @@ class WeeklyDetailsWeekSelector extends StatelessWidget {
                     ),
                     if (isSelected)
                       Text(
-                        "WEEKS",
+                        'weeks'.tr.toUpperCase(),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
