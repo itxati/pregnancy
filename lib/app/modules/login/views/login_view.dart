@@ -179,7 +179,7 @@ class LoginView extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           // Language switcher for changing app language (Login Screen)
-                          // const LanguageSwitcher(),
+                          const LanguageSwitcher(),
                         ],
                       ),
                     ),

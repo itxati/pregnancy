@@ -43,7 +43,7 @@ class CycleSettingsWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  'Cycle Settings',
+                  'cycle_settings'.tr,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: NeoSafeColors.primaryText,
@@ -61,7 +61,7 @@ class CycleSettingsWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Cycle Length',
+                        'cycle_length'.tr,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: NeoSafeColors.primaryText,
@@ -69,7 +69,7 @@ class CycleSettingsWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '${controller.cycleLength} days',
+                        '${controller.cycleLength} ${'days'.tr}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: NeoSafeColors.secondaryText,
                             ),
@@ -154,7 +154,7 @@ class CycleSettingsWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Period Length',
+                        'period_length'.tr,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: NeoSafeColors.primaryText,
@@ -162,7 +162,7 @@ class CycleSettingsWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '${controller.periodLength} days',
+                        '${controller.periodLength} ${'days'.tr}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: NeoSafeColors.secondaryText,
                             ),

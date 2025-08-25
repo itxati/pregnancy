@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 
@@ -43,9 +44,9 @@ class ActionButtonsWidget extends StatelessWidget {
               ),
               onPressed: () => _showPeriodDatePicker(context),
               icon: const Icon(Icons.water_drop, color: Colors.white, size: 20),
-              label: const Text(
-                'Set Period Start',
-                style: TextStyle(
+              label: Text(
+                'set_period_start'.tr,
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
@@ -89,8 +90,8 @@ class ActionButtonsWidget extends StatelessWidget {
               ),
               label: Text(
                 selectedDay != null && controller.hasIntercourse(selectedDay)
-                    ? 'Remove Log'
-                    : 'Log Intimacy',
+                    ? 'remove_log'.tr
+                    : 'log_intimacy'.tr,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,

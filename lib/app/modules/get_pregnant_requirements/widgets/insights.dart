@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 
@@ -29,7 +30,7 @@ class InsightsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Today's Insights",
+          "todays_insights".tr,
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w700,
             color: NeoSafeColors.primaryText,
@@ -40,7 +41,7 @@ class InsightsWidget extends StatelessWidget {
           children: [
             Expanded(
               child: _InsightCard(
-                title: "Fertility",
+                title: "fertility".tr,
                 value: controller.getPregnancyChance(today),
                 icon: Icons.favorite,
                 gradient: LinearGradient(
@@ -57,7 +58,7 @@ class InsightsWidget extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: _InsightCard(
-                title: "Cycle Day",
+                title: "cycle_day".tr,
                 value: "${controller.getCycleDay(today)}",
                 icon: Icons.calendar_today,
                 gradient: LinearGradient(
@@ -73,7 +74,7 @@ class InsightsWidget extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: _InsightCard(
-                title: "Logs",
+                title: "logs".tr,
                 value: "${controller.intercourseLog.length}",
                 icon: Icons.favorite,
                 gradient: NeoSafeGradients.roseGradient,

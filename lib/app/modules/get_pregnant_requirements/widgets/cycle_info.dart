@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 
@@ -10,20 +11,20 @@ class CycleInfoWidget extends StatelessWidget {
       : super(key: key);
 
   String _monthName(int month) {
-    const months = [
+    final months = [
       '',
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+      'jan'.tr,
+      'feb'.tr,
+      'mar'.tr,
+      'apr'.tr,
+      'may'.tr,
+      'jun'.tr,
+      'jul'.tr,
+      'aug'.tr,
+      'sep'.tr,
+      'oct'.tr,
+      'nov'.tr,
+      'dec'.tr
     ];
     return months[month];
   }
@@ -56,7 +57,7 @@ class CycleInfoWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Cycle Overview",
+            "cycle_overview".tr,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w700,
               color: NeoSafeColors.primaryText,
@@ -67,7 +68,7 @@ class CycleInfoWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: _CycleInfoItem(
-                  title: "Last Period",
+                  title: "last_period".tr,
                   value: "${periodStart.day} ${_monthName(periodStart.month)}",
                   icon: Icons.water_drop,
                   color: NeoSafeColors.error,
@@ -76,8 +77,8 @@ class CycleInfoWidget extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: _CycleInfoItem(
-                  title: "Next Period",
-                  value: "in $daysToNext days",
+                  title: "next_period".tr,
+                  value: "in_days".trParams({'days': daysToNext.toString()}),
                   icon: Icons.schedule,
                   color: NeoSafeColors.roseAccent,
                 ),
@@ -89,7 +90,7 @@ class CycleInfoWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: _CycleInfoItem(
-                  title: "Ovulation",
+                  title: "ovulation".tr,
                   value:
                       "${ovulationDay.day} ${_monthName(ovulationDay.month)}",
                   icon: Icons.star,
@@ -99,7 +100,7 @@ class CycleInfoWidget extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: _CycleInfoItem(
-                  title: "Fertile Window",
+                  title: "fertile_window_range".tr,
                   value:
                       "${fertileDays.isNotEmpty ? '${fertileDays.first.day}-${fertileDays.last.day}' : '-'}",
                   icon: Icons.eco,

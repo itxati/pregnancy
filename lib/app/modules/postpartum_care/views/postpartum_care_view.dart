@@ -23,16 +23,16 @@ class PostpartumCareView extends GetView<PostpartumCareController> {
           scrolledUnderElevation: 0,
           shadowColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
-          title: const Text('Postpartum Care'),
-          bottom: const TabBar(
+          title: Text('postpartum_care'.tr),
+          bottom: TabBar(
             isScrollable: true,
             dividerColor: Colors.transparent,
             indicatorSize: TabBarIndicatorSize.label,
             tabs: [
-              Tab(text: 'Overview'),
-              Tab(text: "Dos & Don'ts"),
-              Tab(text: 'Breastfeeding'),
-              Tab(text: 'Family Planning'),
+              Tab(text: 'overview'.tr),
+              Tab(text: 'dos_and_donts'.tr),
+              Tab(text: 'breastfeeding'.tr),
+              Tab(text: 'family_planning'.tr),
             ],
           ),
         ),

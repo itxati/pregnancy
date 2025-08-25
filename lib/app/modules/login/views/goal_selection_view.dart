@@ -4,6 +4,7 @@ import '../../../utils/neo_safe_theme.dart';
 import 'dart:ui';
 import '../controllers/goal_selection_controller.dart';
 import '../widgets/goal_card.dart';
+import '../../pregnancy_splash/widgets/language_switcher.dart';
 
 class GoalSelectionView extends StatelessWidget {
   const GoalSelectionView({Key? key}) : super(key: key);
@@ -108,9 +109,13 @@ class GoalSelectionView extends StatelessWidget {
                           ),
                           const SizedBox(height: 18),
 
+                          // Language switcher
+                          const LanguageSwitcher(),
+                          const SizedBox(height: 18),
+
                           // Title text
                           Text(
-                            'What is your goal?',
+                            'what_is_your_goal'.tr,
                             textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme
@@ -122,7 +127,7 @@ class GoalSelectionView extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'Choose your journey with us',
+                            'choose_your_journey'.tr,
                             textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme
@@ -145,9 +150,8 @@ class GoalSelectionView extends StatelessWidget {
                             ),
                             icon: Icons.favorite,
                             iconColor: NeoSafeColors.primaryPink,
-                            title: "Get pregnant",
-                            subtitle:
-                                "Track your cycles and best days to conceive",
+                            title: "get_pregnant".tr,
+                            subtitle: "get_pregnant_subtitle".tr,
                             onTap: () =>
                                 controller.onGoalCardTap('get_pregnant'),
                           ),
@@ -163,9 +167,8 @@ class GoalSelectionView extends StatelessWidget {
                             ),
                             icon: Icons.pregnant_woman,
                             iconColor: NeoSafeColors.roseAccent,
-                            title: "Track my pregnancy",
-                            subtitle:
-                                "Monitor your baby's progress and upcoming milestones",
+                            title: "track_my_pregnancy".tr,
+                            subtitle: "track_my_pregnancy_subtitle".tr,
                             onTap: () =>
                                 controller.onGoalCardTap('track_pregnance'),
                           ),
@@ -181,9 +184,8 @@ class GoalSelectionView extends StatelessWidget {
                             ),
                             icon: Icons.child_care,
                             iconColor: NeoSafeColors.primaryPink,
-                            title: "Child's development",
-                            subtitle:
-                                "Stay informed on your newborn's first six months",
+                            title: "child_development".tr,
+                            subtitle: "child_development_subtitle".tr,
                             onTap: () =>
                                 controller.onGoalCardTap('child_development'),
                           ),
@@ -199,9 +201,8 @@ class GoalSelectionView extends StatelessWidget {
                             ),
                             icon: Icons.local_hospital,
                             iconColor: NeoSafeColors.roseAccent,
-                            title: "Postpartum Care",
-                            subtitle:
-                                "Guidance for recovery, newborn care, and mental wellness",
+                            title: "postpartum_care".tr,
+                            subtitle: "postpartum_care_subtitle".tr,
                             onTap: () =>
                                 controller.onGoalCardTap('postpartum_care'),
                           ),

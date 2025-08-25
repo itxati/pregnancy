@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../data/models/postpartum_models.dart';
 import '../../../utils/neo_safe_theme.dart';
 
@@ -11,11 +12,11 @@ class PostpartumTipsView extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
       children: [
-        _sectionHeader(context, Icons.check_circle, 'Do\'s'),
+        _sectionHeader(context, Icons.check_circle, 'dos'.tr),
         const SizedBox(height: 8),
         _plainList(context, tips.dos, positive: true),
         const SizedBox(height: 20),
-        _sectionHeader(context, Icons.block, 'Don\'ts'),
+        _sectionHeader(context, Icons.block, 'donts'.tr),
         const SizedBox(height: 8),
         _plainList(context, tips.donts, positive: false),
       ],

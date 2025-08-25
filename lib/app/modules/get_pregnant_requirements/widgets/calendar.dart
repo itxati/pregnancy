@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
@@ -80,6 +81,13 @@ class CalendarWidget extends StatelessWidget {
               fontWeight: FontWeight.w700,
               color: NeoSafeColors.primaryText,
             ),
+            titleTextFormatter: (date, locale) {
+              final monthNames = [
+                '', 'jan'.tr, 'feb'.tr, 'mar'.tr, 'apr'.tr, 'may'.tr, 'jun'.tr,
+                'jul'.tr, 'aug'.tr, 'sep'.tr, 'oct'.tr, 'nov'.tr, 'dec'.tr
+              ];
+              return '${monthNames[date.month]} ${date.year}';
+            },
             leftChevronIcon: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
@@ -106,6 +114,21 @@ class CalendarWidget extends StatelessWidget {
           calendarBuilders: CalendarBuilders(
             defaultBuilder: (context, date, _) =>
                 _buildCalendarDay(context, date, controller),
+            dowBuilder: (context, day) {
+              final dayNames = [
+                'sun'.tr, 'mon'.tr, 'tue'.tr, 'wed'.tr, 'thu'.tr, 'fri'.tr, 'sat'.tr
+              ];
+              return Center(
+                child: Text(
+                  dayNames[day.weekday % 7],
+                  style: TextStyle(
+                    color: NeoSafeColors.secondaryText,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),

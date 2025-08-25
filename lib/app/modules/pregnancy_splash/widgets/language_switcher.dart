@@ -20,8 +20,10 @@ class LanguageSwitcher extends StatelessWidget {
           label: 'English',
           isSelected: locale.languageCode == 'en',
           onTap: () {
+            print('Switching to English locale');
             Get.updateLocale(const Locale('en', 'US'));
             box.write('locale', 'en');
+            print('Current locale after switch: ${Get.locale?.languageCode}');
           },
           backgroundColor: backgroundColor,
           selectedTextColor: selectedTextColor,
@@ -31,8 +33,10 @@ class LanguageSwitcher extends StatelessWidget {
           label: 'اردو',
           isSelected: locale.languageCode == 'ur',
           onTap: () {
+            print('Switching to Urdu locale');
             Get.updateLocale(const Locale('ur', 'PK'));
             box.write('locale', 'ur');
+            print('Current locale after switch: ${Get.locale?.languageCode}');
           },
           backgroundColor: backgroundColor,
           selectedTextColor: selectedTextColor,

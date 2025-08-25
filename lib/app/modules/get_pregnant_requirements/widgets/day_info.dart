@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 
@@ -9,20 +10,20 @@ class DayInfoWidget extends StatelessWidget {
       : super(key: key);
 
   String _monthName(int month) {
-    const months = [
+    final months = [
       '',
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+      'jan'.tr,
+      'feb'.tr,
+      'mar'.tr,
+      'apr'.tr,
+      'may'.tr,
+      'jun'.tr,
+      'jul'.tr,
+      'aug'.tr,
+      'sep'.tr,
+      'oct'.tr,
+      'nov'.tr,
+      'dec'.tr
     ];
     return months[month];
   }
@@ -93,7 +94,7 @@ class DayInfoWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Day ${controller.getCycleDay(day)} of cycle",
+                      "day_of_cycle".trParams({'day': controller.getCycleDay(day).toString()}),
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: NeoSafeColors.secondaryText,
                       ),
@@ -110,31 +111,31 @@ class DayInfoWidget extends StatelessWidget {
             children: [
               _StatusChip(
                 label:
-                    "Pregnancy Chance: ${controller.getPregnancyChance(day)}",
+                    "pregnancy_chance".trParams({'chance': controller.getPregnancyChance(day)}),
                 color: _getChanceColor(controller.getPregnancyChance(day)),
                 icon: Icons.trending_up,
               ),
               if (controller.isPeriodDay(day))
-                const _StatusChip(
-                  label: "Period Day",
+                _StatusChip(
+                  label: "period_day".tr,
                   color: NeoSafeColors.error,
                   icon: Icons.water_drop,
                 ),
               if (controller.isFertileDay(day))
-                const _StatusChip(
-                  label: "Fertile Window",
+                _StatusChip(
+                  label: "fertile_window".tr,
                   color: NeoSafeColors.success,
                   icon: Icons.eco,
                 ),
               if (controller.isOvulationDay(day))
-                const _StatusChip(
-                  label: "Ovulation Day",
+                _StatusChip(
+                  label: "ovulation_day".tr,
                   color: NeoSafeColors.warning,
                   icon: Icons.star,
                 ),
               if (controller.hasIntercourse(day))
-                const _StatusChip(
-                  label: "Intimacy Logged",
+                _StatusChip(
+                  label: "intimacy_logged".tr,
                   color: NeoSafeColors.primaryPink,
                   icon: Icons.favorite,
                 ),

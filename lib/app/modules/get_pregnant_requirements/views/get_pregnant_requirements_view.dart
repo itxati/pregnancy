@@ -45,7 +45,11 @@ class GetPregnantRequirementsView extends StatelessWidget {
                         final user = authService.currentUser.value;
                         final profileImagePath = user?.profileImagePath;
                         return Padding(
-                          padding: const EdgeInsets.only(right: 16, top: 12),
+                          padding: const EdgeInsets.only(
+                            right: 16,
+                            top: 12,
+                            left: 16,
+                          ),
                           child: GestureDetector(
                             onTap: () => Get.toNamed(Routes.profile),
                             child: CircleAvatar(
@@ -86,7 +90,7 @@ class GetPregnantRequirementsView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                "Fertility Journey",
+                                "fertility_journey".tr,
                                 style: theme.textTheme.displaySmall?.copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
@@ -94,11 +98,25 @@ class GetPregnantRequirementsView extends StatelessWidget {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                "Track your cycle with care",
+                                "track_your_cycle".tr,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: Colors.white.withOpacity(0.9),
                                 ),
                               ),
+                              const SizedBox(height: 4),
+                              // Text(
+                              //   "Current Locale: ${Get.locale?.languageCode}",
+                              //   style: theme.textTheme.bodySmall?.copyWith(
+                              //     color: Colors.white.withOpacity(0.7),
+                              //   ),
+                              // ),
+                              // const SizedBox(height: 4),
+                              // Text(
+                              //   "test_translation".tr,
+                              //   style: theme.textTheme.bodySmall?.copyWith(
+                              //     color: Colors.white.withOpacity(0.7),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),

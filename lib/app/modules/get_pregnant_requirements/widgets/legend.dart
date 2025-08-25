@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 
@@ -49,7 +50,7 @@ class LegendWidget extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     Text(
-                      "Calendar Guide",
+                      "calendar_guide".tr,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w700,
                             color: NeoSafeColors.primaryText,
@@ -61,25 +62,25 @@ class LegendWidget extends StatelessWidget {
                 Wrap(
                   spacing: 16,
                   runSpacing: 12,
-                  children: const [
+                  children: [
                     _LegendItem(
                       color: NeoSafeColors.error,
-                      label: "Period",
+                      label: "period".tr,
                       icon: Icons.water_drop,
                     ),
                     _LegendItem(
                       color: NeoSafeColors.success,
-                      label: "Fertile",
+                      label: "fertile".tr,
                       icon: Icons.eco,
                     ),
                     _LegendItem(
                       color: NeoSafeColors.warning,
-                      label: "Ovulation",
+                      label: "ovulation".tr,
                       icon: Icons.star,
                     ),
                     _LegendItem(
                       color: NeoSafeColors.primaryPink,
-                      label: "Intimacy",
+                      label: "intimacy".tr,
                       icon: Icons.favorite,
                     ),
                   ],

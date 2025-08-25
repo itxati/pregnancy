@@ -116,7 +116,7 @@ class TrackMyBabyView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Track My Baby",
+                                  "track_my_baby".tr,
                                   style: theme.textTheme.displaySmall?.copyWith(
                                     color: NeoSafeColors.primaryText,
                                     fontWeight: FontWeight.w700,
@@ -305,7 +305,7 @@ class _MilestonesSummaryCard extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      'Baby Milestones',
+                      'baby_milestones'.tr,
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 color: NeoSafeColors.primaryText,
@@ -383,7 +383,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
     final themeService = Get.find<ThemeService>();
     final selected = babyMilestones[_selectedIndex];
     return Scaffold(
-      appBar: AppBar(title: const Text('All Milestones')),
+      appBar: AppBar(title: Text('all_milestones'.tr)),
       body: Column(
         children: [
           const SizedBox(height: 8),
@@ -414,7 +414,8 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
           return Padding(
             padding: const EdgeInsets.only(right: 8),
             child: ChoiceChip(
-              label: Text('${m.month} mo'.replaceFirst('0 mo', 'Newborn')),
+              label: Text('${m.month} ${'mo'.tr}'
+                  .replaceFirst('0 ${'mo'.tr}', 'newborn'.tr)),
               selected: selected,
               onSelected: (_) {
                 setState(() => _selectedIndex = index);
@@ -493,7 +494,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
                 SpeechButton(
                   text: m.description! +
                       " " +
-                      "Milestones" +
+                      "baby_milestones".tr +
                       ",  " +
                       m.milestones.join(",  "),
                   color: themeService.getPrimaryColor(),
@@ -533,7 +534,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
             ],
             const SizedBox(height: 12),
             Text(
-              'Milestones',
+              'baby_milestones'.tr,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: NeoSafeColors.primaryText,
@@ -636,7 +637,7 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      'Baby Health Info',
+                      'baby_health_info'.tr,
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 color: NeoSafeColors.primaryText,
@@ -654,7 +655,7 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Jaundice Awareness',
+                      'jaundice_awareness'.tr,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: NeoSafeColors.primaryText,
                             fontWeight: FontWeight.w600,
@@ -718,7 +719,7 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Monitor your baby for signs of jaundice and consult your pediatrician if you notice yellowing of the skin or eyes.',
+                      'monitor_baby_jaundice'.tr,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: NeoSafeColors.secondaryText,
                             height: 1.4,
@@ -795,7 +796,7 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('All Health Info'),
+        title: Text('all_health_info'.tr),
         backgroundColor: NeoSafeColors.primaryPink,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -871,7 +872,7 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Jaundice Information',
+                    'jaundice_information'.tr,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.w800,
@@ -879,7 +880,7 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Comprehensive guide with tabs - Tap to view',
+                    'comprehensive_guide_tabs'.tr,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.white.withOpacity(0.9),
                         ),
@@ -1103,7 +1104,7 @@ class _NewbornResponsibilitiesCard extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      'Newborn Responsibilities',
+                      'newborn_responsibilities'.tr,
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 color: NeoSafeColors.primaryText,
@@ -1116,9 +1117,9 @@ class _NewbornResponsibilitiesCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 12),
-              _bullet(context, 'Register your child within 60 days of birth'),
-              _bullet(context, 'Keep vaccination EPI card safe and updated'),
-              _bullet(context, 'Collect discharge summary and test results'),
+              _bullet(context, 'register_child_60_days'.tr),
+              _bullet(context, 'keep_vaccination_safe'.tr),
+              _bullet(context, 'collect_discharge_summary'.tr),
             ],
           ),
         ),
@@ -1164,7 +1165,7 @@ class _NewbornResponsibilitiesDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Newborn Responsibilities'),
+        title: Text('newborn_responsibilities'.tr),
         backgroundColor: NeoSafeColors.primaryPink,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -1202,7 +1203,7 @@ class _NewbornResponsibilitiesDetailPage extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'Newborn Responsibilities for Parents After Child Birth',
+                    'newborn_responsibilities_title'.tr,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -1234,9 +1235,9 @@ class _NewbornResponsibilitiesDetailPage extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
-                _buildBadge(context, Icons.schedule, 'Within 60 days'),
-                _buildBadge(context, Icons.verified, 'Form B required'),
-                _buildBadge(context, Icons.vaccines, 'EPI card'),
+                _buildBadge(context, Icons.schedule, 'within_60_days'.tr),
+                _buildBadge(context, Icons.verified, 'form_b_required'.tr),
+                _buildBadge(context, Icons.vaccines, 'epi_card'.tr),
               ],
             ),
           ),
