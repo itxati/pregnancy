@@ -6,6 +6,7 @@ import '../../../data/models/pregnancy_week_data.dart';
 import '../../../utils/neo_safe_theme.dart';
 import '../../../services/notification_service.dart';
 import '../../../services/auth_service.dart';
+import '../../../services/theme_service.dart';
 
 class TrackMyPregnancyController extends GetxController
     with GetTickerProviderStateMixin {
@@ -281,6 +282,7 @@ class TrackMyPregnancyController extends GetxController
   }
 
   void showWhereYouAreBottomSheet(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     Get.bottomSheet(
       Container(
         decoration: BoxDecoration(
@@ -323,14 +325,14 @@ class TrackMyPregnancyController extends GetxController
                     const Spacer(),
                     Container(
                       decoration: BoxDecoration(
-                        color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                        color: themeService.getPrimaryColor().withOpacity(0.1),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
                         onPressed: () => Get.back(),
                         icon: Icon(
                           Icons.close,
-                          color: NeoSafeColors.primaryPink,
+                          color: themeService.getPrimaryColor(),
                           size: 20,
                         ),
                       ),
@@ -343,14 +345,14 @@ class TrackMyPregnancyController extends GetxController
                 _buildInfoRow(
                   context,
                   icon: Icons.child_care,
-                  iconColor: NeoSafeColors.primaryPink,
+                  iconColor: themeService.getPrimaryColor(),
                   text: "Your estimated due date is ${dueDate.value}.",
                 ),
                 const SizedBox(height: 16),
                 _buildInfoRow(
                   context,
                   icon: Icons.pregnant_woman,
-                  iconColor: NeoSafeColors.primaryPink,
+                  iconColor: themeService.getPrimaryColor(),
                   text:
                       "This means you're ${pregnancyWeekNumber.value} weeks and ${pregnancyDays.value % 7} days pregnant.",
                 ),
@@ -370,14 +372,14 @@ class TrackMyPregnancyController extends GetxController
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        NeoSafeColors.lightPink,
-                        NeoSafeColors.primaryPink,
+                        themeService.getLightColor(),
+                        themeService.getPrimaryColor(),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: NeoSafeColors.primaryPink.withOpacity(0.3),
+                        color: themeService.getPrimaryColor().withOpacity(0.3),
                         blurRadius: 12,
                         offset: const Offset(0, 4),
                       ),

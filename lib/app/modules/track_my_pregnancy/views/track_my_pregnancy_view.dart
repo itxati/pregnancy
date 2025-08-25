@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 import 'package:babysafe/app/data/models/pregnancy_weeks.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/widgets/alert_card.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/widgets/birth_prepadness_card.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/widgets/danger_signs_card.dart';
@@ -28,6 +29,7 @@ class TrackMyPregnancyView extends StatelessWidget {
   Widget build(BuildContext context) {
     print('TrackMyPregnancyView is being built');
     final controller = Get.put(TrackMyPregnancyController());
+    final themeService = Get.find<ThemeService>();
 
     final theme = Theme.of(context);
     final screenHeight = MediaQuery.of(context).size.height;
@@ -65,17 +67,16 @@ class TrackMyPregnancyView extends StatelessWidget {
                     return Container(
                       margin: const EdgeInsets.only(right: 16),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
+                        gradient: LinearGradient(
                           colors: [
-                            Color(0xFFF2C2C2), // NeoSafeColors.lightPink
-                            Color(0xFFE8A5A5), // NeoSafeColors.primaryPink
+                            themeService.getLightColor(),
+                            themeService.getPrimaryColor(),
                           ],
                         ),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFFE8A5A5)
-                                .withOpacity(0.3), // NeoSafeColors.primaryPink
+                            color: themeService.getPrimaryColor().withOpacity(0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
                           ),

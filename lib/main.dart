@@ -15,6 +15,7 @@ import 'app/services/article_service.dart';
 import 'app/services/connectivity_service.dart';
 import 'app/services/image_download_service.dart';
 import 'app/services/speech_service.dart';
+import 'app/services/theme_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,6 +59,9 @@ void main() async {
 
   // Initialize SpeechService
   Get.put(SpeechService());
+
+  // Initialize ThemeService
+  Get.put(ThemeService());
 
   final box = GetStorage();
   final savedLang = box.read('locale');

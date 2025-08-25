@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 import '../controllers/track_my_pregnancy_controller.dart';
 
 class BabySizeCard extends StatelessWidget {
@@ -12,6 +13,7 @@ class BabySizeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     final weekData = controller.currentWeekData.value;
     final String? comparison = weekData?.comparison;
 
@@ -42,9 +44,9 @@ class BabySizeCard extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFFF0E5F0).withOpacity(0.8), // NeoSafeColors.softLavender
-              Color(0xFFE8C5E8), // NeoSafeColors.lavenderPink
-              Color(0xFFF5D5D5), // NeoSafeColors.blushRose
+              themeService.getPaleColor().withOpacity(0.8),
+              themeService.getLightColor(),
+              themeService.getBabyColor(),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -52,8 +54,7 @@ class BabySizeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFFE8C5E8)
-                  .withOpacity(0.3), // NeoSafeColors.lavenderPink
+              color: themeService.getLightColor().withOpacity(0.3),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -72,10 +73,9 @@ class BabySizeCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Color(0xFFF0E5F0)
-                              .withOpacity(0.8), // NeoSafeColors.softLavender
-                          Color(0xFFE8C5E8), // NeoSafeColors.lavenderPink
-                          Color(0xFFF5D5D5), // NeoSafeColors.blushRose
+                          themeService.getPaleColor().withOpacity(0.8),
+                          themeService.getLightColor(),
+                          themeService.getBabyColor(),
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,

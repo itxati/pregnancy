@@ -10,6 +10,7 @@ class UserModel {
   final String? motherBloodGroup;
   final String? relation;
   final DateTime? babyBirthDate;
+  final String? babyGender;
 
   // Fertility tracking data
   final DateTime? lastPeriodStart;
@@ -37,6 +38,7 @@ class UserModel {
     this.periodLength = 5,
     this.intercourseLog = const [],
     this.dueDate,
+    this.babyGender,
   });
 
   // Convert to JSON for storage
@@ -59,6 +61,7 @@ class UserModel {
       'intercourseLog':
           intercourseLog.map((date) => date.millisecondsSinceEpoch).toList(),
       'dueDate': dueDate?.millisecondsSinceEpoch,
+      'babyGender':babyGender,
     };
   }
 
@@ -92,6 +95,7 @@ class UserModel {
       dueDate: json['dueDate'] != null
           ? DateTime.fromMillisecondsSinceEpoch(json['dueDate'])
           : null,
+      babyGender: json['babyGender'],
     );
   }
 
@@ -113,6 +117,7 @@ class UserModel {
     int? periodLength,
     List<DateTime>? intercourseLog,
     DateTime? dueDate,
+    String? babyGender,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -131,6 +136,7 @@ class UserModel {
       periodLength: periodLength ?? this.periodLength,
       intercourseLog: intercourseLog ?? this.intercourseLog,
       dueDate: dueDate ?? this.dueDate,
+      babyGender: babyGender ?? this.babyGender,
     );
   }
 }

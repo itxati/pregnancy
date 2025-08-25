@@ -5,6 +5,7 @@ import 'package:babysafe/app/modules/track_my_pregnancy/views/risk_factor_view.d
 import 'package:babysafe/app/routes/app_pages.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import 'package:babysafe/app/services/auth_service.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 import 'package:babysafe/app/data/models/user_model.dart';
 
 class RiskFactorCard extends StatelessWidget {
@@ -52,6 +53,7 @@ class RiskFactorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final themeService = Get.find<ThemeService>();
 
     return GetX<AuthService>(
       builder: (authService) {
@@ -71,13 +73,13 @@ class RiskFactorCard extends StatelessWidget {
                 colors: hasRiskFactors
                     ? [
                         NeoSafeColors.warning.withOpacity(0.1),
-                        NeoSafeColors.palePink.withOpacity(0.8),
-                        NeoSafeColors.blushRose.withOpacity(0.6),
+                        themeService.getPaleColor().withOpacity(0.8),
+                        themeService.getLightColor().withOpacity(0.6),
                       ]
                     : [
                         NeoSafeColors.success.withOpacity(0.1),
-                        NeoSafeColors.palePink.withOpacity(0.7),
-                        NeoSafeColors.maternalGlow.withOpacity(0.8),
+                        themeService.getPaleColor().withOpacity(0.7),
+                        themeService.getPaleColor().withOpacity(0.8),
                       ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -277,7 +279,8 @@ class RiskFactorCard extends StatelessWidget {
                           color: NeoSafeColors.creamWhite.withOpacity(0.7),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                            color:
+                                themeService.getPrimaryColor().withOpacity(0.1),
                             width: 1,
                           ),
                         ),
@@ -285,7 +288,7 @@ class RiskFactorCard extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.touch_app_rounded,
-                              color: NeoSafeColors.primaryPink,
+                              color: themeService.getPrimaryColor(),
                               size: 16,
                             ),
                             const SizedBox(width: 8),
@@ -301,7 +304,7 @@ class RiskFactorCard extends StatelessWidget {
                             const Spacer(),
                             Icon(
                               Icons.arrow_forward_ios_rounded,
-                              color: NeoSafeColors.primaryPink,
+                              color: themeService.getPrimaryColor(),
                               size: 12,
                             ),
                           ],
@@ -372,6 +375,7 @@ class RiskFactorCard extends StatelessWidget {
   }
 
   Widget _buildRiskFactorsPreview(BuildContext context, ThemeData theme) {
+    final themeService = Get.find<ThemeService>();
     final previewCategories = riskFactorGroups.keys.take(2).toList();
 
     return Column(
@@ -437,7 +441,7 @@ class RiskFactorCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: NeoSafeColors.primaryPink.withOpacity(0.1),
+              color: themeService.getPrimaryColor().withOpacity(0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -446,7 +450,7 @@ class RiskFactorCard extends StatelessWidget {
                 Text(
                   "+${riskFactorGroups.length - 2} more categories",
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: NeoSafeColors.primaryPink,
+                    color: themeService.getPrimaryColor(),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -598,6 +602,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     return Container(
       decoration: const BoxDecoration(
         color: NeoSafeColors.creamWhite,
@@ -619,12 +624,12 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                      color: themeService.getPrimaryColor().withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
                       Icons.bloodtype,
-                      color: NeoSafeColors.primaryPink,
+                      color: themeService.getPrimaryColor(),
                       size: 24,
                     ),
                   ),
@@ -695,7 +700,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
                 child: ElevatedButton(
                   onPressed: _saveData,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: NeoSafeColors.primaryPink,
+                    backgroundColor: themeService.getPrimaryColor(),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
@@ -727,6 +732,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
     List<String> items,
     ValueChanged<String?> onChanged,
   ) {
+    final themeService = Get.find<ThemeService>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -767,7 +773,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
             onChanged: onChanged,
             icon: Icon(
               Icons.keyboard_arrow_down,
-              color: NeoSafeColors.primaryPink,
+              color: themeService.getPrimaryColor(),
             ),
           ),
         ),

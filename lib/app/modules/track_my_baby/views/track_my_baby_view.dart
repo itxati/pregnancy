@@ -16,6 +16,7 @@ import '../../../services/auth_service.dart';
 import '../../profile/views/profile_view.dart';
 import '../../profile/controllers/profile_controller.dart';
 import 'package:babysafe/app/widgets/speech_button.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 
 // TODO: Replace image placeholders with actual baby images from assets:
 // - Baby profile image in overview card
@@ -29,6 +30,7 @@ class TrackMyBabyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(TrackMyBabyController());
+    final themeService = Get.find<ThemeService>();
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -58,16 +60,17 @@ class TrackMyBabyView extends StatelessWidget {
                     return Container(
                       margin: const EdgeInsets.only(right: 16),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
+                        gradient: LinearGradient(
                           colors: [
-                            Color(0xFFF2C2C2), // NeoSafeColors.lightPink
-                            Color(0xFFE8A5A5), // NeoSafeColors.primaryPink
+                            themeService.getLightColor(),
+                            themeService.getPrimaryColor(),
                           ],
                         ),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFFE8A5A5).withOpacity(0.3),
+                            color:
+                                themeService.getPrimaryColor().withOpacity(0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
                           ),
@@ -179,17 +182,18 @@ class _BabyOverviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     return Container(
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [NeoSafeColors.lightPink, NeoSafeColors.palePink],
+        gradient: LinearGradient(
+          colors: [themeService.getLightColor(), themeService.getPaleColor()],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: NeoSafeColors.primaryPink.withOpacity(0.2),
+            color: themeService.getPrimaryColor().withOpacity(0.2),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -261,6 +265,7 @@ class _BabyOverviewCard extends StatelessWidget {
 class _MilestonesSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     final shortMilestones = babyMilestones.take(2).toList();
     return Material(
       color: Colors.transparent,
@@ -282,9 +287,14 @@ class _MilestonesSummaryCard extends StatelessWidget {
                 children: [
                   Container(
                     padding: const EdgeInsets.all(12),
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      gradient: NeoSafeGradients.roseGradient,
+                      gradient: LinearGradient(
+                        colors: [
+                          themeService.getAccentColor(),
+                          themeService.getPrimaryColor(),
+                        ],
+                      ),
                     ),
                     child: const Icon(
                       Icons.trending_up,
@@ -370,6 +380,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     final selected = babyMilestones[_selectedIndex];
     return Scaffold(
       appBar: AppBar(title: const Text('All Milestones')),
@@ -391,6 +402,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
   }
 
   Widget _buildMonthChips(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -407,10 +419,10 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
               onSelected: (_) {
                 setState(() => _selectedIndex = index);
               },
-              selectedColor: NeoSafeColors.primaryPink.withOpacity(0.15),
+              selectedColor: themeService.getPrimaryColor().withOpacity(0.15),
               labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: selected
-                        ? NeoSafeColors.primaryPink
+                        ? themeService.getPrimaryColor()
                         : NeoSafeColors.primaryText,
                     fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                   ),
@@ -418,7 +430,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
               shape: StadiumBorder(
                 side: BorderSide(
                   color: selected
-                      ? NeoSafeColors.primaryPink.withOpacity(0.4)
+                      ? themeService.getPrimaryColor().withOpacity(0.4)
                       : NeoSafeColors.softGray.withOpacity(0.4),
                 ),
               ),
@@ -430,6 +442,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
   }
 
   Widget _buildMilestoneCard(BuildContext context, BabyMilestone m) {
+    final themeService = Get.find<ThemeService>();
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
@@ -454,9 +467,14 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
               children: [
                 Container(
                   padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    gradient: NeoSafeGradients.roseGradient,
+                    gradient: LinearGradient(
+                      colors: [
+                        themeService.getAccentColor(),
+                        themeService.getPrimaryColor(),
+                      ],
+                    ),
                   ),
                   child: const Icon(Icons.trending_up,
                       color: Colors.white, size: 20),
@@ -478,7 +496,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
                       "Milestones" +
                       ",  " +
                       m.milestones.join(",  "),
-                  color: NeoSafeColors.primaryPink,
+                  color: themeService.getPrimaryColor(),
                   size: 22,
                   padding: const EdgeInsets.all(4),
                 ),
@@ -492,12 +510,12 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
                   color: NeoSafeColors.softGray.withOpacity(0.25),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                      color: NeoSafeColors.primaryPink.withOpacity(0.2)),
+                      color: themeService.getPrimaryColor().withOpacity(0.2)),
                 ),
                 child: Row(
                   children: [
                     Icon(Icons.lightbulb_outline,
-                        size: 18, color: NeoSafeColors.primaryPink),
+                        size: 18, color: themeService.getPrimaryColor()),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
@@ -578,6 +596,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
 class _HealthInfoSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     final shortHealth = babyHealthInfos.take(1).toList();
     return Material(
       color: Colors.transparent,
@@ -599,9 +618,14 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                 children: [
                   Container(
                     padding: const EdgeInsets.all(12),
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      gradient: NeoSafeGradients.roseGradient,
+                      gradient: LinearGradient(
+                        colors: [
+                          themeService.getAccentColor(),
+                          themeService.getPrimaryColor(),
+                        ],
+                      ),
                     ),
                     child: const Icon(
                       Icons.health_and_safety,
@@ -644,8 +668,8 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         gradient: LinearGradient(
                           colors: [
-                            NeoSafeColors.primaryPink.withOpacity(0.1),
-                            NeoSafeColors.lightPink.withOpacity(0.05),
+                            themeService.getPrimaryColor().withOpacity(0.1),
+                            themeService.getLightColor().withOpacity(0.05),
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,

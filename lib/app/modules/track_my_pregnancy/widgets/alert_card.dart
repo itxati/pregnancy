@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/data/models/pregnancy_weeks.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/controllers/track_my_pregnancy_controller.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 
 class AlertCard extends StatelessWidget {
   final TrackMyPregnancyController controller;
@@ -9,6 +11,7 @@ class AlertCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     final currentWeek = controller.pregnancyWeekNumber.value;
     final alerts = pregnancyWeeks[currentWeek]?.alerts;
 
@@ -16,27 +19,27 @@ class AlertCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color(0xFFFFF0F0).withOpacity(0.9), // NeoSafeColors.maternalGlow
-            Color(0xFFFFCCCB).withOpacity(0.8), // NeoSafeColors.babyPink
-            Color(0xFFF5D5D5).withOpacity(0.7), // NeoSafeColors.blushRose
+            themeService.getPaleColor().withOpacity(0.9),
+            themeService.getBabyColor().withOpacity(0.8),
+            themeService.getLightColor().withOpacity(0.7),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: const Color(0xFFE8A5A5).withOpacity(0.2),
+          color: themeService.getPrimaryColor().withOpacity(0.2),
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFE8A5A5).withOpacity(0.15),
+            color: themeService.getPrimaryColor().withOpacity(0.15),
             blurRadius: 20,
             offset: const Offset(0, 8),
             spreadRadius: 2,
           ),
           BoxShadow(
-            color: const Color(0xFFE8A5A5).withOpacity(0.05),
+            color: themeService.getPrimaryColor().withOpacity(0.05),
             blurRadius: 40,
             offset: const Offset(0, 16),
             spreadRadius: 4,
@@ -56,7 +59,7 @@ class AlertCard extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    Color(0xFFE8A5A5).withOpacity(0.1),
+                    themeService.getPrimaryColor().withOpacity(0.1),
                     Colors.transparent,
                   ],
                 ),
@@ -96,14 +99,15 @@ class AlertCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
-                            Color(0xFFE8A5A5).withOpacity(0.9),
-                            Color(0xFFD4A5A5).withOpacity(0.8),
+                            themeService.getPrimaryColor().withOpacity(0.9),
+                            themeService.getAccentColor().withOpacity(0.8),
                           ],
                         ),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFFE8A5A5).withOpacity(0.3),
+                            color:
+                                themeService.getPrimaryColor().withOpacity(0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 4),
                           ),
@@ -153,7 +157,7 @@ class AlertCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFE8A5A5),
+                          color: themeService.getPrimaryColor(),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -184,12 +188,15 @@ class AlertCard extends StatelessWidget {
                         color: Colors.white.withOpacity(0.7),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color: const Color(0xFFE8A5A5).withOpacity(0.1),
+                          color:
+                              themeService.getPrimaryColor().withOpacity(0.1),
                           width: 1,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFFE8A5A5).withOpacity(0.08),
+                            color: themeService
+                                .getPrimaryColor()
+                                .withOpacity(0.08),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
                           ),
@@ -206,15 +213,16 @@ class AlertCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
-                                  Color(0xFFE8A5A5),
-                                  Color(0xFFD4A5A5),
+                                  themeService.getPrimaryColor(),
+                                  themeService.getAccentColor(),
                                 ],
                               ),
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color:
-                                      const Color(0xFFE8A5A5).withOpacity(0.4),
+                                  color: themeService
+                                      .getPrimaryColor()
+                                      .withOpacity(0.4),
                                   blurRadius: 4,
                                   offset: const Offset(0, 1),
                                 ),
@@ -250,7 +258,7 @@ class AlertCard extends StatelessWidget {
                       color: Colors.white.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: const Color(0xFFE8A5A5).withOpacity(0.1),
+                        color: themeService.getPrimaryColor().withOpacity(0.1),
                         width: 1,
                       ),
                     ),

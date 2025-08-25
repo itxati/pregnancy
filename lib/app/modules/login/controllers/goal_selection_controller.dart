@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../../../services/auth_service.dart';
+import '../../../services/theme_service.dart';
 import 'package:babysafe/app/widgets/gender_selector.dart';
 
 class GoalSelectionController extends GetxController {
   late AuthService authService;
+  late ThemeService themeService;
 
   // Observable variables for tracking state
   final RxString selectedGoal = ''.obs;
@@ -14,6 +16,7 @@ class GoalSelectionController extends GetxController {
   void onInit() {
     super.onInit();
     authService = Get.find<AuthService>();
+    themeService = Get.find<ThemeService>();
   }
 
   // Method to select a goal
@@ -50,7 +53,7 @@ class GoalSelectionController extends GetxController {
   }
 
   void _showDueDateBottomSheet() {
-    String? selectedGender = "male";
+    String selectedGender = authService.user?.babyGender ?? "female";
     Get.bottomSheet(
       StatefulBuilder(
         builder: (context, setState) {
@@ -96,8 +99,9 @@ class GoalSelectionController extends GetxController {
                   const SizedBox(height: 24),
                   GenderSelector(
                     selectedGender: selectedGender,
-                    onChanged: (gender) {
+                    onChanged: (gender) async {
                       setState(() => selectedGender = gender);
+                      await updateBabyGender(gender);
                     },
                   ),
                   const SizedBox(height: 24),
@@ -156,7 +160,7 @@ class GoalSelectionController extends GetxController {
 
   void _showBabyBirthDateBottomSheet() {
     DateTime? selectedBirthDate;
-    String? selectedGender = "male";
+    String selectedGender = authService.user?.babyGender ?? "female";
     Get.bottomSheet(
       StatefulBuilder(
         builder: (context, setState) {
@@ -201,8 +205,9 @@ class GoalSelectionController extends GetxController {
                   // Gender selection
                   GenderSelector(
                     selectedGender: selectedGender,
-                    onChanged: (gender) {
+                    onChanged: (gender) async {
                       setState(() => selectedGender = gender);
+                      await updateBabyGender(gender);
                     },
                   ),
                   const SizedBox(height: 24),
@@ -239,12 +244,21 @@ class GoalSelectionController extends GetxController {
                   ),
                   const SizedBox(height: 24),
                   ElevatedButton(
-                    onPressed: () {
-                      // Use selectedGender and selectedBirthDate as needed
-                      Navigator.pop(context, {
-                        'gender': selectedGender,
-                        'birthDate': selectedBirthDate,
-                      });
+                    onPressed: () async {
+                      // Save birth date
+                      final birthDate = selectedBirthDate ?? DateTime.now();
+                      await authService.updateBabyBirthDate(birthDate);
+
+                      Get.back(); // Close bottom sheet
+                      Get.toNamed('/track_my_baby');
+
+                      Get.snackbar(
+                        'Success',
+                        'Baby birth date saved successfully!',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.green.withOpacity(0.1),
+                        colorText: Colors.green,
+                      );
                     },
                     child: const Text("Continue"),
                   ),
@@ -260,6 +274,9 @@ class GoalSelectionController extends GetxController {
   }
 
   Future<void> _selectDueDate() async {
+    // Get the selected gender from the current user
+    String selectedGender = authService.user?.babyGender ?? "female";
+
     final DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
       initialDate: DateTime.now()
@@ -270,7 +287,7 @@ class GoalSelectionController extends GetxController {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: Theme.of(context).colorScheme.copyWith(
-                  primary: const Color(0xFFE91E63),
+                  primary: themeService.getPrimaryColor(),
                 ),
           ),
           child: child!,
@@ -296,6 +313,9 @@ class GoalSelectionController extends GetxController {
   }
 
   Future<void> _continueWithoutDueDate() async {
+    // Get the selected gender from the current user
+    String selectedGender = authService.user?.babyGender ?? "female";
+
     // Calculate due date assuming 42 days pregnant (6 weeks from LMP)
     final calculatedDueDate =
         authService.calculateDueDateFromCurrentPregnancyDays(42);
@@ -324,5 +344,11 @@ class GoalSelectionController extends GetxController {
   void onGoalCardTap(String goal) {
     selectGoal(goal);
     navigateToGoal(goal);
+  }
+
+  // Method to update baby gender
+  Future<void> updateBabyGender(String gender) async {
+    await authService.updateBabyGender(gender);
+    themeService.setBabyGender(gender);
   }
 }

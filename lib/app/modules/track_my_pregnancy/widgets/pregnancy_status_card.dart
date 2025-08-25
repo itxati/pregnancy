@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 import '../controllers/track_my_pregnancy_controller.dart';
 
 class PregnancyStatusCard extends StatelessWidget {
@@ -13,6 +14,7 @@ class PregnancyStatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     return Obx(() => GestureDetector(
           onTap: () => controller.showWhereYouAreBottomSheet(context),
           child: Container(
@@ -36,7 +38,7 @@ class PregnancyStatusCard extends StatelessWidget {
                   "${controller.pregnancyWeekNumber.value} weeks pregnant",
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w700,
-                        color: NeoSafeColors.primaryPink,
+                        color: themeService.getPrimaryColor(),
                       ),
                 ),
                 const SizedBox(height: 8),
@@ -76,20 +78,18 @@ class PregnancyStatusCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
                         decoration: BoxDecoration(
-                          color:
-                              const Color(0xFFFAE8E8), // NeoSafeColors.palePink
+                          color: themeService.getPaleColor(),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: const Color(0xFFE8A5A5)
-                                .withOpacity(0.3), // NeoSafeColors.primaryPink
+                            color:
+                                themeService.getPrimaryColor().withOpacity(0.3),
                           ),
                         ),
                         child: Text(
                           "Edit",
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: const Color(
-                                        0xFFE8A5A5), // NeoSafeColors.primaryPink
+                                    color: themeService.getPrimaryColor(),
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -113,8 +113,7 @@ class PregnancyStatusCard extends StatelessWidget {
                           width: double.infinity,
                           height: double.infinity,
                           decoration: BoxDecoration(
-                            color: const Color(
-                                0xFFFAE8E8), // NeoSafeColors.palePink
+                            color: themeService.getPaleColor(),
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),
@@ -127,8 +126,8 @@ class PregnancyStatusCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
-                                  NeoSafeColors.primaryPink,
-                                  NeoSafeColors.roseAccent
+                                  themeService.getPrimaryColor(),
+                                  themeService.getAccentColor()
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(4),

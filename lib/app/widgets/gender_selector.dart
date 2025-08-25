@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../services/theme_service.dart';
 
 class GenderSelector extends StatelessWidget {
   final String? selectedGender; // "male" or "female"
@@ -44,22 +46,25 @@ class GenderSelector extends StatelessWidget {
     required bool selected,
     required VoidCallback onTap,
   }) {
+    final themeService = Get.find<ThemeService>();
+    final primaryColor = themeService.getPrimaryColor();
+    
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         decoration: BoxDecoration(
-          color: selected ? Colors.pink.shade50 : Colors.white,
+          color: selected ? primaryColor.withOpacity(0.1) : Colors.white,
           border: Border.all(
-            color: selected ? Colors.pink : Colors.grey.shade300,
+            color: selected ? primaryColor : Colors.grey.shade300,
             width: selected ? 2.5 : 1.0,
           ),
           borderRadius: BorderRadius.circular(16),
           boxShadow: selected
               ? [
                   BoxShadow(
-                    color: Colors.pink.withOpacity(0.15),
+                    color: primaryColor.withOpacity(0.15),
                     blurRadius: 8,
                     offset: const Offset(0, 4),
                   ),
@@ -69,12 +74,12 @@ class GenderSelector extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: selected ? Colors.pink : Colors.grey, size: 36),
+            Icon(icon, color: selected ? primaryColor : Colors.grey, size: 36),
             const SizedBox(height: 8),
             Text(
               label,
               style: TextStyle(
-                color: selected ? Colors.pink : Colors.grey,
+                color: selected ? primaryColor : Colors.grey,
                 fontWeight: selected ? FontWeight.bold : FontWeight.normal,
                 fontSize: 16,
               ),

@@ -126,6 +126,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 import '../controllers/track_my_pregnancy_controller.dart';
 import '../views/weekly_details_page.dart';
 
@@ -139,6 +140,7 @@ class WeeklyUpdateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     return Obx(() => GestureDetector(
           onTap: () {
             // Navigate to weekly details page with current pregnancy week
@@ -150,8 +152,8 @@ class WeeklyUpdateCard extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFFFCE4EC),
-                  Color(0xFFF8BBD9).withOpacity(0.7),
+                  themeService.getPaleColor(),
+                  themeService.getLightColor().withOpacity(0.7),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -159,7 +161,7 @@ class WeeklyUpdateCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFFEC407A).withOpacity(0.1),
+                  color: themeService.getPrimaryColor().withOpacity(0.1),
                   blurRadius: 15,
                   offset: const Offset(0, 5),
                 ),
@@ -190,7 +192,7 @@ class WeeklyUpdateCard extends StatelessWidget {
                         "${controller.pregnancyWeekNumber.value}",
                         style:
                             Theme.of(context).textTheme.displayLarge?.copyWith(
-                                  color: const Color(0xFFEC407A),
+                                  color: themeService.getPrimaryColor(),
                                   fontWeight: FontWeight.w900,
                                   fontSize: 48,
                                 ),
@@ -199,7 +201,7 @@ class WeeklyUpdateCard extends StatelessWidget {
                       Text(
                         "WEEKS",
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: const Color(0xFFEC407A),
+                              color: themeService.getPrimaryColor(),
                               fontWeight: FontWeight.w700,
                               letterSpacing: 2,
                             ),
@@ -209,7 +211,7 @@ class WeeklyUpdateCard extends StatelessWidget {
                       Text(
                         "Your weekly update",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: const Color(0xFFEC407A),
+                              color: themeService.getPrimaryColor(),
                               fontWeight: FontWeight.normal,
                             ),
                       ),
@@ -224,7 +226,7 @@ class WeeklyUpdateCard extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFEC407A),
+                      color: themeService.getPrimaryColor(),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Text(

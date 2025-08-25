@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/services/article_service.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/views/article_page.dart';
 import 'package:babysafe/app/widgets/smart_image.dart';
 import '../controllers/track_my_pregnancy_controller.dart';
@@ -16,16 +17,17 @@ class EssentialReadsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final articleService = Get.find<ArticleService>();
-    
+    final themeService = Get.find<ThemeService>();
+
     return Obx(() {
       final smallArticles = articleService.getSmallPregnancyArticles();
       final largeArticles = articleService.getLargePregnancyArticles();
-      
+
       // Show nothing if no articles
       if (smallArticles.isEmpty && largeArticles.isEmpty) {
         return const SizedBox.shrink();
       }
-      
+
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -97,6 +99,7 @@ class EssentialReadsSection extends StatelessWidget {
     double aspectRatio = 1.5,
     VoidCallback? onTap,
   }) {
+    final themeService = Get.find<ThemeService>();
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -104,12 +107,12 @@ class EssentialReadsSection extends StatelessWidget {
           color: const Color(0xFFFFFAFA),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: const Color(0xFFE8A5A5).withOpacity(0.1),
+            color: themeService.getPrimaryColor().withOpacity(0.1),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFFE8A5A5).withOpacity(0.1),
+              color: themeService.getPrimaryColor().withOpacity(0.1),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -124,8 +127,8 @@ class EssentialReadsSection extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Color(0xFFFFF0F0).withOpacity(0.8),
-                      Color(0xFFFFCCCB).withOpacity(0.6),
+                      themeService.getPaleColor().withOpacity(0.8),
+                      themeService.getBabyColor().withOpacity(0.6),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -217,19 +220,20 @@ class _ArticleTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color(0xFFE8A5A5).withOpacity(0.9),
-            Color(0xFFD4A5A5).withOpacity(0.9),
+            themeService.getPrimaryColor().withOpacity(0.9),
+            themeService.getAccentColor().withOpacity(0.9),
           ],
         ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFE8A5A5).withOpacity(0.3),
+            color: themeService.getPrimaryColor().withOpacity(0.3),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),

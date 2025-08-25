@@ -133,6 +133,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 import '../controllers/track_my_pregnancy_controller.dart';
 import '../../timeline/controllers/timeline_controller.dart';
 import '../../timeline/views/timeline_view.dart';
@@ -206,6 +207,7 @@ class TimelineCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     print('TimelineCard is being built');
     return Obx(() {
       final progress = _calculateProgress();
@@ -219,14 +221,12 @@ class TimelineCard extends StatelessWidget {
             color: const Color(0xFFFFFAFA), // NeoSafeColors.creamWhite
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: const Color(0xFFE8A5A5)
-                  .withOpacity(0.1), // NeoSafeColors.primaryPink
+              color: themeService.getPrimaryColor().withOpacity(0.1),
               width: 1,
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFE8A5A5)
-                    .withOpacity(0.1), // NeoSafeColors.primaryPink
+                color: themeService.getPrimaryColor().withOpacity(0.1),
                 blurRadius: 15,
                 offset: const Offset(0, 5),
               ),
@@ -271,12 +271,10 @@ class TimelineCard extends StatelessWidget {
                               widthFactor: progress['first'],
                               child: Container(
                                 decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
+                                  gradient: LinearGradient(
                                     colors: [
-                                      Color(
-                                          0xFFE8A5A5), // NeoSafeColors.primaryPink
-                                      Color(
-                                          0xFFF2C2C2), // NeoSafeColors.lightPink
+                                      themeService.getPrimaryColor(),
+                                      themeService.getLightColor(),
                                     ],
                                   ),
                                   borderRadius: BorderRadius.circular(3),
@@ -300,12 +298,10 @@ class TimelineCard extends StatelessWidget {
                               widthFactor: progress['second'],
                               child: Container(
                                 decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
+                                  gradient: LinearGradient(
                                     colors: [
-                                      Color(
-                                          0xFFD4A5A5), // NeoSafeColors.roseAccent
-                                      Color(
-                                          0xFFFFB3BA), // NeoSafeColors.coralPink
+                                      themeService.getAccentColor(),
+                                      themeService.getBabyColor(),
                                     ],
                                   ),
                                   borderRadius: BorderRadius.circular(3),
@@ -329,10 +325,14 @@ class TimelineCard extends StatelessWidget {
                               widthFactor: progress['third'],
                               child: Container(
                                 decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
+                                  gradient: LinearGradient(
                                     colors: [
-                                      Color(0xFF9C27B0), // Stronger purple
-                                      Color(0xFFBA68C8), // Medium purple
+                                      themeService
+                                          .getPrimaryColor()
+                                          .withOpacity(0.8),
+                                      themeService
+                                          .getAccentColor()
+                                          .withOpacity(0.6),
                                     ],
                                   ),
                                   borderRadius: BorderRadius.circular(3),

@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../data/models/user_model.dart';
 import 'notification_service.dart';
 import 'article_service.dart';
+import 'theme_service.dart';
 
 class AuthService extends GetxService {
   static AuthService get to => Get.find();
@@ -68,6 +69,17 @@ class AuthService extends GetxService {
         if (userJson != null) {
           final userData = json.decode(userJson);
           currentUser.value = UserModel.fromJson(userData);
+
+          // Update theme service with baby gender if available
+          try {
+            final themeService = Get.find<ThemeService>();
+            if (currentUser.value?.babyGender != null) {
+              themeService.setBabyGender(currentUser.value!.babyGender!);
+            }
+          } catch (e) {
+            // Theme service might not be initialized yet
+            print('Theme service not available: $e');
+          }
         }
       }
     } catch (e) {
@@ -489,6 +501,16 @@ class AuthService extends GetxService {
     if (currentUser.value != null) {
       final updatedUser = currentUser.value!.copyWith(
         relation: relation,
+      );
+      await _saveCurrentUser(updatedUser);
+    }
+  }
+
+  // Update baby gender
+  Future<void> updateBabyGender(String gender) async {
+    if (currentUser.value != null) {
+      final updatedUser = currentUser.value!.copyWith(
+        babyGender: gender,
       );
       await _saveCurrentUser(updatedUser);
     }
