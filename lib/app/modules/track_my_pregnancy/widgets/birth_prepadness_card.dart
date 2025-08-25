@@ -17,35 +17,35 @@ class BirthPreparednessItem {
   });
 }
 
-const List<BirthPreparednessItem> birthPreparednessItems = [
+List<BirthPreparednessItem> get birthPreparednessItems => [
   BirthPreparednessItem(
     icon: Icons.warning_amber_rounded,
-    title: "Labor Signs",
-    description: "Learn to recognize when labor begins",
+    title: "labor_signs".tr,
+    description: "learn_recognize_labor".tr,
     accentColor: NeoSafeColors.warning,
   ),
   BirthPreparednessItem(
     icon: Icons.local_hospital_rounded,
-    title: "Delivery Mode",
-    description: "Discuss your delivery options with doctor",
+    title: "delivery_mode".tr,
+    description: "discuss_delivery_options".tr,
     accentColor: NeoSafeColors.info,
   ),
   BirthPreparednessItem(
     icon: Icons.luggage_rounded,
-    title: "Hospital Bag",
-    description: "Complete checklist for hospital stay",
+    title: "hospital_bag".tr,
+    description: "complete_checklist_hospital".tr,
     accentColor: Colors.orange, // Using orange instead of pink for this item
   ),
   BirthPreparednessItem(
     icon: Icons.emergency_rounded,
-    title: "Transport Plan",
-    description: "Emergency contact & route to hospital",
+    title: "transport_plan".tr,
+    description: "emergency_contact_route".tr,
     accentColor: NeoSafeColors.error,
   ),
   BirthPreparednessItem(
     icon: Icons.child_care_rounded,
-    title: "Breastfeeding",
-    description: "Essential counselling for new mothers",
+    title: "breastfeeding".tr,
+    description: "essential_counselling_mothers".tr,
     accentColor: NeoSafeColors.success,
   ),
 ];
@@ -235,7 +235,7 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            "Birth Preparedness",
+                            "birth_preparedness".tr,
                             style: theme.textTheme.headlineMedium?.copyWith(
                               fontWeight: FontWeight.w800,
                               color: NeoSafeColors.primaryText,
@@ -244,7 +244,7 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "You're almost there! Time to prepare for delivery",
+                            "almost_there_prepare_delivery".tr,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: NeoSafeColors.secondaryText,
                               fontWeight: FontWeight.w500,

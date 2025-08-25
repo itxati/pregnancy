@@ -65,7 +65,7 @@ class TrackMyPregnancyView extends StatelessWidget {
                     final user = authService.currentUser.value;
                     final profileImagePath = user?.profileImagePath;
                     return Container(
-                      margin: const EdgeInsets.only(right: 16),
+                      margin: const EdgeInsets.only(right: 16, left: 16),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -76,7 +76,8 @@ class TrackMyPregnancyView extends StatelessWidget {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: themeService.getPrimaryColor().withOpacity(0.3),
+                            color:
+                                themeService.getPrimaryColor().withOpacity(0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
                           ),
@@ -119,7 +120,7 @@ class TrackMyPregnancyView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Today",
+                              "today".tr,
                               style: theme.textTheme.displaySmall?.copyWith(
                                 color: const Color(
                                     0xFF3D2929), // NeoSafeColors.primaryText

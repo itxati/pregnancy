@@ -202,7 +202,7 @@ class RiskFactorCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Risk Factors",
+                                  "risk_factors".tr,
                                   style:
                                       theme.textTheme.headlineSmall?.copyWith(
                                     fontWeight: FontWeight.w700,
@@ -213,8 +213,8 @@ class RiskFactorCard extends StatelessWidget {
                                 const SizedBox(height: 2),
                                 Text(
                                   hasRiskFactors
-                                      ? "Tap to review factors"
-                                      : "All clear for now",
+                                      ? "tap_to_review_factors".tr
+                                      : "all_clear_for_now".tr,
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: NeoSafeColors.secondaryText,
                                     fontWeight: FontWeight.w500,
@@ -294,8 +294,8 @@ class RiskFactorCard extends StatelessWidget {
                             const SizedBox(width: 8),
                             Text(
                               hasRiskFactors
-                                  ? "Tap to view detailed information"
-                                  : "Tap to learn about pregnancy risks",
+                                  ? "tap_to_view_detailed_information".tr
+                                  : "tap_to_learn_about_pregnancy_risks".tr,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: NeoSafeColors.secondaryText,
                                 fontWeight: FontWeight.w500,

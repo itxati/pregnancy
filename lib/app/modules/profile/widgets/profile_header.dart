@@ -67,19 +67,19 @@ class ProfileHeader extends StatelessWidget {
 
     Get.dialog(
       AlertDialog(
-        title: const Text('Edit Name'),
+        title: Text('edit_name'.tr),
         content: TextField(
           controller: nameController,
-          decoration: const InputDecoration(
-            labelText: 'Name',
-            border: OutlineInputBorder(),
+          decoration: InputDecoration(
+            labelText: 'name'.tr,
+            border: const OutlineInputBorder(),
           ),
           autofocus: true,
         ),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: const Text('Cancel'),
+            child: Text('cancel'.tr),
           ),
           ElevatedButton(
             onPressed: () async {
@@ -88,8 +88,8 @@ class ProfileHeader extends StatelessWidget {
                 await controller.updateUserName(newName);
                 Get.back();
                 Get.snackbar(
-                  'Success',
-                  'Name updated successfully!',
+                  'success'.tr,
+                  'name_updated_success'.tr,
                   snackPosition: SnackPosition.BOTTOM,
                   backgroundColor: NeoSafeColors.success.withOpacity(0.1),
                   colorText: NeoSafeColors.success,
@@ -100,7 +100,7 @@ class ProfileHeader extends StatelessWidget {
               backgroundColor: NeoSafeColors.primaryPink,
               foregroundColor: Colors.white,
             ),
-            child: const Text('Save'),
+            child: Text('save'.tr),
           ),
         ],
       ),

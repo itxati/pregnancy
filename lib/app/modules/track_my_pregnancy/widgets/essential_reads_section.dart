@@ -32,7 +32,7 @@ class EssentialReadsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "This week's essential reads",
+            "this_weeks_essential_reads".tr,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                   color: const Color(0xFF3D2929),

@@ -133,7 +133,7 @@ class _LifeStyleAdviceCardState extends State<LifeStyleAdviceCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Lifestyle Advice",
+                            "lifestyle_advice".tr,
                             style: theme.textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.w700,
                               color: NeoSafeColors.primaryText,
@@ -142,7 +142,7 @@ class _LifeStyleAdviceCardState extends State<LifeStyleAdviceCard> {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            "Essential care tips",
+                            "essential_care_tips".tr,
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: NeoSafeColors.secondaryText,
                               fontWeight: FontWeight.w500,
@@ -177,7 +177,7 @@ class _LifeStyleAdviceCardState extends State<LifeStyleAdviceCard> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            "Wellness",
+                            "wellness".tr,
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,

@@ -128,7 +128,7 @@ class AlertCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Important Alerts",
+                            "important_alerts".tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall
@@ -140,7 +140,7 @@ class AlertCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            "Week $currentWeek reminders",
+                            "week_reminders".trParams({'week': currentWeek.toString()}),
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: const Color(0xFF6B5555),

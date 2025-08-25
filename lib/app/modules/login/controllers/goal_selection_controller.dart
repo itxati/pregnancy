@@ -46,7 +46,7 @@ class GoalSelectionController extends GetxController {
         Get.toNamed('/postpartum_care');
         break;
       default:
-        Get.snackbar('Error', 'Invalid goal selected');
+        Get.snackbar('error'.tr, 'invalid_goal_selected'.tr);
     }
 
     isLoading.value = false;
@@ -82,7 +82,7 @@ class GoalSelectionController extends GetxController {
                   const SizedBox(height: 20),
                   // Title
                   Text(
-                    'When is your due date?',
+                    'when_is_your_due_date'.tr,
                     style: Get.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: Colors.black87,
@@ -90,7 +90,7 @@ class GoalSelectionController extends GetxController {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'This helps us provide personalized pregnancy tracking',
+                    'due_date_help_text'.tr,
                     textAlign: TextAlign.center,
                     style: Get.textTheme.bodyMedium?.copyWith(
                       color: Colors.grey[600],
@@ -111,7 +111,7 @@ class GoalSelectionController extends GetxController {
                     child: ElevatedButton.icon(
                       onPressed: () => _selectDueDate(),
                       icon: const Icon(Icons.calendar_today),
-                      label: const Text('Select Due Date'),
+                      label: Text('select_due_date'.tr),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFE91E63),
                         foregroundColor: Colors.white,
@@ -137,10 +137,12 @@ class GoalSelectionController extends GetxController {
                         ),
                         elevation: 0,
                       ),
-                      child: const Text(
-                        'Continue without due date\n(You are supposed to be 42 days pregnant)',
+                      child: Text(
+                        'continue_without_due_date'.tr +
+                            '\n' +
+                            'continue_without_due_date_subtitle'.tr,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
@@ -187,7 +189,7 @@ class GoalSelectionController extends GetxController {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "When was your baby born?",
+                    "when_was_your_baby_born".tr,
                     style: Get.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: Colors.black87,
@@ -195,7 +197,7 @@ class GoalSelectionController extends GetxController {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "This helps us provide personalized baby development tracking",
+                    "baby_birth_date_help_text".tr,
                     textAlign: TextAlign.center,
                     style: Get.textTheme.bodyMedium?.copyWith(
                       color: Colors.grey[600],
@@ -238,7 +240,7 @@ class GoalSelectionController extends GetxController {
                       },
                       icon: const Icon(Icons.calendar_today),
                       label: Text(selectedBirthDate == null
-                          ? "Select Date"
+                          ? "select_date".tr
                           : "${selectedBirthDate!.day}/${selectedBirthDate!.month}/${selectedBirthDate!.year}"),
                     ),
                   ),
@@ -253,14 +255,14 @@ class GoalSelectionController extends GetxController {
                       Get.toNamed('/track_my_baby');
 
                       Get.snackbar(
-                        'Success',
-                        'Baby birth date saved successfully!',
+                        'success'.tr,
+                        'baby_birth_date_saved_success'.tr,
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: Colors.green.withOpacity(0.1),
                         colorText: Colors.green,
                       );
                     },
-                    child: const Text("Continue"),
+                    child: Text("continue".tr),
                   ),
                   const SizedBox(height: 16),
                 ],
@@ -303,8 +305,8 @@ class GoalSelectionController extends GetxController {
       Get.toNamed('/track_pregnance');
 
       Get.snackbar(
-        'Success',
-        'Due date saved successfully!',
+        'success'.tr,
+        'due_date_saved_success'.tr,
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green.withOpacity(0.1),
         colorText: Colors.green,
@@ -327,8 +329,9 @@ class GoalSelectionController extends GetxController {
     Get.toNamed('/track_pregnance');
 
     Get.snackbar(
-      'Due Date Set',
-      'Due date calculated based on 42 days pregnancy: ${_formatDate(calculatedDueDate)}',
+      'due_date_set'.tr,
+      'due_date_calculated_message'
+          .trParams({'date': _formatDate(calculatedDueDate)}),
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.blue.withOpacity(0.1),
       colorText: Colors.blue,

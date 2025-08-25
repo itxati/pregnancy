@@ -186,21 +186,21 @@ class TimelineCard extends StatelessWidget {
 
     if (currentWeek <= 12) {
       return {
-        'trimester': 'First Trimester',
-        'weekRange': 'Week $currentWeek of 12',
-        'description': 'Early development stage'
+        'trimester': 'first_trimester_title'.tr,
+        'weekRange': 'week_of'.trParams({'current': currentWeek.toString(), 'total': '12'}),
+        'description': 'early_development_stage'.tr
       };
     } else if (currentWeek <= 27) {
       return {
-        'trimester': 'Second Trimester',
-        'weekRange': 'Week ${currentWeek - 12} of 15',
-        'description': 'Growth and movement'
+        'trimester': 'second_trimester_title'.tr,
+        'weekRange': 'week_of'.trParams({'current': (currentWeek - 12).toString(), 'total': '15'}),
+        'description': 'growth_and_movement'.tr
       };
     } else {
       return {
-        'trimester': 'Third Trimester',
-        'weekRange': 'Week ${currentWeek - 27} of 13',
-        'description': 'Final preparation'
+        'trimester': 'third_trimester_title'.tr,
+        'weekRange': 'week_of'.trParams({'current': (currentWeek - 27).toString(), 'total': '13'}),
+        'description': 'final_preparation'.tr
       };
     }
   }

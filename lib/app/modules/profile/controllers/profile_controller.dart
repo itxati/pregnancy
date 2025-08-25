@@ -13,17 +13,17 @@ class ProfileController extends GetxController {
 
   // Pregnancy information
   RxString dueDate = "19 Mar 2026".obs;
-  RxString babySex = "Select...".obs;
-  RxString babyName = "Type here...".obs;
-  RxString isFirstChild = "Yes".obs;
+  RxString babySex = "".obs;
+  RxString babyName = "".obs;
+  RxString isFirstChild = "".obs;
   RxBool hasPregnancyLoss = false.obs;
   RxBool isBabyBorn = false.obs;
 
   // Additional pregnancy information
-  RxString babyBloodGroup = "Select...".obs;
-  RxString motherBloodGroup = "Select...".obs;
-  RxString relation = "Select...".obs;
-  RxString babyBirthDate = "Select...".obs;
+  RxString babyBloodGroup = "".obs;
+  RxString motherBloodGroup = "".obs;
+  RxString relation = "".obs;
+  RxString babyBirthDate = "".obs;
 
   // App settings
   RxBool notificationsEnabled = true.obs;
@@ -77,39 +77,73 @@ class ProfileController extends GetxController {
 
       if (user.babyBloodGroup != null && user.babyBloodGroup!.isNotEmpty) {
         babyBloodGroup.value = user.babyBloodGroup!;
+      } else {
+        babyBloodGroup.value = "select_placeholder".tr;
       }
 
       if (user.motherBloodGroup != null && user.motherBloodGroup!.isNotEmpty) {
         motherBloodGroup.value = user.motherBloodGroup!;
+      } else {
+        motherBloodGroup.value = "select_placeholder".tr;
       }
 
       if (user.relation != null && user.relation!.isNotEmpty) {
-        relation.value = user.relation!;
+        relation.value = _getTranslatedValue(user.relation!);
+      } else {
+        relation.value = "select_placeholder".tr;
       }
 
       if (user.babyBirthDate != null) {
         final date = user.babyBirthDate!;
         babyBirthDate.value =
             "${date.day} ${_getMonthName(date.month)} ${date.year}";
+      } else {
+        babyBirthDate.value = "select_placeholder".tr;
       }
+    }
+  }
+
+  // Helper method to get translated value for display
+  String _getTranslatedValue(String englishValue) {
+    switch (englishValue) {
+      case "Yes":
+        return "yes".tr;
+      case "No":
+        return "no".tr;
+      case "Boy":
+        return "boy".tr;
+      case "Girl":
+        return "girl".tr;
+      case "Surprise":
+        return "surprise".tr;
+      case "Relative":
+        return "relative".tr;
+      case "First Cousin":
+        return "first_cousin".tr;
+      case "Second Cousin":
+        return "second_cousin".tr;
+      case "No Relation":
+        return "no_relation".tr;
+      default:
+        return englishValue;
     }
   }
 
   // Helper method to get month name
   String _getMonthName(int month) {
-    const List<String> months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+    final List<String> months = [
+      'jan'.tr,
+      'feb'.tr,
+      'mar'.tr,
+      'apr'.tr,
+      'may'.tr,
+      'jun'.tr,
+      'jul'.tr,
+      'aug'.tr,
+      'sep'.tr,
+      'oct'.tr,
+      'nov'.tr,
+      'dec'.tr
     ];
     return months[month - 1];
   }
@@ -120,16 +154,29 @@ class ProfileController extends GetxController {
       final prefs = await SharedPreferences.getInstance();
 
       dueDate.value = prefs.getString(_dueDateKey) ?? "19 Mar 2026";
-      babySex.value = prefs.getString(_babySexKey) ?? "Select...";
-      babyName.value = prefs.getString(_babyNameKey) ?? "Type here...";
-      isFirstChild.value = prefs.getString(_isFirstChildKey) ?? "Yes";
+      
+      // Load and translate values
+      final savedBabySex = prefs.getString(_babySexKey);
+      babySex.value = savedBabySex != null ? _getTranslatedValue(savedBabySex) : "select_placeholder".tr;
+      
+      babyName.value =
+          prefs.getString(_babyNameKey) ?? "type_here_placeholder".tr;
+      
+      final savedIsFirstChild = prefs.getString(_isFirstChildKey);
+      isFirstChild.value = savedIsFirstChild != null ? _getTranslatedValue(savedIsFirstChild) : "yes".tr;
+      
       hasPregnancyLoss.value = prefs.getBool(_hasPregnancyLossKey) ?? false;
       isBabyBorn.value = prefs.getBool(_isBabyBornKey) ?? false;
-      babyBloodGroup.value = prefs.getString(_babyBloodGroupKey) ?? "Select...";
+      babyBloodGroup.value =
+          prefs.getString(_babyBloodGroupKey) ?? "select_placeholder".tr;
       motherBloodGroup.value =
-          prefs.getString(_motherBloodGroupKey) ?? "Select...";
-      relation.value = prefs.getString(_relationKey) ?? "Select...";
-      babyBirthDate.value = prefs.getString(_babyBirthDateKey) ?? "Select...";
+          prefs.getString(_motherBloodGroupKey) ?? "select_placeholder".tr;
+      
+      final savedRelation = prefs.getString(_relationKey);
+      relation.value = savedRelation != null ? _getTranslatedValue(savedRelation) : "select_placeholder".tr;
+      
+      babyBirthDate.value =
+          prefs.getString(_babyBirthDateKey) ?? "select_placeholder".tr;
       notificationsEnabled.value = prefs.getBool(_notificationsKey) ?? true;
       darkModeEnabled.value = prefs.getBool(_darkModeKey) ?? false;
     } catch (e) {
@@ -190,12 +237,14 @@ class ProfileController extends GetxController {
 
         final updatedUser = currentUser.copyWith(
           dueDate: parsedDueDate,
-          babyBloodGroup:
-              babyBloodGroup.value != "Select..." ? babyBloodGroup.value : null,
-          motherBloodGroup: motherBloodGroup.value != "Select..."
+          babyBloodGroup: babyBloodGroup.value != "select_placeholder".tr && babyBloodGroup.value.isNotEmpty
+              ? babyBloodGroup.value
+              : null,
+          motherBloodGroup: motherBloodGroup.value != "select_placeholder".tr && motherBloodGroup.value.isNotEmpty
               ? motherBloodGroup.value
               : null,
-          relation: relation.value != "Select..." ? relation.value : null,
+          relation:
+              relation.value != "select_placeholder".tr && relation.value.isNotEmpty ? relation.value : null,
           babyBirthDate: parsedBabyBirthDate,
         );
 
@@ -225,19 +274,14 @@ class ProfileController extends GetxController {
 
   // Helper method to get month number
   int _getMonthNumber(String monthName) {
-    const Map<String, int> months = {
-      'Jan': 1,
-      'Feb': 2,
-      'Mar': 3,
-      'Apr': 4,
-      'May': 5,
-      'Jun': 6,
-      'Jul': 7,
-      'Aug': 8,
-      'Sep': 9,
-      'Oct': 10,
-      'Nov': 11,
-      'Dec': 12
+    // Handle both English and translated month names
+    final Map<String, int> months = {
+      // English
+      'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+      'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12,
+      // Urdu
+      'جنوری': 1, 'فروری': 2, 'مارچ': 3, 'اپریل': 4, 'مئی': 5, 'جون': 6,
+      'جولائی': 7, 'اگست': 8, 'ستمبر': 9, 'اکتوبر': 10, 'نومبر': 11, 'دسمبر': 12,
     };
     return months[monthName] ?? 1;
   }
@@ -458,15 +502,15 @@ class ProfileController extends GetxController {
 
       // Reset to default values
       dueDate.value = "19 Mar 2026";
-      babySex.value = "Select...";
-      babyName.value = "Type here...";
-      isFirstChild.value = "Yes";
+      babySex.value = "select_placeholder".tr;
+      babyName.value = "type_here_placeholder".tr;
+      isFirstChild.value = "yes".tr;
       hasPregnancyLoss.value = false;
       isBabyBorn.value = false;
-      babyBloodGroup.value = "Select...";
-      motherBloodGroup.value = "Select...";
-      relation.value = "Select...";
-      babyBirthDate.value = "Select...";
+      babyBloodGroup.value = "select_placeholder".tr;
+      motherBloodGroup.value = "select_placeholder".tr;
+      relation.value = "select_placeholder".tr;
+      babyBirthDate.value = "select_placeholder".tr;
       notificationsEnabled.value = true;
       darkModeEnabled.value = false;
 

@@ -21,7 +21,7 @@ class GenderSelector extends StatelessWidget {
           context,
           gender: "male",
           icon: Icons.male,
-          label: "Male",
+          label: "male".tr,
           selected: selectedGender == "male",
           onTap: () => onChanged("male"),
         ),
@@ -30,7 +30,7 @@ class GenderSelector extends StatelessWidget {
           context,
           gender: "female",
           icon: Icons.female,
-          label: "Female",
+          label: "female".tr,
           selected: selectedGender == "female",
           onTap: () => onChanged("female"),
         ),
@@ -48,7 +48,7 @@ class GenderSelector extends StatelessWidget {
   }) {
     final themeService = Get.find<ThemeService>();
     final primaryColor = themeService.getPrimaryColor();
-    
+
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(

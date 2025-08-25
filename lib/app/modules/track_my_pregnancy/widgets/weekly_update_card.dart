@@ -199,7 +199,7 @@ class WeeklyUpdateCard extends StatelessWidget {
                       ),
                       // "WEEKS" text
                       Text(
-                        "WEEKS",
+                        "weeks".tr,
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               color: themeService.getPrimaryColor(),
                               fontWeight: FontWeight.w700,
@@ -209,7 +209,7 @@ class WeeklyUpdateCard extends StatelessWidget {
                       const SizedBox(height: 12),
                       // Simple description text
                       Text(
-                        "Your weekly update",
+                        "your_weekly_update".tr,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: themeService.getPrimaryColor(),
                               fontWeight: FontWeight.normal,
@@ -229,9 +229,9 @@ class WeeklyUpdateCard extends StatelessWidget {
                       color: themeService.getPrimaryColor(),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Text(
-                      "Open",
-                      style: TextStyle(
+                    child: Text(
+                      "open".tr,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),

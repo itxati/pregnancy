@@ -259,15 +259,17 @@ class PregnancyInfoSection extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "Select Baby's Sex",
+                "select_baby_sex".tr,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
               ),
               const SizedBox(height: 20),
-              _buildSelectionOption(context, "Boy", "Boy", fieldType: 'sex'),
-              _buildSelectionOption(context, "Girl", "Girl", fieldType: 'sex'),
-              _buildSelectionOption(context, "Surprise", "Surprise",
+              _buildSelectionOption(context, "boy".tr, "boy".tr,
+                  fieldType: 'sex'),
+              _buildSelectionOption(context, "girl".tr, "girl".tr,
+                  fieldType: 'sex'),
+              _buildSelectionOption(context, "surprise".tr, "surprise".tr,
                   fieldType: 'sex'),
             ],
           ),
@@ -281,21 +283,45 @@ class PregnancyInfoSection extends StatelessWidget {
     return ListTile(
       title: Text(title),
       onTap: () {
+        // Store the English value in the controller, but display the translated title
+        String englishValue = value;
+
+        // Convert translated values back to English for storage
+        if (value == "yes".tr)
+          englishValue = "Yes";
+        else if (value == "no".tr)
+          englishValue = "No";
+        else if (value == "boy".tr)
+          englishValue = "Boy";
+        else if (value == "girl".tr)
+          englishValue = "Girl";
+        else if (value == "surprise".tr)
+          englishValue = "Surprise";
+        else if (value == "relative".tr)
+          englishValue = "Relative";
+        else if (value == "first_cousin".tr)
+          englishValue = "First Cousin";
+        else if (value == "second_cousin".tr)
+          englishValue = "Second Cousin";
+        else if (value == "no_relation".tr) englishValue = "No Relation";
+
         switch (fieldType) {
           case 'sex':
-            controller.updateBabySex(value);
+            controller.updateBabySex(englishValue);
             break;
           case 'firstChild':
-            controller.updateIsFirstChild(value);
+            controller.updateIsFirstChild(englishValue);
             break;
           case 'babyBloodGroup':
-            controller.updateBabyBloodGroup(value);
+            controller.updateBabyBloodGroup(
+                value); // Blood groups are the same in all languages
             break;
           case 'motherBloodGroup':
-            controller.updateMotherBloodGroup(value);
+            controller.updateMotherBloodGroup(
+                value); // Blood groups are the same in all languages
             break;
           case 'relation':
-            controller.updateRelation(value);
+            controller.updateRelation(englishValue);
             break;
           default:
             break;
@@ -311,18 +337,18 @@ class PregnancyInfoSection extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Enter Baby's Name"),
+        title: Text("enter_baby_name".tr),
         content: TextField(
           controller: nameController,
-          decoration: const InputDecoration(
-            hintText: "Type baby's name...",
+          decoration: InputDecoration(
+            hintText: "type_baby_name".tr,
           ),
           autofocus: true,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Cancel"),
+            child: Text("cancel".tr),
           ),
           TextButton(
             onPressed: () {
@@ -332,7 +358,7 @@ class PregnancyInfoSection extends StatelessWidget {
               }
               Navigator.pop(context);
             },
-            child: const Text("Save"),
+            child: Text("save".tr),
           ),
         ],
       ),
@@ -353,15 +379,15 @@ class PregnancyInfoSection extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "Is this your first child?",
+                "is_first_child".tr,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
               ),
               const SizedBox(height: 20),
-              _buildSelectionOption(context, "Yes", "Yes",
+              _buildSelectionOption(context, "yes".tr, "yes".tr,
                   fieldType: 'firstChild'),
-              _buildSelectionOption(context, "No", "No",
+              _buildSelectionOption(context, "no".tr, "no".tr,
                   fieldType: 'firstChild'),
             ],
           ),
@@ -384,7 +410,9 @@ class PregnancyInfoSection extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "Select ${isBaby ? 'Baby' : 'Mother'}'s Blood Group",
+                isBaby
+                    ? "select_baby_blood_group".tr
+                    : "select_mother_blood_group".tr,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
@@ -427,20 +455,22 @@ class PregnancyInfoSection extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "Select Relation",
+                "select_relation".tr,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
               ),
               const SizedBox(height: 20),
               // Show the same relations as in the info form
-              _buildSelectionOption(context, "Relative", "Relative",
+              _buildSelectionOption(context, "relative".tr, "relative".tr,
                   fieldType: 'relation'),
-              _buildSelectionOption(context, "First Cousin", "First Cousin",
+              _buildSelectionOption(
+                  context, "first_cousin".tr, "first_cousin".tr,
                   fieldType: 'relation'),
-              _buildSelectionOption(context, "Second Cousin", "Second Cousin",
+              _buildSelectionOption(
+                  context, "second_cousin".tr, "second_cousin".tr,
                   fieldType: 'relation'),
-              _buildSelectionOption(context, "No Relation", "No Relation",
+              _buildSelectionOption(context, "no_relation".tr, "no_relation".tr,
                   fieldType: 'relation'),
             ],
           ),
@@ -477,19 +507,19 @@ class PregnancyInfoSection extends StatelessWidget {
   }
 
   String _getMonthName(int month) {
-    const List<String> months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+    final List<String> months = [
+      'jan'.tr,
+      'feb'.tr,
+      'mar'.tr,
+      'apr'.tr,
+      'may'.tr,
+      'jun'.tr,
+      'jul'.tr,
+      'aug'.tr,
+      'sep'.tr,
+      'oct'.tr,
+      'nov'.tr,
+      'dec'.tr
     ];
     return months[month - 1];
   }

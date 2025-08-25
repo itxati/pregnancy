@@ -127,7 +127,7 @@ class MainPregnancyCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Day ${controller.pregnancyDays.value}",
+                      "day".tr + " ${controller.pregnancyDays.value}",
                       style:
                           Theme.of(context).textTheme.headlineMedium?.copyWith(
                         color: Colors.white,
@@ -161,7 +161,7 @@ class MainPregnancyCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "Open",
+                            "open".tr,
                             style:
                                 Theme.of(context).textTheme.bodyLarge?.copyWith(
                                       color: const Color(0xFF3D2929),

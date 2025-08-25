@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/data/const/danger.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 
@@ -62,7 +63,7 @@ class _DangerSignsCardState extends State<DangerSignsCard> {
               const SizedBox(width: 16),
               Expanded(
                 child: Text(
-                  'DANGER SIGNS IN PREGNANCY',
+                  'danger_signs_in_pregnancy'.tr,
                   style: theme.textTheme.titleLarge?.copyWith(
                     color: NeoSafeColors.error,
                     fontWeight: FontWeight.w800,

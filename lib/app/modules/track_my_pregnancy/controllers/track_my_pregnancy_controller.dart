@@ -155,13 +155,13 @@ class TrackMyPregnancyController extends GetxController
   String getGreeting() {
     final int hour = DateTime.now().hour;
     if (hour < 12) {
-      return "Good morning,";
+      return "good_morning".tr;
     } else if (hour < 17) {
-      return "Good afternoon,";
+      return "good_afternoon".tr;
     } else if (hour < 21) {
-      return "Good evening,";
+      return "good_evening".tr;
     } else {
-      return "Good night,";
+      return "good_night".tr;
     }
   }
 
@@ -193,19 +193,19 @@ class TrackMyPregnancyController extends GetxController
   }
 
   String getMonthName(int month) {
-    const List<String> months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+    final List<String> months = [
+      'jan'.tr,
+      'feb'.tr,
+      'mar'.tr,
+      'apr'.tr,
+      'may'.tr,
+      'jun'.tr,
+      'jul'.tr,
+      'aug'.tr,
+      'sep'.tr,
+      'oct'.tr,
+      'nov'.tr,
+      'dec'.tr
     ];
     return months[month - 1];
   }
@@ -237,11 +237,11 @@ class TrackMyPregnancyController extends GetxController
 
     // Update trimester
     if (weeksPregnant < 13) {
-      trimester.value = "First trimester";
+      trimester.value = "first_trimester".tr;
     } else if (weeksPregnant < 27) {
-      trimester.value = "Second trimester";
+      trimester.value = "second_trimester".tr;
     } else {
-      trimester.value = "Third trimester";
+      trimester.value = "third_trimester".tr;
     }
 
     _updateCurrentWeekData();
@@ -251,11 +251,11 @@ class TrackMyPregnancyController extends GetxController
 
   String getTimelineSubtitle() {
     if (pregnancyWeekNumber.value < 13) {
-      return "First trimester milestones";
+      return "first_trimester_milestones".tr;
     } else if (pregnancyWeekNumber.value < 27) {
-      return "Second trimester milestones";
+      return "second_trimester_milestones".tr;
     } else {
-      return "Third trimester milestones";
+      return "third_trimester_milestones".tr;
     }
   }
 
