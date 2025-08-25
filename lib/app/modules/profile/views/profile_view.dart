@@ -53,7 +53,7 @@ class ProfileView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            "Profile",
+                            'profile'.tr,
                             style: theme.textTheme.displaySmall?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
@@ -61,7 +61,7 @@ class ProfileView extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "Manage your pregnancy journey",
+                            'manage_pregnancy_journey'.tr,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: Colors.white.withOpacity(0.9),
                             ),

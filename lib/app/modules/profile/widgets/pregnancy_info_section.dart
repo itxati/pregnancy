@@ -20,7 +20,7 @@ class PregnancyInfoSection extends StatelessWidget {
             children: [
               // Section Title
               Text(
-                "Pregnancy",
+                "pregnancy".tr,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: NeoSafeColors.primaryText,
                       fontWeight: FontWeight.w800,
@@ -34,7 +34,7 @@ class PregnancyInfoSection extends StatelessWidget {
                 context,
                 icon: Icons.calendar_today,
                 iconColor: NeoSafeColors.primaryPink,
-                title: "Due date:",
+                title: "due_date".tr,
                 value: controller.dueDate.value,
                 onTap: () => _showDatePicker(context),
               ),
@@ -48,7 +48,7 @@ class PregnancyInfoSection extends StatelessWidget {
                 context,
                 icon: Icons.bloodtype,
                 iconColor: NeoSafeColors.primaryPink,
-                title: "Baby's blood group:",
+                title: "baby_blood_group".tr,
                 value: controller.babyBloodGroup.value,
                 onTap: () => _showBloodGroupSelector(context, true),
               ),
@@ -57,7 +57,7 @@ class PregnancyInfoSection extends StatelessWidget {
                 context,
                 icon: Icons.bloodtype,
                 iconColor: NeoSafeColors.roseAccent,
-                title: "Mother's blood group:",
+                title: "mother_blood_group".tr,
                 value: controller.motherBloodGroup.value,
                 onTap: () => _showBloodGroupSelector(context, false),
               ),
@@ -66,7 +66,7 @@ class PregnancyInfoSection extends StatelessWidget {
                 context,
                 icon: Icons.family_restroom,
                 iconColor: NeoSafeColors.lavenderPink,
-                title: "Relation:",
+                title: "relation".tr,
                 value: controller.relation.value,
                 onTap: () => _showRelationSelector(context),
               ),
@@ -75,7 +75,7 @@ class PregnancyInfoSection extends StatelessWidget {
                 context,
                 icon: Icons.cake,
                 iconColor: NeoSafeColors.coralPink,
-                title: "Baby's birth date:",
+                title: "baby_birth_date".tr,
                 value: controller.babyBirthDate.value,
                 onTap: () => _showBirthDatePicker(context),
               ),

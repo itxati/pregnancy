@@ -64,7 +64,7 @@ class AppOptionsSection extends StatelessWidget {
             context,
             icon: Icons.logout,
             iconColor: NeoSafeColors.error,
-            title: "Logout",
+            title: 'logout'.tr,
             onTap: () async {
               final authService = Get.find<AuthService>();
               await authService.logout();
