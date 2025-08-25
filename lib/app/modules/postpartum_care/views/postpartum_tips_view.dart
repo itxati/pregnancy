@@ -90,7 +90,7 @@ class PostpartumTipsView extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              text,
+              text.tr,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: NeoSafeColors.primaryText,
                     fontWeight: FontWeight.w500,

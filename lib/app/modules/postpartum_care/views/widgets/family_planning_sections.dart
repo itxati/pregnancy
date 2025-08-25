@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../utils/neo_safe_theme.dart';
 import '../../../../data/models/postpartum_models.dart';
 
@@ -12,17 +13,17 @@ class FamilyPlanningSections extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _title(theme, 'Family Planning (Postpartum)'),
+        _title(theme, 'family_planning_fp'.tr),
         const SizedBox(height: 8),
-        _subsectionCardWithImage(theme, 'Why postpartum FP is important',
+        _subsectionCardWithImage(theme, 'why_postpartum_fp_important'.tr,
             content.whyImportant, 'assets/logos/article2.jpeg'),
         const SizedBox(height: 8),
-        _subsectionCardWithImage(theme, 'When to start contraception?',
+        _subsectionCardWithImage(theme, 'when_start_contraception'.tr,
             content.whenToStart, 'assets/logos/article3.webp'),
         const SizedBox(height: 8),
         ...content.categories.map((cat) => _categoryWithImage(theme, cat)),
         const SizedBox(height: 8),
-        _subsectionCardWithImage(theme, 'Things to consider',
+        _subsectionCardWithImage(theme, 'things_consider_choosing'.tr,
             content.considerations, 'assets/logos/article4.jpg'),
       ],
     );
@@ -112,7 +113,7 @@ class FamilyPlanningSections extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: Text(cat.title,
+                child: Text(cat.title.tr,
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w700,
                     )),
@@ -133,7 +134,7 @@ class FamilyPlanningSections extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(m.name,
+                      Text(m.name.tr,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w700,
                           )),
@@ -173,7 +174,7 @@ class FamilyPlanningSections extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: Text(cat.title,
+                child: Text(cat.title.tr,
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w700,
                     )),
@@ -194,7 +195,7 @@ class FamilyPlanningSections extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(m.name,
+                      Text(m.name.tr,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w700,
                           )),
@@ -216,14 +217,14 @@ class FamilyPlanningSections extends StatelessWidget {
   }
 
   String _getImageForCategory(String categoryTitle) {
-    switch (categoryTitle.toLowerCase()) {
-      case 'hormonal methods':
+    switch (categoryTitle) {
+      case 'hormonal_method':
         return 'assets/logos/article5.webp';
-      case 'barrier methods':
+      case 'barrier_methods':
         return 'assets/logos/article6.jpeg';
-      case 'long-acting reversible contraception':
+      case 'iuds':
         return 'assets/logos/babycare.jpg';
-      case 'permanent methods':
+      case 'permanent_method':
         return 'assets/logos/babymilestone.jpg';
       default:
         return 'assets/logos/article3.webp';
@@ -251,7 +252,7 @@ class FamilyPlanningSections extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                      t,
+                      t.tr,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: NeoSafeColors.primaryText,
                       ),

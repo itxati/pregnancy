@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../utils/neo_safe_theme.dart';
 import '../../../../data/models/postpartum_models.dart';
 
@@ -12,19 +13,19 @@ class BreastfeedingSections extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _title(theme, 'Breastfeeding Guidance'),
+        _title(theme, 'breastfeeding_guidance'.tr),
         const SizedBox(height: 8),
         ...content.sections.map((section) => _sectionCard(theme, section)),
         const SizedBox(height: 12),
-        _title(theme, 'Common Breastfeeding Challenges'),
+        _title(theme, 'common_breastfeeding_challenges'.tr),
         const SizedBox(height: 8),
         ...content.challenges.map((c) => _challengeCard(theme, c)),
         const SizedBox(height: 12),
         _bulletListCard(theme, Icons.medical_services,
-            'When to Seek Medical Help', content.whenToSeekHelp),
+            'when_to_seek_medical_help'.tr, content.whenToSeekHelp),
         const SizedBox(height: 12),
-        _bulletListCard(theme, Icons.block,
-            'Contraindications to Breastfeeding', content.contraindications),
+        _bulletListCard(theme, Icons.block, 'contraindications_breastfeed'.tr,
+            content.contraindications),
       ],
     );
   }
@@ -62,7 +63,7 @@ class BreastfeedingSections extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                section.title,
+                section.title.tr,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
@@ -165,7 +166,7 @@ class BreastfeedingSections extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                challenge.title,
+                challenge.title.tr,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
@@ -200,7 +201,7 @@ class BreastfeedingSections extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                      t,
+                      t.tr,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: NeoSafeColors.primaryText,
                       ),

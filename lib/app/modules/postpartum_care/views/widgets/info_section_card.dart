@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../utils/neo_safe_theme.dart';
 import '../../../../data/models/postpartum_models.dart';
 
@@ -34,7 +35,7 @@ class InfoSectionCard extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  section.title,
+                  section.title.tr,
                   style: theme.textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: NeoSafeColors.primaryText,
@@ -64,7 +65,7 @@ class InfoSectionCard extends StatelessWidget {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: item.title,
+                              text: item.title.tr,
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w700,
                                 color: NeoSafeColors.primaryText,
@@ -78,7 +79,7 @@ class InfoSectionCard extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: item.description,
+                                text: item.description?.tr,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: NeoSafeColors.secondaryText,
                                   fontWeight: FontWeight.w400,

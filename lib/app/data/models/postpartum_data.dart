@@ -2,206 +2,183 @@ import 'postpartum_models.dart';
 
 const PostpartumContent postpartumContent = PostpartumContent(
   physicalChanges: [
-    InfoSection(title: 'Physical Changes After Delivery', items: [
+    InfoSection(title: 'physical_changes_after_delivery', items: [
       InfoItem(
-          title: 'Uterine Involution',
-          description: 'Uterus returns to pre-pregnancy size'),
+          title: 'uterine_involution', description: 'uterine_involution_desc'),
+      InfoItem(title: 'lochia', description: 'lochia_desc'),
+      InfoItem(title: 'perineal_healing', description: 'perineal_healing_desc'),
       InfoItem(
-          title: 'Lochia',
-          description:
-              'Vaginal discharge that changes from red/pink to yellow/white'),
-      InfoItem(
-          title: 'Perineal Healing',
-          description: 'Recovery from episiotomy or tearing'),
-      InfoItem(
-          title: 'Cesarean Recovery',
-          description: 'Incision care, mobility, and pain management'),
+          title: 'cesarean_recovery', description: 'cesarean_recovery_desc'),
     ]),
   ],
   emotionalMental: [
-    InfoSection(title: 'Emotional and Mental Health', items: [
+    InfoSection(title: 'emotional_and_mental_health', items: [
+      InfoItem(title: 'baby_blues', description: 'baby_blues_desc'),
       InfoItem(
-          title: 'Baby Blues',
-          description:
-              'Mood swings, crying, anxiety — common in the first 2 weeks'),
+          title: 'postpartum_depression',
+          description: 'postpartum_depression_desc'),
       InfoItem(
-          title: 'Postpartum Depression',
-          description: 'Persistent sadness, fatigue — needs medical attention'),
-      InfoItem(
-          title: 'Postpartum Anxiety',
-          description: 'Less common but serious — medical attention needed'),
+          title: 'postpartum_anxiety', description: 'postpartum_anxiety_desc'),
     ]),
   ],
   commonConcerns: [
-    InfoSection(title: 'Common Concerns & Complications', items: [
+    InfoSection(title: 'common_concerns_complications', items: [
+      InfoItem(title: 'infection_signs', description: 'infection_signs_desc'),
       InfoItem(
-          title: 'Infection Signs',
-          description: 'Fever, foul-smelling lochia, wound redness'),
-      InfoItem(
-          title: 'Heavy Bleeding (PPH)', description: 'More than 1 pad/hour'),
-      InfoItem(
-          title: 'Urinary Issues', description: 'Incontinence or retention'),
-      InfoItem(title: 'Constipation & Hemorrhoids'),
-      InfoItem(title: 'Breast Infection (Mastitis)'),
+          title: 'heavy_bleeding_pph', description: 'heavy_bleeding_pph_desc'),
+      InfoItem(title: 'urinary_issues', description: 'urinary_issues_desc'),
+      InfoItem(title: 'constipation_hemorrhoids'),
+      InfoItem(title: 'breast_infection_mastitis'),
     ]),
   ],
   tips: Tips(
     dos: [
-      'Eat as much as possible',
-      'Eat nutritious foods (iron, protein)',
-      'Keep the perineum dry and clean',
-      'Do gentle pelvic floor exercises (Kegels)',
-      'Attend postnatal checkups (usually at 6 weeks)',
-      'Ask for help (physical & emotional)',
+      'eat_as_much_as_possible',
+      'eat_nutritious_foods',
+      'keep_perineum_dry_clean',
+      'do_gentle_pelvic_exercises',
+      'attend_postnatal_checkups',
+      'ask_for_help',
     ],
     donts: [
-      'Avoid heavy lifting for 6 weeks',
-      'Don’t insert anything into the vagina (tampons/sex)',
-      'Don’t skip meals (it affects energy and breastfeeding)',
-      'Don’t ignore signs of depression or excessive bleeding',
+      'avoid_heavy_lifting',
+      'dont_insert_vagina',
+      'dont_skip_meals',
+      'dont_ignore_depression',
     ],
   ),
   breastfeeding: BreastfeedingContent(
     sections: [
-      BreastfeedingSection(title: 'Early Initiation', bullets: [
-        'Should begin within 1 hour after birth if mother & baby are stable',
-        'Skin-to-skin contact encourages immediate breastfeeding to:',
-        'Stimulate oxytocin release',
-        'Trigger milk let-down reflex',
-        'Support thermoregulation',
+      BreastfeedingSection(title: 'early_initiation', bullets: [
+        'early_initiation_desc',
+        'skin_to_skin_contact_desc',
+        'stimulate_oxytocin',
+        'trigger_milk_letdown',
+        'support_thermoregulation',
       ]),
-      BreastfeedingSection(title: 'Hormonal Control', bullets: [
-        'Prolactin → Stimulates milk production',
-        'Oxytocin → Causes milk ejection reflex',
+      BreastfeedingSection(title: 'hormonal_control', bullets: [
+        'prolactin_desc',
+        'oxytocin_desc',
       ]),
-      BreastfeedingSection(title: 'Frequency', bullets: [
-        'Newborn should breastfeed 8–12 times/24 hours',
-        'On-demand feeding is preferred — cues include rooting, hand to mouth, fussing',
+      BreastfeedingSection(title: 'frequency', bullets: [
+        'frequency_desc',
+        'on_demand_feeding',
       ]),
-      BreastfeedingSection(title: 'Monitor Intake & Output', bullets: [
-        'Wet Diapers: At least 6 wet diapers per day after day 5',
-        'Stool: Yellow, seedy stools by day 5',
-        'Weight: Expected weight loss <10% of birth weight in the first week; regain by day 10–14',
+      BreastfeedingSection(title: 'monitor_intake_output', bullets: [
+        'wet_diapers_desc',
+        'stool_desc',
+        'weight_desc',
       ]),
     ],
     challenges: [
-      Challenge(title: 'Engorgement', management: [
-        'Frequent feeding',
-        'Cold compress',
-        'Gentle massage',
-        'Correct positioning',
+      Challenge(title: 'engorgement', management: [
+        'engorgement_management',
       ]),
-      Challenge(title: 'Sore Nipples', management: [
-        'Often due to poor latch',
-        'Correct positioning',
+      Challenge(title: 'sore_nipples', management: [
+        'sore_nipples_management',
       ]),
-      Challenge(title: 'Blocked Duct', management: [
-        'Warm compress',
-        'Massage',
-        'Feed frequently',
+      Challenge(title: 'blocked_duct', management: [
+        'blocked_duct_management',
       ]),
-      Challenge(title: 'Mastitis', management: [
-        'Infection – red, swollen area with fever',
-        'Continue breastfeeding',
-        'Antibiotics if bacterial',
+      Challenge(title: 'mastitis', management: [
+        'mastitis_management',
       ]),
-      Challenge(title: 'Low Milk Supply (Perceived or Real)', management: [
-        'Evaluate latch, hydration',
-        'Consider galactagogues if necessary (e.g. domperidone – medical supervision only)',
+      Challenge(title: 'low_milk_supply', management: [
+        'low_milk_supply_management',
       ]),
     ],
     whenToSeekHelp: [
-      'Fever over 100°F',
-      'Severe abdominal pain',
-      'Foul-smelling vaginal discharge',
-      'Thoughts of harming self or baby',
-      'Pain or swelling in leg (risk of DVT)',
+      'fever_over_100',
+      'severe_abdominal_pain',
+      'foul_smelling_discharge',
+      'thoughts_harming',
+      'pain_swelling_leg',
     ],
     contraindications: [
-      'HIV – if the mother is untreated',
-      'Mother receiving chemo or radiation',
-      'Infant with galactosemia',
+      'hiv_untreated',
+      'mother_chemo_radiation',
+      'infant_galactosemia',
     ],
   ),
   familyPlanning: FamilyPlanningContent(
     whyImportant: [
-      'Closely spaced pregnancies cause health risks for mother and baby',
-      'Helps mothers recover emotionally and physically',
-      'Supports better childcare and bonding',
+      'closely_spaced_pregnancies',
+      'helps_mothers_recover',
+      'supports_better_childcare',
     ],
     whenToStart: [
-      'Ovulation can return as early as weeks postpartum',
-      'Breastfeeding women may get up to 6 months via LAM',
+      'ovulation_return_early',
+      'breastfeeding_women',
     ],
     categories: [
-      Category(title: 'Natural', methods: [
-        MethodDetail(name: 'LAM (Lactational Amenorrhea Method)', points: [
-          'Under 6 months',
-          'Exclusive breastfeeding',
+      Category(title: 'methods_natural', methods: [
+        MethodDetail(name: 'lam_lactational_amenorrhea', points: [
+          'lam_under_6_months',
+          'lam_exclusive_breastfeeding',
         ]),
       ]),
-      Category(title: 'Hormonal Methods', methods: [
-        MethodDetail(name: 'Progestin-only pills', points: [
-          'Safest during breastfeeding',
-          'Start at 6 weeks postpartum',
-          'Must be taken at the same time daily',
+      Category(title: 'hormonal_method', methods: [
+        MethodDetail(name: 'progestin_only_pills', points: [
+          'safest_during_breastfeeding',
+          'start_6_weeks_postpartum',
+          'taken_same_time_daily',
         ]),
-        MethodDetail(name: 'Combined oral contraceptives', points: [
-          'Not recommended before 6 months if breastfeeding',
-          'Start after 3 weeks if not breastfeeding',
+        MethodDetail(name: 'combined_oral_contraceptives', points: [
+          'not_recommended_6_months_breastfeeding',
+          'start_after_3_weeks_not_breastfeeding',
         ]),
-        MethodDetail(name: 'Injectable contraceptives (DMPA)', points: [
-          'Effective for 3 months',
-          'Safe during breastfeeding',
-          'Can be started at 6 weeks postpartum',
-        ]),
-      ]),
-      Category(title: 'Implants', methods: [
-        MethodDetail(name: 'Subdermal implants', points: [
-          'Long term (3–5 years)',
-          'Inserted under skin',
-          'Safe for breastfeeding',
-          'Can be inserted 6 weeks postpartum',
+        MethodDetail(name: 'injectable_contraceptives_dmpa', points: [
+          'effective_3_months',
+          'safe_during_breastfeeding',
+          'can_start_6_weeks_postpartum',
         ]),
       ]),
-      Category(title: 'Barrier Methods', methods: [
-        MethodDetail(name: 'Condoms', points: [
-          'Prevent STDs',
-          'Can be used immediately after delivery',
-        ]),
-        MethodDetail(name: 'Diaphragm/Cervical cap', points: [
-          'Require fitting by a health care provider',
-          'Wait until 6 weeks postpartum',
+      Category(title: 'implants', methods: [
+        MethodDetail(name: 'subdermal_implants', points: [
+          'long_term_3_5_years',
+          'inserted_under_skin',
+          'safe_for_breastfeeding',
+          'can_insert_6_weeks_postpartum',
         ]),
       ]),
-      Category(title: 'IUDs', methods: [
-        MethodDetail(name: 'Copper IUD', points: [
-          'Hormone-free',
-          'Lasts up to 10 years',
+      Category(title: 'barrier_methods', methods: [
+        MethodDetail(name: 'condoms_prevent_stds', points: [
+          'prevent_stds',
+          'can_use_immediately_delivery',
         ]),
-        MethodDetail(name: 'LNG-IUS Hormonal IUD', points: [
-          'Provides local hormone release',
-          'Lasts 3–5 years',
-          'Reduces bleeding',
+        MethodDetail(name: 'diaphragm_cervical_cap', points: [
+          'require_fitting_provider',
+          'wait_6_weeks_postpartum',
         ]),
       ]),
-      Category(title: 'Permanent Methods', methods: [
-        MethodDetail(name: 'Male sterilization (Vasectomy)', points: [
-          'Safer, outpatient procedure',
-          'Delayed effectiveness (use backup for 3 months)',
+      Category(title: 'iuds', methods: [
+        MethodDetail(name: 'copper_iud', points: [
+          'hormone_free',
+          'lasts_up_to_10_years',
         ]),
-        MethodDetail(name: 'Female sterilization (Tubal ligation)', points: [
-          'Done at time of Caesarean or 1 week after vaginal birth',
-          'Permanent, non-reversible',
+        MethodDetail(name: 'lng_ius_hormonal_iud', points: [
+          'provides_local_hormone_release',
+          'lasts_3_5_years',
+          'reduces_bleeding',
+        ]),
+      ]),
+      Category(title: 'permanent_method', methods: [
+        MethodDetail(name: 'male_sterilization_vasectomy', points: [
+          'safer_outpatient_procedure',
+          'delayed_effectiveness_backup',
+        ]),
+        MethodDetail(name: 'female_sterilization_tubal', points: [
+          'done_time_caesarean_1_week_vaginal',
+          'permanent_non_reversible',
         ]),
       ]),
     ],
     considerations: [
-      'Breastfeeding status',
-      'Medical history',
-      'Age and family size',
-      'Cultural/religious beliefs',
-      'Personal preferences and partner involvement',
+      'breastfeeding_status',
+      'medical_history',
+      'age_family_size',
+      'cultural_religious_beliefs',
+      'personal_preferences_partner',
     ],
   ),
 );

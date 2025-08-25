@@ -248,11 +248,11 @@ final Map<String, String> urPK = {
   'ovulation_return_early': 'انڈے کا اخراج پیدائش کے بعد جلد واپس آ سکتا ہے',
   'breastfeeding_women': 'دودھ پلانا (خواتین کو 6 ماہ تک مل سکتا ہے)',
   // Family Planning Methods
-  'methods_natural': 'طریقے (قدرتی)',
-  'lam_lactational_amenorrhea': 'ایل اے ایم (دودھ پلانے کی امینوریا کا طریقہ)',
+  'methods_natural': 'قدرتی طریقے',
+  'lam_lactational_amenorrhea': 'دودھ پلانے کی امینوریا کا طریقہ (ایل اے ایم)',
   'under_6_months': '6 ماہ سے کم',
   'breastfeeding_exclusive': 'صرف دودھ پلانا',
-  'hormonal_method': 'ہارمونل طریقہ:',
+  'hormonal_method': 'ہارمونل طریقہ',
   'pill_progestin_only':
       'گولی (صرف پروجیسٹن گولیاں) 🡪 دودھ پلانے کے دوران سب سے محفوظ',
   'start_6_weeks_postpartum': '6 ہفتے بعد از پیدائش شروع کریں',
@@ -298,6 +298,63 @@ final Map<String, String> urPK = {
   'age_family_size': 'عمر اور خاندان کا سائز',
   'cultural_religious_beliefs': 'ثقافتی / مذہبی عقائد',
   'personal_preferences': 'ذاتی ترجیحات اور ساتھی کی شمولیت',
+  // Additional Postpartum Content
+  'tips': 'تجاویز',
+  'breastfeeding_guidance': 'دودھ پلانے کی رہنمائی',
+  'family_planning_guidance': 'خاندانی منصوبہ بندی کی رہنمائی',
+  'when_to_seek_help': 'کب مدد طلب کریں',
+  'contraindications': 'ممنوعات',
+  'galactagogues_medical_supervision':
+      'اگر ضرورت ہو تو گلیکٹاگوگز پر غور کریں (مثلاً ڈومپیرڈون – صرف طبی نگرانی میں)',
+  'domperidone_medical_supervision': 'ڈومپیرڈون – صرف طبی نگرانی میں',
+  'lam_under_6_months': '6 ماہ سے کم',
+  'lam_exclusive_breastfeeding': 'خصوصی دودھ پلانا',
+  'progestin_only_pills': 'صرف پروجیسٹن گولیاں',
+  'safest_during_breastfeeding': 'دودھ پلانے کے دوران سب سے محفوظ',
+  'start_6_weeks_postpartum': 'پیدائش کے 6 ہفتے بعد شروع کریں',
+  'taken_same_time_daily': 'روزانہ ایک ہی وقت پر لینی چاہئیں',
+  'combined_oral_contraceptives': 'مرکب زبانی مانع حمل',
+  'not_recommended_6_months_breastfeeding':
+      'اگر دودھ پلا رہی ہیں تو 6 ماہ سے پہلے تجویز نہیں دی جاتی',
+  'start_after_3_weeks_not_breastfeeding':
+      'اگر دودھ نہیں پلا رہی ہیں تو 3 ہفتے بعد شروع کریں',
+  'injectable_contraceptives_dmpa': 'انجیکشن مانع حمل (ڈی ایم پی اے)',
+  'effective_3_months': '3 ماہ کے لیے مؤثر',
+  'safe_during_breastfeeding': 'دودھ پلانے کے دوران محفوظ',
+  'can_start_6_weeks_postpartum': 'پیدائش کے 6 ہفتے بعد شروع کیا جا سکتا ہے',
+  'subdermal_implants': 'سب ڈرمل امپلانٹس',
+  'long_term_3_5_years': 'طویل مدتی (3-5 سال)',
+  'inserted_under_skin': 'جلد کے نیچے لگایا جاتا ہے',
+  'safe_for_breastfeeding': 'دودھ پلانے کے لیے محفوظ',
+  'can_insert_6_weeks_postpartum': 'پیدائش کے 6 ہفتے بعد لگایا جا سکتا ہے',
+  'condoms_prevent_stds': 'کنڈوم',
+  'prevent_stds': 'جنسی بیماریوں سے بچاؤ',
+  'can_use_immediately_delivery': 'پیدائش کے فوراً بعد استعمال کیا جا سکتا ہے',
+  'diaphragm_cervical_cap': 'ڈایافرام/سرونیکل کیپ',
+  'require_fitting_provider': 'صحت کی دیکھ بھال فراہم کنندہ سے فٹنگ کی ضرورت',
+  'wait_6_weeks_postpartum': 'پیدائش کے 6 ہفتے تک انتظار کریں',
+  'copper_iud': 'تانبے کا آئی یو ڈی',
+  'hormone_free': 'ہارمون سے پاک',
+  'lasts_up_to_10_years': '10 سال تک چلتا ہے',
+  'lng_ius_hormonal_iud': 'ایل این جی آئی یو ایس ہارمونل آئی یو ڈی',
+  'provides_local_hormone_release': 'مقامی ہارمون کی رہائی فراہم کرتا ہے',
+  'lasts_3_5_years': '3-5 سال تک چلتا ہے',
+  'reduces_bleeding': 'خون بہنے کو کم کرتا ہے',
+  'male_sterilization_vasectomy': 'مرد کی بانجھ پن (واسیکٹومی)',
+  'safer_outpatient_procedure': 'محفوظ، آؤٹ پیٹینٹ طریقہ کار',
+  'delayed_effectiveness_backup':
+      'تاخیر سے مؤثر (3 ماہ کے لیے بیک اپ استعمال کریں)',
+  'female_sterilization_tubal': 'خواتین کی بانجھ پن (ٹیوبل لیگیشن)',
+  'done_time_caesarean_1_week_vaginal':
+      'سیزیرین کے وقت یا اندام نہانی پیدائش کے 1 ہفتے بعد کیا جاتا ہے',
+  'permanent_non_reversible': 'مستقل، غیر قابل واپسی',
+  'considerations_choosing_method':
+      'طریقہ منتخب کرنے کے لیے غور کرنے والی باتیں',
+  'breastfeeding_status': 'دودھ پلانے کی حالت',
+  'medical_history': 'طبی تاریخ',
+  'age_family_size': 'عمر اور خاندان کا سائز',
+  'cultural_religious_beliefs': 'ثقافتی/مذہبی عقائد',
+  'personal_preferences_partner': 'ذاتی ترجیحات اور شریک حیات کی شمولیت',
   // Track My Baby Flow
   'track_my_baby': 'میرے بچے کی نگرانی',
   'baby_milestones': 'بچے کے سنگ میل',
