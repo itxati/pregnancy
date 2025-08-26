@@ -1,44 +1,44 @@
 const Map<String, List<String>> riskFactorGroups = {
-  "Diabetic Mothers": [
-    "Prefer insulin over oral medication",
-    "Fetal Echo recommended",
+  "diabetic_mothers": [
+    "diabetic_prefer_insulin",
+    "diabetic_fetal_echo",
   ],
-  "Rh-negative Mothers": [
-    "Anti-D injection at 28 weeks",
-    "Anti-D injection post-delivery if baby is Rh-positive",
+  "rh_negative_mothers": [
+    "rh_anti_d_28_weeks",
+    "rh_anti_d_post_delivery",
   ],
-  "Multiple Pregnancy": [
-    "Higher risk of Preterm Labor (PTL)",
-    "Higher risk of Intrauterine Growth Restriction (IUGR)",
-    "Requires close monitoring",
+  "multiple_pregnancy": [
+    "multi_risk_ptl",
+    "multi_risk_iugr",
+    "multi_close_monitoring",
   ],
-  "First Cousin Marriage": [
-    "Higher risk of genetic disorders in offspring",
-    "Increased chance of autosomal recessive conditions",
-    "Genetic counseling recommended before pregnancy",
-    "Higher risk of congenital malformations",
-    "Increased risk of intellectual disabilities",
-    "Regular prenatal screening and testing advised",
+  "first_cousin_marriage": [
+    "first_genetic_disorders",
+    "first_autosomal_recessive",
+    "first_genetic_counseling",
+    "first_congenital_malformations",
+    "first_intellectual_disabilities",
+    "first_prenatal_screening",
   ],
-  "Second Cousin Marriage": [
-    "Moderate risk of genetic disorders",
-    "Slightly increased chance of recessive conditions",
-    "Genetic counseling may be beneficial",
-    "Standard prenatal screening recommended",
-    "Monitor for any family history of genetic conditions",
+  "second_cousin_marriage": [
+    "second_moderate_risk",
+    "second_recessive_chance",
+    "second_counseling_beneficial",
+    "second_standard_screening",
+    "second_monitor_family_history",
   ],
-  "Relative Marriage": [
-    "Variable risk depending on degree of relation",
-    "Family history assessment important",
-    "Genetic counseling recommended",
-    "Enhanced prenatal screening advised",
-    "Monitor for inherited conditions",
+  "relative_marriage": [
+    "relative_variable_risk",
+    "relative_family_history",
+    "relative_genetic_counseling",
+    "relative_enhanced_screening",
+    "relative_monitor_inherited",
   ],
-  "No Relation": [
-    "Standard genetic risk assessment",
-    "Routine prenatal screening",
-    "Family history still important to review",
-    "Standard pregnancy monitoring",
-    "No additional genetic risks",
+  "no_relation": [
+    "no_standard_assessment",
+    "no_routine_screening",
+    "no_family_history",
+    "no_standard_monitoring",
+    "no_additional_risks",
   ],
 };

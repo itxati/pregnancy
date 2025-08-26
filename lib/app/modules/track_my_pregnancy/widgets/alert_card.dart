@@ -140,7 +140,8 @@ class AlertCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            "week_reminders".trParams({'week': currentWeek.toString()}),
+                            "week_reminders"
+                                .trParams({'week': currentWeek.toString()}),
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: const Color(0xFF6B5555),
@@ -178,7 +179,8 @@ class AlertCard extends StatelessWidget {
                 if (alerts != null && alerts.isNotEmpty)
                   ...alerts.asMap().entries.map((entry) {
                     final index = entry.key;
-                    final alert = entry.value;
+                    final alertKey =
+                        'pregnancy_week_${currentWeek}_alerts_${index}'.tr;
 
                     return Container(
                       margin: EdgeInsets.only(
@@ -235,7 +237,7 @@ class AlertCard extends StatelessWidget {
                           // Alert text
                           Expanded(
                             child: Text(
-                              alert,
+                              alertKey,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -279,7 +281,7 @@ class AlertCard extends StatelessWidget {
                         const SizedBox(width: 12),
                         Expanded(
                           child: Text(
-                            "All caught up! No alerts for this week.",
+                            'all_caught_up_no_alerts'.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium

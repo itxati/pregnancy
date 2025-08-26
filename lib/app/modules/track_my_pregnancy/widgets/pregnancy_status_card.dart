@@ -35,7 +35,8 @@ class PregnancyStatusCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${controller.pregnancyWeekNumber.value} weeks pregnant",
+                  "weeks_pregnant".trParams(
+                      {"weeks": "${controller.pregnancyWeekNumber.value}"}),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: themeService.getPrimaryColor(),
@@ -49,7 +50,7 @@ class PregnancyStatusCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            controller.trimester.value,
+                            controller.trimester.value.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -60,7 +61,8 @@ class PregnancyStatusCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "Due ${controller.dueDate.value}",
+                            "due_date"
+                                .trParams({"date": controller.dueDate.value}),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -86,7 +88,7 @@ class PregnancyStatusCard extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          "Edit",
+                          "edit".tr,
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: themeService.getPrimaryColor(),

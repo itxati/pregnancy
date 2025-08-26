@@ -336,7 +336,7 @@ class _MilestonesSummaryCard extends StatelessWidget {
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: '${m.title}: ',
+                                  text: '${'milestone_title_${m.month}'.tr}: ',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -346,7 +346,10 @@ class _MilestonesSummaryCard extends StatelessWidget {
                                       ),
                                 ),
                                 TextSpan(
-                                  text: m.milestones.take(2).join(', '),
+                                  text: List.generate(
+                                      m.milestones.take(2).length,
+                                      (i) => 'milestone_${m.month}_${i + 1}'
+                                          .tr).join(', '),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -492,11 +495,13 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
                 ),
                 // _monthBadge(context, m.month),
                 SpeechButton(
-                  text: m.description! +
+                  text: ('milestone_desc_${m.month}'.tr) +
                       " " +
                       "baby_milestones".tr +
                       ",  " +
-                      m.milestones.join(",  "),
+                      List.generate(m.milestones.length,
+                              (i) => 'milestone_${m.month}_${i + 1}'.tr)
+                          .join(",  "),
                   color: themeService.getPrimaryColor(),
                   size: 22,
                   padding: const EdgeInsets.all(4),
@@ -520,7 +525,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        m.description!,
+                        'milestone_desc_${m.month}'.tr,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: NeoSafeColors.primaryText,
                               fontStyle: FontStyle.italic,
@@ -558,7 +563,8 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
-                          milestone,
+                          'milestone_${m.month}_${m.milestones.indexOf(milestone) + 1}'
+                              .tr,
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: NeoSafeColors.primaryText,
@@ -704,7 +710,7 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    'Jaundice Image',
+                                    'jaundice_image',
                                     style: TextStyle(
                                       color: NeoSafeColors.primaryPink,
                                       fontWeight: FontWeight.w600,
@@ -748,7 +754,8 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: '${h.title}: ',
+                                  text:
+                                      '${'health_${babyHealthInfos.indexOf(h) + 1}_title'.tr}: ',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -758,7 +765,11 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                                       ),
                                 ),
                                 TextSpan(
-                                  text: h.points.take(2).join(', '),
+                                  text: List.generate(
+                                      h.points.take(2).length,
+                                      (i) =>
+                                          'health_${babyHealthInfos.indexOf(h) + 1}_point_${i + 1}'
+                                              .tr).join(', '),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -964,7 +975,7 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    item.title,
+                    'health_${_items.indexOf(item) + 1}_title'.tr,
                     style: theme.textTheme.titleLarge?.copyWith(
                       color: NeoSafeColors.primaryText,
                       fontWeight: FontWeight.w700,
@@ -997,7 +1008,7 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            item.description!,
+                            'health_${_items.indexOf(item) + 1}_desc'.tr,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: NeoSafeColors.primaryText,
                               fontStyle: FontStyle.italic,
@@ -1027,7 +1038,8 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
-                              p,
+                              'health_${_items.indexOf(item) + 1}_point_${item.points.indexOf(p) + 1}'
+                                  .tr,
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: NeoSafeColors.primaryText,
                                 height: 1.45,
@@ -1052,7 +1064,7 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                       },
                       icon: Icon(
                           expanded ? Icons.expand_less : Icons.expand_more),
-                      label: Text(expanded ? 'Show less' : 'Show more'),
+                      label: Text(expanded ? 'show_less'.tr : 'show_more'.tr),
                       style: TextButton.styleFrom(
                         foregroundColor: NeoSafeColors.primaryPink,
                       ),
@@ -1437,7 +1449,7 @@ class _TipsSummaryCard extends StatelessWidget {
               const SizedBox(width: 16),
               Expanded(
                 child: Text(
-                  'Baby Care Tips',
+                  'baby_care_tips'.tr,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: NeoSafeColors.primaryText,
                         fontWeight: FontWeight.w700,
@@ -1485,7 +1497,7 @@ class _TipsSummaryCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     Text(
-                      'Dos',
+                      'tips_dos_title'.tr,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: NeoSafeColors.success,
                             fontWeight: FontWeight.w700,
@@ -1494,7 +1506,7 @@ class _TipsSummaryCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                ...babyTips.dos.map((d) => Padding(
+                ...babyTips.dos.asMap().entries.map((e) => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1511,7 +1523,7 @@ class _TipsSummaryCard extends StatelessWidget {
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
-                              d,
+                              'tip_do_${e.key + 1}'.tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -1568,7 +1580,7 @@ class _TipsSummaryCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     Text(
-                      "Don'ts",
+                      'tips_donts_title'.tr,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: NeoSafeColors.error,
                             fontWeight: FontWeight.w700,
@@ -1577,7 +1589,7 @@ class _TipsSummaryCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                ...babyTips.donts.map((d) => Padding(
+                ...babyTips.donts.asMap().entries.map((e) => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1594,7 +1606,7 @@ class _TipsSummaryCard extends StatelessWidget {
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
-                              d,
+                              'tip_dont_${e.key + 1}'.tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -1621,7 +1633,7 @@ class _TipsDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('All Tips')),
+      appBar: AppBar(title: Text('all_tips'.tr)),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Card(
@@ -1633,33 +1645,33 @@ class _TipsDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Dos',
+                Text('tips_dos_title'.tr,
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge
                         ?.copyWith(fontWeight: FontWeight.bold)),
-                ...babyTips.dos.map((d) => Row(
+                ...babyTips.dos.asMap().entries.map((e) => Row(
                       children: [
                         const Icon(Icons.check_circle,
                             size: 18, color: Colors.green),
                         const SizedBox(width: 6),
                         Expanded(
-                            child: Text(d,
+                            child: Text('tip_do_${e.key + 1}'.tr,
                                 style: Theme.of(context).textTheme.bodyMedium)),
                       ],
                     )),
                 const SizedBox(height: 16),
-                Text("Don'ts",
+                Text('tips_donts_title'.tr,
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge
                         ?.copyWith(fontWeight: FontWeight.bold)),
-                ...babyTips.donts.map((d) => Row(
+                ...babyTips.donts.asMap().entries.map((e) => Row(
                       children: [
                         const Icon(Icons.cancel, size: 18, color: Colors.red),
                         const SizedBox(width: 6),
                         Expanded(
-                            child: Text(d,
+                            child: Text('tip_dont_${e.key + 1}'.tr,
                                 style: Theme.of(context).textTheme.bodyMedium)),
                       ],
                     )),
@@ -1690,7 +1702,7 @@ class _EssentialReadsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "This week's essential reads",
+            'this_weeks_essential_reads'.tr,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                   color: NeoSafeColors.primaryText,
@@ -1702,21 +1714,24 @@ class _EssentialReadsSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: smallArticles.map((article) {
+                  final lang = Get.locale?.languageCode;
+                  final localizedTitle = article.localizedTitle(lang);
+                  final localizedContent = article.localizedContent(lang);
                   return Padding(
                     padding: const EdgeInsets.only(right: 12),
                     child: SizedBox(
                       width: 180,
                       child: _buildArticleCard(
                         context,
-                        article.title,
+                        localizedTitle,
                         article.image,
                         aspectRatio: 1.2,
                         onTap: () {
                           Get.to(() => ArticlePage(
-                                title: article.title,
+                                title: localizedTitle,
                                 // subtitle: article.subtitle,
                                 imageAsset: article.image,
-                                content: article.content,
+                                content: localizedContent,
                               ));
                         },
                       ),
@@ -1731,15 +1746,18 @@ class _EssentialReadsSection extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 16),
                   child: _buildArticleCard(
                     context,
-                    article.title,
+                    article.localizedTitle(Get.locale?.languageCode),
                     article.image,
-                    subtitle: article.content,
+                    subtitle:
+                        article.localizedContent(Get.locale?.languageCode),
                     aspectRatio: 2.5,
                     onTap: () {
                       Get.to(() => ArticlePage(
-                            title: article.title,
+                            title: article
+                                .localizedTitle(Get.locale?.languageCode),
                             imageAsset: article.image,
-                            content: article.content,
+                            content: article
+                                .localizedContent(Get.locale?.languageCode),
                           ));
                     },
                   ),
@@ -1906,7 +1924,7 @@ class _ArticleTag extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            "Article",
+            'article'.tr,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
@@ -1945,7 +1963,7 @@ class _ArticlesDetailPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Baby Articles',
+          'baby_articles'.tr,
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: NeoSafeColors.primaryText,
                 fontWeight: FontWeight.w700,
@@ -1970,8 +1988,8 @@ class _ArticlesDetailPage extends StatelessWidget {
               onPressed: () {
                 // TODO: Implement search functionality
                 Get.snackbar(
-                  'Search',
-                  'Searching articles...',
+                  'search'.tr,
+                  'searching_articles'.tr,
                   snackPosition: SnackPosition.BOTTOM,
                 );
               },
@@ -1993,7 +2011,7 @@ class _ArticlesDetailPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Discover helpful articles",
+                      'discover_helpful_articles'.tr,
                       style:
                           Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 color: NeoSafeColors.primaryText,
@@ -2002,7 +2020,7 @@ class _ArticlesDetailPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Expert advice and tips for your baby's development",
+                      'expert_advice_tips_baby_dev'.tr,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: NeoSafeColors.secondaryText,
                           ),
@@ -2108,7 +2126,7 @@ class _ArticlesDetailPage extends StatelessWidget {
                                             ),
                                             const SizedBox(width: 4),
                                             Text(
-                                              "Article",
+                                              'article'.tr,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodySmall
@@ -2175,7 +2193,10 @@ class _ArticlesDetailPage extends StatelessWidget {
                                           ),
                                           const SizedBox(width: 6),
                                           Text(
-                                            "${_calculateReadingTime(article.content)} min read",
+                                            'min_read'.trParams({
+                                              'minutes':
+                                                  "${_calculateReadingTime(article.content)}"
+                                            }),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodySmall

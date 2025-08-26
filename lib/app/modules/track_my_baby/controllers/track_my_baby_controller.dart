@@ -4,8 +4,8 @@ import '../../../services/auth_service.dart';
 
 class TrackMyBabyController extends GetxController {
   // Baby information
-  final RxString babyName = "Baby".obs;
-  final RxString babyGender = "Boy".obs;
+  final RxString babyName = "baby_default_name".tr.obs;
+  final RxString babyGender = "boy".tr.obs;
   final Rx<DateTime> birthDate = DateTime.now().obs;
 
   // Tracking data
@@ -56,32 +56,32 @@ class TrackMyBabyController extends GetxController {
 
   String getGreeting() {
     final hour = DateTime.now().hour;
-    if (hour < 12) return "Good morning";
-    if (hour < 17) return "Good afternoon";
-    return "Good evening";
+    if (hour < 12) return "good_morning".tr;
+    if (hour < 17) return "good_afternoon".tr;
+    return "good_evening".tr;
   }
 
   String getBabyAgeText() {
     if (babyAgeInMonths.value == 0) {
-      return "${babyAgeInWeeks.value} weeks old";
+      return "weeks_old".trParams({"weeks": "${babyAgeInWeeks.value}"});
     } else if (babyAgeInMonths.value == 1) {
-      return "1 month old";
+      return "one_month_old".tr;
     } else {
-      return "${babyAgeInMonths.value} months old";
+      return "months_old".trParams({"months": "${babyAgeInMonths.value}"});
     }
   }
 
   String getTimelineSubtitle() {
     if (babyAgeInMonths.value < 3) {
-      return "Newborn phase";
+      return "newborn_phase".tr;
     } else if (babyAgeInMonths.value < 6) {
-      return "Infant development";
+      return "infant_development".tr;
     } else if (babyAgeInMonths.value < 12) {
-      return "Baby milestones";
+      return "baby_milestones".tr;
     } else if (babyAgeInMonths.value < 18) {
-      return "Toddler growth";
+      return "toddler_growth".tr;
     } else {
-      return "Early childhood";
+      return "early_childhood".tr;
     }
   }
 

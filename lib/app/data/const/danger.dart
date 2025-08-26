@@ -1,8 +1,8 @@
 const List<String> kDangerSigns = [
-  'Bleeding per Vaginum',
-  'Severe Abdominal Pain',
-  'Blumed vision, swelling, severe headache (Preeclampsia)',
-  'Decreased Fetal Moments',
-  'Leaking per Vaginum',
-  'Fever e-, chills',
+  'danger_bleeding_per_vaginum',
+  'danger_severe_abdominal_pain',
+  'danger_blurred_vision_swelling_headache',
+  'danger_decreased_fetal_movements',
+  'danger_leaking_per_vaginum',
+  'danger_fever_chills',
 ];

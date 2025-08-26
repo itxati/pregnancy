@@ -30,7 +30,11 @@ class BabySizeCard extends StatelessWidget {
           .join(' ');
     }
 
-    final String fruitName = _titleCase(comparison);
+    final String comparisonKey = 'baby_size_' + comparison;
+    final String maybeTranslated = comparisonKey.tr;
+    final String fruitName = (maybeTranslated == comparisonKey)
+        ? _titleCase(comparison)
+        : maybeTranslated;
     final int weekNumber = weekData!.week;
     // Expecting assets to be added later like assets/fruit/week{N}.png
     final String fruitImageAsset = 'assets/Safe/week$weekNumber.jpg';
@@ -113,7 +117,7 @@ class BabySizeCard extends StatelessWidget {
                       padding:
                           const EdgeInsets.only(top: 4, left: 12, right: 12),
                       child: Text(
-                        "The size of your baby is",
+                        "the_size_of_your_baby_is".tr,
                         style:
                             Theme.of(context).textTheme.headlineSmall?.copyWith(
                                   color: Colors.white,

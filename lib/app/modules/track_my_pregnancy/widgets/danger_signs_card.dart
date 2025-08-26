@@ -110,7 +110,7 @@ class _DangerSignsCardState extends State<DangerSignsCard> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              sign,
+                              sign.tr,
                               style: theme.textTheme.bodyLarge?.copyWith(
                                 color: NeoSafeColors.primaryText,
                                 fontWeight: FontWeight.w500,

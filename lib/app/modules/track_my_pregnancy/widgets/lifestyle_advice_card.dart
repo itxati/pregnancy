@@ -283,7 +283,7 @@ class _LifeStyleAdviceCardState extends State<LifeStyleAdviceCard> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      entry.key,
+                                      entry.key.tr,
                                       style:
                                           theme.textTheme.titleMedium?.copyWith(
                                         fontWeight: FontWeight.w700,
@@ -293,7 +293,7 @@ class _LifeStyleAdviceCardState extends State<LifeStyleAdviceCard> {
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      entry.value,
+                                      entry.value.tr,
                                       style:
                                           theme.textTheme.bodyMedium?.copyWith(
                                         color: NeoSafeColors.secondaryText,

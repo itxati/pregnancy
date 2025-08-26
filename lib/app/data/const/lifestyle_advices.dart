@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 const Map<String, String> lifestyleAdvice = const {
-  "Nutrition": "High protein, fiber rich, moderate fats",
-  "Exercise": "Mild to moderate, Kegel exercises",
-  "Hygiene": "Good genital hygiene, dental checkups",
-  "Sleep": "Left lateral position",
+  "Nutrition": "advice_nutrition",
+  "Exercise": "advice_exercise",
+  "Hygiene": "advice_hygiene",
+  "Sleep": "advice_sleep",
 };
 
 // Icon mapping for each lifestyle category

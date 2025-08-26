@@ -44,20 +44,23 @@ class EssentialReadsSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: smallArticles.map((article) {
+                  final lang = Get.locale?.languageCode;
+                  final localizedTitle = article.localizedTitle(lang);
+                  final localizedContent = article.localizedContent(lang);
                   return Padding(
                     padding: const EdgeInsets.only(right: 12),
                     child: SizedBox(
                       width: 180,
                       child: _buildArticleCard(
                         context,
-                        article.title,
+                        localizedTitle,
                         article.image,
                         aspectRatio: 1.2,
                         onTap: () {
                           Get.to(() => ArticlePage(
-                                title: article.title,
+                                title: localizedTitle,
                                 imageAsset: article.image,
-                                content: article.content,
+                                content: localizedContent,
                               ));
                         },
                       ),
@@ -72,15 +75,18 @@ class EssentialReadsSection extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 16),
                   child: _buildArticleCard(
                     context,
-                    article.title,
+                    article.localizedTitle(Get.locale?.languageCode),
                     article.image,
-                    subtitle: article.content,
+                    subtitle:
+                        article.localizedContent(Get.locale?.languageCode),
                     aspectRatio: 2.5,
                     onTap: () {
                       Get.to(() => ArticlePage(
-                            title: article.title,
+                            title: article
+                                .localizedTitle(Get.locale?.languageCode),
                             imageAsset: article.image,
-                            content: article.content,
+                            content: article
+                                .localizedContent(Get.locale?.languageCode),
                           ));
                     },
                   ),
@@ -249,7 +255,7 @@ class _ArticleTag extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            "Article",
+            'article'.tr,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,

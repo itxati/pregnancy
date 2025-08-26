@@ -315,7 +315,7 @@ class TrackMyPregnancyController extends GetxController
                 Row(
                   children: [
                     Text(
-                      "Where you are",
+                      "where_you_are".tr,
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 fontWeight: FontWeight.w700,
@@ -346,7 +346,7 @@ class TrackMyPregnancyController extends GetxController
                   context,
                   icon: Icons.child_care,
                   iconColor: themeService.getPrimaryColor(),
-                  text: "Your estimated due date is ${dueDate.value}.",
+                  text: "estimated_due_date".trParams({"date": dueDate.value}),
                 ),
                 const SizedBox(height: 16),
                 _buildInfoRow(
@@ -354,7 +354,10 @@ class TrackMyPregnancyController extends GetxController
                   icon: Icons.pregnant_woman,
                   iconColor: themeService.getPrimaryColor(),
                   text:
-                      "This means you're ${pregnancyWeekNumber.value} weeks and ${pregnancyDays.value % 7} days pregnant.",
+                      "pregnancy_progress".trParams({
+                        "weeks": "${pregnancyWeekNumber.value}",
+                        "days": "${pregnancyDays.value % 7}"
+                      }),
                 ),
                 const SizedBox(height: 16),
                 _buildInfoRow(
@@ -362,7 +365,10 @@ class TrackMyPregnancyController extends GetxController
                   icon: Icons.calendar_today,
                   iconColor: NeoSafeColors.info,
                   text:
-                      "This means you have ${40 - pregnancyWeekNumber.value} weeks and ${7 - (pregnancyDays.value % 7)} days to go.",
+                      "time_remaining".trParams({
+                        "weeks": "${40 - pregnancyWeekNumber.value}",
+                        "days": "${7 - (pregnancyDays.value % 7)}"
+                      }),
                 ),
                 const SizedBox(height: 32),
 
@@ -399,7 +405,7 @@ class TrackMyPregnancyController extends GetxController
                       ),
                     ),
                     child: Text(
-                      "Edit due date",
+                      "edit_due_date".tr,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: Colors.white,

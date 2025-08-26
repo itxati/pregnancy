@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/data/models/baby_milestone_data.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 
@@ -52,7 +53,7 @@ class JaundiceSymptomsView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Symptoms & Warning Signs',
+                      'symptoms_warning_signs'.tr,
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 color: Colors.white,
@@ -61,7 +62,7 @@ class JaundiceSymptomsView extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Know when to be concerned',
+                      'know_when_to_be_concerned'.tr,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Colors.white.withOpacity(0.9),
                           ),
@@ -82,6 +83,7 @@ class JaundiceSymptomsView extends StatelessWidget {
   }
 
   Widget _buildInfoCard(BuildContext context, BabyHealthInfo item) {
+    final sectionIndex = data.indexOf(item) + 1;
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
@@ -132,7 +134,7 @@ class JaundiceSymptomsView extends StatelessWidget {
                 const SizedBox(width: 16),
                 Expanded(
                   child: Text(
-                    item.title,
+                    'jaundice_${sectionIndex}_title'.tr,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: NeoSafeColors.primaryText,
                           fontWeight: FontWeight.w700,
@@ -169,7 +171,7 @@ class JaundiceSymptomsView extends StatelessWidget {
                         const SizedBox(width: 12),
                         Expanded(
                           child: Text(
-                            item.description!,
+                            'jaundice_${sectionIndex}_desc'.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -187,7 +189,7 @@ class JaundiceSymptomsView extends StatelessWidget {
                 ],
 
                 // Points list
-                ...item.points.map((point) => Container(
+                ...item.points.asMap().entries.map((entry) => Container(
                       margin: const EdgeInsets.only(bottom: 12),
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
@@ -212,7 +214,8 @@ class JaundiceSymptomsView extends StatelessWidget {
                           const SizedBox(width: 16),
                           Expanded(
                             child: Text(
-                              point,
+                              'jaundice_${sectionIndex}_point_${entry.key + 1}'
+                                  .tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium

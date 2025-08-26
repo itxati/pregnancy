@@ -150,7 +150,7 @@ class ArticlePage extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            "Article",
+                            'article'.tr,
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: Colors.white,
@@ -221,41 +221,6 @@ class ArticlePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Reading Time Indicator
-                    // Container(
-                    //   padding: const EdgeInsets.symmetric(
-                    //       horizontal: 16, vertical: 8),
-                    //   decoration: BoxDecoration(
-                    //     color: NeoSafeColors.primaryPink.withOpacity(0.1),
-                    //     borderRadius: BorderRadius.circular(20),
-                    //     border: Border.all(
-                    //       color: NeoSafeColors.primaryPink.withOpacity(0.2),
-                    //       width: 1,
-                    //     ),
-                    //   ),
-                    //   child: Row(
-                    //     mainAxisSize: MainAxisSize.min,
-                    //     children: [
-                    //       Icon(
-                    //         Icons.access_time,
-                    //         size: 16,
-                    //         color: NeoSafeColors.primaryPink,
-                    //       ),
-                    //       const SizedBox(width: 6),
-                    //       Text(
-                    //         "${_calculateReadingTime(content)} min read",
-                    //         style:
-                    //             Theme.of(context).textTheme.bodySmall?.copyWith(
-                    //                   color: NeoSafeColors.primaryPink,
-                    //                   fontWeight: FontWeight.w600,
-                    //                 ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-
-                    // const SizedBox(height: 24),
-
                     // Article Content
                     Container(
                       width: double.infinity,
@@ -329,7 +294,7 @@ class ArticlePage extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Thanks for reading this article!",
+                                      'thanks_for_reading'.tr,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium
@@ -339,7 +304,7 @@ class ArticlePage extends StatelessWidget {
                                           ),
                                     ),
                                     Text(
-                                      "Brought to you by Sphere",
+                                      'brought_to_you_by_sphere'.tr,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodySmall

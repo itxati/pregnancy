@@ -49,19 +49,19 @@ class MonthlyDetailsController extends GetxController {
 
   // Get month display text
   String getMonthDisplayText(int month) {
-    if (month == 0) return "Newborn";
-    if (month == 1) return "1 Month";
-    return "$month Months";
+    if (month == 0) return "newborn".tr;
+    if (month == 1) return "one_month".tr;
+    return "n_months".trParams({"n": "$month"});
   }
 
   // Get age description
   String getAgeDescription() {
     if (selectedMonth.value == 0) {
-      return "Your newborn baby";
+      return "your_newborn_baby".tr;
     } else if (selectedMonth.value == 1) {
-      return "Your 1-month-old baby";
+      return "your_one_month_old_baby".tr;
     } else {
-      return "Your ${selectedMonth.value}-month-old baby";
+      return "your_n_month_old_baby".trParams({"n": "${selectedMonth.value}"});
     }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import 'package:babysafe/app/data/models/baby_milestone_data_list.dart';
 import 'jaundice_overview_view.dart';
@@ -28,16 +28,16 @@ class _JaundiceViewState extends State<JaundiceView> {
           scrolledUnderElevation: 0,
           shadowColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
-          title: const Text('Jaundice Information'),
-          bottom: const TabBar(
+          title: Text('jaundice_information'.tr),
+          bottom: TabBar(
             isScrollable: true,
             dividerColor: Colors.transparent,
             indicatorSize: TabBarIndicatorSize.label,
             tabs: [
-              Tab(text: 'Overview'),
-              Tab(text: 'Symptoms'),
-              Tab(text: 'Treatment'),
-              Tab(text: 'Prevention'),
+              Tab(text: 'overview_tab'.tr),
+              Tab(text: 'symptoms_tab'.tr),
+              Tab(text: 'treatment_tab'.tr),
+              Tab(text: 'prevention_tab'.tr),
             ],
           ),
         ),

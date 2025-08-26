@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:babysafe/app/data/models/baby_milestone_data.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 
@@ -49,7 +50,7 @@ class JaundicePreventionView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Prevention & Home Care',
+                      'prevention_home_care'.tr,
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 color: Colors.white,
@@ -58,7 +59,7 @@ class JaundicePreventionView extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Keep your baby healthy and safe',
+                      'keep_baby_healthy_safe'.tr,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Colors.white.withOpacity(0.9),
                           ),
@@ -126,7 +127,7 @@ class JaundicePreventionView extends StatelessWidget {
                     const SizedBox(width: 16),
                     Expanded(
                       child: Text(
-                        'Daily Monitoring Checklist',
+                        'daily_monitoring_checklist'.tr,
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               color: NeoSafeColors.primaryText,
                               fontWeight: FontWeight.w700,
@@ -143,19 +144,14 @@ class JaundicePreventionView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    _buildChecklistItem(context, 'check_skin_color_daily'.tr),
+                    _buildChecklistItem(context, 'check_eye_whites'.tr),
+                    _buildChecklistItem(context, 'track_feeding_frequency'.tr),
+                    _buildChecklistItem(context, 'monitor_diaper_output'.tr),
+                    _buildChecklistItem(context, 'watch_behavior_changes'.tr),
+                    _buildChecklistItem(context, 'ensure_alert_responsive'.tr),
                     _buildChecklistItem(
-                        context, 'Monitor baby\'s skin color daily'),
-                    _buildChecklistItem(
-                        context, 'Check whites of baby\'s eyes'),
-                    _buildChecklistItem(
-                        context, 'Track feeding frequency and duration'),
-                    _buildChecklistItem(
-                        context, 'Monitor diaper output (wet and dirty)'),
-                    _buildChecklistItem(
-                        context, 'Watch for changes in baby\'s behavior'),
-                    _buildChecklistItem(
-                        context, 'Ensure baby is alert and responsive'),
-                    _buildChecklistItem(context, 'Keep follow-up appointments'),
+                        context, 'keep_followup_appointments'.tr),
                   ],
                 ),
               ),
@@ -167,6 +163,7 @@ class JaundicePreventionView extends StatelessWidget {
   }
 
   Widget _buildInfoCard(BuildContext context, BabyHealthInfo item) {
+    final sectionIndex = data.indexOf(item) + 1;
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
@@ -217,7 +214,7 @@ class JaundicePreventionView extends StatelessWidget {
                 const SizedBox(width: 16),
                 Expanded(
                   child: Text(
-                    item.title,
+                    'jaundice_${sectionIndex}_title'.tr,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: NeoSafeColors.primaryText,
                           fontWeight: FontWeight.w700,
@@ -254,7 +251,7 @@ class JaundicePreventionView extends StatelessWidget {
                         const SizedBox(width: 12),
                         Expanded(
                           child: Text(
-                            item.description!,
+                            'jaundice_${sectionIndex}_desc'.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -272,7 +269,7 @@ class JaundicePreventionView extends StatelessWidget {
                 ],
 
                 // Points list
-                ...item.points.map((point) => Container(
+                ...item.points.asMap().entries.map((entry) => Container(
                       margin: const EdgeInsets.only(bottom: 12),
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
@@ -297,7 +294,8 @@ class JaundicePreventionView extends StatelessWidget {
                           const SizedBox(width: 16),
                           Expanded(
                             child: Text(
-                              point,
+                              'jaundice_${sectionIndex}_point_${entry.key + 1}'
+                                  .tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium

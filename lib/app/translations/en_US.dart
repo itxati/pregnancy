@@ -1714,4 +1714,407 @@ final Map<String, String> enUS = {
   'pregnancy_week_40_alerts_0': "Due date reached - monitor closely",
   'pregnancy_week_40_alerts_1':
       "Discuss post-date pregnancy plans with provider",
+
+  //risk factors
+  "looking_good": "Looking Good!",
+  "no_known_risk_factors": "No known risk factors identified at this stage.",
+  "more_categories": "+%{count} more categories",
+  "complete_your_profile": "Complete Your Profile",
+  "please_provide_info_for_risk_assessment":
+      "Please provide the following information to assess risk factors",
+  // "baby_blood_group": "Baby's Blood Group",
+  // "mother_blood_group": "Mother's Blood Group",
+  // "relation": "Relation",
+  "save_and_continue": "Save & Continue",
+  // "relative": "Relative",
+  // "first_cousin": "First Cousin",
+  // "second_cousin": "Second Cousin",
+  // "no_relation": "No Relation",
+  "rh_negative_mothers": "Rh-negative Mothers",
+  "first_cousin_marriage": "First Cousin Marriage",
+  "second_cousin_marriage": "Second Cousin Marriage",
+  "relative_marriage": "Relative Marriage",
+  "multiple_pregnancy": "Multiple Pregnancy",
+
+  //pregnancy status
+  // "weeks_pregnant": "%{weeks} weeks pregnant",
+  // "due_date": "Due %{date}",
+  "edit": "Edit",
+  "where_you_are": "Where you are",
+  "estimated_due_date": "Your estimated due date is %{date}.",
+  "pregnancy_progress":
+      "This means you're %{weeks} weeks and %{days} days pregnant.",
+  "time_remaining":
+      "This means you have %{weeks} weeks and %{days} days to go.",
+  "edit_due_date": "Edit due date",
+
+  "Nutrition": "Nutrition",
+  "Exercise": "Exercise",
+  "Hygiene": "Hygiene",
+  "Sleep": "Sleep",
+  "advice_nutrition": "High protein, fiber rich, moderate fats",
+  "advice_exercise": "Mild to moderate, Kegel exercises",
+  "advice_hygiene": "Good genital hygiene, dental checkups",
+  "advice_sleep": "Left lateral position",
+
+  "danger_bleeding_per_vaginum": "Bleeding per Vaginum",
+  "danger_severe_abdominal_pain": "Severe Abdominal Pain",
+  "danger_blurred_vision_swelling_headache":
+      "Blurred vision, swelling, severe headache (Preeclampsia)",
+  "danger_decreased_fetal_movements": "Decreased Fetal Movements",
+  "danger_leaking_per_vaginum": "Leaking per Vaginum",
+  "danger_fever_chills": "Fever, chills",
+
+  "the_size_of_your_baby_is": "The size of your baby is",
+  "baby_size_blueberry": "Blueberry",
+
+  // Titles
+  "milestone_title_0": "Newborn",
+  "milestone_title_1": "1 Month",
+  "milestone_title_3": "3 Months",
+  "milestone_title_6": "6 Months",
+  "milestone_title_9": "9 Months",
+  "milestone_title_12": "12 Months",
+  "milestone_title_18": "18 Months",
+
+// Descriptions
+  "milestone_desc_0":
+      "Your baby has just entered the world! This is a time of rapid adjustment and bonding.",
+  "milestone_desc_1":
+      "Your baby is becoming more alert and responsive to the world around them.",
+
+// Month 0 milestones
+  "milestone_0_1": "Lifts head briefly when on tummy",
+  "milestone_0_2": "Makes eye contact",
+  "milestone_0_3": "Responds to sounds",
+  "milestone_0_4": "Grasps your finger",
+  "milestone_0_5": "Roots for feeding",
+
+// Month 1 milestones
+  "milestone_1_1": "Holds head up for longer periods",
+  "milestone_1_2": "Follows objects with eyes",
+  "milestone_1_3": "Smiles in response to faces",
+  "milestone_1_4": "Makes cooing sounds",
+  "milestone_1_5": "Recognizes familiar voices",
+
+// Month 3 milestones
+  "milestone_3_1": "Follows light and tracks with eyes",
+  "milestone_3_2": "Regards mother’s face",
+  "milestone_3_3": "Turns toward nearby voices",
+  "milestone_3_4": "Shows happy response to caregiver’s face",
+  "milestone_3_5": "Laughs during pleasurable social contact",
+  "milestone_3_6": "Hands largely open; social smile appears",
+  "milestone_3_7":
+      "Sleeps most of the time (more predictable patterns emerging)",
+
+// Month 6 milestones
+  "milestone_6_1":
+      "Rolls prone to supine (around 5 months) and supine to prone (around 6 months)",
+  "milestone_6_2": "Sits with back support",
+  "milestone_6_3": "Reaches out with one hand to grasp",
+  "milestone_6_4": "Eyes move in unison",
+  "milestone_6_5": "Vocalizes tunefully; shouts to attract attention",
+  "milestone_6_6": "Responds to sounds and simple words",
+  "milestone_6_7": "Explores by bringing objects to mouth",
+  "milestone_6_8": "Imitates simple gestures (e.g., bye-bye)",
+
+// Month 9 milestones
+  "milestone_9_1": "Sits without support (often by 8 months)",
+  "milestone_9_2": "Reaches for a toy in front (around 9 months)",
+  "milestone_9_3": "Pivots to reach toy behind (around 10 months)",
+  "milestone_9_4":
+      "Pulls to stand and cruises on furniture (may fall on bottom)",
+  "milestone_9_5": "Crawls/creeps on hands and knees",
+  "milestone_9_6":
+      "Visually alert to peripheral movement; grasps string/objects",
+  "milestone_9_7":
+      "Drops objects and looks for them (object permanence emerging)",
+  "milestone_9_8": "Babbles repeated syllables (e.g., “baba”, “dada”)",
+  "milestone_9_9": "Holds, bites, chews biscuits/soft foods",
+  "milestone_9_10": "Shows fear of strangers (from ~7 months)",
+  "milestone_9_11": "Waves and imitates hand clapping",
+
+// Month 12 milestones
+  "milestone_12_1": "Walks with one hand held (around 12 months)",
+  "milestone_12_2": "Cruises along furniture; may take a few independent steps",
+  "milestone_12_3": "Watches small toys closely and points to desired objects",
+  "milestone_12_4": "Knows and responds to own name",
+  "milestone_12_5": "Says a few words",
+  "milestone_12_6": "Drinks from a cup with little assistance",
+  "milestone_12_7": "Waves bye-bye",
+
+// Month 18 milestones
+  "milestone_18_1": "Walks alone, even with uneven steps",
+  "milestone_18_2": "Walks upstairs with one hand held",
+  "milestone_18_3": "Throws a ball",
+
+// Section 1: Newborn Jaundice
+  "health_1_title": "Newborn Jaundice",
+  "health_1_desc":
+      "Jaundice is usually harmless and goes away on its own, but some cases require medical attention.",
+  "health_1_point_1": "Yellowing of skin and eyes caused by high bilirubin.",
+  "health_1_point_2":
+      "Common in newborns, usually appears within 2-4 days after birth.",
+  "health_1_point_3":
+      "Monitor for yellow color spreading to legs, hands, or palms.",
+  "health_1_point_4":
+      "Contact a doctor if baby is very sleepy, not feeding well, or jaundice appears within 24hrs of birth.",
+
+// JaundiceData 1: What Every Mother Should Know
+  "jaundice_1_title": "Newborn Jaundice – What Every Mother Should Know",
+  "jaundice_1_desc":
+      "Understanding jaundice helps parents recognize when to seek medical attention and when it's normal.",
+  "jaundice_1_point_1":
+      "Jaundice is a common condition in newborns that causes yellowing of the skin and eyes",
+  "jaundice_1_point_2":
+      "It occurs when there is too much bilirubin (a yellow pigment) in the baby's blood",
+  "jaundice_1_point_3":
+      "Most cases appear 2-4 days after birth and resolve within 1-2 weeks",
+  "jaundice_1_point_4":
+      "Premature babies are more likely to develop jaundice than full-term babies",
+  "jaundice_1_point_5":
+      "Breastfeeding jaundice can occur when babies don't get enough breast milk",
+  "jaundice_1_point_6":
+      "Breast milk jaundice can develop after the first week and last for several weeks",
+
+// JaundiceData 2: Signs and Symptoms
+  "jaundice_2_title": "Signs and Symptoms of Jaundice",
+  "jaundice_2_desc":
+      "Early recognition of jaundice symptoms is crucial for timely treatment.",
+  "jaundice_2_point_1":
+      "Yellowing of the skin, starting from the face and moving downward",
+  "jaundice_2_point_2": "Yellowing of the whites of the eyes (sclera)",
+  "jaundice_2_point_3": "Dark yellow urine instead of clear or light yellow",
+  "jaundice_2_point_4": "Pale, clay-colored stools instead of yellow or green",
+  "jaundice_2_point_5": "Poor feeding or difficulty waking for feeds",
+  "jaundice_2_point_6": "High-pitched crying or unusual fussiness",
+  "jaundice_2_point_7": "Lethargy or excessive sleepiness",
+
+// JaundiceData 3: Risk Factors
+  "jaundice_3_title": "Risk Factors for Severe Jaundice",
+  "jaundice_3_desc":
+      "Babies with these risk factors need closer monitoring for jaundice.",
+  "jaundice_3_point_1": "Premature birth (before 37 weeks)",
+  "jaundice_3_point_2": "Blood type incompatibility between mother and baby",
+  "jaundice_3_point_3":
+      "Bruising during birth (causes more red blood cell breakdown)",
+  "jaundice_3_point_4": "Family history of jaundice or blood disorders",
+  "jaundice_3_point_5": "Insufficient feeding in the first few days",
+  "jaundice_3_point_6": "Certain genetic conditions affecting red blood cells",
+  "jaundice_3_point_7": "Infection or other medical conditions",
+
+// JaundiceData 4: When to Seek Medical Attention
+  "jaundice_4_title": "When to Seek Medical Attention",
+  "jaundice_4_desc":
+      "Immediate medical attention is needed for severe jaundice to prevent complications.",
+  "jaundice_4_point_1": "Jaundice appears within 24 hours of birth",
+  "jaundice_4_point_2": "Yellow color spreads to arms, legs, or palms",
+  "jaundice_4_point_3": "Baby is very sleepy and difficult to wake for feeds",
+  "jaundice_4_point_4": "Baby is not feeding well or refusing to eat",
+  "jaundice_4_point_5": "Jaundice lasts longer than 2 weeks",
+  "jaundice_4_point_6": "Baby develops fever or other signs of illness",
+  "jaundice_4_point_7": "Jaundice is accompanied by dark urine or pale stools",
+  "jaundice_4_point_8": "Baby becomes increasingly irritable or fussy",
+
+// JaundiceData 5: Treatment Options
+  "jaundice_5_title": "Treatment Options for Jaundice",
+  "jaundice_5_desc":
+      "Most jaundice cases are mild and resolve with simple treatments.",
+  "jaundice_5_point_1":
+      "Phototherapy (light therapy) using special blue lights",
+  "jaundice_5_point_2":
+      "Increased feeding to help eliminate bilirubin through stool",
+  "jaundice_5_point_3": "Intravenous fluids if baby is dehydrated",
+  "jaundice_5_point_4": "Exchange transfusion in severe cases (rare)",
+  "jaundice_5_point_5": "Home phototherapy devices for mild cases",
+  "jaundice_5_point_6":
+      "Frequent feeding every 2-3 hours to promote bowel movements",
+  "jaundice_5_point_7": "Monitoring bilirubin levels through blood tests",
+
+// JaundiceData 6: Prevention and Home Care
+  "jaundice_6_title": "Prevention and Home Care",
+  "jaundice_6_desc":
+      "Proper feeding and monitoring are key to preventing severe jaundice.",
+  "jaundice_6_point_1":
+      "Feed baby frequently (every 2-3 hours) to promote regular bowel movements",
+  "jaundice_6_point_2": "Ensure adequate milk intake to prevent dehydration",
+  "jaundice_6_point_3":
+      "Expose baby to natural sunlight (not direct sun) for short periods",
+  "jaundice_6_point_4":
+      "Monitor baby's feeding, sleeping, and alertness patterns",
+  "jaundice_6_point_5": "Keep track of wet and dirty diapers",
+  "jaundice_6_point_6": "Avoid over-bundling baby which can cause dehydration",
+  "jaundice_6_point_7":
+      "Follow doctor's recommendations for follow-up appointments",
+
+// JaundiceData 7: Complications
+  "jaundice_7_title": "Complications of Untreated Jaundice",
+  "jaundice_7_desc":
+      "Severe untreated jaundice can have serious long-term consequences.",
+  "jaundice_7_point_1":
+      "Kernicterus - a rare but serious brain damage condition",
+  "jaundice_7_point_2": "Hearing loss or deafness",
+  "jaundice_7_point_3": "Vision problems or blindness",
+  "jaundice_7_point_4": "Developmental delays or learning disabilities",
+  "jaundice_7_point_5": "Movement disorders or cerebral palsy",
+  "jaundice_7_point_6": "Intellectual disabilities",
+  "jaundice_7_point_7": "Seizures or other neurological problems",
+
+// JaundiceData 8: Breastfeeding and Jaundice
+  "jaundice_8_title": "Breastfeeding and Jaundice",
+  "jaundice_8_desc":
+      "Proper breastfeeding techniques can help prevent and manage jaundice.",
+  "jaundice_8_point_1":
+      "Breastfeeding jaundice occurs when baby doesn't get enough milk",
+  "jaundice_8_point_2":
+      "Breast milk jaundice is different and usually harmless",
+  "jaundice_8_point_3": "Continue breastfeeding even if baby has jaundice",
+  "jaundice_8_point_4":
+      "Feed baby at least 8-12 times per day in the first week",
+  "jaundice_8_point_5": "Ensure proper latch and feeding technique",
+  "jaundice_8_point_6":
+      "Wake baby for feeds if they sleep longer than 3-4 hours",
+  "jaundice_8_point_7":
+      "Seek help from a lactation consultant if feeding is difficult",
+  "jaundice_8_point_8": "Monitor baby's weight gain and diaper output",
+
+  "tips_dos_title": "Dos",
+  "tips_donts_title": "Don'ts",
+
+// Dos
+  "tip_do_1": "Feed your baby on demand.",
+  "tip_do_2": "Keep baby warm and monitor feeding.",
+  "tip_do_3": "Attend regular checkups.",
+
+// Don'ts
+  "tip_dont_1": "Do not ignore signs of illness.",
+  "tip_dont_2": "Avoid exposing baby to sick people.",
+
+  "jaundice_information": "Jaundice Information",
+  "overview_tab": "Overview",
+  "symptoms_tab": "Symptoms",
+  "treatment_tab": "Treatment",
+  "prevention_tab": "Prevention",
+  "jaundice_image": "Jaundice Image",
+
+  "understanding_jaundice": "Understanding Jaundice",
+  "essential_information_for_parents": "Essential information for parents",
+
+  "symptoms_warning_signs": "Symptoms & Warning Signs",
+  "know_when_to_be_concerned": "Know when to be concerned",
+
+  "treatment_medical_care": "Treatment & Medical Care",
+  "medical_interventions_and_care": "Medical interventions and care",
+
+  "prevention_home_care": "Prevention & Home Care",
+  "keep_baby_healthy_safe": "Keep your baby healthy and safe",
+
+  "daily_monitoring_checklist": "Daily Monitoring Checklist",
+  "check_skin_color_daily": "Monitor baby's skin color daily",
+  "check_eye_whites": "Check whites of baby's eyes",
+  "track_feeding_frequency": "Track feeding frequency and duration",
+  "monitor_diaper_output": "Monitor diaper output (wet and dirty)",
+  "watch_behavior_changes": "Watch for changes in baby's behavior",
+  "ensure_alert_responsive": "Ensure baby is alert and responsive",
+  "keep_followup_appointments": "Keep follow-up appointments",
+
+  "baby_default_name": "Baby",
+  "weeks_old": "%{weeks} weeks old",
+  "one_month_old": "1 month old",
+  "months_old": "%{months} months old",
+  "newborn_phase": "Newborn phase",
+  "infant_development": "Infant development",
+  "baby_milestones": "Baby milestones",
+  "toddler_growth": "Toddler growth",
+  "early_childhood": "Early childhood",
+
+  "article": "Article",
+  "thanks_for_reading": "Thanks for reading this article!",
+  "brought_to_you_by_sphere": "Brought to you by Sphere",
+
+  "weeks_label": "Weeks",
+  "weight": "Weight",
+
+  "risk_factors": "Risk Factors",
+  "great_news": "Great News!",
+  "no_risk_factors_for_stage":
+      "No known risk factors identified for your current pregnancy stage.",
+  "risk_awareness": "Risk Awareness",
+  "risk_awareness_subtitle":
+      "Understanding these factors helps ensure a healthier pregnancy journey.",
+
+  // Danger signs
+  "danger_bleeding_per_vaginum": "Bleeding per vaginum",
+  "danger_severe_abdominal_pain": "Severe abdominal pain",
+  "danger_blurred_vision_swelling_headache":
+      "Blurred vision, swelling, severe headache (Preeclampsia)",
+  "danger_decreased_fetal_movements": "Decreased fetal movements",
+  "danger_leaking_per_vaginum": "Leaking per vaginum",
+  "danger_fever_chills": "Fever, chills",
+
+// Lifestyle advice - categories
+  "Nutrition": "Nutrition",
+  "Exercise": "Exercise",
+  "Hygiene": "Hygiene",
+  "Sleep": "Sleep",
+
+// Lifestyle advice - text
+  "advice_nutrition": "High protein, fiber rich, moderate fats",
+  "advice_exercise": "Mild to moderate, Kegel exercises",
+  "advice_hygiene": "Good genital hygiene, dental checkups",
+  "advice_sleep": "Left lateral position",
+
+// Risk factor groups (titles)
+  "diabetic_mothers": "Diabetic Mothers",
+  "rh_negative_mothers": "Rh-negative Mothers",
+  "multiple_pregnancy": "Multiple Pregnancy",
+  "first_cousin_marriage": "First Cousin Marriage",
+  "second_cousin_marriage": "Second Cousin Marriage",
+  "relative_marriage": "Relative Marriage",
+  "no_relation": "No Relation",
+
+// Risk factor items
+  "diabetic_prefer_insulin": "Prefer insulin over oral medication",
+  "diabetic_fetal_echo": "Fetal echo recommended",
+
+  "rh_anti_d_28_weeks": "Anti-D injection at 28 weeks",
+  "rh_anti_d_post_delivery":
+      "Anti-D injection post-delivery if baby is Rh-positive",
+
+  "multi_risk_ptl": "Higher risk of preterm labor (PTL)",
+  "multi_risk_iugr": "Higher risk of intrauterine growth restriction (IUGR)",
+  "multi_close_monitoring": "Requires close monitoring",
+
+  "first_genetic_disorders": "Higher risk of genetic disorders in offspring",
+  "first_autosomal_recessive":
+      "Increased chance of autosomal recessive conditions",
+  "first_genetic_counseling": "Genetic counseling recommended before pregnancy",
+  "first_congenital_malformations": "Higher risk of congenital malformations",
+  "first_intellectual_disabilities":
+      "Increased risk of intellectual disabilities",
+  "first_prenatal_screening": "Regular prenatal screening and testing advised",
+
+  "second_moderate_risk": "Moderate risk of genetic disorders",
+  "second_recessive_chance":
+      "Slightly increased chance of recessive conditions",
+  "second_counseling_beneficial": "Genetic counseling may be beneficial",
+  "second_standard_screening": "Standard prenatal screening recommended",
+  "second_monitor_family_history":
+      "Monitor for any family history of genetic conditions",
+
+  "relative_variable_risk": "Variable risk depending on degree of relation",
+  "relative_family_history": "Family history assessment important",
+  "relative_genetic_counseling": "Genetic counseling recommended",
+  "relative_enhanced_screening": "Enhanced prenatal screening advised",
+  "relative_monitor_inherited": "Monitor for inherited conditions",
+
+  "no_standard_assessment": "Standard genetic risk assessment",
+  "no_routine_screening": "Routine prenatal screening",
+  "no_family_history": "Family history still important to review",
+  "no_standard_monitoring": "Standard pregnancy monitoring",
+  "no_additional_risks": "No additional genetic risks",
+
+  "important_alerts": "Important alerts",
+  "week_reminders": "Week %{week} reminders",
+  "all_caught_up_no_alerts": "All caught up! No alerts for this week."
 };

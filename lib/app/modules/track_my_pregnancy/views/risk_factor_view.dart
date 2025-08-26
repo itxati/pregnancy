@@ -7,38 +7,19 @@ import 'package:babysafe/app/services/auth_service.dart';
 class RiskFactorView extends StatelessWidget {
   const RiskFactorView({super.key});
 
-  // Icon mapping for different risk factor categories
+  // Icon mapping for different risk factor categories (keys match risk_factor.dart)
   final Map<String, IconData> categoryIcons = const {
-    "Medical History": Icons.medical_information_rounded,
-    "Lifestyle": Icons.health_and_safety_rounded,
-    "Environmental": Icons.eco_rounded,
-    "Genetic": Icons.biotech_rounded,
-    "Age Related": Icons.schedule_rounded,
-    "Nutritional": Icons.restaurant_rounded,
-    "Physical": Icons.fitness_center_rounded,
-    "Emotional": Icons.psychology_rounded,
-    "First Cousin Marriage": Icons.biotech_rounded,
-    "Second Cousin Marriage": Icons.biotech_rounded,
-    "Relative Marriage": Icons.family_restroom_rounded,
-    "No Relation": Icons.people_rounded,
+    "diabetic_mothers": Icons.medical_information_rounded,
+    "rh_negative_mothers": Icons.biotech_rounded,
+    "multiple_pregnancy": Icons.group_rounded,
+    "first_cousin_marriage": Icons.family_restroom_rounded,
+    "second_cousin_marriage": Icons.family_restroom_rounded,
+    "relative_marriage": Icons.family_restroom_rounded,
+    "no_relation": Icons.people_rounded,
   };
 
-  IconData _getIconForCategory(String category) {
-    // Try exact match first
-    if (categoryIcons.containsKey(category)) {
-      return categoryIcons[category]!;
-    }
-
-    // Try partial matches
-    for (var key in categoryIcons.keys) {
-      if (category.toLowerCase().contains(key.toLowerCase()) ||
-          key.toLowerCase().contains(category.toLowerCase())) {
-        return categoryIcons[key]!;
-      }
-    }
-
-    // Default icon
-    return Icons.warning_amber_rounded;
+  IconData _getIconForCategory(String categoryKey) {
+    return categoryIcons[categoryKey] ?? Icons.warning_amber_rounded;
   }
 
   // Determine which categories apply to the current user
@@ -51,22 +32,22 @@ class RiskFactorView extends StatelessWidget {
 
     // Rh-negative mother
     if (user.motherBloodGroup?.contains('-') == true) {
-      categories.add('Rh-negative Mothers');
+      categories.add('rh_negative_mothers');
     }
 
     // Relation-based
-    switch (user.relation?.toLowerCase()) {
+    switch ((user.relation ?? '').toLowerCase()) {
       case 'first cousin':
-        categories.add('First Cousin Marriage');
+        categories.add('first_cousin_marriage');
         break;
       case 'second cousin':
-        categories.add('Second Cousin Marriage');
+        categories.add('second_cousin_marriage');
         break;
       case 'relative':
-        categories.add('Relative Marriage');
+        categories.add('relative_marriage');
         break;
       case 'no relation':
-        categories.add('No Relation');
+        categories.add('no_relation');
         break;
       default:
         break;
@@ -83,7 +64,7 @@ class RiskFactorView extends StatelessWidget {
       backgroundColor: NeoSafeColors.warmWhite,
       appBar: AppBar(
         title: Text(
-          'Risk Factors',
+          'risk_factors'.tr,
           style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.w700,
             color: Colors.white,
@@ -182,7 +163,7 @@ class RiskFactorView extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              "Great News!",
+              'great_news'.tr,
               style: theme.textTheme.headlineMedium?.copyWith(
                 fontWeight: FontWeight.w700,
                 color: NeoSafeColors.primaryText,
@@ -190,7 +171,7 @@ class RiskFactorView extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              "No known risk factors identified for your current pregnancy stage.",
+              'no_risk_factors_for_stage'.tr,
               style: theme.textTheme.bodyLarge?.copyWith(
                 color: NeoSafeColors.secondaryText,
                 height: 1.5,
@@ -247,7 +228,7 @@ class RiskFactorView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Risk Awareness",
+                      'risk_awareness'.tr,
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: NeoSafeColors.primaryText,
@@ -255,7 +236,7 @@ class RiskFactorView extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      "Understanding these factors helps ensure a healthier pregnancy journey.",
+                      'risk_awareness_subtitle'.tr,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: NeoSafeColors.secondaryText,
                         height: 1.4,
@@ -270,8 +251,9 @@ class RiskFactorView extends StatelessWidget {
 
         // Risk factor categories
         ...riskFactorGroups.entries.map((entry) {
-          final categoryIcon = _getIconForCategory(entry.key);
-          final bool isUserRisk = userRiskCategories.contains(entry.key);
+          final String categoryKey = entry.key;
+          final categoryIcon = _getIconForCategory(categoryKey);
+          final bool isUserRisk = userRiskCategories.contains(categoryKey);
 
           return Container(
             margin: const EdgeInsets.only(bottom: 20),
@@ -368,7 +350,7 @@ class RiskFactorView extends StatelessWidget {
                       const SizedBox(width: 16),
                       Expanded(
                         child: Text(
-                          entry.key,
+                          categoryKey.tr,
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w700,
                             color: NeoSafeColors.primaryText,
@@ -403,7 +385,7 @@ class RiskFactorView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
-                    children: entry.value.map((point) {
+                    children: entry.value.map((pointKey) {
                       return Container(
                         margin: const EdgeInsets.only(bottom: 12),
                         padding: const EdgeInsets.all(16),
@@ -444,7 +426,7 @@ class RiskFactorView extends StatelessWidget {
                             const SizedBox(width: 12),
                             Expanded(
                               child: Text(
-                                point,
+                                pointKey.tr,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: NeoSafeColors.primaryText,
                                   height: 1.4,

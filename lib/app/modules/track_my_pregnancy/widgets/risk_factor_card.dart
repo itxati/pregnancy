@@ -18,32 +18,33 @@ class RiskFactorCard extends StatelessWidget {
 
     // Check for Rh-negative blood group
     if (user.motherBloodGroup?.contains('-') == true) {
-      userRiskFactors['Rh-negative Mothers'] =
+      userRiskFactors['rh_negative_mothers'.tr] =
           riskFactorGroups['Rh-negative Mothers'] ?? [];
     }
 
     // Check for relation-based risk factors
     switch (user.relation?.toLowerCase()) {
       case 'first cousin':
-        userRiskFactors['First Cousin Marriage'] =
+        userRiskFactors['first_cousin_marriage'.tr] =
             riskFactorGroups['First Cousin Marriage'] ?? [];
         break;
       case 'second cousin':
-        userRiskFactors['Second Cousin Marriage'] =
+        userRiskFactors['second_cousin_marriage'.tr] =
             riskFactorGroups['Second Cousin Marriage'] ?? [];
         break;
       case 'relative':
-        userRiskFactors['Relative Marriage'] =
+        userRiskFactors['relative_marriage'.tr] =
             riskFactorGroups['Relative Marriage'] ?? [];
         break;
       case 'no relation':
-        userRiskFactors['No Relation'] = riskFactorGroups['No Relation'] ?? [];
+        userRiskFactors['no_relation'.tr] =
+            riskFactorGroups['No Relation'] ?? [];
         break;
     }
 
     // Add other risk factors that are always relevant
     if (riskFactorGroups.containsKey('Multiple Pregnancy')) {
-      userRiskFactors['Multiple Pregnancy'] =
+      userRiskFactors['multiple_pregnancy'.tr] =
           riskFactorGroups['Multiple Pregnancy']!;
     }
 
@@ -286,11 +287,11 @@ class RiskFactorCard extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            Icon(
-                              Icons.touch_app_rounded,
-                              color: themeService.getPrimaryColor(),
-                              size: 16,
-                            ),
+                            // Icon(
+                            //   Icons.touch_app_rounded,
+                            //   color: themeService.getPrimaryColor(),
+                            //   size: 16,
+                            // ),
                             const SizedBox(width: 8),
                             Text(
                               hasRiskFactors
@@ -352,7 +353,7 @@ class RiskFactorCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Looking Good!",
+                  "looking_good".tr,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: NeoSafeColors.primaryText,
@@ -360,7 +361,7 @@ class RiskFactorCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  "No known risk factors identified at this stage.",
+                  "no_known_risk_factors".tr,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: NeoSafeColors.secondaryText,
                     height: 1.3,
@@ -448,7 +449,8 @@ class RiskFactorCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "+${riskFactorGroups.length - 2} more categories",
+                  "more_categories"
+                      .trParams({"count": "${riskFactorGroups.length - 2}"}),
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: themeService.getPrimaryColor(),
                     fontWeight: FontWeight.w600,
@@ -586,10 +588,10 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
   String? selectedRelation;
   final bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   final relations = [
-    'Relative',
-    'First Cousin',
-    'Second Cousin',
-    'No Relation'
+    'relative'.tr,
+    'first_cousin'.tr,
+    'second_cousin'.tr,
+    'no_relation'.tr
   ];
 
   @override
@@ -636,7 +638,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'Complete Your Profile',
+                      'complete_your_profile'.tr,
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 color: NeoSafeColors.primaryText,
@@ -655,7 +657,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Please provide the following information to assess risk factors',
+                'please_provide_info_for_risk_assessment'.tr,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: NeoSafeColors.secondaryText,
                     ),
@@ -666,7 +668,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
               if (widget.currentBabyBloodGroup == null ||
                   widget.currentBabyBloodGroup!.isEmpty)
                 _buildDropdownField(
-                  'Baby\'s Blood Group',
+                  'baby_blood_group'.tr,
                   selectedBabyBloodGroup,
                   bloodGroups,
                   (value) => setState(() => selectedBabyBloodGroup = value),
@@ -676,7 +678,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
               if (widget.currentMotherBloodGroup == null ||
                   widget.currentMotherBloodGroup!.isEmpty)
                 _buildDropdownField(
-                  'Mother\'s Blood Group',
+                  'mother_blood_group'.tr,
                   selectedMotherBloodGroup,
                   bloodGroups,
                   (value) => setState(() => selectedMotherBloodGroup = value),
@@ -686,7 +688,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
               if (widget.currentRelation == null ||
                   widget.currentRelation!.isEmpty)
                 _buildDropdownField(
-                  'Relation',
+                  'relation'.tr,
                   selectedRelation,
                   relations,
                   (value) => setState(() => selectedRelation = value),
@@ -709,7 +711,7 @@ class _BloodGroupBottomSheetState extends State<BloodGroupBottomSheet> {
                     elevation: 2,
                   ),
                   child: Text(
-                    'Save & Continue',
+                    'save_and_continue'.tr,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
