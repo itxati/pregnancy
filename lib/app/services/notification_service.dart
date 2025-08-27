@@ -275,6 +275,8 @@ class NotificationService {
 
   // Breastfeeding notification constants
   static const int _breastfeedingNotificationId = 5000;
+  static const int _breastfeedingPrefetchCount =
+      4; // number of future notifications to pre-schedule
   static const String _breastfeedingChannelId = 'breastfeeding_reminders';
   static const String _breastfeedingLastTimeKey = 'breastfeeding_last_time';
   static const String _breastfeedingIntervalHoursKey =
@@ -709,30 +711,39 @@ class NotificationService {
       // Create notification channel first
       await _createBreastfeedingNotificationChannel();
 
-      // Cancel any existing notification first
-      await _plugin.cancel(_breastfeedingNotificationId);
+      // Cancel any existing notifications in our range first
+      for (int i = 0; i < _breastfeedingPrefetchCount; i++) {
+        await _plugin.cancel(_breastfeedingNotificationId + i);
+      }
 
-      await _plugin.zonedSchedule(
-        _breastfeedingNotificationId,
-        'Breastfeeding Reminder',
-        'Time to breastfeed your baby! 🍼',
-        scheduledTime,
-        const NotificationDetails(
-          android: AndroidNotificationDetails(
-            _breastfeedingChannelId,
-            'Breastfeeding Reminders',
-            channelDescription: 'Reminders for breastfeeding sessions',
-            importance: Importance.high,
-            priority: Priority.high,
-            enableVibration: true,
-            playSound: true,
+      // Schedule a small series so reminders keep firing even if user ignores
+      for (int i = 0; i < _breastfeedingPrefetchCount; i++) {
+        final tz.TZDateTime at = scheduledTime.add(
+          Duration(hours: hours * i, minutes: minutes * i),
+        );
+        await _plugin.zonedSchedule(
+          _breastfeedingNotificationId + i,
+          'Breastfeeding Reminder',
+          'Time to breastfeed your baby! 🍼',
+          at,
+          const NotificationDetails(
+            android: AndroidNotificationDetails(
+              _breastfeedingChannelId,
+              'Breastfeeding Reminders',
+              channelDescription: 'Reminders for breastfeeding sessions',
+              importance: Importance.high,
+              priority: Priority.high,
+              enableVibration: true,
+              playSound: true,
+            ),
           ),
-        ),
-        payload: '/breastfeeding_log',
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      );
+          payload: '/breastfeeding_log',
+          androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        );
+      }
 
-      print('✅ Next breastfeeding notification scheduled for: $scheduledTime');
+      print(
+          '✅ Breastfeeding notifications scheduled starting: $scheduledTime (x$_breastfeedingPrefetchCount)');
     } catch (e) {
       print('❌ Error scheduling breastfeeding notification: $e');
     }
@@ -747,8 +758,10 @@ class NotificationService {
       await prefs.setInt(
           _breastfeedingLastTimeKey, DateTime.now().millisecondsSinceEpoch);
 
-      // Cancel the current notification
-      await _plugin.cancel(_breastfeedingNotificationId);
+      // Cancel the current series and reschedule from now
+      for (int i = 0; i < _breastfeedingPrefetchCount; i++) {
+        await _plugin.cancel(_breastfeedingNotificationId + i);
+      }
 
       // Get current interval settings
       final hours = prefs.getInt(_breastfeedingIntervalHoursKey) ?? 2;
@@ -774,8 +787,10 @@ class NotificationService {
         final minutes = prefs.getInt(_breastfeedingIntervalMinutesKey) ?? 0;
         final lastTimeTimestamp = prefs.getInt(_breastfeedingLastTimeKey);
 
-        // Always cancel any existing notification first
-        await _plugin.cancel(_breastfeedingNotificationId);
+        // Always cancel any existing series first
+        for (int i = 0; i < _breastfeedingPrefetchCount; i++) {
+          await _plugin.cancel(_breastfeedingNotificationId + i);
+        }
 
         if (lastTimeTimestamp != null) {
           final lastTime =
@@ -820,8 +835,10 @@ class NotificationService {
         await prefs.setInt(
             _breastfeedingLastTimeKey, DateTime.now().millisecondsSinceEpoch);
 
-        // Cancel current notification and reschedule
-        await _plugin.cancel(_breastfeedingNotificationId);
+        // Cancel current series and reschedule
+        for (int i = 0; i < _breastfeedingPrefetchCount; i++) {
+          await _plugin.cancel(_breastfeedingNotificationId + i);
+        }
 
         final hours = prefs.getInt(_breastfeedingIntervalHoursKey) ?? 2;
         final minutes = prefs.getInt(_breastfeedingIntervalMinutesKey) ?? 0;
