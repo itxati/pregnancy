@@ -223,60 +223,60 @@ class BreastfeedingSection extends StatelessWidget {
                     const SizedBox(height: 12),
 
                     // Debug Buttons
-                    Row(
-                      children: [
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: controller.testBreastfeedingNotification,
-                            icon: const Icon(Icons.notifications_active,
-                                size: 16),
-                            label: const Text('Test'),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: NeoSafeColors.warning,
-                              side: BorderSide(color: NeoSafeColors.warning),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: controller.checkPendingNotifications,
-                            icon: const Icon(Icons.list_alt, size: 16),
-                            label: const Text('Check'),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: NeoSafeColors.info,
-                              side: BorderSide(color: NeoSafeColors.info),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: controller
-                                .forceRescheduleBreastfeedingNotification,
-                            icon: const Icon(Icons.refresh, size: 16),
-                            label: const Text('Reschedule'),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: NeoSafeColors.primaryPink,
-                              side:
-                                  BorderSide(color: NeoSafeColors.primaryPink),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: OutlinedButton.icon(
+                    //         onPressed: controller.testBreastfeedingNotification,
+                    //         icon: const Icon(Icons.notifications_active,
+                    //             size: 16),
+                    //         label: const Text('Test'),
+                    //         style: OutlinedButton.styleFrom(
+                    //           foregroundColor: NeoSafeColors.warning,
+                    //           side: BorderSide(color: NeoSafeColors.warning),
+                    //           shape: RoundedRectangleBorder(
+                    //             borderRadius: BorderRadius.circular(8),
+                    //           ),
+                    //           padding: const EdgeInsets.symmetric(vertical: 8),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     const SizedBox(width: 8),
+                    //     Expanded(
+                    //       child: OutlinedButton.icon(
+                    //         onPressed: controller.checkPendingNotifications,
+                    //         icon: const Icon(Icons.list_alt, size: 16),
+                    //         label: const Text('Check'),
+                    //         style: OutlinedButton.styleFrom(
+                    //           foregroundColor: NeoSafeColors.info,
+                    //           side: BorderSide(color: NeoSafeColors.info),
+                    //           shape: RoundedRectangleBorder(
+                    //             borderRadius: BorderRadius.circular(8),
+                    //           ),
+                    //           padding: const EdgeInsets.symmetric(vertical: 8),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     const SizedBox(width: 8),
+                    //     Expanded(
+                    //       child: OutlinedButton.icon(
+                    //         onPressed: controller
+                    //             .forceRescheduleBreastfeedingNotification,
+                    //         icon: const Icon(Icons.refresh, size: 16),
+                    //         label: const Text('Reschedule'),
+                    //         style: OutlinedButton.styleFrom(
+                    //           foregroundColor: NeoSafeColors.primaryPink,
+                    //           side:
+                    //               BorderSide(color: NeoSafeColors.primaryPink),
+                    //           shape: RoundedRectangleBorder(
+                    //             borderRadius: BorderRadius.circular(8),
+                    //           ),
+                    //           padding: const EdgeInsets.symmetric(vertical: 8),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
 
                     // Last feeding info
                     Obx(() => controller.lastBreastfeedingTime.value != null
