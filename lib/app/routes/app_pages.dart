@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/modules/pregnancy_splash/bindings/pregnancy_splash_binding.dart';
 import 'package:babysafe/app/modules/pregnancy_splash/views/pregnancy_splash_view.dart';
@@ -23,6 +22,7 @@ import '../modules/track_my_pregnancy/views/track_my_pregnancy_view.dart';
 import '../modules/track_my_pregnancy/views/baby_size_discovery_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+// import '../modules/debug_image_preview/image_downloader_view.dart';
 
 // import 'package:pregnance/app/modules/track_my_baby/bindings/track_my_baby_binding.dart';
 // import 'package:pregnance/app/modules/track_my_baby/views/track_my_baby_view.dart';
@@ -55,10 +55,11 @@ class AppPages {
       page: () => const SplashView(),
       binding: SplashBinding(),
     ),
-    //   GetPage(
-    //     name: Routes.home,
-    //     page: () => const HomeView(),
-    //   ),
+    // Debug image preview route removed
+    // GetPage(
+    //   name: Routes.home,
+    //   page: () => const HomeView(),
+    // ),
     GetPage(
       name: Routes.pregnancySplash,
       page: () => const PregnancySplashView(),

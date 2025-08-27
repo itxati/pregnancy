@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:babysafe/app/services/article_service.dart';
 import 'package:babysafe/app/services/theme_service.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/views/article_page.dart';
-import 'package:babysafe/app/widgets/smart_image.dart';
+// Removed SmartImage usage for article cards
 import '../controllers/track_my_pregnancy_controller.dart';
 
 class EssentialReadsSection extends StatelessWidget {
@@ -17,7 +17,6 @@ class EssentialReadsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final articleService = Get.find<ArticleService>();
-    final themeService = Get.find<ThemeService>();
 
     return Obx(() {
       final smallArticles = articleService.getSmallPregnancyArticles();
@@ -55,12 +54,14 @@ class EssentialReadsSection extends StatelessWidget {
                         context,
                         localizedTitle,
                         article.image,
+                        articleId: article.id,
                         aspectRatio: 1.2,
                         onTap: () {
                           Get.to(() => ArticlePage(
                                 title: localizedTitle,
                                 imageAsset: article.image,
                                 content: localizedContent,
+                                articleId: article.id,
                               ));
                         },
                       ),
@@ -77,6 +78,7 @@ class EssentialReadsSection extends StatelessWidget {
                     context,
                     article.localizedTitle(Get.locale?.languageCode),
                     article.image,
+                    articleId: article.id,
                     subtitle:
                         article.localizedContent(Get.locale?.languageCode),
                     aspectRatio: 2.5,
@@ -87,6 +89,7 @@ class EssentialReadsSection extends StatelessWidget {
                             imageAsset: article.image,
                             content: article
                                 .localizedContent(Get.locale?.languageCode),
+                            articleId: article.id,
                           ));
                     },
                   ),
@@ -101,6 +104,7 @@ class EssentialReadsSection extends StatelessWidget {
     BuildContext context,
     String title,
     String imageAsset, {
+    String? articleId,
     String? subtitle,
     double aspectRatio = 1.5,
     VoidCallback? onTap,
@@ -146,17 +150,26 @@ class EssentialReadsSection extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    Positioned.fill(
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
-                        ),
-                        child: SmartImage(
-                          imageSource: imageAsset,
-                          fit: BoxFit.cover,
-                        ),
+                    FutureBuilder(
+                      future: ArticleService.to.findLocalImageForUrl(
+                        imageAsset,
+                        articleId: articleId,
+                        articleTitle: title,
                       ),
+                      builder: (context, snapshot) {
+                        final file = snapshot.data;
+                        return Positioned.fill(
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16),
+                            ),
+                            child: file != null
+                                ? Image.file(file, fit: BoxFit.cover)
+                                : Container(color: Colors.transparent),
+                          ),
+                        );
+                      },
                     ),
                     Positioned.fill(
                       child: Container(

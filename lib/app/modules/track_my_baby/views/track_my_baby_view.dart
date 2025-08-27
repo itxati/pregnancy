@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:babysafe/app/data/models/baby_milestone_data_list.dart';
 import 'package:babysafe/app/services/article_service.dart';
 import 'package:babysafe/app/data/models/baby_milestone_data.dart';
-import '../../../widgets/sync_indicator.dart';
-import '../../../widgets/offline_indicator.dart';
-import '../../../widgets/smart_image.dart';
+// import '../../../widgets/sync_indicator.dart';
+// import '../../../widgets/offline_indicator.dart';
+// Removed SmartImage; using local file previews via ArticleService
 import 'package:babysafe/app/data/models/newborn_responsibilities.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/views/article_page.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
@@ -383,7 +383,6 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Get.find<ThemeService>();
     final selected = babyMilestones[_selectedIndex];
     return Scaffold(
       appBar: AppBar(title: Text('all_milestones'.tr)),
@@ -1725,6 +1724,7 @@ class _EssentialReadsSection extends StatelessWidget {
                         context,
                         localizedTitle,
                         article.image,
+                        articleId: article.id,
                         aspectRatio: 1.2,
                         onTap: () {
                           Get.to(() => ArticlePage(
@@ -1732,6 +1732,7 @@ class _EssentialReadsSection extends StatelessWidget {
                                 // subtitle: article.subtitle,
                                 imageAsset: article.image,
                                 content: localizedContent,
+                                articleId: article.id,
                               ));
                         },
                       ),
@@ -1748,6 +1749,7 @@ class _EssentialReadsSection extends StatelessWidget {
                     context,
                     article.localizedTitle(Get.locale?.languageCode),
                     article.image,
+                    articleId: article.id,
                     subtitle:
                         article.localizedContent(Get.locale?.languageCode),
                     aspectRatio: 2.5,
@@ -1758,6 +1760,7 @@ class _EssentialReadsSection extends StatelessWidget {
                             imageAsset: article.image,
                             content: article
                                 .localizedContent(Get.locale?.languageCode),
+                            articleId: article.id,
                           ));
                     },
                   ),
@@ -1772,6 +1775,7 @@ class _EssentialReadsSection extends StatelessWidget {
     BuildContext context,
     String title,
     String imageAsset, {
+    String? articleId,
     String? subtitle,
     double aspectRatio = 1.5,
     VoidCallback? onTap,
@@ -1816,17 +1820,26 @@ class _EssentialReadsSection extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    Positioned.fill(
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
-                        ),
-                        child: SmartImage(
-                          imageSource: imageAsset,
-                          fit: BoxFit.cover,
-                        ),
+                    FutureBuilder(
+                      future: ArticleService.to.findLocalImageForUrl(
+                        imageAsset,
+                        articleId: articleId,
+                        articleTitle: title,
                       ),
+                      builder: (context, snapshot) {
+                        final file = snapshot.data;
+                        return Positioned.fill(
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16),
+                            ),
+                            child: file != null
+                                ? Image.file(file, fit: BoxFit.cover)
+                                : Container(color: Colors.transparent),
+                          ),
+                        );
+                      },
                     ),
                     Positioned.fill(
                       child: Container(
@@ -2079,9 +2092,28 @@ class _ArticlesDetailPage extends StatelessWidget {
                                 // Article Image
                                 AspectRatio(
                                   aspectRatio: 16 / 9,
-                                  child: SmartImage(
-                                    imageSource: article.image,
-                                    fit: BoxFit.cover,
+                                  child: FutureBuilder(
+                                    future:
+                                        ArticleService.to.findLocalImageForUrl(
+                                      article.image,
+                                      articleId: article.id,
+                                      articleTitle: article.title,
+                                    ),
+                                    builder: (context, snapshot) {
+                                      final file = snapshot.data;
+                                      return ClipRRect(
+                                        borderRadius: BorderRadius.circular(0),
+                                        child: file != null
+                                            ? Image.file(file,
+                                                fit: BoxFit.cover)
+                                            : Container(
+                                                decoration: const BoxDecoration(
+                                                  gradient: NeoSafeGradients
+                                                      .backgroundGradient,
+                                                ),
+                                              ),
+                                      );
+                                    },
                                   ),
                                 ),
 

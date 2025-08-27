@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
-import 'package:babysafe/app/widgets/smart_image.dart';
+import 'package:babysafe/app/services/article_service.dart';
 
 class BabyArticlePage extends StatelessWidget {
   final String title;
   final String imageAsset;
   final String content;
   final String? subtitle;
+  final String? articleId;
 
   const BabyArticlePage({
     Key? key,
@@ -15,6 +16,7 @@ class BabyArticlePage extends StatelessWidget {
     required this.imageAsset,
     required this.content,
     this.subtitle,
+    this.articleId,
   }) : super(key: key);
 
   @override
@@ -81,7 +83,7 @@ class BabyArticlePage extends StatelessWidget {
               child: Stack(
                 children: [
                   // Background Image
-                  Container(
+                  SizedBox(
                     height: 280,
                     width: double.infinity,
                     child: ClipRRect(
@@ -89,9 +91,23 @@ class BabyArticlePage extends StatelessWidget {
                         bottomLeft: Radius.circular(32),
                         bottomRight: Radius.circular(32),
                       ),
-                      child: SmartImage(
-                        imageSource: imageAsset,
-                        fit: BoxFit.cover,
+                      child: FutureBuilder(
+                        future: ArticleService.to.findLocalImageForUrl(
+                          imageAsset,
+                          articleId: articleId,
+                          articleTitle: title,
+                        ),
+                        builder: (context, snapshot) {
+                          final file = snapshot.data;
+                          if (file != null) {
+                            return Image.file(file, fit: BoxFit.cover);
+                          }
+                          return Container(
+                            decoration: const BoxDecoration(
+                              gradient: NeoSafeGradients.backgroundGradient,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
