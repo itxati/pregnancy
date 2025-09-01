@@ -28,7 +28,7 @@ class LanguageSwitcher extends StatelessWidget {
           backgroundColor: backgroundColor,
           selectedTextColor: selectedTextColor,
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 8),
         _LanguageButton(
           label: 'اردو',
           isSelected: locale.languageCode == 'ur',
@@ -66,33 +66,40 @@ class _LanguageButton extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
+          // High contrast background - white with slight tint or semi-transparent black
           color: isSelected
-              ? (backgroundColor ?? Colors.white)
-              : NeoSafeColors.softGray.withOpacity(0.35),
-          borderRadius: BorderRadius.circular(30),
+              ? (backgroundColor ?? Colors.white.withOpacity(0.95))
+              : Colors.black.withOpacity(0.05),
+          borderRadius: BorderRadius.circular(20),
+          // Simple, thin border for minimal look
           border: Border.all(
-            color: NeoSafeColors.primaryPink,
-            width: isSelected ? 2.5 : 1.2,
+            color: isSelected
+                ? NeoSafeColors.primaryPink
+                : Colors.black.withOpacity(0.2),
+            width: isSelected ? 1.5 : 1,
           ),
+          // Minimal shadow only for selected state
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: NeoSafeColors.primaryPink.withOpacity(0.18),
-                    blurRadius: 10,
-                    offset: const Offset(0, 3),
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
                   ),
                 ]
               : [],
         ),
         child: Text(
           label,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                // High contrast text colors
                 color: isSelected
                     ? (selectedTextColor ?? NeoSafeColors.primaryPink)
-                    : NeoSafeColors.primaryPink,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                    : Colors.black.withOpacity(0.7),
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                fontSize: 13,
               ),
         ),
       ),

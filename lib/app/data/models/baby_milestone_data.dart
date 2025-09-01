@@ -3,12 +3,14 @@ class BabyMilestone {
   final String title;
   final List<String> milestones;
   final String? description;
+  final String imageUrl;
 
   const BabyMilestone({
     required this.month,
     required this.title,
     required this.milestones,
     this.description,
+    required this.imageUrl,
   });
 }
 

@@ -1,3 +1,4 @@
+import 'package:babysafe/app/modules/login/widgets/login_logo.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/neo_safe_theme.dart';
 import 'dart:ui';
@@ -68,40 +69,7 @@ class SignUpView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         // Logo with maternal glow
-                        Center(
-                          child: Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: const RadialGradient(
-                                colors: [
-                                  NeoSafeColors.creamWhite,
-                                  NeoSafeColors.palePink,
-                                ],
-                                center: Alignment.center,
-                                radius: 0.8,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: NeoSafeColors.primaryPink
-                                      .withOpacity(0.2),
-                                  blurRadius: 12,
-                                  offset: const Offset(0, 4),
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: ClipOval(
-                                child: Image.asset(
-                                  'assets/logos/neosafe_logo.jpeg',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        LoginLogo(),
                         const SizedBox(height: 18),
                         // Create Account text
                         Text(
@@ -147,13 +115,13 @@ class SignUpView extends StatelessWidget {
                         const SizedBox(height: 18),
                         // Sign Up button with gradient
                         Obx(() => LoginGradientButton(
-                          text: 'sign_up'.tr,
-                          isLoading: controller.isLoading.value,
-                          onTap: () {
-                            // Use controller's signUp method
-                            controller.signUp();
-                          },
-                        )),
+                              text: 'sign_up'.tr,
+                              isLoading: controller.isLoading.value,
+                              onTap: () {
+                                // Use controller's signUp method
+                                controller.signUp();
+                              },
+                            )),
                         const SizedBox(height: 8),
                         // Login link
                         Row(

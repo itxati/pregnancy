@@ -40,7 +40,7 @@ class GoalCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
             child: Row(
               children: [
                 Container(
@@ -73,12 +73,14 @@ class GoalCard extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.w700,
                               color: NeoSafeColors.primaryText,
+                              fontSize: 14
                             ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         subtitle,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: 12,
                               color: NeoSafeColors.secondaryText,
                               fontWeight: FontWeight.w400,
                             ),

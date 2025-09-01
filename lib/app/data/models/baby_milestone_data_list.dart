@@ -2,6 +2,7 @@ import 'baby_milestone_data.dart';
 
 const List<BabyMilestone> babyMilestones = [
   BabyMilestone(
+    imageUrl: 'assets/afterbirth/4.jpg',
     month: 0,
     title: 'Newborn',
     milestones: [
@@ -15,6 +16,7 @@ const List<BabyMilestone> babyMilestones = [
         'Your baby has just entered the world! This is a time of rapid adjustment and bonding.',
   ),
   BabyMilestone(
+    imageUrl: 'assets/afterbirth/1.jpg',
     month: 1,
     title: '1 Month',
     milestones: [
@@ -29,6 +31,7 @@ const List<BabyMilestone> babyMilestones = [
   ),
   // Added from trackmybabydata.txt
   BabyMilestone(
+    imageUrl: 'assets/afterbirth/2.jpg',
     month: 3,
     title: '3 Months',
     milestones: [
@@ -42,6 +45,7 @@ const List<BabyMilestone> babyMilestones = [
     ],
   ),
   BabyMilestone(
+    imageUrl: 'assets/afterbirth/3.jpg',
     month: 6,
     title: '6 Months',
     milestones: [
@@ -56,6 +60,7 @@ const List<BabyMilestone> babyMilestones = [
     ],
   ),
   BabyMilestone(
+    imageUrl: 'assets/afterbirth/4.jpg',
     month: 9,
     title: '9 Months',
     milestones: [
@@ -73,6 +78,7 @@ const List<BabyMilestone> babyMilestones = [
     ],
   ),
   BabyMilestone(
+    imageUrl: 'assets/afterbirth/1.jpg',
     month: 12,
     title: '12 Months',
     milestones: [
@@ -86,6 +92,7 @@ const List<BabyMilestone> babyMilestones = [
     ],
   ),
   BabyMilestone(
+    imageUrl: 'assets/afterbirth/2.jpg',
     month: 18,
     title: '18 Months',
     milestones: [

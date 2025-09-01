@@ -19,14 +19,14 @@ class PregnancyInfoSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Section Title
-              Text(
-                "pregnancy".tr,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: NeoSafeColors.primaryText,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.3,
-                    ),
-              ),
+              // Text(
+              //   "pregnancy".tr,
+              //   style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              //         color: NeoSafeColors.primaryText,
+              //         fontWeight: FontWeight.w800,
+              //         letterSpacing: 0.3,
+              //       ),
+              // ),
               const SizedBox(height: 12),
 
               // Pregnancy Info Items

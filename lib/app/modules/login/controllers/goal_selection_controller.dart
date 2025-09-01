@@ -1,3 +1,4 @@
+import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../../../services/auth_service.dart';
@@ -52,104 +53,261 @@ class GoalSelectionController extends GetxController {
     isLoading.value = false;
   }
 
+  // void _showDueDateBottomSheet() {
+  //   String selectedGender = authService.user?.babyGender ?? "female";
+  //   Get.bottomSheet(
+  //     StatefulBuilder(
+  //       builder: (context, setState) {
+  //         return Container(
+  //           decoration: const BoxDecoration(
+  //             color: Colors.white,
+  //             borderRadius: BorderRadius.only(
+  //               topLeft: Radius.circular(20),
+  //               topRight: Radius.circular(20),
+  //             ),
+  //           ),
+  //           child: Padding(
+  //             padding: const EdgeInsets.all(20),
+  //             child: Column(
+  //               mainAxisSize: MainAxisSize.min,
+  //               children: [
+  //                 // Drag indicator
+  //                 Container(
+  //                   width: 40,
+  //                   height: 4,
+  //                   decoration: BoxDecoration(
+  //                     color: Colors.grey[300],
+  //                     borderRadius: BorderRadius.circular(2),
+  //                   ),
+  //                 ),
+  //                 const SizedBox(height: 20),
+  //                 // Title
+  //                 Text(
+  //                   'when_is_your_due_date'.tr,
+  //                   style: Get.textTheme.headlineSmall?.copyWith(
+  //                     fontWeight: FontWeight.w700,
+  //                     color: Colors.black87,
+  //                   ),
+  //                 ),
+  //                 const SizedBox(height: 8),
+  //                 Text(
+  //                   'due_date_help_text'.tr,
+  //                   textAlign: TextAlign.center,
+  //                   style: Get.textTheme.bodyMedium?.copyWith(
+  //                     color: Colors.grey[600],
+  //                   ),
+  //                 ),
+  //                 const SizedBox(height: 24),
+  //                 GenderSelector(
+  //                   selectedGender: selectedGender,
+  //                   onChanged: (gender) async {
+  //                     setState(() => selectedGender = gender);
+  //                     await updateBabyGender(gender);
+  //                   },
+  //                 ),
+  //                 const SizedBox(height: 24),
+  //                 // Due date picker button
+  //                 SizedBox(
+  //                   width: double.infinity,
+  //                   child: ElevatedButton.icon(
+  //                     onPressed: () => _selectDueDate(),
+  //                     icon: const Icon(Icons.calendar_today),
+  //                     label: Text('select_due_date'.tr),
+  //                     style: ElevatedButton.styleFrom(
+  //                       backgroundColor: const Color(0xFFE91E63),
+  //                       foregroundColor: Colors.white,
+  //                       padding: const EdgeInsets.symmetric(vertical: 16),
+  //                       shape: RoundedRectangleBorder(
+  //                         borderRadius: BorderRadius.circular(12),
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ),
+  //                 const SizedBox(height: 16),
+  //                 // Continue without due date button
+  //                 SizedBox(
+  //                   width: double.infinity,
+  //                   child: ElevatedButton(
+  //                     onPressed: () => _continueWithoutDueDate(),
+  //                     style: ElevatedButton.styleFrom(
+  //                       backgroundColor: Colors.grey[100],
+  //                       foregroundColor: Colors.grey[700],
+  //                       padding: const EdgeInsets.symmetric(vertical: 16),
+  //                       shape: RoundedRectangleBorder(
+  //                         borderRadius: BorderRadius.circular(12),
+  //                       ),
+  //                       elevation: 0,
+  //                     ),
+  //                     child: Text(
+  //                       'continue_without_due_date'.tr +
+  //                           '\n' +
+  //                           'continue_without_due_date_subtitle'.tr,
+  //                       textAlign: TextAlign.center,
+  //                       style: const TextStyle(
+  //                         fontSize: 14,
+  //                         fontWeight: FontWeight.w500,
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ),
+  //                 const SizedBox(height: 20),
+  //               ],
+  //             ),
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //     isScrollControlled: true,
+  //   );
+  // }
+
   void _showDueDateBottomSheet() {
     String selectedGender = authService.user?.babyGender ?? "female";
+
     Get.bottomSheet(
       StatefulBuilder(
         builder: (context, setState) {
           return Container(
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: NeoSafeColors.creamWhite,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+                topLeft: Radius.circular(24),
+                topRight: Radius.circular(24),
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Drag indicator
+                  // Minimalist drag indicator
                   Container(
-                    width: 40,
-                    height: 4,
+                    width: 36,
+                    height: 3,
                     decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      color: NeoSafeColors.softGray,
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  // Title
+                  const SizedBox(height: 32),
+
+                  // Title with refined typography
                   Text(
                     'when_is_your_due_date'.tr,
-                    style: Get.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black87,
+                    style: Get.textTheme.headlineMedium?.copyWith(
+                      color: NeoSafeColors.primaryText,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 12),
+
+                  // Subtitle with softer approach
                   Text(
                     'due_date_help_text'.tr,
                     textAlign: TextAlign.center,
                     style: Get.textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey[600],
+                      color: NeoSafeColors.secondaryText,
+                      height: 1.4,
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  GenderSelector(
-                    selectedGender: selectedGender,
-                    onChanged: (gender) async {
-                      setState(() => selectedGender = gender);
-                      await updateBabyGender(gender);
-                    },
+                  const SizedBox(height: 32),
+
+                  // Gender selector with consistent pink theme
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: NeoSafeColors.lightBeige,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: NeoSafeColors.softGray,
+                        width: 1,
+                      ),
+                    ),
+                    child: GenderSelector(
+                      selectedGender: selectedGender,
+                      onChanged: (gender) async {
+                        setState(() => selectedGender = gender);
+                        await updateBabyGender(gender);
+                      },
+                    ),
                   ),
-                  const SizedBox(height: 24),
-                  // Due date picker button
+                  const SizedBox(height: 32),
+
+                  // Primary action button with consistent pink theme
                   SizedBox(
                     width: double.infinity,
+                    height: 52,
                     child: ElevatedButton.icon(
                       onPressed: () => _selectDueDate(),
-                      icon: const Icon(Icons.calendar_today),
-                      label: Text('select_due_date'.tr),
+                      icon: Icon(
+                        Icons.calendar_today_outlined,
+                        size: 20,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'select_due_date'.tr,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.2,
+                        ),
+                      ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFE91E63),
+                        backgroundColor: NeoSafeColors.primaryPink,
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        elevation: 2,
+                        shadowColor: NeoSafeColors.primaryPink.withOpacity(0.3),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(16),
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Continue without due date button
+
+                  // Secondary action with subtle styling
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
+                    height: 52,
+                    child: TextButton(
                       onPressed: () => _continueWithoutDueDate(),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey[100],
-                        foregroundColor: Colors.grey[700],
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        foregroundColor: NeoSafeColors.secondaryText,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(16),
+                          side: BorderSide(
+                            color: NeoSafeColors.softGray,
+                            width: 1,
+                          ),
                         ),
-                        elevation: 0,
                       ),
-                      child: Text(
-                        'continue_without_due_date'.tr +
-                            '\n' +
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'continue_without_due_date'.tr,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              height: 1.2,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
                             'continue_without_due_date_subtitle'.tr,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: NeoSafeColors.lightText,
+                              height: 1.2,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 24),
                 ],
               ),
             ),
@@ -157,64 +315,203 @@ class GoalSelectionController extends GetxController {
         },
       ),
       isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      isDismissible: true,
+      enableDrag: true,
     );
   }
 
+  // void _showBabyBirthDateBottomSheet() {
+  //   DateTime? selectedBirthDate;
+  //   String selectedGender = authService.user?.babyGender ?? "female";
+  //   Get.bottomSheet(
+  //     StatefulBuilder(
+  //       builder: (context, setState) {
+  //         return Container(
+  //           decoration: const BoxDecoration(
+  //             color: Colors.white,
+  //             borderRadius: BorderRadius.only(
+  //               topLeft: Radius.circular(20),
+  //               topRight: Radius.circular(20),
+  //             ),
+  //           ),
+  //           child: Padding(
+  //             padding: const EdgeInsets.all(20),
+  //             child: Column(
+  //               mainAxisSize: MainAxisSize.min,
+  //               children: [
+  //                 Container(
+  //                   width: 40,
+  //                   height: 4,
+  //                   decoration: BoxDecoration(
+  //                     color: Colors.grey[300],
+  //                     borderRadius: BorderRadius.circular(2),
+  //                   ),
+  //                 ),
+  //                 const SizedBox(height: 20),
+  //                 Text(
+  //                   "when_was_your_baby_born".tr,
+  //                   style: Get.textTheme.headlineSmall?.copyWith(
+  //                     fontWeight: FontWeight.w700,
+  //                     color: Colors.black87,
+  //                   ),
+  //                 ),
+  //                 const SizedBox(height: 8),
+  //                 Text(
+  //                   "baby_birth_date_help_text".tr,
+  //                   textAlign: TextAlign.center,
+  //                   style: Get.textTheme.bodyMedium?.copyWith(
+  //                     color: Colors.grey[600],
+  //                   ),
+  //                 ),
+  //                 const SizedBox(height: 24),
+  //                 // Gender selection
+  //                 GenderSelector(
+  //                   selectedGender: selectedGender,
+  //                   onChanged: (gender) async {
+  //                     setState(() => selectedGender = gender);
+  //                     await updateBabyGender(gender);
+  //                   },
+  //                 ),
+  //                 const SizedBox(height: 24),
+  //                 SizedBox(
+  //                   width: double.infinity,
+  //                   child: ElevatedButton.icon(
+  //                     onPressed: () async {
+  //                       final DateTime? pickedDate = await showDatePicker(
+  //                         context: Get.context!,
+  //                         initialDate: DateTime.now(),
+  //                         firstDate: DateTime.now()
+  //                             .subtract(const Duration(days: 365)),
+  //                         lastDate: DateTime.now(),
+  //                         builder: (context, child) {
+  //                           return Theme(
+  //                             data: ThemeData.light().copyWith(
+  //                               colorScheme: const ColorScheme.light(
+  //                                 primary: Colors.pink,
+  //                               ),
+  //                             ),
+  //                             child: child!,
+  //                           );
+  //                         },
+  //                       );
+  //                       if (pickedDate != null) {
+  //                         setState(() => selectedBirthDate = pickedDate);
+  //                       }
+  //                     },
+  //                     icon: const Icon(Icons.calendar_today),
+  //                     label: Text(selectedBirthDate == null
+  //                         ? "select_date".tr
+  //                         : "${selectedBirthDate!.day}/${selectedBirthDate!.month}/${selectedBirthDate!.year}"),
+  //                   ),
+  //                 ),
+  //                 const SizedBox(height: 24),
+  //                 ElevatedButton(
+  //                   onPressed: () async {
+  //                     // Save birth date
+  //                     final birthDate = selectedBirthDate ?? DateTime.now();
+  //                     await authService.updateBabyBirthDate(birthDate);
+
+  //                     Get.back(); // Close bottom sheet
+  //                     Get.toNamed('/track_my_baby');
+
+  //                     Get.snackbar(
+  //                       'success'.tr,
+  //                       'baby_birth_date_saved_success'.tr,
+  //                       snackPosition: SnackPosition.BOTTOM,
+  //                       backgroundColor: Colors.green.withOpacity(0.1),
+  //                       colorText: Colors.green,
+  //                     );
+  //                   },
+  //                   child: Text("continue".tr),
+  //                 ),
+  //                 const SizedBox(height: 16),
+  //               ],
+  //             ),
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //     isScrollControlled: true,
+  //   );
+  // }
   void _showBabyBirthDateBottomSheet() {
     DateTime? selectedBirthDate;
     String selectedGender = authService.user?.babyGender ?? "female";
+
     Get.bottomSheet(
       StatefulBuilder(
         builder: (context, setState) {
           return Container(
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: NeoSafeColors.creamWhite,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+                topLeft: Radius.circular(24),
+                topRight: Radius.circular(24),
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  // Minimalist drag indicator
                   Container(
-                    width: 40,
-                    height: 4,
+                    width: 36,
+                    height: 3,
                     decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      color: NeoSafeColors.softGray,
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 32),
+
+                  // Title with refined typography
                   Text(
-                    "when_was_your_baby_born".tr,
-                    style: Get.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black87,
+                    'when_was_your_baby_born'.tr,
+                    style: Get.textTheme.headlineMedium?.copyWith(
+                      color: NeoSafeColors.primaryText,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 12),
+
+                  // Subtitle with softer approach
                   Text(
-                    "baby_birth_date_help_text".tr,
+                    'baby_birth_date_help_text'.tr,
                     textAlign: TextAlign.center,
                     style: Get.textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey[600],
+                      color: NeoSafeColors.secondaryText,
+                      height: 1.4,
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  // Gender selection
-                  GenderSelector(
-                    selectedGender: selectedGender,
-                    onChanged: (gender) async {
-                      setState(() => selectedGender = gender);
-                      await updateBabyGender(gender);
-                    },
+                  const SizedBox(height: 32),
+
+                  // Gender selector with consistent pink theme
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: NeoSafeColors.lightBeige,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: NeoSafeColors.softGray,
+                        width: 1,
+                      ),
+                    ),
+                    child: GenderSelector(
+                      selectedGender: selectedGender,
+                      onChanged: (gender) async {
+                        setState(() => selectedGender = gender);
+                        await updateBabyGender(gender);
+                      },
+                    ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
+
+                  // Date selection button with consistent pink theme
                   SizedBox(
                     width: double.infinity,
+                    height: 52,
                     child: ElevatedButton.icon(
                       onPressed: () async {
                         final DateTime? pickedDate = await showDatePicker(
@@ -227,7 +524,9 @@ class GoalSelectionController extends GetxController {
                             return Theme(
                               data: ThemeData.light().copyWith(
                                 colorScheme: const ColorScheme.light(
-                                  primary: Colors.pink,
+                                  primary: NeoSafeColors.primaryPink,
+                                  onPrimary: Colors.white,
+                                  surface: NeoSafeColors.creamWhite,
                                 ),
                               ),
                               child: child!,
@@ -238,33 +537,82 @@ class GoalSelectionController extends GetxController {
                           setState(() => selectedBirthDate = pickedDate);
                         }
                       },
-                      icon: const Icon(Icons.calendar_today),
-                      label: Text(selectedBirthDate == null
-                          ? "select_date".tr
-                          : "${selectedBirthDate!.day}/${selectedBirthDate!.month}/${selectedBirthDate!.year}"),
+                      icon: Icon(
+                        Icons.calendar_today_outlined,
+                        size: 20,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        selectedBirthDate == null
+                            ? 'select_date'.tr
+                            : "${selectedBirthDate!.day}/${selectedBirthDate!.month}/${selectedBirthDate!.year}",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.2,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: NeoSafeColors.primaryPink,
+                        foregroundColor: Colors.white,
+                        elevation: 2,
+                        shadowColor: NeoSafeColors.primaryPink.withOpacity(0.3),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Primary continue button with pink theme
+                  SizedBox(
+                    width: double.infinity,
+                    height: 52,
+                    child: ElevatedButton(
+                      onPressed: selectedBirthDate == null
+                          ? null
+                          : () async {
+                              // Save birth date
+                              await authService
+                                  .updateBabyBirthDate(selectedBirthDate!);
+
+                              Get.back(); // Close bottom sheet
+                              Get.toNamed('/track_my_baby');
+
+                              Get.snackbar(
+                                'success'.tr,
+                                'baby_birth_date_saved_success'.tr,
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor:
+                                    NeoSafeColors.success.withOpacity(0.1),
+                                colorText: NeoSafeColors.success,
+                                borderRadius: 12,
+                                margin: const EdgeInsets.all(16),
+                              );
+                            },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: selectedBirthDate == null
+                            ? NeoSafeColors.softGray
+                            : NeoSafeColors.primaryPink,
+                        foregroundColor: Colors.white,
+                        elevation: selectedBirthDate == null ? 0 : 2,
+                        shadowColor: NeoSafeColors.primaryPink.withOpacity(0.3),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      child: Text(
+                        'continue'.tr,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.2,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 24),
-                  ElevatedButton(
-                    onPressed: () async {
-                      // Save birth date
-                      final birthDate = selectedBirthDate ?? DateTime.now();
-                      await authService.updateBabyBirthDate(birthDate);
-
-                      Get.back(); // Close bottom sheet
-                      Get.toNamed('/track_my_baby');
-
-                      Get.snackbar(
-                        'success'.tr,
-                        'baby_birth_date_saved_success'.tr,
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.green.withOpacity(0.1),
-                        colorText: Colors.green,
-                      );
-                    },
-                    child: Text("continue".tr),
-                  ),
-                  const SizedBox(height: 16),
                 ],
               ),
             ),
@@ -272,6 +620,9 @@ class GoalSelectionController extends GetxController {
         },
       ),
       isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      isDismissible: true,
+      enableDrag: true,
     );
   }
 

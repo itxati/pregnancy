@@ -465,6 +465,18 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (m.imageUrl.isNotEmpty) ...[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  m.imageUrl,
+                  height: 180,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(height: 12),
+            ],
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

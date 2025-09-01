@@ -139,13 +139,13 @@ class LoginView extends StatelessWidget {
                           const SizedBox(height: 8),
                           // Login button with gradient
                           Obx(() => LoginGradientButton(
-                            text: 'login'.tr,
-                            isLoading: controller.isLoading.value,
-                            onTap: () {
-                              // Use controller's validateAndLogin method
-                              controller.validateAndLogin();
-                            },
-                          )),
+                                text: 'login'.tr,
+                                isLoading: controller.isLoading.value,
+                                onTap: () {
+                                  // Use controller's validateAndLogin method
+                                  controller.validateAndLogin();
+                                },
+                              )),
                           const SizedBox(height: 8),
                           // Sign up link
                           Row(
@@ -178,8 +178,7 @@ class LoginView extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 16),
-                          // Language switcher for changing app language (Login Screen)
-                          const LanguageSwitcher(),
+                          // Removed LanguageSwitcher from here
                         ],
                       ),
                     ),
@@ -187,6 +186,12 @@ class LoginView extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+          // Add LanguageSwitcher to the top right corner
+          Positioned(
+            top: 42,
+            right: 24,
+            child: const LanguageSwitcher(),
           ),
         ],
       ),
