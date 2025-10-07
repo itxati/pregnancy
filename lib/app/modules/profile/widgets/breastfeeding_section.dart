@@ -51,7 +51,7 @@ class BreastfeedingSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Breastfeeding Reminders',
+                      'breastfeeding_reminders'.tr,
                       style: Get.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: NeoSafeColors.primaryText,
@@ -59,7 +59,7 @@ class BreastfeedingSection extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      'Get reminders for feeding sessions',
+                      'get_reminders_for_feeding_sessions'.tr,
                       style: Get.textTheme.bodySmall?.copyWith(
                         color: NeoSafeColors.secondaryText,
                       ),

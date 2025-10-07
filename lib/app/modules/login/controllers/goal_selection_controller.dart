@@ -34,13 +34,21 @@ class GoalSelectionController extends GetxController {
         Get.toNamed('/get_pregnant_requirements');
         break;
       case 'track_pregnance':
-        _showDueDateBottomSheet();
+        print(
+            'DEBUG: hasCompletedDueDateSetup = ${authService.user?.hasCompletedDueDateSetup}');
+        if (authService.user?.hasCompletedDueDateSetup == true) {
+          Get.toNamed('/track_pregnance');
+        } else {
+          _showDueDateBottomSheet();
+        }
         break;
       case 'child_development':
-        if (authService.user?.babyBirthDate == null) {
-          _showBabyBirthDateBottomSheet();
-        } else {
+        print(
+            'DEBUG: hasCompletedBabyBirthDateSetup = ${authService.user?.hasCompletedBabyBirthDateSetup}');
+        if (authService.user?.hasCompletedBabyBirthDateSetup == true) {
           Get.toNamed('/track_my_baby');
+        } else {
+          _showBabyBirthDateBottomSheet();
         }
         break;
       case 'postpartum_care':
@@ -175,140 +183,169 @@ class GoalSelectionController extends GetxController {
                 topRight: Radius.circular(24),
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Minimalist drag indicator
-                  Container(
-                    width: 36,
-                    height: 3,
-                    decoration: BoxDecoration(
-                      color: NeoSafeColors.softGray,
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-
-                  // Title with refined typography
-                  Text(
-                    'when_is_your_due_date'.tr,
-                    style: Get.textTheme.headlineMedium?.copyWith(
-                      color: NeoSafeColors.primaryText,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Subtitle with softer approach
-                  Text(
-                    'due_date_help_text'.tr,
-                    textAlign: TextAlign.center,
-                    style: Get.textTheme.bodyMedium?.copyWith(
-                      color: NeoSafeColors.secondaryText,
-                      height: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-
-                  // Gender selector with consistent pink theme
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: NeoSafeColors.lightBeige,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: NeoSafeColors.softGray,
-                        width: 1,
-                      ),
-                    ),
-                    child: GenderSelector(
-                      selectedGender: selectedGender,
-                      onChanged: (gender) async {
-                        setState(() => selectedGender = gender);
-                        await updateBabyGender(gender);
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-
-                  // Primary action button with consistent pink theme
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: ElevatedButton.icon(
-                      onPressed: () => _selectDueDate(),
-                      icon: Icon(
-                        Icons.calendar_today_outlined,
-                        size: 20,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        'select_due_date'.tr,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.2,
+            child: SafeArea(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Minimalist drag indicator
+                      Container(
+                        width: 36,
+                        height: 3,
+                        decoration: BoxDecoration(
+                          color: NeoSafeColors.softGray,
+                          borderRadius: BorderRadius.circular(2),
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: NeoSafeColors.primaryPink,
-                        foregroundColor: Colors.white,
-                        elevation: 2,
-                        shadowColor: NeoSafeColors.primaryPink.withOpacity(0.3),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                      const SizedBox(height: 24),
+
+                      // Title with better text wrapping
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                          'when_is_your_due_date'.tr,
+                          textAlign: TextAlign.center,
+                          style: Get.textTheme.headlineMedium?.copyWith(
+                            color: NeoSafeColors.primaryText,
+                            fontWeight: FontWeight.w600,
+                            height: 1.2,
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
+                      const SizedBox(height: 12),
 
-                  // Secondary action with subtle styling
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: TextButton(
-                      onPressed: () => _continueWithoutDueDate(),
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        foregroundColor: NeoSafeColors.secondaryText,
-                        shape: RoundedRectangleBorder(
+                      // Subtitle with flexible layout
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                          'due_date_help_text'.tr,
+                          textAlign: TextAlign.center,
+                          style: Get.textTheme.bodyMedium?.copyWith(
+                            color: NeoSafeColors.secondaryText,
+                            height: 1.4,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+
+                      // Gender selector with flexible container
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: NeoSafeColors.lightBeige,
                           borderRadius: BorderRadius.circular(16),
-                          side: BorderSide(
+                          border: Border.all(
                             color: NeoSafeColors.softGray,
                             width: 1,
                           ),
                         ),
+                        child: GenderSelector(
+                          selectedGender: selectedGender,
+                          onChanged: (gender) async {
+                            setState(() => selectedGender = gender);
+                            await updateBabyGender(gender);
+                          },
+                        ),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'continue_without_due_date'.tr,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              height: 1.2,
+                      const SizedBox(height: 24),
+
+                      // Primary action button with flexible text
+                      SizedBox(
+                        width: double.infinity,
+                        height: 52,
+                        child: ElevatedButton(
+                          onPressed: () => _selectDueDate(),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: NeoSafeColors.primaryPink,
+                            foregroundColor: Colors.white,
+                            elevation: 2,
+                            shadowColor:
+                                NeoSafeColors.primaryPink.withOpacity(0.3),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
                             ),
                           ),
-                          const SizedBox(height: 2),
-                          Text(
-                            'continue_without_due_date_subtitle'.tr,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: NeoSafeColors.lightText,
-                              height: 1.2,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.calendar_today_outlined,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 8),
+                              Flexible(
+                                child: Text(
+                                  'select_due_date'.tr,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 0.2,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Secondary action with flexible text layout
+                      SizedBox(
+                        width: double.infinity,
+                        child: TextButton(
+                          onPressed: () => _continueWithoutDueDate(),
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            foregroundColor: NeoSafeColors.secondaryText,
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              side: BorderSide(
+                                color: NeoSafeColors.softGray,
+                                width: 1,
+                              ),
                             ),
                           ),
-                        ],
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'continue_without_due_date'.tr,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.2,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                                child: Text(
+                                  'continue_without_due_date_subtitle'.tr,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    color: NeoSafeColors.lightText,
+                                    height: 1.3,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
+                      const SizedBox(height: 16),
+                    ],
                   ),
-                  const SizedBox(height: 24),
-                ],
+                ),
               ),
             ),
           );
@@ -320,7 +357,6 @@ class GoalSelectionController extends GetxController {
       enableDrag: true,
     );
   }
-
   // void _showBabyBirthDateBottomSheet() {
   //   DateTime? selectedBirthDate;
   //   String selectedGender = authService.user?.babyGender ?? "female";
@@ -576,6 +612,9 @@ class GoalSelectionController extends GetxController {
                               // Save birth date
                               await authService
                                   .updateBabyBirthDate(selectedBirthDate!);
+                              // Mark baby birth date setup as completed
+                              await authService
+                                  .markBabyBirthDateSetupCompleted();
 
                               Get.back(); // Close bottom sheet
                               Get.toNamed('/track_my_baby');
@@ -627,9 +666,6 @@ class GoalSelectionController extends GetxController {
   }
 
   Future<void> _selectDueDate() async {
-    // Get the selected gender from the current user
-    String selectedGender = authService.user?.babyGender ?? "female";
-
     final DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
       initialDate: DateTime.now()
@@ -651,6 +687,8 @@ class GoalSelectionController extends GetxController {
     if (pickedDate != null) {
       // Save due date to SharedPreferences
       await authService.updateDueDate(pickedDate);
+      // Mark due date setup as completed
+      await authService.markDueDateSetupCompleted();
 
       Get.back(); // Close bottom sheet
       Get.toNamed('/track_pregnance');
@@ -666,15 +704,14 @@ class GoalSelectionController extends GetxController {
   }
 
   Future<void> _continueWithoutDueDate() async {
-    // Get the selected gender from the current user
-    String selectedGender = authService.user?.babyGender ?? "female";
-
     // Calculate due date assuming 42 days pregnant (6 weeks from LMP)
     final calculatedDueDate =
         authService.calculateDueDateFromCurrentPregnancyDays(42);
 
     // Save calculated due date to SharedPreferences
     await authService.updateDueDate(calculatedDueDate);
+    // Mark due date setup as completed
+    await authService.markDueDateSetupCompleted();
 
     Get.back(); // Close bottom sheet
     Get.toNamed('/track_pregnance');

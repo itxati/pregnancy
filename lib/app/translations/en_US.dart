@@ -6,7 +6,7 @@ final Map<String, String> enUS = {
   'pregnancy_companion': 'Your pregnancy companion',
   'pregnancy_journey': 'Pregnancy Journey',
   'weeks': 'weeks',
-  'weeks_pregnant': '{week} weeks pregnant',
+  'weeks_pregnant': 'weeks pregnant',
   'length': 'Length',
   'weight': 'Weight',
   'fertilization': 'Fertilization',
@@ -637,7 +637,7 @@ final Map<String, String> enUS = {
   'pregnancy_week_0_details_2':
       "Hormones: Hormones are stimulating your egg follicles to mature in your ovaries",
   'pregnancy_week_0_dos_0': "Start Folic Acid (400 – 800 mg/day)",
-  'pregnancy_week_0_dos_1': "Prevent NTDs",
+  'pregnancy_week_0_dos_1': "Prevent Neglected Tropical Diseases",
   'pregnancy_week_0_dos_2': "Start Fe If Hb < 11",
   'pregnancy_week_0_dos_3': "Avoid Smoking and Drugs",
   'pregnancy_week_0_dos_4': "Maintain healthy diet and Hydration",
@@ -665,7 +665,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_1_details_2':
       "Egg: Each egg can live for 24 hours after ovulation, and conception occurs during this time",
   'pregnancy_week_1_dos_0': "Start Folic Acid (400 – 800 mg/day)",
-  'pregnancy_week_1_dos_1': "Prevent NTDs",
+  'pregnancy_week_1_dos_1':
+      "Prevent Neglected Tropical Diseases(Neglected Tropical Diseases)",
   'pregnancy_week_1_dos_2': "Start Fe If Hb < 11",
   'pregnancy_week_1_dos_3': "Avoid Smoking and Drugs",
   'pregnancy_week_1_dos_4': "Maintain healthy diet and Hydration",
@@ -693,7 +694,7 @@ final Map<String, String> enUS = {
   'pregnancy_week_2_details_2':
       "Morula: The zygote divides and keeps on diving to form a solid mass of cells called the morula",
   'pregnancy_week_2_dos_0': "Start Folic Acid (400 – 800 mg/day)",
-  'pregnancy_week_2_dos_1': "Prevent NTDs",
+  'pregnancy_week_2_dos_1': "Prevent Neglected Tropical Diseases",
   'pregnancy_week_2_dos_2': "Start Fe If Hb < 11",
   'pregnancy_week_2_dos_3': "Avoid Smoking and Drugs",
   'pregnancy_week_2_dos_4': "Maintain healthy diet and Hydration",
@@ -723,7 +724,7 @@ final Map<String, String> enUS = {
   'pregnancy_week_3_details_2':
       "Embryo: The blastocyst cells continue to rapidly divide, forming the embryo",
   'pregnancy_week_3_dos_0': "Start Folic Acid (400 – 800 mg/day)",
-  'pregnancy_week_3_dos_1': "Prevent NTDs",
+  'pregnancy_week_3_dos_1': "Prevent Neglected Tropical Diseases",
   'pregnancy_week_3_dos_2': "Start Fe If Hb < 11",
   'pregnancy_week_3_dos_3': "Avoid Smoking and Drugs",
   'pregnancy_week_3_dos_4': "Maintain healthy diet and Hydration",
@@ -753,7 +754,7 @@ final Map<String, String> enUS = {
   'pregnancy_week_4_details_2':
       "2nd and 3rd Layers: The 2nd Layer will form the heart, muscles, kidneys and bones, whilst the 3rd layer will form the nervous system, hair, skin and eyes",
   'pregnancy_week_4_dos_0': "Start Folic Acid (400 – 800 mg/day)",
-  'pregnancy_week_4_dos_1': "Prevent NTDs",
+  'pregnancy_week_4_dos_1': "Prevent Neglected Tropical Diseases",
   'pregnancy_week_4_dos_2': "Start Fe If Hb < 11",
   'pregnancy_week_4_dos_3': "Avoid Smoking and Drugs",
   'pregnancy_week_4_dos_4': "Maintain healthy diet and Hydration",
@@ -2116,5 +2117,9 @@ final Map<String, String> enUS = {
 
   "important_alerts": "Important alerts",
   "week_reminders": "Week %{week} reminders",
-  "all_caught_up_no_alerts": "All caught up! No alerts for this week."
+  "all_caught_up_no_alerts": "All caught up! No alerts for this week.",
+
+//   reminders
+  "breastfeeding_reminders": "Breastfeeding Reminders",
+  "get_reminders_for_feeding_sessions": "Get reminders for feeding sessions",
 };

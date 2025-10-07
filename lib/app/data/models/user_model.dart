@@ -21,6 +21,10 @@ class UserModel {
   // Pregnancy tracking data
   final DateTime? dueDate;
 
+  // Bottom sheet completion flags
+  final bool hasCompletedDueDateSetup;
+  final bool hasCompletedBabyBirthDateSetup;
+
   UserModel({
     required this.id,
     required this.fullName,
@@ -39,6 +43,8 @@ class UserModel {
     this.intercourseLog = const [],
     this.dueDate,
     this.babyGender,
+    this.hasCompletedDueDateSetup = false,
+    this.hasCompletedBabyBirthDateSetup = false,
   });
 
   // Convert to JSON for storage
@@ -61,7 +67,9 @@ class UserModel {
       'intercourseLog':
           intercourseLog.map((date) => date.millisecondsSinceEpoch).toList(),
       'dueDate': dueDate?.millisecondsSinceEpoch,
-      'babyGender':babyGender,
+      'babyGender': babyGender,
+      'hasCompletedDueDateSetup': hasCompletedDueDateSetup,
+      'hasCompletedBabyBirthDateSetup': hasCompletedBabyBirthDateSetup,
     };
   }
 
@@ -96,6 +104,9 @@ class UserModel {
           ? DateTime.fromMillisecondsSinceEpoch(json['dueDate'])
           : null,
       babyGender: json['babyGender'],
+      hasCompletedDueDateSetup: json['hasCompletedDueDateSetup'] ?? false,
+      hasCompletedBabyBirthDateSetup:
+          json['hasCompletedBabyBirthDateSetup'] ?? false,
     );
   }
 
@@ -118,6 +129,8 @@ class UserModel {
     List<DateTime>? intercourseLog,
     DateTime? dueDate,
     String? babyGender,
+    bool? hasCompletedDueDateSetup,
+    bool? hasCompletedBabyBirthDateSetup,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -137,6 +150,10 @@ class UserModel {
       intercourseLog: intercourseLog ?? this.intercourseLog,
       dueDate: dueDate ?? this.dueDate,
       babyGender: babyGender ?? this.babyGender,
+      hasCompletedDueDateSetup:
+          hasCompletedDueDateSetup ?? this.hasCompletedDueDateSetup,
+      hasCompletedBabyBirthDateSetup:
+          hasCompletedBabyBirthDateSetup ?? this.hasCompletedBabyBirthDateSetup,
     );
   }
 }

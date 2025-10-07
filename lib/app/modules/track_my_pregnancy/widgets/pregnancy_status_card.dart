@@ -35,8 +35,9 @@ class PregnancyStatusCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "weeks_pregnant".trParams(
-                      {"weeks": "${controller.pregnancyWeekNumber.value}"}),
+                  '${controller.pregnancyWeekNumber.value} ${'weeks_pregnant'.tr}',
+                  // "weeks_pregnant".trParams(
+                  //     {"weeks": "${controller.pregnancyWeekNumber.value}"}),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: themeService.getPrimaryColor(),

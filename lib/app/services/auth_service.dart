@@ -42,17 +42,29 @@ class AuthService extends GetxService {
   // Load user data from Firebase user
   Future<void> _loadUserFromFirebase(User firebaseUser) async {
     try {
-      // Create user model from Firebase user
-      final user = UserModel(
-        id: firebaseUser.uid,
-        fullName: firebaseUser.displayName ?? '',
-        email: firebaseUser.email ?? '',
-        createdAt: firebaseUser.metadata.creationTime ?? DateTime.now(),
-        isLoggedIn: true,
-      );
-
-      // Save to local storage and update current user
-      await _saveCurrentUser(user);
+      // Check if we already have user data with completion flags
+      if (currentUser.value != null) {
+        // Update existing user with Firebase data while preserving completion flags
+        final updatedUser = currentUser.value!.copyWith(
+          id: firebaseUser.uid,
+          fullName: firebaseUser.displayName ?? currentUser.value!.fullName,
+          email: firebaseUser.email ?? currentUser.value!.email,
+          createdAt: firebaseUser.metadata.creationTime ??
+              currentUser.value!.createdAt,
+          isLoggedIn: true,
+        );
+        await _saveCurrentUser(updatedUser);
+      } else {
+        // Create new user model from Firebase user (first time login)
+        final user = UserModel(
+          id: firebaseUser.uid,
+          fullName: firebaseUser.displayName ?? '',
+          email: firebaseUser.email ?? '',
+          createdAt: firebaseUser.metadata.creationTime ?? DateTime.now(),
+          isLoggedIn: true,
+        );
+        await _saveCurrentUser(user);
+      }
     } catch (e) {
       print('Error loading user from Firebase: $e');
     }
@@ -203,17 +215,31 @@ class AuthService extends GetxService {
         password: password,
       );
 
-      // Create user model
-      final user = UserModel(
-        id: userCredential.user!.uid,
-        fullName: userCredential.user!.displayName ?? '',
-        email: userCredential.user!.email ?? '',
-        createdAt: userCredential.user!.metadata.creationTime ?? DateTime.now(),
-        isLoggedIn: true,
-      );
-
-      // Save to local storage
-      await _saveCurrentUser(user);
+      // Check if we already have user data with completion flags
+      if (currentUser.value != null) {
+        // Update existing user with Firebase data while preserving completion flags
+        final updatedUser = currentUser.value!.copyWith(
+          id: userCredential.user!.uid,
+          fullName:
+              userCredential.user!.displayName ?? currentUser.value!.fullName,
+          email: userCredential.user!.email ?? currentUser.value!.email,
+          createdAt: userCredential.user!.metadata.creationTime ??
+              currentUser.value!.createdAt,
+          isLoggedIn: true,
+        );
+        await _saveCurrentUser(updatedUser);
+      } else {
+        // Create new user model from Firebase user (first time login)
+        final user = UserModel(
+          id: userCredential.user!.uid,
+          fullName: userCredential.user!.displayName ?? '',
+          email: userCredential.user!.email ?? '',
+          createdAt:
+              userCredential.user!.metadata.creationTime ?? DateTime.now(),
+          isLoggedIn: true,
+        );
+        await _saveCurrentUser(user);
+      }
 
       // Download articles on first login
       try {
@@ -225,7 +251,7 @@ class AuthService extends GetxService {
 
       Get.snackbar(
         'Success',
-        'Welcome back, ${user.fullName}!',
+        'Welcome back, ${currentUser.value?.fullName ?? 'User'}!',
         snackPosition: SnackPosition.BOTTOM,
       );
 
@@ -513,6 +539,30 @@ class AuthService extends GetxService {
         babyGender: gender,
       );
       await _saveCurrentUser(updatedUser);
+    }
+  }
+
+  // Mark due date setup as completed
+  Future<void> markDueDateSetupCompleted() async {
+    if (currentUser.value != null) {
+      print('DEBUG: Marking due date setup as completed');
+      final updatedUser = currentUser.value!.copyWith(
+        hasCompletedDueDateSetup: true,
+      );
+      await _saveCurrentUser(updatedUser);
+      print('DEBUG: Due date setup completion flag saved');
+    }
+  }
+
+  // Mark baby birth date setup as completed
+  Future<void> markBabyBirthDateSetupCompleted() async {
+    if (currentUser.value != null) {
+      print('DEBUG: Marking baby birth date setup as completed');
+      final updatedUser = currentUser.value!.copyWith(
+        hasCompletedBabyBirthDateSetup: true,
+      );
+      await _saveCurrentUser(updatedUser);
+      print('DEBUG: Baby birth date setup completion flag saved');
     }
   }
 }
