@@ -23,7 +23,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     size: '',
     dos: [
       "Start Folic Acid (400 – 800 mg/day)",
-      "Prevent NTDs",
+      "Prevent Neglected Tropical Diseases",
       "Start Fe If Hb < 11",
       "Avoid Smoking and Drugs",
       "Maintain healthy diet and Hydration",
@@ -66,7 +66,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     size: '',
     dos: [
       "Start Folic Acid (400 – 800 mg/day)",
-      "Prevent NTDs",
+      "Prevent Neglected Tropical Diseases",
       "Start Fe If Hb < 11",
       "Avoid Smoking and Drugs",
       "Maintain healthy diet and Hydration",
@@ -109,7 +109,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     size: '',
     dos: [
       "Start Folic Acid (400 – 800 mg/day)",
-      "Prevent NTDs",
+      "Prevent Neglected Tropical Diseases",
       "Start Fe If Hb < 11",
       "Avoid Smoking and Drugs",
       "Maintain healthy diet and Hydration",
@@ -154,7 +154,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     weight: '',
     dos: [
       "Start Folic Acid (400 – 800 mg/day)",
-      "Prevent NTDs",
+      "Prevent Neglected Tropical Diseases",
       "Start Fe If Hb < 11",
       "Avoid Smoking and Drugs",
       "Maintain healthy diet and Hydration",
@@ -199,7 +199,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     weight: '',
     dos: [
       "Start Folic Acid (400 – 800 mg/day)",
-      "Prevent NTDs",
+      "Prevent Neglected Tropical Diseases",
       "Start Fe If Hb < 11",
       "Avoid Smoking and Drugs",
       "Maintain healthy diet and Hydration",
