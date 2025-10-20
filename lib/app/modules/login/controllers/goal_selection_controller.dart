@@ -54,6 +54,9 @@ class GoalSelectionController extends GetxController {
       case 'postpartum_care':
         Get.toNamed('/postpartum_care');
         break;
+      case 'good_bad_touch':
+        Get.toNamed('/good_bad_touch');
+        break;
       default:
         Get.snackbar('error'.tr, 'invalid_goal_selected'.tr);
     }

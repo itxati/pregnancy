@@ -405,19 +405,35 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
 
   Widget _buildMonthChips(BuildContext context) {
     final themeService = Get.find<ThemeService>();
+    // Build a derived list with years (>=24 months) first, keeping original indices
+    final indexed = babyMilestones
+        .asMap()
+        .entries
+        .map((e) => MapEntry(e.key, e.value))
+        .toList();
+    indexed.sort((a, b) {
+      final am = a.value.month;
+      final bm = b.value.month;
+      final aIsYear = am >= 24;
+      final bIsYear = bm >= 24;
+      if (aIsYear != bIsYear)
+        return aIsYear ? 1 : -1; // months first, then years
+      return am.compareTo(bm);
+    });
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
-        children: babyMilestones.asMap().entries.map((entry) {
-          final index = entry.key;
+        children: indexed.map((entry) {
+          final index = entry.key; // original index in babyMilestones
           final m = entry.value;
           final selected = _selectedIndex == index;
           return Padding(
             padding: const EdgeInsets.only(right: 8),
             child: ChoiceChip(
-              label: Text('${m.month} ${'mo'.tr}'
-                  .replaceFirst('0 ${'mo'.tr}', 'newborn'.tr)),
+              label: Text(_labelForAge(m.month)),
+              // label: Text('${m.month} ${'mo'.tr}'
+              //     .replaceFirst('0 ${'mo'.tr}', 'newborn'.tr)),
               selected: selected,
               onSelected: (_) {
                 setState(() => _selectedIndex = index);
@@ -442,6 +458,13 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
         }).toList(),
       ),
     );
+  }
+
+  String _labelForAge(int month) {
+    if (month == 0) return 'newborn'.tr;
+    if (month < 24) return '${month} ${'mo'.tr}';
+    final years = (month / 12).toStringAsFixed(month % 12 == 0 ? 0 : 1);
+    return '$years ${'yr'.tr}';
   }
 
   Widget _buildMilestoneCard(BuildContext context, BabyMilestone m) {
@@ -615,7 +638,17 @@ class _HealthInfoSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeService = Get.find<ThemeService>();
-    final shortHealth = babyHealthInfos.take(1).toList();
+    // Prefer showing Ages 2–8 Overview first (health_5), then Teething (health_2) if available
+    List<BabyHealthInfo> shortHealth;
+    if (babyHealthInfos.length >= 5) {
+      final overview = babyHealthInfos[4]; // maps to health_5_*
+      final teething = babyHealthInfos.length > 1
+          ? babyHealthInfos[1]
+          : babyHealthInfos.first;
+      shortHealth = [overview, teething];
+    } else {
+      shortHealth = babyHealthInfos.take(1).toList();
+    }
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -761,36 +794,55 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 12),
                         Expanded(
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text:
-                                      '${'health_${babyHealthInfos.indexOf(h) + 1}_title'.tr}: ',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.w700,
-                                        color: NeoSafeColors.primaryText,
-                                      ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          '${'health_${babyHealthInfos.indexOf(h) + 1}_title'.tr}: ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            color: NeoSafeColors.primaryText,
+                                          ),
+                                    ),
+                                    TextSpan(
+                                      text: List.generate(
+                                          h.points.take(1).length,
+                                          (i) =>
+                                              'health_${babyHealthInfos.indexOf(h) + 1}_point_${i + 1}'
+                                                  .tr).join(', '),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            color: NeoSafeColors.secondaryText,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                    ),
+                                  ],
                                 ),
-                                TextSpan(
-                                  text: List.generate(
-                                      h.points.take(2).length,
-                                      (i) =>
-                                          'health_${babyHealthInfos.indexOf(h) + 1}_point_${i + 1}'
-                                              .tr).join(', '),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: NeoSafeColors.secondaryText,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                ),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                'health_${babyHealthInfos.indexOf(h) + 1}_desc'
+                                    .tr,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                      color: NeoSafeColors.lightText,
+                                      height: 1.35,
+                                    ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -813,6 +865,40 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
   final Set<int> _expandedCardIndexes = {};
 
   List<BabyHealthInfo> get _items => babyHealthInfos;
+
+  List<BabyHealthInfo> _orderedItems() {
+    // Prefer order: Overview (health_5), Teething (health_2), Vaccination (health_3), School (health_4), then others
+    if (_items.isEmpty) return _items;
+    final byIndex = _items.asMap();
+    final preferred = <int>[];
+    if (byIndex.containsKey(4)) preferred.add(4); // health_5_*
+    if (byIndex.containsKey(1)) preferred.add(1); // health_2_*
+    if (byIndex.containsKey(2)) preferred.add(2); // health_3_*
+    if (byIndex.containsKey(3)) preferred.add(3); // health_4_*
+    final remaining = List<int>.generate(_items.length, (i) => i)
+      ..removeWhere((i) => preferred.contains(i));
+    return [
+      ...preferred.map((i) => _items[i]),
+      ...remaining.map((i) => _items[i]),
+    ];
+  }
+
+  IconData _iconForHealthIndex(int oneBasedIndex) {
+    switch (oneBasedIndex) {
+      case 1:
+        return Icons.medical_information; // Jaundice
+      case 2:
+        return Icons.brush; // Teething / dental
+      case 3:
+        return Icons.vaccines; // Vaccination
+      case 4:
+        return Icons.school; // School readiness
+      case 5:
+        return Icons.insights; // Ages 2–8 overview
+      default:
+        return Icons.health_and_safety;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -839,11 +925,10 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
           children: [
             _buildJaundiceQuickLink(context),
             const SizedBox(height: 20),
-            ..._items.asMap().entries.map((entry) {
-              final index = entry.key;
-              final item = entry.value;
-              final expanded = _expandedCardIndexes.contains(index);
-              return _buildHealthCard(context, item, index, expanded);
+            ..._orderedItems().map((item) {
+              final originalIndex = _items.indexOf(item);
+              final expanded = _expandedCardIndexes.contains(originalIndex);
+              return _buildHealthCard(context, item, originalIndex, expanded);
             }),
           ],
         ),
@@ -980,17 +1065,32 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                     color: NeoSafeColors.primaryPink,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Icon(Icons.medical_information,
+                  child: Icon(_iconForHealthIndex(index + 1),
                       color: Colors.white, size: 20),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: Text(
-                    'health_${_items.indexOf(item) + 1}_title'.tr,
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      color: NeoSafeColors.primaryText,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'health_${_items.indexOf(item) + 1}_title'.tr,
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          color: NeoSafeColors.primaryText,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'health_${_items.indexOf(item) + 1}_desc'.tr,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: NeoSafeColors.secondaryText,
+                          height: 1.3,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
                 ),
               ],

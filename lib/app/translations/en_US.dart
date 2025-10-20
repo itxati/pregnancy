@@ -1769,6 +1769,10 @@ final Map<String, String> enUS = {
   "the_size_of_your_baby_is": "The size of your baby is",
   "baby_size_blueberry": "Blueberry",
 
+  // Short age labels
+  "mo": "mo",
+  "yr": "yr",
+
   // Titles
   "milestone_title_0": "Newborn",
   "milestone_title_1": "1 Month",
@@ -1777,12 +1781,30 @@ final Map<String, String> enUS = {
   "milestone_title_9": "9 Months",
   "milestone_title_12": "12 Months",
   "milestone_title_18": "18 Months",
+  "milestone_title_24": "2–3 Years",
+  "milestone_title_36": "3–4 Years",
+  "milestone_title_48": "4–5 Years",
+  "milestone_title_60": "5–6 Years",
+  "milestone_title_72": "6–8 Years",
+  "milestone_title_96": "8 Years Overview",
 
 // Descriptions
   "milestone_desc_0":
       "Your baby has just entered the world! This is a time of rapid adjustment and bonding.",
   "milestone_desc_1":
       "Your baby is becoming more alert and responsive to the world around them.",
+  "milestone_desc_24":
+      "Early toddler years bring rapid gains in motor control, language, and social independence.",
+  "milestone_desc_36":
+      "Preschoolers expand balance, language, and cooperative play with growing curiosity.",
+  "milestone_desc_48":
+      "Pre-K children strengthen reasoning and social play while practicing early literacy and number skills.",
+  "milestone_desc_60":
+      "School readiness builds with better self-control, early reading and math, and refined coordination.",
+  "milestone_desc_72":
+      "Early school years emphasize skill refinement, rules, and friendships as thinking becomes more logical.",
+  "milestone_desc_96":
+      "By ~8 years, children show more stable cognitive, social, and motor patterns; experiences remain impactful.",
 
 // Month 0 milestones
   "milestone_0_1": "Lifts head briefly when on tummy",
@@ -1797,6 +1819,64 @@ final Map<String, String> enUS = {
   "milestone_1_3": "Smiles in response to faces",
   "milestone_1_4": "Makes cooing sounds",
   "milestone_1_5": "Recognizes familiar voices",
+
+  // Month 24 (2–3 years)
+  "milestone_24_1":
+      "Walks and runs with better balance; begins climbing; may pedal tricycle",
+  "milestone_24_2":
+      "Uses 2–3 word sentences; follows simple instructions; points to named pictures; pretend play begins",
+  "milestone_24_3":
+      "Gaining independence; some defiance; parallel play emerges",
+  "milestone_24_4": "Scribbles, stacks blocks, turns knobs",
+
+  // Month 36 (3–4 years)
+  "milestone_36_1":
+      "Improved balance; hops and jumps; climbs stairs alternating feet",
+  "milestone_36_2":
+      "Speaks in full sentences; asks ‘why?’; counts small numbers; sorts by shape/color; richer pretend play",
+  "milestone_36_3": "Takes turns; shows affection; more cooperative play",
+  "milestone_36_4":
+      "Copies shapes; begins using scissors; dresses/undresses with help",
+
+  // Month 48 (4–5 years)
+  "milestone_48_1":
+      "Runs, throws, and catches more reliably; rides tricycle well",
+  "milestone_48_2":
+      "Recognizes letters/numbers; recalls simple stories; understands same vs different; basic reasoning",
+  "milestone_48_3":
+      "Expresses emotions; engages in social play; starts grasping rules",
+  "milestone_48_4":
+      "Draws a person with parts; cuts shapes; writes some letters",
+
+  // Month 60 (5–6 years)
+  "milestone_60_1":
+      "Refined coordination; better control in drawing and daily tasks",
+  "milestone_60_2":
+      "Reading readiness; basic math concepts (counting, simple operations); more logical thinking",
+  "milestone_60_3":
+      "Greater self-control; cooperates with peers; understands fairness",
+  "milestone_60_4":
+      "Improved pencil grip; writes own name; increased task precision",
+
+  // Month 72 (6–8 years)
+  "milestone_72_1":
+      "Skill refinement continues (handwriting, sports, coordination)",
+  "milestone_72_2":
+      "Shifts toward concrete operational thinking (logical operations on real objects)",
+  "milestone_72_3":
+      "Deeper peer relationships; stronger rule-following and moral sense; self-esteem linked to success",
+  "milestone_72_4":
+      "Complex drawings; neater handwriting; more intricate crafts",
+
+  // Month 96 (8 years overview)
+  "milestone_96_1":
+      "Consolidates skills across academics and sports; better endurance",
+  "milestone_96_2":
+      "More consistent logical reasoning; growing academic independence",
+  "milestone_96_3":
+      "Stable friendships; empathy and rule understanding strengthen",
+  "milestone_96_4":
+      "Organized, detailed work products (writing, crafts, projects)",
 
 // Month 3 milestones
   "milestone_3_1": "Follows light and tracks with eyes",
@@ -1979,6 +2059,62 @@ final Map<String, String> enUS = {
       "Seek help from a lactation consultant if feeding is difficult",
   "jaundice_8_point_8": "Monitor baby's weight gain and diaper output",
 
+  // Health 2: Teething and Dental Development
+  "health_2_title": "Teething and Dental Development",
+  "health_2_desc":
+      "Healthy dental habits in early childhood prevent decay and support speech, chewing, and long-term oral health.",
+  "health_2_point_1":
+      "Primary teeth eruption typically completes around 2–3 years",
+  "health_2_point_2":
+      "Sequence often: central incisors, lateral incisors, first molars, canines, second molars",
+  "health_2_point_3":
+      "Focus after eruption: daily brushing, fluoride as advised, routine checks",
+  "health_2_point_4":
+      "Watch for tooth decay; baby teeth health affects speech and permanent teeth",
+  "health_2_point_5": "Supervise brushing; teach proper technique and duration",
+
+  // Health 3: Vaccination (Ages 2–8)
+  "health_3_title": "Vaccination (Ages 2–8)",
+  "health_3_desc":
+      "Follow your local immunization schedule for boosters between 2–8 years to maintain protection.",
+  "health_3_point_1": "Booster doses in early childhood (e.g., DTP) are common",
+  "health_3_point_2":
+      "Some programs include MMR, varicella, polio boosters, annual influenza",
+  "health_3_point_3": "Schedules vary by country; follow local EPI guidance",
+  "health_3_point_4": "Keep records updated; bring card to school and checkups",
+  "health_3_point_5":
+      "Consult your provider for catch-up doses if any were missed",
+
+  // Health 4: School Readiness and Early Education
+  "health_4_title": "School Readiness and Early Education",
+  "health_4_desc":
+      "Strong early skills and supportive transitions improve school adjustment and later achievement.",
+  "health_4_point_1":
+      "Domains: social-emotional, language/literacy, numeracy, physical health, learning approaches",
+  "health_4_point_2":
+      "Language & literacy: phonological awareness, vocabulary, narratives, letter-sound links",
+  "health_4_point_3":
+      "Math: counting, sorting, patterns, basic operations using real objects",
+  "health_4_point_4":
+      "Social skills: cooperation, self-regulation, understanding emotions, rules",
+  "health_4_point_5":
+      "Support transitions preschool → grade 1; monitor and support lagging skills",
+  "health_4_point_6":
+      "Use developmentally appropriate practice aligned with local frameworks",
+
+  // Health 5: Ages 2–8 Overview
+  "health_5_title": "Ages 2–8 Overview",
+  "health_5_desc":
+      "Early childhood experiences shape cognitive, emotional, and physical outcomes across life.",
+  "health_5_point_1":
+      "First 0–8 years are critical; brain circuits wire rapidly; experiences have strong impact",
+  "health_5_point_2":
+      "Foundations: good nutrition, responsive caregiving, stimulation, safety, health and education access",
+  "health_5_point_3":
+      "Early learning programs reduce dropout, improve readiness, strengthen later performance",
+  "health_5_point_4":
+      "Use developmentally appropriate practice: align expectations with age and individual differences",
+
   "tips_dos_title": "Dos",
   "tips_donts_title": "Don'ts",
 
@@ -2122,4 +2258,76 @@ final Map<String, String> enUS = {
 //   reminders
   "breastfeeding_reminders": "Breastfeeding Reminders",
   "get_reminders_for_feeding_sessions": "Get reminders for feeding sessions",
+
+  "good_bad_touch_title": "Good Touch / Bad Touch & Child Protection",
+  "good_bad_touch_subtitle":
+      "Guidance for mothers to teach boundaries, recognize abuse, and seek help",
+
+  "good_bad_touch_intro_title": "Why this matters",
+  "good_bad_touch_intro_body":
+      "Teaching children about personal boundaries in simple language helps prevent abuse and supports their confidence. Use gentle, age-appropriate words and repeat often so your child remembers what to do.",
+
+  "good_bad_touch_concept_title": "Concepts: Personal space and private parts",
+  "good_bad_touch_concept_point_1":
+      "Explain that some body parts are private and should not be touched by others.",
+  "good_bad_touch_concept_point_2":
+      "Only a parent or doctor may touch for health reasons—and only with permission.",
+  "good_bad_touch_concept_point_3":
+      "Teach the difference between safe touch (comfort, care) and unsafe touch (secret, forceful, uncomfortable).",
+  "good_bad_touch_concept_point_4":
+      "Help your child use clear words: “No”, “Stop”, “This is my body.”",
+  "good_bad_touch_concept_point_5":
+      "Tell your child they should always inform a trusted adult if someone makes them uncomfortable.",
+
+  "good_bad_touch_scenarios_title": "Scenarios and role‑playing",
+  "good_bad_touch_scenarios_point_1":
+      "Practice saying “No” in a strong voice and moving away from unsafe situations.",
+  "good_bad_touch_scenarios_point_2":
+      "Teach your child to report immediately—even if someone says “keep it a secret”.",
+  "good_bad_touch_scenarios_point_3":
+      "Use simple stories to show safe vs. unsafe touch without fear or shame.",
+  "good_bad_touch_scenarios_point_4":
+      "Rehearse how to find help in public places: teacher, guard, shopkeeper.",
+
+  "good_bad_touch_trusted_adults_title": "Trusted adults and reporting",
+  "good_bad_touch_trusted_adults_point_1":
+      "Make a short list of trusted adults: parents, teachers, close relatives.",
+  "good_bad_touch_trusted_adults_point_2":
+      "Encourage your child to tell you anything that makes them uncomfortable—no scolding.",
+  "good_bad_touch_trusted_adults_point_3":
+      "If your child reports something, believe them, stay calm, and act to protect them.",
+
+  "good_bad_touch_signs_title": "Monitoring and warning signs",
+  "good_bad_touch_signs_point_1":
+      "Sudden fear of a person or place, nightmares, or withdrawal.",
+  "good_bad_touch_signs_point_2":
+      "Unexplained injuries, pain, or changes in bathroom habits.",
+  "good_bad_touch_signs_point_3":
+      "Knowledge or behavior not appropriate for age.",
+  "good_bad_touch_signs_point_4":
+      "Mood changes: sadness, anger, silence, or clinging.",
+  "good_bad_touch_signs_point_5":
+      "Secretive behavior or fear of being alone with certain people.",
+
+  "good_bad_touch_what_to_do_title": "What mothers/caregivers should do",
+  "good_bad_touch_what_to_do_point_1":
+      "Stay calm, listen, thank your child for telling you, and reassure their safety.",
+  "good_bad_touch_what_to_do_point_2":
+      "Remove the child from the unsafe situation immediately.",
+  "good_bad_touch_what_to_do_point_3":
+      "Document what you observe and what the child reports in simple words.",
+  "good_bad_touch_what_to_do_point_4":
+      "Seek help from trusted authorities or child protection services.",
+
+  "good_bad_touch_helpline_title": "Emergency and helpline",
+  "good_bad_touch_helpline_body":
+      "In an emergency, call your local child protection helpline or the police. Save important contacts in your phone and teach your child how to call for help.",
+
+  "good_bad_touch_reminders_title": "Gentle reminders",
+  "good_bad_touch_reminders_point_1":
+      "Repeat these lessons regularly in a calm and supportive way.",
+  "good_bad_touch_reminders_point_2":
+      "Never blame the child for anything they report.",
+  "good_bad_touch_reminders_point_3":
+      "Your child’s safety and trust come first—always."
 };

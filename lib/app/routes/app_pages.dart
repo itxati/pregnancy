@@ -22,6 +22,7 @@ import '../modules/track_my_pregnancy/views/track_my_pregnancy_view.dart';
 import '../modules/track_my_pregnancy/views/baby_size_discovery_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/good_bad_touch/views/good_bad_touch_view.dart';
 // import '../modules/debug_image_preview/image_downloader_view.dart';
 
 // import 'package:pregnance/app/modules/track_my_baby/bindings/track_my_baby_binding.dart';
@@ -128,6 +129,10 @@ class AppPages {
       name: Routes.babySizeDiscovery,
       page: () => const BabySizeDiscoveryView(),
       middlewares: [AuthMiddleware()],
+    ),
+    GetPage(
+      name: '/good_bad_touch',
+      page: () => const GoodBadTouchView(),
     ),
   ];
 }

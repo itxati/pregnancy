@@ -15,6 +15,77 @@ const List<BabyMilestone> babyMilestones = [
     description:
         'Your baby has just entered the world! This is a time of rapid adjustment and bonding.',
   ),
+  // 2–8 years extension
+  BabyMilestone(
+    imageUrl: 'assets/afterbirth/2.jpg',
+    month: 24,
+    title: '2–3 Years',
+    milestones: [
+      'Walks and runs with better balance; begins climbing; may pedal tricycle',
+      'Uses 2–3 word sentences; follows simple instructions; points to named pictures; pretend play begins',
+      'Gaining independence; some defiance; parallel play emerges',
+      'Scribbles, stacks blocks, turns knobs',
+    ],
+    description:
+        'Early toddler years bring rapid gains in motor control, language, and social independence.',
+  ),
+  BabyMilestone(
+    imageUrl: 'assets/afterbirth/3.jpg',
+    month: 36,
+    title: '3–4 Years',
+    milestones: [
+      'Improved balance; hops and jumps; climbs stairs alternating feet',
+      'Speaks in full sentences; asks “why?”; counts small numbers; sorts by shape/color; richer pretend play',
+      'Takes turns; shows affection; more cooperative play',
+      'Copies shapes; begins using scissors; dresses/undresses with help',
+    ],
+  ),
+  BabyMilestone(
+    imageUrl: 'assets/afterbirth/4.jpg',
+    month: 48,
+    title: '4–5 Years',
+    milestones: [
+      'Runs, throws, and catches more reliably; rides tricycle well',
+      'Recognizes letters/numbers; recalls simple stories; understands same vs different; basic reasoning',
+      'Expresses emotions; engages in social play; starts grasping rules',
+      'Draws a person with parts; cuts shapes; writes some letters',
+    ],
+  ),
+  BabyMilestone(
+    imageUrl: 'assets/afterbirth/1.jpg',
+    month: 60,
+    title: '5–6 Years',
+    milestones: [
+      'Refined coordination; better control in drawing and daily tasks',
+      'Reading readiness; basic math concepts (counting, simple operations); more logical thinking',
+      'Greater self-control; cooperates with peers; understands fairness',
+      'Improved pencil grip; writes own name; increased task precision',
+    ],
+  ),
+  BabyMilestone(
+    imageUrl: 'assets/afterbirth/2.jpg',
+    month: 72,
+    title: '6–8 Years',
+    milestones: [
+      'Skill refinement continues (handwriting, sports, coordination)',
+      'Shifts toward concrete operational thinking (logical operations on real objects)',
+      'Deeper peer relationships; stronger rule-following and moral sense; self-esteem linked to success',
+      'Complex drawings; neater handwriting; more intricate crafts',
+    ],
+  ),
+  BabyMilestone(
+    imageUrl: 'assets/afterbirth/3.jpg',
+    month: 96,
+    title: '8 Years Overview',
+    milestones: [
+      'Consolidates skills across academics and sports; better endurance',
+      'More consistent logical reasoning; growing academic independence',
+      'Stable friendships; empathy and rule understanding strengthen',
+      'Organized, detailed work products (writing, crafts, projects)',
+    ],
+    description:
+        'By ~8 years, children show more stable cognitive, social, and motor patterns; experiences remain highly impactful.',
+  ),
   BabyMilestone(
     imageUrl: 'assets/afterbirth/1.jpg',
     month: 1,
@@ -114,6 +185,58 @@ const List<BabyHealthInfo> babyHealthInfos = [
     ],
     description:
         'Jaundice is usually harmless and goes away on its own, but some cases require medical attention.',
+  ),
+  // Teething / Dental Development (2–8 years relevance)
+  BabyHealthInfo(
+    title: 'Teething and Dental Development',
+    points: [
+      'Primary teeth eruption typically completes around 2–3 years',
+      'Sequence often: central incisors, lateral incisors, first molars, canines, second molars',
+      'Focus after eruption: daily brushing, fluoride as advised, routine checks',
+      'Watch for tooth decay; baby teeth health affects speech and permanent teeth',
+      'Supervise brushing; teach proper technique and duration',
+    ],
+    description:
+        'Healthy dental habits in early childhood prevent decay and support speech, chewing, and long-term oral health.',
+  ),
+  // Vaccination (Immunization) for Ages 2–8
+  BabyHealthInfo(
+    title: 'Vaccination (Ages 2–8)',
+    points: [
+      'Booster doses in early childhood (e.g., DTP) are common',
+      'Some programs include MMR, varicella, polio boosters, annual influenza',
+      'Schedules vary by country; follow local EPI guidance',
+      'Keep records updated; bring card to school and checkups',
+      'Consult your provider for catch-up doses if any were missed',
+    ],
+    description:
+        'Follow your local immunization schedule for boosters between 2–8 years to maintain protection.',
+  ),
+  // School Readiness & Early Education
+  BabyHealthInfo(
+    title: 'School Readiness and Early Education',
+    points: [
+      'Domains: social-emotional, language/literacy, numeracy, physical health, learning approaches',
+      'Language & literacy: phonological awareness, vocabulary, narratives, letter-sound links',
+      'Math: counting, sorting, patterns, basic operations using real objects',
+      'Social skills: cooperation, self-regulation, understanding emotions, rules',
+      'Support transitions preschool → grade 1; monitor and support lagging skills',
+      'Use developmentally appropriate practice aligned with local frameworks',
+    ],
+    description:
+        'Strong early skills and supportive transitions improve school adjustment and later achievement.',
+  ),
+  // Ages 2–8 Overview
+  BabyHealthInfo(
+    title: 'Ages 2–8 Overview',
+    points: [
+      'First 0–8 years are critical; brain circuits wire rapidly; experiences have strong impact',
+      'Foundations: good nutrition, responsive caregiving, stimulation, safety, health and education access',
+      'Early learning programs reduce dropout, improve readiness, strengthen later performance',
+      'Use developmentally appropriate practice: align expectations with age and individual differences',
+    ],
+    description:
+        'Early childhood experiences shape cognitive, emotional, and physical outcomes across life.',
   ),
   // ... Add more health info sections ...
 ];
