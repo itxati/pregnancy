@@ -12,7 +12,20 @@
           "package_name": "com.example.babysafe"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "718958764929-0lg0t9ll4bsl2chke7a7cvobc9q1vadk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.babysafe",
+            "certificate_hash": "a4157e9682a4a6b6c468f56fd6029ff64c1b0c71"
+          }
+        },
+        {
+          "client_id": "718958764929-1ijbplg8ntfbi1241enrv6g8genl7ad4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBmCHzwxjMH3uhtCiwMLQGky5wamcq2yEA"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718958764929-1ijbplg8ntfbi1241enrv6g8genl7ad4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "718958764929-10ifpbm3f17gg4uhdvihl88ln9g2298q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.babysafe"
+              }
+            }
+          ]
         }
       }
     }

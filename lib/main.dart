@@ -166,8 +166,8 @@ void main() async {
   print(savedLang);
   if (savedLang == 'ur') {
     initialLocale = const Locale('ur', 'PK');
-  } else if (savedLang == 'skr') {
-    initialLocale = const Locale('skr', 'PK');
+  } else if (savedLang == 'ar') {
+    initialLocale = const Locale('ar', 'SA');
   } else {
     initialLocale = const Locale('en', 'US');
   }
@@ -190,7 +190,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en', 'US'),
         Locale('ur', 'PK'),
-        Locale('skr', 'PK'), // 👈 Added Saraiki support
+        Locale('ar', 'SA'), // 👈 Added Saraiki support
       ],
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

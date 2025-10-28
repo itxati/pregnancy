@@ -7,7 +7,7 @@ class AppTranslations extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': enUS,
-        'ur_PK': skrPK,
-        'skr_PK': skrPK,
+        'ur_PK': urPK,
+        'ar_SA': skrPK,
       };
 }

@@ -17,6 +17,8 @@ import '../../profile/views/profile_view.dart';
 import '../../profile/controllers/profile_controller.dart';
 import 'package:babysafe/app/widgets/speech_button.dart';
 import 'package:babysafe/app/services/theme_service.dart';
+import '../widgets/zoomable_image_viewer.dart';
+import '../../good_bad_touch/views/good_bad_touch_view.dart';
 
 // TODO: Replace image placeholders with actual baby images from assets:
 // - Baby profile image in overview card
@@ -161,6 +163,9 @@ class TrackMyBabyView extends StatelessWidget {
                   const SizedBox(height: 24),
                   // Tips Card
                   _TipsSummaryCard(),
+                  const SizedBox(height: 24),
+                  // Good Touch Bad Touch Card
+                  _GoodBadTouchCard(),
                   const SizedBox(height: 24),
                   // Essential Reads Section
                   _EssentialReadsSection(),
@@ -1132,6 +1137,130 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                   ),
                   const SizedBox(height: 12),
                 ],
+
+                // Vaccination Image Section
+                if (item.imageUrl != null) ...[
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: NeoSafeColors.primaryPink.withOpacity(0.2),
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ZoomableImageViewer(
+                                  imageUrl: item.imageUrl!,
+                                  title:
+                                      'health_${_items.indexOf(item) + 1}_title'
+                                          .tr,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                height: 200,
+                                decoration: BoxDecoration(
+                                  color:
+                                      NeoSafeColors.softGray.withOpacity(0.1),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Center(
+                                      child: Image.asset(
+                                        item.imageUrl!,
+                                        fit: BoxFit.contain,
+                                        errorBuilder:
+                                            (context, error, stackTrace) {
+                                          return Container(
+                                            padding: const EdgeInsets.all(20),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.image_not_supported,
+                                                  size: 48,
+                                                  color: NeoSafeColors
+                                                      .primaryPink
+                                                      .withOpacity(0.5),
+                                                ),
+                                                const SizedBox(height: 8),
+                                                Text(
+                                                  'Image not available',
+                                                  style: theme
+                                                      .textTheme.bodySmall
+                                                      ?.copyWith(
+                                                    color: NeoSafeColors
+                                                        .secondaryText,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 8,
+                                      right: 8,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(6),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.6),
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                        ),
+                                        child: const Icon(
+                                          Icons.zoom_in,
+                                          color: Colors.white,
+                                          size: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(12),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.visibility,
+                                      color: NeoSafeColors.primaryPink,
+                                      size: 16,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      'Tap to view full screen',
+                                      style:
+                                          theme.textTheme.bodySmall?.copyWith(
+                                        color: NeoSafeColors.primaryPink,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
                 ...visiblePoints.map((p) => Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: Row(
@@ -1526,6 +1655,128 @@ class _NewbornResponsibilitiesDetailPage extends StatelessWidget {
     if (t.contains('vaccination')) return Icons.vaccines;
     if (t.contains('passport')) return Icons.public;
     return Icons.info_outline;
+  }
+}
+
+class _GoodBadTouchCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          Get.to(() => const GoodBadTouchView());
+        },
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.95),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: NeoSafeColors.softGray.withOpacity(0.4)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        colors: [
+                          themeService.getAccentColor(),
+                          themeService.getPrimaryColor(),
+                        ],
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.shield_outlined,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      'Good Touch & Bad Touch',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: NeoSafeColors.primaryText,
+                                fontWeight: FontWeight.w700,
+                              ),
+                    ),
+                  ),
+                  const Icon(Icons.arrow_forward_ios,
+                      size: 16, color: NeoSafeColors.secondaryText),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Container(
+                height: 180,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: themeService.getPrimaryColor().withOpacity(0.2),
+                  ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    'assets/afterbirth/touch.png',
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              NeoSafeColors.primaryPink.withOpacity(0.2),
+                              NeoSafeColors.lightPink.withOpacity(0.1),
+                            ],
+                          ),
+                        ),
+                        child: const Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.touch_app,
+                                size: 48,
+                                color: NeoSafeColors.primaryPink,
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'Good Touch Bad Touch',
+                                style: TextStyle(
+                                  color: NeoSafeColors.primaryPink,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Teach your child about safe and unsafe touch. Empower them with knowledge.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: NeoSafeColors.secondaryText,
+                      height: 1.4,
+                    ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 

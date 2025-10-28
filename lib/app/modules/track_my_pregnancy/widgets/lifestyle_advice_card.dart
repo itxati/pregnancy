@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:babysafe/app/data/const/lifestyle_advices.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import 'package:babysafe/app/services/theme_service.dart';
+import '../views/lifestyle_advice_detail_view.dart';
 
 class LifeStyleAdviceCard extends StatefulWidget {
   const LifeStyleAdviceCard({super.key});
@@ -153,39 +154,39 @@ class _LifeStyleAdviceCardState extends State<LifeStyleAdviceCard> {
                     ),
 
                     // Wellness indicator
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: NeoSafeColors.success,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: NeoSafeColors.success.withOpacity(0.3),
-                            blurRadius: 4,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.health_and_safety_rounded,
-                            color: Colors.white,
-                            size: 12,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            "wellness".tr,
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   padding: const EdgeInsets.symmetric(
+                    //       horizontal: 8, vertical: 4),
+                    //   decoration: BoxDecoration(
+                    //     color: NeoSafeColors.success,
+                    //     borderRadius: BorderRadius.circular(12),
+                    //     boxShadow: [
+                    //       BoxShadow(
+                    //         color: NeoSafeColors.success.withOpacity(0.3),
+                    //         blurRadius: 4,
+                    //         offset: const Offset(0, 2),
+                    //       ),
+                    //     ],
+                    //   ),
+                    //   child: Row(
+                    //     mainAxisSize: MainAxisSize.min,
+                    //     children: [
+                    //       const Icon(
+                    //         Icons.health_and_safety_rounded,
+                    //         color: Colors.white,
+                    //         size: 12,
+                    //       ),
+                    //       const SizedBox(width: 4),
+                    //       Text(
+                    //         "wellness".tr,
+                    //         style: theme.textTheme.labelSmall?.copyWith(
+                    //           color: Colors.white,
+                    //           fontWeight: FontWeight.w600,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
 
                     const SizedBox(width: 12),
 
@@ -223,102 +224,106 @@ class _LifeStyleAdviceCardState extends State<LifeStyleAdviceCard> {
                       ...lifestyleAdvice.entries.map((entry) {
                         final icon = categoryIcons[entry.key] ?? Icons.circle;
 
-                        return Container(
-                          margin: const EdgeInsets.only(bottom: 12),
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: NeoSafeColors.creamWhite.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(
-                              color:
-                                  NeoSafeColors.lavenderPink.withOpacity(0.15),
-                              width: 1,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(() => LifestyleAdviceDetailView(
+                                  title: entry.key,
+                                  description: entry.value.tr,
+                                  icon: icon,
+                                ));
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: NeoSafeColors.creamWhite.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
                                 color: NeoSafeColors.lavenderPink
-                                    .withOpacity(0.08),
-                                blurRadius: 8,
-                                offset: const Offset(0, 2),
+                                    .withOpacity(0.15),
+                                width: 1,
                               ),
-                            ],
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Category icon with gradient background
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      NeoSafeColors.lavenderPink
-                                          .withOpacity(0.8),
-                                      NeoSafeColors.primaryPink
-                                          .withOpacity(0.6),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: NeoSafeColors.lavenderPink
+                                      .withOpacity(0.08),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Category icon with gradient background
+                                Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        NeoSafeColors.lavenderPink
+                                            .withOpacity(0.8),
+                                        NeoSafeColors.primaryPink
+                                            .withOpacity(0.6),
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.circular(12),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: NeoSafeColors.lavenderPink
+                                            .withOpacity(0.3),
+                                        blurRadius: 4,
+                                        offset: const Offset(0, 2),
+                                      ),
                                     ],
                                   ),
-                                  borderRadius: BorderRadius.circular(12),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: NeoSafeColors.lavenderPink
-                                          .withOpacity(0.3),
-                                      blurRadius: 4,
-                                      offset: const Offset(0, 2),
-                                    ),
-                                  ],
+                                  child: Icon(
+                                    icon,
+                                    color: Colors.white,
+                                    size: 16,
+                                  ),
                                 ),
-                                child: Icon(
-                                  icon,
-                                  color: Colors.white,
+
+                                const SizedBox(width: 12),
+
+                                // Content
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        entry.key.tr,
+                                        style: theme.textTheme.titleMedium
+                                            ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          color: NeoSafeColors.primaryText,
+                                          height: 1.2,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        entry.value.tr,
+                                        style: theme.textTheme.bodyMedium
+                                            ?.copyWith(
+                                          color: NeoSafeColors.secondaryText,
+                                          fontWeight: FontWeight.w500,
+                                          height: 1.4,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+
+                                // Arrow indicator
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: NeoSafeColors.lavenderPink
+                                      .withOpacity(0.6),
                                   size: 16,
                                 ),
-                              ),
-
-                              const SizedBox(width: 12),
-
-                              // Content
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      entry.key.tr,
-                                      style:
-                                          theme.textTheme.titleMedium?.copyWith(
-                                        fontWeight: FontWeight.w700,
-                                        color: NeoSafeColors.primaryText,
-                                        height: 1.2,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      entry.value.tr,
-                                      style:
-                                          theme.textTheme.bodyMedium?.copyWith(
-                                        color: NeoSafeColors.secondaryText,
-                                        fontWeight: FontWeight.w500,
-                                        height: 1.4,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              // Check mark indicator
-                              // Container(
-                              //   padding: const EdgeInsets.all(4),
-                              //   decoration: BoxDecoration(
-                              //     color: NeoSafeColors.success.withOpacity(0.2),
-                              //     shape: BoxShape.circle,
-                              //   ),
-                              //   child: Icon(
-                              //     Icons.check_rounded,
-                              //     color: NeoSafeColors.success,
-                              //     size: 14,
-                              //   ),
-                              // ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       }).toList(),

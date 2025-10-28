@@ -220,19 +220,65 @@
 import 'package:babysafe/app/modules/login/widgets/login_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utils/neo_safe_theme.dart';
 import 'dart:ui';
 import '../controllers/goal_selection_controller.dart';
 import '../widgets/goal_card.dart';
 import '../../pregnancy_splash/widgets/language_switcher.dart';
 
-class GoalSelectionView extends StatelessWidget {
+class GoalSelectionView extends StatefulWidget {
   const GoalSelectionView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    Get.put(GoalSelectionController());
+  State<GoalSelectionView> createState() => _GoalSelectionViewState();
+}
 
+class _GoalSelectionViewState extends State<GoalSelectionView> {
+  bool _showPostpartumCare = false;
+
+  // Check if postpartum care should be shown (within 2 weeks of birth)
+  Future<bool> _shouldShowPostpartumCare() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final birthDateStr = prefs.getString('onboarding_baby_birth_date');
+
+      if (birthDateStr == null || birthDateStr.isEmpty) {
+        return false;
+      }
+
+      final birthDate = DateTime.tryParse(birthDateStr);
+      if (birthDate == null) {
+        return false;
+      }
+
+      final now = DateTime.now();
+      final daysSinceBirth = now.difference(birthDate).inDays;
+
+      // Show postpartum care only within 2 weeks (14 days) of birth
+      return daysSinceBirth >= 0 && daysSinceBirth <= 14;
+    } catch (e) {
+      print('Error checking postpartum care eligibility: $e');
+      return false;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Get.put(GoalSelectionController());
+    _initializePostpartumCare();
+  }
+
+  Future<void> _initializePostpartumCare() async {
+    final shouldShow = await _shouldShowPostpartumCare();
+    setState(() {
+      _showPostpartumCare = shouldShow;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     // Get screen dimensions
     final size = MediaQuery.of(context).size;
     final width = size.width;
@@ -348,41 +394,65 @@ class GoalSelectionView extends StatelessWidget {
                             ),
                             SizedBox(height: responsiveHeight(2.5)),
 
-                            // Goal cards
-                            GoalCard(
-                              gradient: const LinearGradient(
-                                colors: [
-                                  NeoSafeColors.palePink,
-                                  NeoSafeColors.lightPink
+                            // // Goal cards
+                            // GoalCard(
+                            //   gradient: const LinearGradient(
+                            //     colors: [
+                            //       NeoSafeColors.palePink,
+                            //       NeoSafeColors.lightPink
+                            //     ],
+                            //     begin: Alignment.topLeft,
+                            //     end: Alignment.bottomRight,
+                            //   ),
+                            //   icon: Icons.favorite,
+                            //   iconColor: NeoSafeColors.primaryPink,
+                            //   title: "get_pregnant".tr,
+                            //   subtitle: "get_pregnant_subtitle".tr,
+                            //   onTap: () =>
+                            //       controller.onGoalCardTap('get_pregnant'),
+                            // ),
+                            // SizedBox(height: responsiveHeight(2)),
+                            // GoalCard(
+                            //   gradient: const LinearGradient(
+                            //     colors: [
+                            //       NeoSafeColors.babyPink,
+                            //       NeoSafeColors.coralPink
+                            //     ],
+                            //     begin: Alignment.topLeft,
+                            //     end: Alignment.bottomRight,
+                            //   ),
+                            //   icon: Icons.pregnant_woman,
+                            //   iconColor: NeoSafeColors.roseAccent,
+                            //   title: "track_my_pregnancy".tr,
+                            //   subtitle: "track_my_pregnancy_subtitle".tr,
+                            //   onTap: () =>
+                            //       controller.onGoalCardTap('track_pregnance'),
+                            // ),
+                            // SizedBox(height: responsiveHeight(2)),
+
+                            // Postpartum Care - Only show within 2 weeks of birth
+                            if (_showPostpartumCare)
+                              Column(
+                                children: [
+                                  GoalCard(
+                                    gradient: const LinearGradient(
+                                      colors: [
+                                        NeoSafeColors.softLavender,
+                                        NeoSafeColors.palePink
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                    icon: Icons.local_hospital,
+                                    iconColor: NeoSafeColors.roseAccent,
+                                    title: "postpartum_care".tr,
+                                    subtitle: "postpartum_care_subtitle".tr,
+                                    onTap: () => controller
+                                        .onGoalCardTap('postpartum_care'),
+                                  ),
+                                  SizedBox(height: responsiveHeight(2)),
                                 ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
                               ),
-                              icon: Icons.favorite,
-                              iconColor: NeoSafeColors.primaryPink,
-                              title: "get_pregnant".tr,
-                              subtitle: "get_pregnant_subtitle".tr,
-                              onTap: () =>
-                                  controller.onGoalCardTap('get_pregnant'),
-                            ),
-                            SizedBox(height: responsiveHeight(2)),
-                            GoalCard(
-                              gradient: const LinearGradient(
-                                colors: [
-                                  NeoSafeColors.babyPink,
-                                  NeoSafeColors.coralPink
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              icon: Icons.pregnant_woman,
-                              iconColor: NeoSafeColors.roseAccent,
-                              title: "track_my_pregnancy".tr,
-                              subtitle: "track_my_pregnancy_subtitle".tr,
-                              onTap: () =>
-                                  controller.onGoalCardTap('track_pregnance'),
-                            ),
-                            SizedBox(height: responsiveHeight(2)),
                             GoalCard(
                               gradient: const LinearGradient(
                                 colors: [
@@ -399,40 +469,24 @@ class GoalSelectionView extends StatelessWidget {
                               onTap: () =>
                                   controller.onGoalCardTap('child_development'),
                             ),
-                            SizedBox(height: responsiveHeight(2)),
-                            GoalCard(
-                              gradient: const LinearGradient(
-                                colors: [
-                                  NeoSafeColors.softLavender,
-                                  NeoSafeColors.palePink
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              icon: Icons.local_hospital,
-                              iconColor: NeoSafeColors.roseAccent,
-                              title: "postpartum_care".tr,
-                              subtitle: "postpartum_care_subtitle".tr,
-                              onTap: () =>
-                                  controller.onGoalCardTap('postpartum_care'),
-                            ),
-                            SizedBox(height: responsiveHeight(2)),
-                            GoalCard(
-                              gradient: const LinearGradient(
-                                colors: [
-                                  NeoSafeColors.coralPink,
-                                  NeoSafeColors.softLavender
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              icon: Icons.shield,
-                              iconColor: Colors.teal,
-                              title: "good_bad_touch_title".tr,
-                              subtitle: "good_bad_touch_subtitle".tr,
-                              onTap: () =>
-                                  controller.onGoalCardTap('good_bad_touch'),
-                            ),
+                            // SizedBox(height: responsiveHeight(2)),
+
+                            // GoalCard(
+                            //   gradient: const LinearGradient(
+                            //     colors: [
+                            //       NeoSafeColors.coralPink,
+                            //       NeoSafeColors.softLavender
+                            //     ],
+                            //     begin: Alignment.topLeft,
+                            //     end: Alignment.bottomRight,
+                            //   ),
+                            //   icon: Icons.shield,
+                            //   iconColor: Colors.teal,
+                            //   title: "good_bad_touch_title".tr,
+                            //   subtitle: "good_bad_touch_subtitle".tr,
+                            //   onTap: () =>
+                            //       controller.onGoalCardTap('good_bad_touch'),
+                            // ),
                             SizedBox(height: responsiveHeight(2)),
                           ],
                         ),

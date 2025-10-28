@@ -18,11 +18,13 @@ class BabyHealthInfo {
   final String title;
   final List<String> points;
   final String? description;
+  final String? imageUrl;
 
   const BabyHealthInfo({
     required this.title,
     required this.points,
     this.description,
+    this.imageUrl,
   });
 }
 

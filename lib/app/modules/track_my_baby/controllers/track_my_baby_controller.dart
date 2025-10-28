@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:babysafe/app/data/models/baby_development_data.dart';
 import '../../../services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 
 class TrackMyBabyController extends GetxController {
   // Baby information
@@ -27,9 +29,20 @@ class TrackMyBabyController extends GetxController {
   late AuthService authService;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    authService = Get.find<AuthService>();
+    // First: try onboarding gender from SharedPreferences
+    final prefs = await SharedPreferences.getInstance();
+    final onboardingGender = prefs.getString('onboarding_born_baby_gender');
+    if (onboardingGender != null && onboardingGender.isNotEmpty) {
+      babyGender.value = onboardingGender;
+      final themeService = Get.find<ThemeService>();
+      themeService.setBabyGender(onboardingGender);
+    } else if (authService.user?.babyGender != null) {
+      babyGender.value = authService.user!.babyGender!;
+      final themeService = Get.find<ThemeService>();
+      themeService.setBabyGender(authService.user!.babyGender!);
+    }
     if (authService.user?.babyBirthDate != null) {
       birthDate.value = authService.user!.babyBirthDate!;
     }
@@ -62,13 +75,7 @@ class TrackMyBabyController extends GetxController {
   }
 
   String getBabyAgeText() {
-    if (babyAgeInMonths.value == 0) {
-      return "weeks_old".trParams({"weeks": "${babyAgeInWeeks.value}"});
-    } else if (babyAgeInMonths.value == 1) {
-      return "one_month_old".tr;
-    } else {
-      return "months_old".trParams({"months": "${babyAgeInMonths.value}"});
-    }
+    return "weeks_old".trParams({"weeks": "${babyAgeInWeeks.value}"});
   }
 
   String getTimelineSubtitle() {

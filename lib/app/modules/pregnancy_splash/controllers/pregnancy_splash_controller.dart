@@ -27,7 +27,8 @@ class PregnancySplashController extends GetxController {
       } else {
         timer.cancel();
         Future.delayed(const Duration(seconds: 2), () {
-          Get.offAllNamed('/login');
+          Get.offAllNamed(
+              '/google_login'); // Navigate to Google Login instead of /login
         });
       }
     });

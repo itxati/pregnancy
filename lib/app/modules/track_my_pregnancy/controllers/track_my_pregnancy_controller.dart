@@ -31,11 +31,24 @@ class TrackMyPregnancyController extends GetxController
   void onInit() {
     super.onInit();
     authService = Get.find<AuthService>();
-    _initializeAnimations();
-    _loadUserData();
-    _calculatePregnancyProgress();
-    _updateCurrentWeekData();
-    _scheduleWeekAlerts();
+    final args = Get.arguments;
+    if (args != null && args['dueDate'] != null) {
+      final due = args['dueDate'];
+      if (due is DateTime) {
+        _initializeWithDueDate(due);
+      } else if (due is String) {
+        final parsedDue = DateTime.tryParse(due);
+        if (parsedDue != null) {
+          _initializeWithDueDate(parsedDue);
+        }
+      }
+    } else {
+      _initializeAnimations();
+      _loadUserData();
+      _calculatePregnancyProgress();
+      _updateCurrentWeekData();
+      _scheduleWeekAlerts();
+    }
   }
 
   void _initializeAnimations() {
@@ -353,22 +366,20 @@ class TrackMyPregnancyController extends GetxController
                   context,
                   icon: Icons.pregnant_woman,
                   iconColor: themeService.getPrimaryColor(),
-                  text:
-                      "pregnancy_progress".trParams({
-                        "weeks": "${pregnancyWeekNumber.value}",
-                        "days": "${pregnancyDays.value % 7}"
-                      }),
+                  text: "pregnancy_progress".trParams({
+                    "weeks": "${pregnancyWeekNumber.value}",
+                    "days": "${pregnancyDays.value % 7}"
+                  }),
                 ),
                 const SizedBox(height: 16),
                 _buildInfoRow(
                   context,
                   icon: Icons.calendar_today,
                   iconColor: NeoSafeColors.info,
-                  text:
-                      "time_remaining".trParams({
-                        "weeks": "${40 - pregnancyWeekNumber.value}",
-                        "days": "${7 - (pregnancyDays.value % 7)}"
-                      }),
+                  text: "time_remaining".trParams({
+                    "weeks": "${40 - pregnancyWeekNumber.value}",
+                    "days": "${7 - (pregnancyDays.value % 7)}"
+                  }),
                 ),
                 const SizedBox(height: 32),
 
@@ -485,5 +496,33 @@ class TrackMyPregnancyController extends GetxController
         ],
       ),
     );
+  }
+
+  void _initializeWithDueDate(DateTime due) {
+    dueDate.value = getFormattedDueDate(due);
+    final conceptionDate =
+        due.subtract(const Duration(days: 280)); // 9 months ~ 40 weeks
+    final today = DateTime.now();
+    final daysPregnant = today.difference(conceptionDate).inDays;
+    int weeksPregnant = (daysPregnant / 7).floor();
+    if (weeksPregnant < 0) {
+      weeksPregnant = 0;
+    } else if (weeksPregnant > 40) {
+      weeksPregnant = 40;
+    }
+    pregnancyWeekNumber.value = weeksPregnant;
+    pregnancyDays.value = daysPregnant > 0 ? daysPregnant : 0;
+    // Update trimester
+    if (weeksPregnant < 13) {
+      trimester.value = "first_trimester".tr;
+    } else if (weeksPregnant < 27) {
+      trimester.value = "second_trimester".tr;
+    } else {
+      trimester.value = "third_trimester".tr;
+    }
+    _initializeAnimations();
+    _updateCurrentWeekData();
+    _scheduleWeekAlerts();
+    update();
   }
 }

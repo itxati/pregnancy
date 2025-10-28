@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:babysafe/app/services/auth_service.dart';
 import 'package:babysafe/app/services/notification_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GetPregnantRequirementsController extends GetxController
     with GetTickerProviderStateMixin {
@@ -87,8 +88,14 @@ class GetPregnantRequirementsController extends GetxController
   }
 
   DateTime getNextPeriod() {
-    if (periodStart.value == null) return DateTime.now();
-    return periodStart.value!.add(Duration(days: cycleLength));
+    if (periodStart.value == null) {
+      print('GetNextPeriod - Period Start is null, returning now');
+      return DateTime.now();
+    }
+    final nextPeriod = periodStart.value!.add(Duration(days: cycleLength));
+    print(
+        'GetNextPeriod - Period Start: ${periodStart.value}, Cycle Length: $cycleLength, Next Period: $nextPeriod');
+    return nextPeriod;
   }
 
   int getCycleDay(DateTime day) {
@@ -166,6 +173,35 @@ class GetPregnantRequirementsController extends GetxController
       intercourseLog.addAll(user.intercourseLog);
       intercourseLog.refresh();
     }
+
+    // Also load data from goal onboarding SharedPreferences
+    _loadGoalOnboardingData();
+  }
+
+  // Load data from goal onboarding SharedPreferences
+  Future<void> _loadGoalOnboardingData() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // Load last period date from goal onboarding
+    final lastPeriodString = prefs.getString('onboarding_last_period');
+    print('Goal Onboarding - Last Period String: $lastPeriodString');
+    if (lastPeriodString != null) {
+      final lastPeriodDate = DateTime.parse(lastPeriodString);
+      periodStart.value = lastPeriodDate;
+      periodEnd.value = lastPeriodDate.add(Duration(days: periodLength - 1));
+      print('Goal Onboarding - Period Start Set: $lastPeriodDate');
+    }
+
+    // Load cycle length from goal onboarding
+    final onboardingCycleLength = prefs.getInt('onboarding_cycle_length');
+    print('Goal Onboarding - Cycle Length: $onboardingCycleLength');
+    if (onboardingCycleLength != null) {
+      cycleLength = onboardingCycleLength;
+      print('Goal Onboarding - Cycle Length Set: $cycleLength');
+    }
+
+    // Update the UI
+    update();
   }
 
   // Check and update period start if needed

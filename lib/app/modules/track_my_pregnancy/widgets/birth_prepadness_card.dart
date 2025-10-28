@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import 'package:babysafe/app/services/theme_service.dart';
+import '../views/birth_preparedness_detail_view.dart';
 
 class BirthPreparednessItem {
   final IconData icon;
@@ -372,80 +373,96 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
   }) {
     final theme = Theme.of(context);
 
-    return Container(
-      margin: EdgeInsets.only(bottom: isLast ? 0 : 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: NeoSafeColors.creamWhite.withOpacity(0.8),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: accentColor.withOpacity(0.15),
-          width: 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: accentColor.withOpacity(0.08),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => BirthPreparednessDetailView(
+          title: title,
+          description: description,
+          icon: icon,
+          accentColor: accentColor,
+        ));
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: isLast ? 0 : 12),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: NeoSafeColors.creamWhite.withOpacity(0.8),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: accentColor.withOpacity(0.15),
+            width: 1,
           ),
-        ],
-      ),
-      child: Row(
-        children: [
-          // Icon with accent color
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  accentColor.withOpacity(0.9),
-                  accentColor.withOpacity(0.7),
+          boxShadow: [
+            BoxShadow(
+              color: accentColor.withOpacity(0.08),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            // Icon with accent color
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    accentColor.withOpacity(0.9),
+                    accentColor.withOpacity(0.7),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: accentColor.withOpacity(0.3),
+                    blurRadius: 6,
+                    offset: const Offset(0, 3),
+                  ),
                 ],
               ),
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: accentColor.withOpacity(0.3),
-                  blurRadius: 6,
-                  offset: const Offset(0, 3),
-                ),
-              ],
+              child: Icon(
+                icon,
+                color: Colors.white,
+                size: 18,
+              ),
             ),
-            child: Icon(
-              icon,
-              color: Colors.white,
-              size: 18,
-            ),
-          ),
 
-          const SizedBox(width: 16),
+            const SizedBox(width: 16),
 
-          // Content
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: NeoSafeColors.primaryText,
-                    height: 1.2,
+            // Content
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: NeoSafeColors.primaryText,
+                      height: 1.2,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  description,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: NeoSafeColors.secondaryText,
-                    fontWeight: FontWeight.w500,
-                    height: 1.3,
+                  const SizedBox(height: 3),
+                  Text(
+                    description,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: NeoSafeColors.secondaryText,
+                      fontWeight: FontWeight.w500,
+                      height: 1.3,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            // Arrow indicator
+            Icon(
+              Icons.arrow_forward_ios,
+              color: accentColor.withOpacity(0.6),
+              size: 16,
+            ),
+          ],
+        ),
       ),
     );
   }

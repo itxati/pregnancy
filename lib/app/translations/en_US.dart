@@ -48,6 +48,37 @@ final Map<String, String> enUS = {
   'enter_your_email': 'Enter your email',
   'enter_your_password': 'Enter your password',
   'invalid_email': 'Please enter a valid email',
+
+  // Google Login page
+  'welcome_to_babysafe': 'Welcome to SardarTrust',
+  'your_pregnancy_companion': 'Your Pregnancy Companion',
+  'what_you_get': 'What You Get',
+  'track_pregnancy': 'Track Pregnancy',
+  'track_pregnancy_desc':
+      'Monitor your pregnancy week by week with detailed insights',
+  'baby_milestones': 'Baby Milestones',
+  'baby_milestones_desc':
+      'Track your baby\'s growth and development milestones',
+  'health_tips': 'Health Tips',
+  'health_tips_desc': 'Get expert advice and tips for a healthy pregnancy',
+  'continue_with_google': 'Continue with Google',
+  'or_use_email_password': 'Or use email and password',
+  'by_continuing_you_agree':
+      'By continuing, you agree to our Terms of Service and Privacy Policy',
+  'welcome_back_user': 'Welcome back, {name}!',
+  'google_signin_failed': 'Google sign-in failed',
+  'account_exists_different_credential':
+      'An account already exists with a different credential',
+  'invalid_credential': 'The credential received is malformed or has expired',
+  'google_signin_not_enabled': 'Google sign-in is not enabled',
+  'user_disabled': 'This user account has been disabled',
+  'user_not_found': 'No user found for this credential',
+  'wrong_password': 'Wrong password provided',
+  'invalid_verification_code': 'The verification code is invalid',
+  'invalid_verification_id': 'The verification ID is invalid',
+  'signin_failed': 'Sign-in Failed',
+  'error': 'Error',
+  'google_signin_error': 'An error occurred during Google sign-in',
   'sending': 'Sending...',
   'logging_in': 'Logging in...',
   'reset_email_sent_title': 'Reset Link Sent!',
@@ -97,6 +128,40 @@ final Map<String, String> enUS = {
   'last_period': 'Last Period',
   'next_period': 'Next Period',
   'in_days': 'in {days} days',
+  'no_period_data': 'No period data available',
+  'overdue': 'Overdue by {days} days',
+  'get_pregnant_profile': 'Get Pregnant Profile',
+  'manage_fertility_journey': 'Manage your fertility journey',
+  'get_pregnant_user': 'Fertility Tracker',
+  'trying_to_conceive': 'Trying to Conceive',
+  'basic_details': 'Basic Details',
+  'goal': 'Goal',
+  'journey_started': 'Journey Started',
+  'not_set': 'Not Set',
+  'days_trying': 'Days Trying',
+  'cycle_details': 'Cycle Details',
+  'cycle_length': 'Cycle Length',
+  'period_length': 'Period Length',
+  'fertility_tracking': 'Fertility Tracking',
+  'fertile_window': 'Fertile Window',
+  'not_available': 'Not Available',
+  'current_cycle_day': 'Current Cycle Day',
+  'not_in_cycle': 'Not in Cycle',
+  'pregnancy_chance_today': 'Pregnancy Chance Today',
+  'onboarding_answers': 'Onboarding Answers',
+  'last_period_date': 'Last Period Date',
+  'cycle_summary': 'Cycle Summary',
+  'journey_summary': 'Journey Summary',
+  'edit_gender': 'Edit Gender',
+  'edit_purpose': 'Edit Purpose',
+  'edit_last_period': 'Edit Last Period',
+  'edit_cycle_length': 'Edit Cycle Length',
+  'select_date': 'Select Date',
+  'cycle_length_days': 'Cycle Length (days)',
+  'gender_updated_success': 'Gender updated successfully',
+  'purpose_updated_success': 'Purpose updated successfully',
+  'last_period_updated_success': 'Last period updated successfully',
+  'cycle_length_updated_success': 'Cycle length updated successfully',
   'fertile_window_range': 'Fertile Window',
   'todays_insights': 'Today\'s Insights',
   'fertility': 'Fertility',
@@ -1812,6 +1877,10 @@ final Map<String, String> enUS = {
   "milestone_0_3": "Responds to sounds",
   "milestone_0_4": "Grasps your finger",
   "milestone_0_5": "Roots for feeding",
+  "milestone_0_6": "Moves limbs symmetrically",
+  "milestone_0_7": "Blinks to bright light",
+  "milestone_0_8": "Startles or alerts to loud sounds",
+  "milestone_0_9": "Gives response to faces and voice",
 
 // Month 1 milestones
   "milestone_1_1": "Holds head up for longer periods",
@@ -1820,25 +1889,26 @@ final Map<String, String> enUS = {
   "milestone_1_4": "Makes cooing sounds",
   "milestone_1_5": "Recognizes familiar voices",
 
-  // Month 24 (2–3 years)
-  "milestone_24_1":
-      "Walks and runs with better balance; begins climbing; may pedal tricycle",
-  "milestone_24_2":
-      "Uses 2–3 word sentences; follows simple instructions; points to named pictures; pretend play begins",
-  "milestone_24_3":
-      "Gaining independence; some defiance; parallel play emerges",
-  "milestone_24_4": "Scribbles, stacks blocks, turns knobs",
+// Month 24 (2–3 years) milestones
+  "milestone_24_1": "Runs or climbs stairs",
+  "milestone_24_2": "Kicks ball",
+  "milestone_24_3": "Eats properly with spoon",
+  "milestone_24_4": "Draws straight lines",
+  "milestone_24_5": "Spontaneous drawing",
+  "milestone_24_6": "Speaks 2-word phrases",
+  "milestone_24_7": "Follows two-step commands",
+  "milestone_24_8": "Plays beside other children (parallel play)",
 
-  // Month 36 (3–4 years)
-  "milestone_36_1":
-      "Improved balance; hops and jumps; climbs stairs alternating feet",
-  "milestone_36_2":
-      "Speaks in full sentences; asks ‘why?’; counts small numbers; sorts by shape/color; richer pretend play",
-  "milestone_36_3": "Takes turns; shows affection; more cooperative play",
-  "milestone_36_4":
-      "Copies shapes; begins using scissors; dresses/undresses with help",
+// Month 36 (3–4 years)
+  "milestone_36_1": "Pedals tricycle",
+  "milestone_36_2": "Goes up stairs with alternate feet",
+  "milestone_36_3": "Copies a circle",
+  "milestone_36_4": "Makes simple sentences",
+  "milestone_36_5": "Says first name and gender",
+  "milestone_36_6": "Social, friendly, and helpful",
+  "milestone_36_7": "Toilet trained by day",
 
-  // Month 48 (4–5 years)
+// Month 48 (4–5 years)
   "milestone_48_1":
       "Runs, throws, and catches more reliably; rides tricycle well",
   "milestone_48_2":
@@ -1847,8 +1917,16 @@ final Map<String, String> enUS = {
       "Expresses emotions; engages in social play; starts grasping rules",
   "milestone_48_4":
       "Draws a person with parts; cuts shapes; writes some letters",
+  "milestone_48_5": "Balances on one foot",
+  "milestone_48_6": "Copies a square",
+  "milestone_48_7": "Uses scissors confidently",
+  "milestone_48_8": "Tells full name and age",
+  "milestone_48_9": "Answers simple questions",
+  "milestone_48_10": "Tells colour names",
+  "milestone_48_11": "Plays interactively with other children",
+  "milestone_48_12": "Dresses, undresses, and bathes without help",
 
-  // Month 60 (5–6 years)
+// Month 60 (5–6 years)
   "milestone_60_1":
       "Refined coordination; better control in drawing and daily tasks",
   "milestone_60_2":
@@ -1857,6 +1935,12 @@ final Map<String, String> enUS = {
       "Greater self-control; cooperates with peers; understands fairness",
   "milestone_60_4":
       "Improved pencil grip; writes own name; increased task precision",
+  "milestone_60_5": "Skips or hops on one foot",
+  "milestone_60_6": "Draws a triangle",
+  "milestone_60_7": "Counts up to 10",
+  "milestone_60_8": "Tells simple stories",
+  "milestone_60_9": "Understands sharing and turn taking",
+  "milestone_60_10": "Buttons shirt independently",
 
   // Month 72 (6–8 years)
   "milestone_72_1":
@@ -1878,7 +1962,7 @@ final Map<String, String> enUS = {
   "milestone_96_4":
       "Organized, detailed work products (writing, crafts, projects)",
 
-// Month 3 milestones
+// Month 3 milestones (English)
   "milestone_3_1": "Follows light and tracks with eyes",
   "milestone_3_2": "Regards mother’s face",
   "milestone_3_3": "Turns toward nearby voices",
@@ -1887,47 +1971,63 @@ final Map<String, String> enUS = {
   "milestone_3_6": "Hands largely open; social smile appears",
   "milestone_3_7":
       "Sleeps most of the time (more predictable patterns emerging)",
+  "milestone_3_8": "Holds neck steadily",
+  "milestone_3_9": "Follows objects through a small arc",
+  "milestone_3_10": "Makes sounds and vocal responses to voices or noises",
+  "milestone_3_11": "Shows interest in familiar faces",
 
-// Month 6 milestones
+// Month 6 milestones (English)
   "milestone_6_1":
       "Rolls prone to supine (around 5 months) and supine to prone (around 6 months)",
-  "milestone_6_2": "Sits with back support",
-  "milestone_6_3": "Reaches out with one hand to grasp",
+  "milestone_6_2": "Sits with support or back support",
+  "milestone_6_3": "Reaches for or grasps objects",
   "milestone_6_4": "Eyes move in unison",
   "milestone_6_5": "Vocalizes tunefully; shouts to attract attention",
-  "milestone_6_6": "Responds to sounds and simple words",
-  "milestone_6_7": "Explores by bringing objects to mouth",
-  "milestone_6_8": "Imitates simple gestures (e.g., bye-bye)",
+  "milestone_6_6": "Turns head towards sounds or voices",
+  "milestone_6_7": "Makes noises and babbles",
+  "milestone_6_8": "Laughs, chuckles, or squeals happily",
+  "milestone_6_9": "Responds to familiar people with smiles or excitement",
+  "milestone_6_10": "Explores by bringing objects to mouth",
+  "milestone_6_11": "Imitates simple gestures (e.g., bye-bye)",
 
-// Month 9 milestones
+// Month 9 milestones (English)
   "milestone_9_1": "Sits without support (often by 8 months)",
   "milestone_9_2": "Reaches for a toy in front (around 9 months)",
   "milestone_9_3": "Pivots to reach toy behind (around 10 months)",
   "milestone_9_4":
       "Pulls to stand and cruises on furniture (may fall on bottom)",
-  "milestone_9_5": "Crawls/creeps on hands and knees",
-  "milestone_9_6":
+  "milestone_9_5": "Crawls or creeps on hands and knees (usually 10–11 months)",
+  "milestone_9_6": "Transfers objects from one hand to the other",
+  "milestone_9_7": "Finger-feeds small pieces of food",
+  "milestone_9_8":
       "Visually alert to peripheral movement; grasps string/objects",
-  "milestone_9_7":
+  "milestone_9_9":
       "Drops objects and looks for them (object permanence emerging)",
-  "milestone_9_8": "Babbles repeated syllables (e.g., “baba”, “dada”)",
-  "milestone_9_9": "Holds, bites, chews biscuits/soft foods",
-  "milestone_9_10": "Shows fear of strangers (from ~7 months)",
-  "milestone_9_11": "Waves and imitates hand clapping",
+  "milestone_9_10": "Babbles repeated syllables like “ba-ba” or “da-da”",
+  "milestone_9_11": "Holds, bites, and chews biscuits or soft foods",
+  "milestone_9_12": "Shows fear or shyness when strangers are around",
+  "milestone_9_13": "Waves and imitates hand clapping",
 
-// Month 12 milestones
-  "milestone_12_1": "Walks with one hand held (around 12 months)",
+// Month 12 milestones (English)
+  "milestone_12_1": "Walks with support or holding one hand (around 12 months)",
   "milestone_12_2": "Cruises along furniture; may take a few independent steps",
-  "milestone_12_3": "Watches small toys closely and points to desired objects",
-  "milestone_12_4": "Knows and responds to own name",
-  "milestone_12_5": "Says a few words",
-  "milestone_12_6": "Drinks from a cup with little assistance",
-  "milestone_12_7": "Waves bye-bye",
+  "milestone_12_3":
+      "Picks up small objects using thumb and index finger (pincer grasp)",
+  "milestone_12_4": "Responds when called by name",
+  "milestone_12_5": "Speaks a few single words",
+  "milestone_12_6": "Follows simple one-step commands (e.g., ‘come here’)",
+  "milestone_12_7": "Enjoys peek-a-boo and pat-a-cake games",
+  "milestone_12_8": "Waves bye-bye or imitates simple gestures",
+  "milestone_12_9": "Drinks from a cup with little help",
 
 // Month 18 milestones
-  "milestone_18_1": "Walks alone, even with uneven steps",
-  "milestone_18_2": "Walks upstairs with one hand held",
-  "milestone_18_3": "Throws a ball",
+  "milestone_18_1": "Walks steadily",
+  "milestone_18_2": "Tries to eat with spoon or hand",
+  "milestone_18_3": "Copies domestic chores",
+  "milestone_18_4": "Scribbles",
+  "milestone_18_5": "Speaks 5–10 words",
+  "milestone_18_6": "Points to 3 body parts",
+  "milestone_18_7": "Plays using a single toy",
 
 // Section 1: Newborn Jaundice
   "health_1_title": "Newborn Jaundice",

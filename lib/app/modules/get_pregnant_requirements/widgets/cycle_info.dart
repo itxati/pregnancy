@@ -31,87 +31,142 @@ class CycleInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nextPeriod = controller.getNextPeriod();
-    final daysToNext = nextPeriod.difference(DateTime.now()).inDays;
-    final periodStart = controller.periodStart.value!;
-    final ovulationDay = controller.getOvulationDay();
-    final fertileDays = controller.getFertileDays();
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            NeoSafeColors.lightPink.withOpacity(0.3),
-            NeoSafeColors.palePink.withOpacity(0.5),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: NeoSafeColors.primaryPink.withOpacity(0.2),
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "cycle_overview".tr,
-            style: theme.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-              color: NeoSafeColors.primaryText,
+    return Obx(() {
+      final periodStart = controller.periodStart.value;
+      if (periodStart == null) {
+        return Container(
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                NeoSafeColors.lightPink.withOpacity(0.3),
+                NeoSafeColors.palePink.withOpacity(0.5),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: NeoSafeColors.primaryPink.withOpacity(0.2),
+              width: 1,
             ),
           ),
-          const SizedBox(height: 16),
-          Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: _CycleInfoItem(
-                  title: "last_period".tr,
-                  value: "${periodStart.day} ${_monthName(periodStart.month)}",
-                  icon: Icons.water_drop,
-                  color: NeoSafeColors.error,
+              Text(
+                "cycle_overview".tr,
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: NeoSafeColors.primaryText,
                 ),
               ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _CycleInfoItem(
-                  title: "next_period".tr,
-                  value: "in_days".trParams({'days': daysToNext.toString()}),
-                  icon: Icons.schedule,
-                  color: NeoSafeColors.roseAccent,
+              const SizedBox(height: 16),
+              Text(
+                "no_period_data".tr,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: NeoSafeColors.secondaryText,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Expanded(
-                child: _CycleInfoItem(
-                  title: "ovulation".tr,
-                  value:
-                      "${ovulationDay.day} ${_monthName(ovulationDay.month)}",
-                  icon: Icons.star,
-                  color: NeoSafeColors.warning,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _CycleInfoItem(
-                  title: "fertile_window_range".tr,
-                  value:
-                      "${fertileDays.isNotEmpty ? '${fertileDays.first.day}-${fertileDays.last.day}' : '-'}",
-                  icon: Icons.eco,
-                  color: NeoSafeColors.success,
-                ),
-              ),
+        );
+      }
+
+      final nextPeriod = controller.getNextPeriod();
+      final daysToNext = nextPeriod.difference(DateTime.now()).inDays;
+      final ovulationDay = controller.getOvulationDay();
+      final fertileDays = controller.getFertileDays();
+
+      // Debug logging
+      print('Period Start: ${controller.periodStart.value}');
+      print('Cycle Length: ${controller.cycleLength}');
+      print('Next Period: $nextPeriod');
+      print('Days to Next: $daysToNext');
+
+      return Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              NeoSafeColors.lightPink.withOpacity(0.3),
+              NeoSafeColors.palePink.withOpacity(0.5),
             ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-        ],
-      ),
-    );
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: NeoSafeColors.primaryPink.withOpacity(0.2),
+            width: 1,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "cycle_overview".tr,
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: NeoSafeColors.primaryText,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: _CycleInfoItem(
+                    title: "last_period".tr,
+                    value:
+                        "${periodStart.day} ${_monthName(periodStart.month)}",
+                    icon: Icons.water_drop,
+                    color: NeoSafeColors.error,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _CycleInfoItem(
+                    title: "next_period".tr,
+                    value: daysToNext > 0
+                        ? "in ${daysToNext.toString()} days"
+                        : daysToNext == 0
+                            ? "today".tr
+                            : "overdue by ${(-daysToNext).toString()} days",
+                    icon: Icons.schedule,
+                    color: NeoSafeColors.roseAccent,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: _CycleInfoItem(
+                    title: "ovulation".tr,
+                    value:
+                        "${ovulationDay.day} ${_monthName(ovulationDay.month)}",
+                    icon: Icons.star,
+                    color: NeoSafeColors.warning,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _CycleInfoItem(
+                    title: "fertile_window_range".tr,
+                    value:
+                        "${fertileDays.isNotEmpty ? '${fertileDays.first.day}-${fertileDays.last.day}' : '-'}",
+                    icon: Icons.eco,
+                    color: NeoSafeColors.success,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
 

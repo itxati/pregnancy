@@ -50,7 +50,7 @@ class ThemeService extends GetxService {
 
   // Update theme based on baby gender
   void _updateTheme() {
-    if (babyGender.value == 'male') {
+    if (babyGender.value == 'male' || babyGender.value == 'boy') {
       Get.changeTheme(_getBlueTheme());
     } else {
       Get.changeTheme(NeoSafeTheme.lightTheme);
@@ -185,26 +185,36 @@ class ThemeService extends GetxService {
 
   // Get current primary color based on gender
   Color getPrimaryColor() {
-    return babyGender.value == 'male' ? primaryBlue : NeoSafeColors.primaryPink;
+    return (babyGender.value == 'male' || babyGender.value == 'boy')
+        ? primaryBlue
+        : NeoSafeColors.primaryPink;
   }
 
   // Get current light color based on gender
   Color getLightColor() {
-    return babyGender.value == 'male' ? lightBlue : NeoSafeColors.lightPink;
+    return (babyGender.value == 'male' || babyGender.value == 'boy')
+        ? lightBlue
+        : NeoSafeColors.lightPink;
   }
 
   // Get current pale color based on gender
   Color getPaleColor() {
-    return babyGender.value == 'male' ? paleBlue : NeoSafeColors.palePink;
+    return (babyGender.value == 'male' || babyGender.value == 'boy')
+        ? paleBlue
+        : NeoSafeColors.palePink;
   }
 
   // Get current accent color based on gender
   Color getAccentColor() {
-    return babyGender.value == 'male' ? blueAccent : NeoSafeColors.roseAccent;
+    return (babyGender.value == 'male' || babyGender.value == 'boy')
+        ? blueAccent
+        : NeoSafeColors.roseAccent;
   }
 
   // Get current baby color based on gender
   Color getBabyColor() {
-    return babyGender.value == 'male' ? skyBlue : NeoSafeColors.babyPink;
+    return (babyGender.value == 'male' || babyGender.value == 'boy')
+        ? skyBlue
+        : NeoSafeColors.babyPink;
   }
 }

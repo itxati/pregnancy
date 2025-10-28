@@ -291,20 +291,20 @@ class ArticlePage extends StatelessWidget {
                           // Article Footer
                           Row(
                             children: [
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: NeoSafeColors.primaryPink
-                                      .withOpacity(0.1),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Icons.favorite_border,
-                                  size: 20,
-                                  color: NeoSafeColors.primaryPink,
-                                ),
-                              ),
-                              const SizedBox(width: 12),
+                              // Container(
+                              //   padding: const EdgeInsets.all(8),
+                              //   decoration: BoxDecoration(
+                              //     color: NeoSafeColors.primaryPink
+                              //         .withOpacity(0.1),
+                              //     shape: BoxShape.circle,
+                              //   ),
+                              //   child: Icon(
+                              //     Icons.favorite_border,
+                              //     size: 20,
+                              //     color: NeoSafeColors.primaryPink,
+                              //   ),
+                              // ),
+                              // const SizedBox(width: 12),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -5,6 +5,7 @@ abstract class Routes {
   static const debugImagePreview = '/debug_image_preview';
   static const home = '/home';
   static const pregnancySplash = '/pregnancy_splash';
+  static const googleLogin = '/google_login';
   static const login = '/login';
   static const signup = '/signup';
   static const forgetPassword = '/forget_password';
@@ -19,4 +20,5 @@ abstract class Routes {
   static const dangerSigns = '/danger_signs';
   static const postpartumCare = '/postpartum_care';
   static const babySizeDiscovery = '/baby_size_discovery';
+  static const goalOnboarding = '/goal_onboarding';
 }

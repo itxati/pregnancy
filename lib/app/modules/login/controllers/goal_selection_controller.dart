@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../services/auth_service.dart';
 import '../../../services/theme_service.dart';
 import 'package:babysafe/app/widgets/gender_selector.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GoalSelectionController extends GetxController {
   late AuthService authService;
@@ -26,7 +27,7 @@ class GoalSelectionController extends GetxController {
   }
 
   // Method to navigate to goal-specific pages
-  void navigateToGoal(String goal) {
+  void navigateToGoal(String goal) async {
     isLoading.value = true;
 
     switch (goal) {
@@ -43,9 +44,16 @@ class GoalSelectionController extends GetxController {
         }
         break;
       case 'child_development':
-        print(
-            'DEBUG: hasCompletedBabyBirthDateSetup = ${authService.user?.hasCompletedBabyBirthDateSetup}');
-        if (authService.user?.hasCompletedBabyBirthDateSetup == true) {
+        // Check SharedPreferences before DB/backend
+        final prefs = await SharedPreferences.getInstance();
+        final birthDateStr = prefs.getString('onboarding_baby_birth_date');
+        final gender = prefs.getString('onboarding_born_baby_gender');
+        if (birthDateStr != null &&
+            gender != null &&
+            birthDateStr.isNotEmpty &&
+            gender.isNotEmpty) {
+          Get.toNamed('/track_my_baby');
+        } else if (authService.user?.hasCompletedBabyBirthDateSetup == true) {
           Get.toNamed('/track_my_baby');
         } else {
           _showBabyBirthDateBottomSheet();

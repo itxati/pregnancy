@@ -51,7 +51,7 @@ class GetPregnantRequirementsView extends StatelessWidget {
                             left: 16,
                           ),
                           child: GestureDetector(
-                            onTap: () => Get.toNamed(Routes.profile),
+                            onTap: () => Get.toNamed('/get_pregnant_profile'),
                             child: CircleAvatar(
                               radius: 22,
                               backgroundColor: Colors.white,

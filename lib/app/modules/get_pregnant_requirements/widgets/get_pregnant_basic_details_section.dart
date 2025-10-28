@@ -1,0 +1,510 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../utils/neo_safe_theme.dart';
+import '../controllers/get_pregnant_requirements_controller.dart';
+
+class GetPregnantBasicDetailsSection extends StatelessWidget {
+  final GetPregnantRequirementsController controller;
+
+  const GetPregnantBasicDetailsSection({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Map<String, String?>>(
+      future: _getOnboardingData(),
+      builder: (context, snapshot) {
+        final data = snapshot.data ?? {};
+        return Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 10,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Icon(
+                      Icons.quiz_outlined,
+                      color: NeoSafeColors.primaryPink,
+                      size: 20,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    'onboarding_answers'.tr,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: NeoSafeColors.primaryText,
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              // Gender
+              _EditableDetailRow(
+                icon: Icons.person_outline,
+                label: 'gender'.tr,
+                value: data['gender'] ?? 'Not provided',
+                color: NeoSafeColors.info,
+                onEdit: () => _showEditGenderDialog(context, data['gender']),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Purpose
+              _EditableDetailRow(
+                icon: Icons.flag_outlined,
+                label: 'purpose'.tr,
+                value: data['purpose'] ?? 'Not provided',
+                color: NeoSafeColors.success,
+                onEdit: () => _showEditPurposeDialog(context, data['purpose']),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Last Period Date
+              _EditableDetailRow(
+                icon: Icons.calendar_today_outlined,
+                label: 'last_period_date'.tr,
+                value: data['last_period'] != null
+                    ? _formatDate(DateTime.parse(data['last_period']!))
+                    : 'Not provided',
+                color: NeoSafeColors.warning,
+                onEdit: () =>
+                    _showEditLastPeriodDialog(context, data['last_period']),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Cycle Length
+              _EditableDetailRow(
+                icon: Icons.schedule_outlined,
+                label: 'cycle_length'.tr,
+                value: data['cycle_length'] != null
+                    ? '${data['cycle_length']} days'
+                    : 'Not provided',
+                color: NeoSafeColors.error,
+                onEdit: () =>
+                    _showEditCycleLengthDialog(context, data['cycle_length']),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<Map<String, String?>> _getOnboardingData() async {
+    final prefs = await SharedPreferences.getInstance();
+    return {
+      'name': prefs.getString('onboarding_name'),
+      'gender': prefs.getString('onboarding_gender'),
+      'purpose': prefs.getString('onboarding_purpose'),
+      'last_period': prefs.getString('onboarding_last_period'),
+      'cycle_length': prefs.getInt('onboarding_cycle_length')?.toString(),
+    };
+  }
+
+  String _formatDate(DateTime date) {
+    final months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
+    return '${date.day} ${months[date.month - 1]} ${date.year}';
+  }
+
+  void _showEditGenderDialog(BuildContext context, String? currentGender) {
+    Get.dialog(
+      AlertDialog(
+        title: Text('edit_gender'.tr),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: Text('male'.tr),
+              leading: Radio<String>(
+                value: 'male',
+                groupValue: currentGender,
+                onChanged: (value) {
+                  Get.back();
+                  _updateGender(value!);
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('female'.tr),
+              leading: Radio<String>(
+                value: 'female',
+                groupValue: currentGender,
+                onChanged: (value) {
+                  Get.back();
+                  _updateGender(value!);
+                },
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('cancel'.tr),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditPurposeDialog(BuildContext context, String? currentPurpose) {
+    Get.dialog(
+      AlertDialog(
+        title: Text('edit_purpose'.tr),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: Text('trying_to_conceive'.tr),
+              leading: Radio<String>(
+                value: 'get_pregnant',
+                groupValue: currentPurpose,
+                onChanged: (value) {
+                  Get.back();
+                  _updatePurpose(value!);
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('pregnant'.tr),
+              leading: Radio<String>(
+                value: 'pregnant',
+                groupValue: currentPurpose,
+                onChanged: (value) {
+                  Get.back();
+                  _updatePurpose(value!);
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('have_baby'.tr),
+              leading: Radio<String>(
+                value: 'have_baby',
+                groupValue: currentPurpose,
+                onChanged: (value) {
+                  Get.back();
+                  _updatePurpose(value!);
+                },
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('cancel'.tr),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditLastPeriodDialog(BuildContext context, String? currentPeriod) {
+    DateTime? selectedDate =
+        currentPeriod != null ? DateTime.parse(currentPeriod) : null;
+
+    Get.dialog(
+      AlertDialog(
+        title: Text('edit_last_period'.tr),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: Text(selectedDate != null
+                  ? _formatDate(selectedDate)
+                  : 'select_date'.tr),
+              trailing: const Icon(Icons.calendar_today),
+              onTap: () async {
+                final date = await showDatePicker(
+                  context: context,
+                  initialDate: selectedDate ?? DateTime.now(),
+                  firstDate: DateTime.now().subtract(const Duration(days: 365)),
+                  lastDate: DateTime.now(),
+                );
+                if (date != null) {
+                  Get.back();
+                  _updateLastPeriod(date);
+                }
+              },
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('cancel'.tr),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditCycleLengthDialog(BuildContext context, String? currentLength) {
+    final TextEditingController lengthController = TextEditingController(
+      text: currentLength ?? '28',
+    );
+
+    Get.dialog(
+      AlertDialog(
+        title: Text('edit_cycle_length'.tr),
+        content: TextField(
+          controller: lengthController,
+          decoration: InputDecoration(
+            labelText: 'cycle_length_days'.tr,
+            border: const OutlineInputBorder(),
+          ),
+          keyboardType: TextInputType.number,
+          autofocus: true,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('cancel'.tr),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              final length = int.tryParse(lengthController.text.trim());
+              if (length != null && length > 0) {
+                Get.back();
+                _updateCycleLength(length);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: NeoSafeColors.primaryPink,
+              foregroundColor: Colors.white,
+            ),
+            child: Text('save'.tr),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _updateGender(String gender) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('onboarding_gender', gender);
+    Get.snackbar(
+      'success'.tr,
+      'gender_updated_success'.tr,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: NeoSafeColors.success.withOpacity(0.1),
+      colorText: NeoSafeColors.success,
+    );
+  }
+
+  Future<void> _updatePurpose(String purpose) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('onboarding_purpose', purpose);
+    Get.snackbar(
+      'success'.tr,
+      'purpose_updated_success'.tr,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: NeoSafeColors.success.withOpacity(0.1),
+      colorText: NeoSafeColors.success,
+    );
+  }
+
+  Future<void> _updateLastPeriod(DateTime date) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('onboarding_last_period', date.toIso8601String());
+
+    // Update controller data
+    controller.periodStart.value = date;
+    controller.periodEnd.value =
+        date.add(Duration(days: controller.periodLength - 1));
+    controller.update();
+
+    Get.snackbar(
+      'success'.tr,
+      'last_period_updated_success'.tr,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: NeoSafeColors.success.withOpacity(0.1),
+      colorText: NeoSafeColors.success,
+    );
+  }
+
+  Future<void> _updateCycleLength(int length) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('onboarding_cycle_length', length);
+
+    // Update controller data
+    controller.cycleLength = length;
+    controller.update();
+
+    Get.snackbar(
+      'success'.tr,
+      'cycle_length_updated_success'.tr,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: NeoSafeColors.success.withOpacity(0.1),
+      colorText: NeoSafeColors.success,
+    );
+  }
+}
+
+class _DetailRow extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color color;
+
+  const _DetailRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(
+            icon,
+            color: color,
+            size: 16,
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: NeoSafeColors.secondaryText,
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                value,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: NeoSafeColors.primaryText,
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _EditableDetailRow extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color color;
+  final VoidCallback onEdit;
+
+  const _EditableDetailRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.color,
+    required this.onEdit,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onEdit,
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(
+              icon,
+              color: color,
+              size: 16,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: NeoSafeColors.secondaryText,
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
+                const SizedBox(height: 2),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        value,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: NeoSafeColors.primaryText,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ),
+                    Icon(
+                      Icons.edit,
+                      size: 16,
+                      color: NeoSafeColors.primaryPink.withOpacity(0.7),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
