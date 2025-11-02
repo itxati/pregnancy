@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../../services/auth_service.dart';
 
 class GoalOnboardingController extends GetxController {
   final RxInt currentStep = 0.obs;
@@ -26,29 +26,40 @@ class GoalOnboardingController extends GetxController {
   void previousStep() => currentStep.value--;
 
   Future<void> saveToPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('onboarding_name', name.value);
-    await prefs.setString('onboarding_gender', gender.value);
-    await prefs.setString('onboarding_purpose', purpose.value);
+    final authService = Get.find<AuthService>();
+    final userId = authService.currentUser.value?.id;
+    
+    if (userId == null) {
+      print('Error: No user ID available to save onboarding data');
+      return;
+    }
+
+    // Save onboarding data with user-specific keys
+    await authService.setOnboardingData('onboarding_name', userId, name.value);
+    await authService.setOnboardingData('onboarding_gender', userId, gender.value);
+    await authService.setOnboardingData('onboarding_purpose', userId, purpose.value);
+    
     if (lastPeriodDate.value != null) {
-      await prefs.setString(
-          'onboarding_last_period', lastPeriodDate.value!.toIso8601String());
-      await prefs.setInt('onboarding_cycle_length', cycleLength.value);
+      await authService.setOnboardingData(
+          'onboarding_last_period', userId, lastPeriodDate.value!.toIso8601String());
+      await authService.setOnboardingInt('onboarding_cycle_length', userId, cycleLength.value);
     }
     if (dueDate.value != null) {
-      await prefs.setString(
-          'onboarding_due_date', dueDate.value!.toIso8601String());
+      await authService.setOnboardingData(
+          'onboarding_due_date', userId, dueDate.value!.toIso8601String());
     }
     if (babyGender.value.isNotEmpty) {
-      await prefs.setString('onboarding_baby_gender', babyGender.value);
+      await authService.setOnboardingData('onboarding_baby_gender', userId, babyGender.value);
     }
     if (babyBirthDate.value != null) {
-      await prefs.setString(
-          'onboarding_baby_birth_date', babyBirthDate.value!.toIso8601String());
+      await authService.setOnboardingData(
+          'onboarding_baby_birth_date', userId, babyBirthDate.value!.toIso8601String());
     }
     if (bornBabyGender.value.isNotEmpty) {
-      await prefs.setString(
-          'onboarding_born_baby_gender', bornBabyGender.value);
+      await authService.setOnboardingData(
+          'onboarding_born_baby_gender', userId, bornBabyGender.value);
     }
+    // Save onboarding complete flag for this user
+    await authService.setOnboardingBool('onboarding_complete', userId, true);
   }
 }

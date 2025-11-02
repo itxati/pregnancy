@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/neo_safe_theme.dart';
+import '../../../services/auth_service.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 import '../widgets/get_pregnant_profile_header.dart';
 import '../widgets/get_pregnant_basic_details_section.dart';
-import '../widgets/get_pregnant_cycle_details_section.dart';
-import '../widgets/get_pregnant_fertility_section.dart';
 
 class GetPregnantProfileView extends StatelessWidget {
   const GetPregnantProfileView({Key? key}) : super(key: key);
@@ -96,7 +95,40 @@ class GetPregnantProfileView extends StatelessWidget {
                   // // Fertility Section
                   // GetPregnantFertilitySection(controller: controller),
 
-                  // const SizedBox(height: 40),
+                  const SizedBox(height: 40),
+
+                  // Logout Button
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ElevatedButton.icon(
+                      onPressed: () async {
+                        final authService = Get.find<AuthService>();
+                        await authService.logout();
+                      },
+                      icon: const Icon(Icons.logout, color: Colors.white),
+                      label: Text(
+                        'logout'.tr,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: NeoSafeColors.primaryPink,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 16,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        elevation: 4,
+                      ),
+                    ),
+                  ),
                 ]),
               ),
             ),

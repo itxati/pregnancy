@@ -7,83 +7,89 @@ import '../../../data/models/user_model.dart';
 
 class GoogleLoginController extends GetxController {
   final RxBool isLoading = false.obs;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['profile', 'email']);
 
   Future<void> signInWithGoogle() async {
     try {
-      Get.offAllNamed('/goal_onboarding');
-      //   isLoading.value = true;
+      isLoading.value = true;
 
-      //   // Trigger the authentication flow
-      //   final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        // User cancelled the sign-in
+        isLoading.value = false;
+        return;
+      }
 
-      //   if (googleUser == null) {
-      //     // User cancelled the sign-in
-      //     isLoading.value = false;
-      //     return;
-      //   }
+      // Obtain the authentication details
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
-      //   // Obtain the auth details from the request
-      //   final GoogleSignInAuthentication googleAuth =
-      //       await googleUser.authentication;
+      // Create a new Firebase credential
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-      //   // Create a new credential
-      //   final credential = GoogleAuthProvider.credential(
-      //     accessToken: googleAuth.accessToken,
-      //     idToken: googleAuth.idToken,
-      //   );
+      // Sign in to Firebase with Google credentials
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      final User? user = userCredential.user;
 
-      //   // Sign in to Firebase with the Google credential
-      //   final UserCredential userCredential =
-      //       await _auth.signInWithCredential(credential);
-      //   final User? user = userCredential.user;
+      if (user != null) {
+        // Check if this is the same user who logged in before
+        final authService = Get.find<AuthService>();
+        final isSameAccount = await authService.isSameUser(user.uid);
 
-      //   if (user != null) {
-      //     // Create or update user model
-      //     final userModel = UserModel(
-      //       id: user.uid,
-      //       fullName: user.displayName ?? '',
-      //       email: user.email ?? '',
-      //       createdAt: user.metadata.creationTime ?? DateTime.now(),
-      //       isLoggedIn: true,
-      //     );
+        // Create or update user model
+        final userModel = UserModel(
+          id: user.uid,
+          fullName: user.displayName ?? '',
+          email: user.email ?? '',
+          createdAt: user.metadata.creationTime ?? DateTime.now(),
+          isLoggedIn: true,
+        );
 
-      //     // Save user to AuthService
-      //     final authService = Get.find<AuthService>();
-      //     await authService.saveCurrentUser(userModel);
+        // Save user to AuthService
+        await authService.saveCurrentUser(userModel);
 
-      //     // Download articles on first login
-      //     try {
-      //       final articleService = Get.find<ArticleService>();
-      //       await articleService.downloadArticlesOnFirstLogin();
-      //     } catch (e) {
-      //       print('Error downloading articles: $e');
-      //     }
+        // Download articles on first login (only for new accounts)
+        if (!isSameAccount) {
+          try {
+            final articleService = Get.find<ArticleService>();
+            await articleService.downloadArticlesOnFirstLogin();
+          } catch (e) {
+            print('Error downloading articles: $e');
+          }
+        }
 
-      //     Get.snackbar(
-      //       'welcome'.tr,
-      //       'welcome_back_user'
-      //           .tr
-      //           .replaceAll('{name}', user.displayName ?? 'User'),
-      //       snackPosition: SnackPosition.BOTTOM,
-      //     );
+        Get.snackbar(
+          'welcome'.tr,
+          'welcome_back_user'
+              .tr
+              .replaceAll('{name}', user.displayName ?? 'User'),
+          snackPosition: SnackPosition.BOTTOM,
+        );
 
-      //     // Ensure AuthService recognizes the login before navigation
-      //     await Future.delayed(const Duration(milliseconds: 400));
-      //     if (authService.isLoggedIn) {
-      //       Get.offAllNamed('/goal_selection');
-      //     } else {
-      //       // Optionally, attempt to reload user from Firebase
-      //       await _auth.currentUser?.reload();
-      //       if (authService.isLoggedIn) {
-      //         Get.offAllNamed('/goal_selection');
-      //       } else {
-      //         Get.snackbar(
-      //             'Error'.tr, 'Login not completed. Please try again.'.tr);
-      //       }
-      //     }
-      //   }
+        // Ensure AuthService recognizes the login before navigation
+        await Future.delayed(const Duration(milliseconds: 400));
+        if (authService.isLoggedIn) {
+          // Navigate based on onboarding status and user's previous flow
+          await authService.navigateAfterLogin();
+        } else {
+          await _auth.currentUser?.reload();
+          if (authService.isLoggedIn) {
+            await authService.navigateAfterLogin();
+          } else {
+            Get.snackbar(
+              'Error'.tr,
+              'Login not completed. Please try again.'.tr,
+            );
+          }
+        }
+      }
     } on FirebaseAuthException catch (e) {
       String errorMessage = 'google_signin_failed'.tr;
 

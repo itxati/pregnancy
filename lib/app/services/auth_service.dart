@@ -17,6 +17,7 @@ class AuthService extends GetxService {
   // SharedPreferences keys
   static const String _userKey = 'current_user';
   static const String _isLoggedInKey = 'is_logged_in';
+  static const String _lastLoggedInUserIdKey = 'last_logged_in_user_id';
 
   @override
   void onInit() {
@@ -105,20 +106,165 @@ class AuthService extends GetxService {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(_userKey, json.encode(user.toJson()));
       await prefs.setBool(_isLoggedInKey, user.isLoggedIn);
+      // Save the user ID to check if same user logs in again
+      await prefs.setString(_lastLoggedInUserIdKey, user.id);
       currentUser.value = user;
     } catch (e) {
       print('Error saving current user: $e');
     }
   }
 
-  // Clear local user data
+  // Check if logged-in user is the same as last logged-in user
+  Future<bool> isSameUser(String userId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final lastUserId = prefs.getString(_lastLoggedInUserIdKey);
+      return lastUserId == userId;
+    } catch (e) {
+      print('Error checking same user: $e');
+      return false;
+    }
+  }
+
+  // Navigate to the correct screen based on onboarding status
+  Future<void> navigateAfterLogin() async {
+    try {
+      if (currentUser.value == null) {
+        Get.offAllNamed('/goal_onboarding');
+        return;
+      }
+
+      final userId = currentUser.value!.id;
+      final hasCompletedOnboarding = await isOnboardingComplete(userId);
+
+      if (hasCompletedOnboarding) {
+        // Get the user's onboarding purpose to route to the correct screen
+        final onboardingPurpose = await getOnboardingPurpose(userId);
+        
+        if (onboardingPurpose == 'get_pregnant') {
+          Get.offAllNamed('/get_pregnant_requirements');
+        } else if (onboardingPurpose == 'pregnant') {
+          // Load due date if available
+          final dueDateStr = await getOnboardingData('onboarding_due_date', userId);
+          if (dueDateStr != null) {
+            final dueDate = DateTime.parse(dueDateStr);
+            Get.offAllNamed('/track_my_pregnancy', arguments: {'dueDate': dueDate});
+          } else {
+            Get.offAllNamed('/track_my_pregnancy');
+          }
+        } else if (onboardingPurpose == 'have_baby') {
+          // Check baby birth date to determine route
+          final babyBirthDateStr = await getOnboardingData('onboarding_baby_birth_date', userId);
+          if (babyBirthDateStr != null) {
+            final babyBirthDate = DateTime.parse(babyBirthDateStr);
+            final now = DateTime.now();
+            final daysSinceBirth = now.difference(babyBirthDate).inDays;
+            
+            // If more than 2 weeks (14 days), go to track_my_baby
+            if (daysSinceBirth > 14) {
+              Get.offAllNamed('/track_my_baby');
+            } else {
+              Get.offAllNamed('/goal_selection');
+            }
+          } else {
+            // Fallback to goal selection if no birth date
+            Get.offAllNamed('/goal_selection');
+          }
+        } else {
+          // Fallback to goal selection if purpose is unknown
+          Get.offAllNamed('/goal_selection');
+        }
+      } else {
+        // Onboarding not complete, show onboarding questions
+        Get.offAllNamed('/goal_onboarding');
+      }
+    } catch (e) {
+      print('Error navigating after login: $e');
+      Get.offAllNamed('/goal_onboarding');
+    }
+  }
+
+  // Clear local user data (but keep onboarding data for same account)
   Future<void> _clearLocalUserData() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(_userKey);
       await prefs.setBool(_isLoggedInKey, false);
+      // Don't clear onboarding data - it will be checked on next login
     } catch (e) {
       print('Error clearing local user data: $e');
+    }
+  }
+
+  // Get onboarding data key for a specific user
+  String _getOnboardingKey(String key, String userId) => '${key}_user_$userId';
+
+  // Get onboarding completion status for a specific user
+  Future<bool> isOnboardingComplete(String userId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final key = _getOnboardingKey('onboarding_complete', userId);
+      return prefs.getBool(key) ?? false;
+    } catch (e) {
+      print('Error checking onboarding completion: $e');
+      return false;
+    }
+  }
+
+  // Get onboarding purpose for a specific user
+  Future<String> getOnboardingPurpose(String userId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final key = _getOnboardingKey('onboarding_purpose', userId);
+      return prefs.getString(key) ?? '';
+    } catch (e) {
+      print('Error getting onboarding purpose: $e');
+      return '';
+    }
+  }
+
+  // Get onboarding data for a specific user
+  Future<String?> getOnboardingData(String key, String userId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final fullKey = _getOnboardingKey(key, userId);
+      return prefs.getString(fullKey);
+    } catch (e) {
+      print('Error getting onboarding data: $e');
+      return null;
+    }
+  }
+
+  // Set onboarding data for a specific user
+  Future<void> setOnboardingData(String key, String userId, String value) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final fullKey = _getOnboardingKey(key, userId);
+      await prefs.setString(fullKey, value);
+    } catch (e) {
+      print('Error setting onboarding data: $e');
+    }
+  }
+
+  // Set onboarding bool for a specific user
+  Future<void> setOnboardingBool(String key, String userId, bool value) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final fullKey = _getOnboardingKey(key, userId);
+      await prefs.setBool(fullKey, value);
+    } catch (e) {
+      print('Error setting onboarding bool: $e');
+    }
+  }
+
+  // Set onboarding int for a specific user
+  Future<void> setOnboardingInt(String key, String userId, int value) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final fullKey = _getOnboardingKey(key, userId);
+      await prefs.setInt(fullKey, value);
+    } catch (e) {
+      print('Error setting onboarding int: $e');
     }
   }
 
@@ -313,6 +459,9 @@ class AuthService extends GetxService {
         'You have been logged out successfully',
         snackPosition: SnackPosition.BOTTOM,
       );
+
+      // Navigate to Google Login after logout
+      Get.offAllNamed('/google_login');
     } catch (e) {
       print('Logout error: $e');
     }
