@@ -410,7 +410,7 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
 
   Widget _buildMonthChips(BuildContext context) {
     final themeService = Get.find<ThemeService>();
-    // Build a derived list with years (>=24 months) first, keeping original indices
+    // Build a derived list with proper sorting: weeks (< 24 months), months, then years
     final indexed = babyMilestones
         .asMap()
         .entries
@@ -419,8 +419,28 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
     indexed.sort((a, b) {
       final am = a.value.month;
       final bm = b.value.month;
-      final aIsYear = am >= 24;
-      final bIsYear = bm >= 24;
+
+      // Weeks are stored as month values starting from 100 (100-151)
+      final aIsWeek = am >= 100 && am <= 151;
+      final bIsWeek = bm >= 100 && bm <= 151;
+      final aIsYear = am >= 24 && am < 100;
+      final bIsYear = bm >= 24 && bm < 100;
+
+      // Sort order: weeks (< 24 months equivalent), months (< 24), then years (>= 24)
+      if (aIsWeek && bIsWeek) {
+        return am.compareTo(bm); // Sort weeks in order
+      }
+      if (aIsWeek && !bIsWeek) {
+        if (bIsYear) return -1; // weeks before years
+        if (bm < 24) return -1; // weeks before months
+        return -1; // weeks first
+      }
+      if (!aIsWeek && bIsWeek) {
+        if (aIsYear) return 1; // years after weeks
+        if (am < 24) return 1; // months after weeks
+        return 1; // weeks first
+      }
+
       if (aIsYear != bIsYear)
         return aIsYear ? 1 : -1; // months first, then years
       return am.compareTo(bm);
@@ -466,6 +486,12 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
   }
 
   String _labelForAge(int month) {
+    // Weeks are stored as month values starting from 100
+    if (month >= 100 && month <= 151) {
+      final week = month -
+          99; // Convert back to week number (100 -> week 1, 101 -> week 2, etc.)
+      return 'Week $week';
+    }
     if (month == 0) return 'newborn'.tr;
     if (month < 24) return '${month} ${'mo'.tr}';
     final years = (month / 12).toStringAsFixed(month % 12 == 0 ? 0 : 1);

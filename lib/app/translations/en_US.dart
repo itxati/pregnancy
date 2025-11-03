@@ -1889,16 +1889,6 @@ final Map<String, String> enUS = {
   "milestone_1_4": "Makes cooing sounds",
   "milestone_1_5": "Recognizes familiar voices",
 
-// Month 24 (2–3 years) milestones
-  "milestone_24_1": "Runs or climbs stairs",
-  "milestone_24_2": "Kicks ball",
-  "milestone_24_3": "Eats properly with spoon",
-  "milestone_24_4": "Draws straight lines",
-  "milestone_24_5": "Spontaneous drawing",
-  "milestone_24_6": "Speaks 2-word phrases",
-  "milestone_24_7": "Follows two-step commands",
-  "milestone_24_8": "Plays beside other children (parallel play)",
-
 // Month 36 (3–4 years)
   "milestone_36_1": "Pedals tricycle",
   "milestone_36_2": "Goes up stairs with alternate feet",
@@ -2028,6 +2018,486 @@ final Map<String, String> enUS = {
   "milestone_18_5": "Speaks 5–10 words",
   "milestone_18_6": "Points to 3 body parts",
   "milestone_18_7": "Plays using a single toy",
+
+// Week-by-week milestones (weeks stored as month values starting from 100)
+// Week 1 milestones (month 100)
+  "milestone_100_1":
+      "Mostly reflexes (rooting, sucking, Moro/startle); holds limbs flexed",
+  "milestone_100_2": "Cries to signal needs; calmed by caregiver voice",
+  "milestone_100_3": "Briefly fixes gaze on face-like patterns",
+  "milestone_100_4": "Feeds frequently (breast or bottle) every 2–4 hours",
+  "milestone_100_5": "Long sleep periods but wakes to feed",
+  "milestone_desc_100":
+      "Typical changes in the first month: reflexive movement, sleep lots, bonding, early social smiles start near end of month.",
+
+// Week 2 milestones (month 101)
+  "milestone_101_1": "Smoother sucking; may lift head briefly when prone",
+  "milestone_101_2":
+      "Begins to show brief, fleeting social smile (some newborns start later)",
+  "milestone_101_3": "Tracks slow moving objects briefly",
+
+// Week 3 milestones (month 102)
+  "milestone_102_1": "Stronger hands, opens fingers more",
+  "milestone_102_2": "Cooing sounds may appear; quieter when spoken to",
+  "milestone_102_3": "More organized feeding and slightly longer awake windows",
+
+// Week 4 milestones (month 103)
+  "milestone_103_1": "Turns head to sound; can briefly lift head when on tummy",
+  "milestone_103_2":
+      "Social smile may appear (many babies smile socially by 4–6 weeks)",
+  "milestone_103_3": "Follows objects across midline",
+
+// Week 5 milestones (month 104)
+  "milestone_104_1": "Better head control when upright; fewer floppy moments",
+  "milestone_104_2": "Cooing and gurgling more frequent",
+  "milestone_104_3": "Enjoys face-to-face interaction; may follow faces",
+  "milestone_desc_104":
+      "Major milestones: more purposeful movements, social smiling, gurgling/cooing, improved head control.",
+
+// Week 6 milestones (month 105)
+  "milestone_105_1": "Holds head up more steadily during tummy time",
+  "milestone_105_2":
+      "Smiles reliably in response to faces; social smile clearer",
+  "milestone_105_3": "Tracks objects further and shifts gaze",
+
+// Week 7 milestones (month 106)
+  "milestone_106_1":
+      "Turns toward sounds; responds to caregiver voice with coos",
+  "milestone_106_2": "Begins to bring hands together and to mouth",
+
+// Week 8 milestones (month 107)
+  "milestone_107_1": "Pushes up on forearms during tummy time",
+  "milestone_107_2": "Begins to open hands and grasp rattle reflexively",
+  "milestone_107_3": "Vowels (ooh/ahh), responds to play with gurgles",
+  "milestone_107_4": "Begins to imitate some sounds",
+  "milestone_107_5": "Enjoys social games, recognizes caregivers",
+
+// Week 9 milestones (month 108)
+  "milestone_108_1":
+      "Lifts chest higher in prone; begins to bear weight on legs when held upright",
+  "milestone_108_2": "More varied cooing; may laugh out loud soon",
+  "milestone_desc_108":
+      "Expect increased control: lifts chest on forearms, laughing, purposeful grasping.",
+
+// Week 10 milestones (month 109)
+  "milestone_109_1":
+      "Responds to familiar people with joyful expressions; watches faces intently",
+  "milestone_109_2": "Reaches for high-contrast toys",
+
+// Week 11 milestones (month 110)
+  "milestone_110_1": "Hands begin to open more; reaches for and bats at toys",
+  "milestone_110_2": "Begins to use longer vowel sounds and may chuckle",
+
+// Week 12 milestones (month 111)
+  "milestone_111_1": "Holds head steady unsupported; pushes up on hands",
+  "milestone_111_2": "May roll front to back sometimes",
+  "milestone_111_3": "Laughs, squeals; turns to voice and shows delight",
+  "milestone_111_4": "Tracks across 180 degrees",
+
+// Week 13 milestones (month 112)
+  "milestone_112_1": "Begins purposeful reaching; can bring objects to mouth",
+  "milestone_112_2": "Consonant sounds appear (b, d, g-like)",
+  "milestone_desc_112":
+      "Growing fine motor, purposeful reaching, rolling tendencies, social play.",
+
+// Week 14 milestones (month 113)
+  "milestone_113_1": "Rolls front to back more often; sits with support",
+  "milestone_113_2": "Enjoys mirror/peek-a-boo interactions",
+
+// Week 15 milestones (month 114)
+  "milestone_114_1": "Begins raking grasp (whole hand) to pick up toys",
+  "milestone_114_2": "Vocal play, babbles and experiments with tone",
+
+// Week 16 milestones (month 115)
+  "milestone_115_1": "Sits with trunk support; good head control",
+  "milestone_115_2": "May roll both directions soon",
+  "milestone_115_3":
+      "Laughs, responds to name sometimes; copies some mouth movements",
+
+// Week 17 milestones (month 116)
+  "milestone_116_1":
+      "Sits propped on hands for short periods; better midline play (hands together)",
+  "milestone_116_2":
+      "Repetitive babbling (ba-ba, ma-ma emerging as sounds, not yet words)",
+  "milestone_desc_116":
+      "Sitting progress, first solid foods often begun near 6 months but some families start tastes earlier per local guidance; babbling increases.",
+
+// Week 18 milestones (month 117)
+  "milestone_117_1": "Explores objects with mouth and hands intentionally",
+  "milestone_117_2": "Recognizes familiar people; may show stranger hesitation",
+
+// Week 19 milestones (month 118)
+  "milestone_118_1":
+      "Pivots on tummy, may start to scoot; transfers toys hand-to-hand",
+  "milestone_118_2":
+      "May show readiness for solids near 6 months; consult pediatrician",
+
+// Week 20 milestones (month 119)
+  "milestone_119_1":
+      "Responds to name more reliably; uses varied consonant-vowel combinations",
+  "milestone_119_2": "Sits unsupported briefly with trunk control improving",
+
+// Week 21 milestones (month 120)
+  "milestone_120_1": "Sits unsupported for longer stretches",
+  "milestone_120_2": "Raking grasp improving; reaches for small objects",
+  "milestone_desc_120":
+      "Major changes: sits steady, rolls both ways, begins crawling attempts, first teeth likely; solids commonly introduced.",
+
+// Week 22 milestones (month 121)
+  "milestone_121_1": "May accept pureed/mashed foods if advised by clinician",
+  "milestone_121_2": "Begins to self-feed with fingers (pick up soft foods)",
+  "milestone_121_3":
+      "Enjoys games like peek-a-boo; shows increased social back-and-forth",
+
+// Week 23 milestones (month 122)
+  "milestone_122_1":
+      "May begin rocking on hands/knees in preparation for crawling",
+  "milestone_122_2":
+      "Babbling becomes more complex (variegated babble like \"mabada\")",
+
+// Week 24 milestones (month 123)
+  "milestone_123_1": "May sit well unsupported and begin to pull to sit",
+  "milestone_123_2": "May start to attempt crawling/pivoting",
+  "milestone_123_3": "Explores objects in more complex ways (shaking, banging)",
+
+// Week 25 milestones (month 124)
+  "milestone_124_1":
+      "Crawling or commando-crawling possible; sits steadily and rotates to reach toys",
+  "milestone_124_2":
+      "Uses consonant strings and responds with sounds to conversation",
+  "milestone_desc_124":
+      "Improved mobility (creeping/crawling begins), object permanence foundations, stronger pincer development starting.",
+
+// Week 26 milestones (month 125)
+  "milestone_125_1":
+      "Developing raking, beginning pincer (index + thumb) practice toward end of range",
+  "milestone_125_2":
+      "Shows preference for certain people/toys; may show anxiety with strangers",
+
+// Week 27 milestones (month 126)
+  "milestone_126_1":
+      "Experiments with object permanence (looks for partially hidden toy)",
+  "milestone_126_2": "Picks up finger foods, brings to mouth",
+
+// Week 28 milestones (month 127)
+  "milestone_127_1":
+      "May pull up to stand with support; actively moves to reach objects",
+  "milestone_127_2": "Imitates speech sounds and intonation",
+
+// Week 29 milestones (month 128)
+  "milestone_128_1": "Pulls to stand using furniture; stands with support",
+  "milestone_128_2": "Improved thumb-index opposition practice",
+  "milestone_desc_128":
+      "Pulling to stand, cruising with support begins, clearer gestures (pointing), more varied babble.",
+
+// Week 30 milestones (month 129)
+  "milestone_129_1":
+      "Uses gestures (reaching, pointing); responds to \"no\" sometimes",
+  "milestone_129_2":
+      "Plays interactive games and shows separation anxiety starting for some",
+
+// Week 31 milestones (month 130)
+  "milestone_130_1":
+      "Searches for completely hidden objects (improving object permanence)",
+  "milestone_130_2":
+      "May begin cruising (moving around while holding furniture)",
+
+// Week 32 milestones (month 131)
+  "milestone_131_1":
+      "Understands simple words like \"baby,\" \"bottle\"; babbles with rhythm",
+  "milestone_131_2": "Self-feeding improves; tries variety of textures",
+
+// Week 33 milestones (month 132)
+  "milestone_132_1": "Cruises well, stands briefly without support possible",
+  "milestone_132_2": "Pincer grasp more refined (able to pick up small pieces)",
+  "milestone_desc_132":
+      "Confidence in standing/cruising; first signs of intentional pointing; may say \"mama/dada\" nonspecifically.",
+
+// Week 34 milestones (month 133)
+  "milestone_133_1":
+      "May say \"mama/dada\" specifically for parents by end of this period for many babies",
+  "milestone_133_2":
+      "Shows clear preferences and may show checking back to caregiver when exploring",
+
+// Week 35 milestones (month 134)
+  "milestone_134_1":
+      "Imitates simple actions; explores cause/effect (drops things to watch them fall)",
+  "milestone_134_2": "Lowers to floor from standing",
+
+// Week 36 milestones (month 135)
+  "milestone_135_1":
+      "Understands simple commands accompanied by gestures; points to share interest",
+  "milestone_135_2": "May take steps holding hands",
+
+// Week 37 milestones (month 136)
+  "milestone_136_1": "May stand briefly alone; improved balance while cruising",
+  "milestone_136_2":
+      "Increased consonant sounds and intentional approximations of words",
+  "milestone_desc_136":
+      "Refined mobility, more intentional words, play becomes more complex (pretend actions).",
+
+// Week 38 milestones (month 137)
+  "milestone_137_1":
+      "Plays simple back-and-forth games; may show separation anxiety peaks",
+  "milestone_137_2":
+      "Uses objects correctly sometimes (drinks from cup, pats doll)",
+
+// Week 39 milestones (month 138)
+  "milestone_138_1": "More precise pincer; picks small bits of food",
+  "milestone_138_2": "Recognizes names of familiar people/objects",
+
+// Week 40 milestones (month 139)
+  "milestone_139_1":
+      "May begin independent steps (some start between 9–15 months)",
+  "milestone_139_2": "Points to objects to request or share interest",
+
+// Week 41 milestones (month 140)
+  "milestone_140_1": "Walks assisted/unassisted attempts more frequent",
+  "milestone_140_2": "May say 1–3 meaningful words (varies)",
+  "milestone_140_3": "Imitates routines (brushes hair, waves)",
+  "milestone_desc_140":
+      "Word approximations, stands and may take steps; understands more language.",
+
+// Week 42 milestones (month 141)
+  "milestone_141_1": "Follows simple instructions without gestures sometimes",
+  "milestone_141_2": "Drinks from a cup with decreasing spill",
+
+// Week 43 milestones (month 142)
+  "milestone_142_1": "Climbs onto low furniture; enjoys pushing toys",
+  "milestone_142_2": "Gestures + single words used together (point + sound)",
+
+// Week 44 milestones (month 143)
+  "milestone_143_1":
+      "Shows preference for certain people and toys; may test boundaries",
+  "milestone_143_2":
+      "Explores problem-solving (figures out how to get toy out of container)",
+
+// Week 45 milestones (month 144)
+  "milestone_144_1": "Many babies pull up, cruise, and take independent steps",
+  "milestone_144_2": "Improves stooping & recovering",
+  "milestone_144_3":
+      "Well-developed pincer grasp; can transfer objects hand-to-hand easily",
+  "milestone_144_4":
+      "Says \"mama\" and \"dada\" specifically; may say 1–3 other words",
+  "milestone_144_5": "Understands simple instructions",
+  "milestone_desc_144":
+      "By 12 months many babies pull to stand, cruise, take first independent steps, and say \"mama/dada\" specifically plus 1–3 other words; strong social/emotional attachments.",
+
+// Week 46 milestones (month 145)
+  "milestone_145_1": "Many babies pull up, cruise, and take independent steps",
+  "milestone_145_2": "Improves stooping & recovering",
+  "milestone_145_3":
+      "Well-developed pincer grasp; can transfer objects hand-to-hand easily",
+  "milestone_145_4":
+      "Says \"mama\" and \"dada\" specifically; may say 1–3 other words",
+  "milestone_145_5": "Understands simple instructions",
+
+// Week 47 milestones (month 146)
+  "milestone_146_1": "Many babies pull up, cruise, and take independent steps",
+  "milestone_146_2": "Improves stooping & recovering",
+  "milestone_146_3":
+      "Well-developed pincer grasp; can transfer objects hand-to-hand easily",
+  "milestone_146_4":
+      "Says \"mama\" and \"dada\" specifically; may say 1–3 other words",
+  "milestone_146_5": "Understands simple instructions",
+
+// Week 48 milestones (month 147)
+  "milestone_147_1": "Many babies pull up, cruise, and take independent steps",
+  "milestone_147_2": "Improves stooping & recovering",
+  "milestone_147_3":
+      "Well-developed pincer grasp; can transfer objects hand-to-hand easily",
+  "milestone_147_4":
+      "Says \"mama\" and \"dada\" specifically; may say 1–3 other words",
+  "milestone_147_5": "Understands simple instructions",
+
+// Week 49 milestones (month 148)
+  "milestone_148_1":
+      "Walks independently (range 9–15 months typical); climbs on low furniture",
+  "milestone_148_2":
+      "Uses gestures, imitates words, may follow simple one-step directions",
+  "milestone_148_3": "Says several single words",
+  "milestone_148_4":
+      "Shows strong attachment to caregivers, plays simple interactive games",
+  "milestone_148_5":
+      "Demonstrates early problem solving (opens box to get toy)",
+  "milestone_148_6":
+      "Attempts to self-feed with spoon; drinks from cup; tries more textures",
+  "milestone_desc_148": "Approaching and at 12 months.",
+
+// Week 50 milestones (month 149)
+  "milestone_149_1":
+      "Walks independently (range 9–15 months typical); climbs on low furniture",
+  "milestone_149_2":
+      "Uses gestures, imitates words, may follow simple one-step directions",
+  "milestone_149_3": "Says several single words",
+  "milestone_149_4":
+      "Shows strong attachment to caregivers, plays simple interactive games",
+  "milestone_149_5":
+      "Demonstrates early problem solving (opens box to get toy)",
+  "milestone_149_6":
+      "Attempts to self-feed with spoon; drinks from cup; tries more textures",
+
+// Week 51 milestones (month 150)
+  "milestone_150_1":
+      "Walks independently (range 9–15 months typical); climbs on low furniture",
+  "milestone_150_2":
+      "Uses gestures, imitates words, may follow simple one-step directions",
+  "milestone_150_3": "Says several single words",
+  "milestone_150_4":
+      "Shows strong attachment to caregivers, plays simple interactive games",
+  "milestone_150_5":
+      "Demonstrates early problem solving (opens box to get toy)",
+  "milestone_150_6":
+      "Attempts to self-feed with spoon; drinks from cup; tries more textures",
+
+// Week 52 milestones (month 151)
+  "milestone_151_1":
+      "Walks independently (range 9–15 months typical); climbs on low furniture",
+  "milestone_151_2":
+      "Uses gestures, imitates words, may follow simple one-step directions",
+  "milestone_151_3": "Says several single words",
+  "milestone_151_4":
+      "Shows strong attachment to caregivers, plays simple interactive games",
+  "milestone_151_5":
+      "Demonstrates early problem solving (opens box to get toy)",
+  "milestone_151_6":
+      "Attempts to self-feed with spoon; drinks from cup; tries more textures",
+
+// Month-by-month milestones: 13-23 months (from trackmybabydata2.txt)
+// Month 13 milestones
+  "milestone_13_1":
+      "Walks a few steps independently; can squat to pick up toys",
+  "milestone_13_2": "Stacks two small blocks",
+  "milestone_13_3": "Scribbles with crayon if given",
+  "milestone_13_4":
+      "Understands names of common people and objects; may try to imitate familiar words",
+  "milestone_13_5": "Experiments by dropping objects to see what happens",
+  "milestone_13_6": "Begins showing interest in other children",
+  "milestone_13_7": "Tries to help while dressing (holds arm out)",
+  "milestone_desc_13":
+      "Encourage walking by holding both hands; read simple board books daily.",
+
+// Month 14 milestones
+  "milestone_14_1": "Walks well without help; may try to carry a toy",
+  "milestone_14_2": "Climbs low furniture",
+  "milestone_14_3": "Turns pages in a book (several at a time)",
+  "milestone_14_4": "Uses index finger to point",
+  "milestone_14_5":
+      "Understands more words; can point to familiar objects when asked",
+  "milestone_14_6": "Recognizes familiar people and pets in photos",
+  "milestone_14_7": "Shows emotions like happiness and frustration clearly",
+  "milestone_14_8": "Begins to cooperate in washing hands or face",
+  "milestone_desc_14": "Name everything around your child to build vocabulary.",
+
+// Month 15 milestones
+  "milestone_15_1": "Walks steadily; begins to run stiffly",
+  "milestone_15_2": "Tries to climb stairs with support",
+  "milestone_15_3": "Builds 2–3 block tower",
+  "milestone_15_4": "Uses spoon, though messy",
+  "milestone_15_5": "Vocabulary: 3–10 words",
+  "milestone_15_6": "Understands simple instructions without gestures",
+  "milestone_15_7": "Begins pretend play (talks on toy phone)",
+  "milestone_15_8": "Expresses needs by pointing or pulling you",
+  "milestone_15_9": "Tries to brush hair or teeth when given tools",
+
+// Month 16 milestones
+  "milestone_16_1": "Walks backward with support",
+  "milestone_16_2": "Tries to climb everything",
+  "milestone_16_3": "Can turn knobs or lids",
+  "milestone_16_4": "Begins to stack 3–4 blocks",
+  "milestone_16_5": "Tries to repeat new words",
+  "milestone_16_6": "Understands \"no\" and simple requests",
+  "milestone_16_7": "Explores cause and effect (pushes button → sound)",
+  "milestone_16_8": "Imitates actions of adults (wiping table, sweeping)",
+
+// Month 17 milestones
+  "milestone_17_1": "Runs more confidently",
+  "milestone_17_2": "Can push/pull toys while walking",
+  "milestone_17_3": "Can insert simple shapes in sorter box",
+  "milestone_17_4": "Tries to feed self using spoon",
+  "milestone_17_5": "10–20 words; understands much more than speaks",
+  "milestone_17_6": "Understands use of common objects (cup, phone)",
+  "milestone_17_7": "Shows affection spontaneously",
+  "milestone_17_8": "Tries to help with dressing and undressing",
+
+// Month 18 milestones (updated from trackmybabydata2.txt)
+  "milestone_18_1": "Runs stiffly; can walk up stairs holding hand",
+  "milestone_18_2": "Throws ball without falling",
+  "milestone_18_3": "Scribbles independently",
+  "milestone_18_4": "Builds 4-block tower",
+  "milestone_18_5": "Uses 15–25 words, may combine 2-word phrases",
+  "milestone_18_6": "Points to body parts when asked",
+  "milestone_18_7": "Begins pretend play (feeding doll)",
+  "milestone_18_8": "Plays beside other children (parallel play)",
+  "milestone_18_9": "May show temper when frustrated",
+  "milestone_18_10": "Drinks from open cup with some spilling",
+
+// Month 19 milestones
+  "milestone_19_1": "Can bend to pick up toy without falling",
+  "milestone_19_2": "May start to jump in place",
+  "milestone_19_3": "Turns pages one at a time",
+  "milestone_19_4": "Begins to use both hands together",
+  "milestone_19_5": "Vocabulary increasing rapidly; imitates animal sounds",
+  "milestone_19_6":
+      "Understands daily routines and simple time cues (\"after bath, we sleep\")",
+  "milestone_19_7": "Starts showing empathy when someone is hurt",
+
+// Month 20 milestones
+  "milestone_20_1": "Kicks ball forward",
+  "milestone_20_2": "Can stand on tiptoes briefly",
+  "milestone_20_3": "Builds taller towers (5–6 blocks)",
+  "milestone_20_4": "Starts using crayons with more control",
+  "milestone_20_5": "Uses 2-word sentences (\"more milk\")",
+  "milestone_20_6": "Understands two-step instructions",
+  "milestone_20_7": "Begins sorting shapes/colors",
+  "milestone_20_8": "Copies actions of older children or adults",
+
+// Month 21 milestones
+  "milestone_21_1": "Walks up stairs with help, both feet on each step",
+  "milestone_21_2": "Can carry small toy while walking",
+  "milestone_21_3": "Stacks 6 blocks",
+  "milestone_21_4": "Uses spoon neatly",
+  "milestone_21_5": "Vocabulary around 40–50 words",
+  "milestone_21_6": "Starts asking simple questions (\"what's that?\")",
+  "milestone_21_7": "Matches objects by shape or size",
+  "milestone_21_8": "Plays alongside others, not yet cooperatively",
+
+// Month 22 milestones
+  "milestone_22_1": "Runs with better balance",
+  "milestone_22_2": "Can throw a ball overhand",
+  "milestone_22_3": "Can unscrew lids and open boxes",
+  "milestone_22_4": "Understands simple \"where\" questions",
+  "milestone_22_5": "Combines 2–3 words frequently",
+  "milestone_22_6": "Begins recognizing self in mirror",
+  "milestone_22_7": "Shows pride in achievements (\"I did it!\")",
+
+// Month 23 milestones
+  "milestone_23_1": "Climbs onto furniture easily",
+  "milestone_23_2": "Can squat and stand again without support",
+  "milestone_23_3": "Can turn door handles or knobs",
+  "milestone_23_4":
+      "Starts using one hand more often (hand preference forming)",
+  "milestone_23_5": "Follows two-step commands easily",
+  "milestone_23_6": "Can name familiar people and objects",
+  "milestone_23_7": "Enjoys pretend play (feeds teddy, drives toy car)",
+  "milestone_23_8": "May show possessiveness — says \"mine!\" frequently",
+
+// Month 24 (2 Years) milestones (from trackmybabydata2.txt)
+  "milestone_24_1": "Runs well, can kick ball, can go up and down stairs",
+  "milestone_24_2": "Begins to jump with both feet",
+  "milestone_24_3": "Builds towers of 6–7 blocks",
+  "milestone_24_4": "Turns pages one at a time; begins circular scribbles",
+  "milestone_24_5": "Uses 2–4 word phrases",
+  "milestone_24_6":
+      "Vocabulary 50+ words; can say name and identify body parts",
+  "milestone_24_7": "Understands simple concepts like \"big/small\"",
+  "milestone_24_8": "Begins sorting objects by shape or color",
+  "milestone_24_9": "Plays beside other children, imitates adults",
+  "milestone_24_10": "Expresses affection openly",
+  "milestone_24_11": "Can remove some clothing",
+  "milestone_24_12": "Starts showing interest in potty training",
+  "milestone_desc_24":
+      "Early toddler years bring rapid gains in motor control, language, and social independence.",
 
 // Section 1: Newborn Jaundice
   "health_1_title": "Newborn Jaundice",
