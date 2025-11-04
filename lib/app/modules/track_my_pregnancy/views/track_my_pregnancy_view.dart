@@ -21,6 +21,8 @@ import '../../../routes/app_pages.dart';
 import '../../../services/auth_service.dart';
 import '../../profile/views/profile_view.dart';
 import '../../profile/controllers/profile_controller.dart';
+import '../../weight_tracking/widgets/weight_tracking_card.dart';
+import '../../weight_tracking/controllers/weight_tracking_controller.dart';
 
 class TrackMyPregnancyView extends StatelessWidget {
   const TrackMyPregnancyView({Key? key}) : super(key: key);
@@ -156,6 +158,21 @@ class TrackMyPregnancyView extends StatelessWidget {
 
                   // Weekly Update Card
                   WeeklyUpdateCard(controller: controller),
+
+                  const SizedBox(height: 24),
+
+                  // Weight Tracking Card
+                  Obx(() {
+                    WeightTrackingController weightController;
+                    if (Get.isRegistered<WeightTrackingController>()) {
+                      weightController = Get.find<WeightTrackingController>();
+                    } else {
+                      weightController = Get.put(WeightTrackingController());
+                    }
+                    // Sync gestational week and trimester
+                    weightController.setCurrentGestationalWeek(controller.pregnancyWeekNumber.value);
+                    return WeightTrackingCard(controller: weightController);
+                  }),
 
                   const SizedBox(height: 24),
 

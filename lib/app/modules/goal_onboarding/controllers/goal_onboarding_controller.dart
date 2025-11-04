@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../services/auth_service.dart';
 
 class GoalOnboardingController extends GetxController {
@@ -31,6 +32,14 @@ class GoalOnboardingController extends GetxController {
   // For "I have a baby"
   final Rx<DateTime?> babyBirthDate = Rx<DateTime?>(null);
   final RxString bornBabyGender = ''.obs;
+
+  // User age
+  final RxString age = ''.obs;
+
+  // Maternal data
+  final RxString prePregnancyWeight = ''.obs; // kg or lbs
+  final RxString height = ''.obs; // cm or feet+inches
+  final RxDouble bmi = 0.0.obs;
 
   // Navigation helpers
   void nextStep() => currentStep.value++;
@@ -74,6 +83,17 @@ class GoalOnboardingController extends GetxController {
       await authService.setOnboardingData(
           'onboarding_born_baby_gender', userId, bornBabyGender.value);
     }
+    
+    // Save height and weight for weight tracking
+    if (height.value.isNotEmpty) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('onboarding_height_$userId', height.value);
+    }
+    if (prePregnancyWeight.value.isNotEmpty) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('onboarding_pre_pregnancy_weight_$userId', prePregnancyWeight.value);
+    }
+    
     // Save onboarding complete flag for this user
     await authService.setOnboardingBool('onboarding_complete', userId, true);
   }

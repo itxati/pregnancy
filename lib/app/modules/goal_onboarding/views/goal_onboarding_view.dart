@@ -59,24 +59,30 @@ class GoalOnboardingView extends StatelessWidget {
                     return GenderStep(
                         controller: controller, screenWidth: screenWidth);
                   } else if (controller.currentStep.value == 2) {
+                    return AgeStep(
+                        controller: controller, screenWidth: screenWidth);
+                  } else if (controller.currentStep.value == 3) {
+                    return HeightWeightBmiStep(
+                        controller: controller, screenWidth: screenWidth);
+                  } else if (controller.currentStep.value == 4) {
                     return PurposeStep(
                         controller: controller, screenWidth: screenWidth);
                   } else if (controller.purpose.value == 'get_pregnant') {
-                    if (controller.currentStep.value == 3) {
+                    if (controller.currentStep.value == 5) {
                       return LastPeriodStep(
                           controller: controller, screenWidth: screenWidth);
-                    } else if (controller.currentStep.value == 4) {
+                    } else if (controller.currentStep.value == 6) {
                       return CycleLengthStep(
                           controller: controller, screenWidth: screenWidth);
                     } else {
                       return FinishStep(controller: controller);
                     }
                   } else if (controller.purpose.value == 'pregnant') {
-                    if (controller.currentStep.value == 3) {
+                    if (controller.currentStep.value == 5) {
                       // New: PregnantStep: Ask "Do you know your due date?"
                       return PregnantDateMethodStep(
                           controller: controller, screenWidth: screenWidth);
-                    } else if (controller.currentStep.value == 4) {
+                    } else if (controller.currentStep.value == 6) {
                       // If knows due date, show DueDateStep, else show LMP/US flow
                       if (controller.knowsDueDate.value) {
                         return DueDateStep(
@@ -85,7 +91,7 @@ class GoalOnboardingView extends StatelessWidget {
                         return PregnantLmpOrUsStep(
                             controller: controller, screenWidth: screenWidth);
                       }
-                    } else if (controller.currentStep.value == 5) {
+                    } else if (controller.currentStep.value == 7) {
                       // Summary: show GA, EDD, trimester, warning, explanation
                       return PregnantSummaryStep(
                           controller: controller, screenWidth: screenWidth);
@@ -93,10 +99,10 @@ class GoalOnboardingView extends StatelessWidget {
                       return FinishStep(controller: controller);
                     }
                   } else if (controller.purpose.value == 'have_baby') {
-                    if (controller.currentStep.value == 3) {
+                    if (controller.currentStep.value == 5) {
                       return BabyBirthDateStep(
                           controller: controller, screenWidth: screenWidth);
-                    } else if (controller.currentStep.value == 4) {
+                    } else if (controller.currentStep.value == 6) {
                       return BornBabyGenderStep(
                           controller: controller, screenWidth: screenWidth);
                     } else {
@@ -223,6 +229,110 @@ class NameStep extends StatelessWidget {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+// ============= AGE STEP =============
+class AgeStep extends StatelessWidget {
+  final GoalOnboardingController controller;
+  final double screenWidth;
+  const AgeStep({required this.controller, required this.screenWidth, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final ageController = TextEditingController(text: controller.age.value);
+    return StepCard(
+      screenWidth: screenWidth,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'How old are you?',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(
+              color: NeoSafeColors.primaryPink,
+              fontWeight: FontWeight.w800,
+              fontSize: screenWidth * 0.068,
+              letterSpacing: 0.3,
+              height: 1.2,
+              shadows: [
+                Shadow(color: Colors.white.withOpacity(0.8), blurRadius: 15),
+                Shadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 8,
+                    offset: Offset(0, 2)),
+              ],
+            ),
+          ),
+          SizedBox(height: screenWidth * 0.05),
+          TextField(
+            controller: ageController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              hintText: 'Enter your age',
+              hintStyle: GoogleFonts.inter(
+                color: Colors.grey[400],
+                fontSize: screenWidth * 0.04,
+              ),
+              filled: true,
+              fillColor: Colors.grey[50],
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.grey[300]!),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.grey[300]!),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide:
+                    BorderSide(color: NeoSafeColors.primaryPink, width: 2),
+              ),
+            ),
+            style: GoogleFonts.inter(
+              fontSize: screenWidth * 0.042,
+              fontWeight: FontWeight.w500,
+              color: Colors.black87,
+            ),
+            onChanged: (value) => controller.age.value = value,
+          ),
+          SizedBox(height: screenWidth * 0.07),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                if (controller.age.value.trim().isNotEmpty) {
+                  controller.nextStep();
+                } else {
+                  Get.snackbar(
+                    'Oops!',
+                    'Please enter your age',
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: NeoSafeColors.primaryPink,
+                foregroundColor: Colors.white,
+                padding: EdgeInsets.symmetric(vertical: screenWidth * 0.04),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                'Continue',
+                style: GoogleFonts.inter(
+                  fontSize: screenWidth * 0.045,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -1851,5 +1961,127 @@ class PregnantSummaryStep extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+// ============= HEIGHT-WEIGHT-BMI STEP =============
+class HeightWeightBmiStep extends StatelessWidget {
+  final GoalOnboardingController controller;
+  final double screenWidth;
+  const HeightWeightBmiStep({
+    required this.controller,
+    required this.screenWidth,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final heightController =
+        TextEditingController(text: controller.height.value);
+    final weightController =
+        TextEditingController(text: controller.prePregnancyWeight.value);
+    return StepCard(
+      screenWidth: screenWidth,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'What is your height and pre-pregnancy weight?',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(
+              color: NeoSafeColors.primaryPink,
+              fontWeight: FontWeight.w700,
+              fontSize: screenWidth * 0.055,
+              height: 1.3,
+            ),
+          ),
+          SizedBox(height: screenWidth * 0.05),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: heightController,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  decoration: InputDecoration(
+                    hintText: 'Height (cm)',
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  ),
+                  onChanged: (v) {
+                    controller.height.value = v;
+                    _updateBmi(controller);
+                  },
+                ),
+              ),
+              SizedBox(width: 12),
+              Expanded(
+                child: TextField(
+                  controller: weightController,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  decoration: InputDecoration(
+                    hintText: 'Weight (kg)',
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  ),
+                  onChanged: (v) {
+                    controller.prePregnancyWeight.value = v;
+                    _updateBmi(controller);
+                  },
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: screenWidth * 0.04),
+          Obx(() {
+            final bmiValue = controller.bmi.value;
+            String bmiString =
+                bmiValue > 0 ? bmiValue.toStringAsFixed(1) : '--';
+            return RichText(
+              text: TextSpan(
+                style: GoogleFonts.inter(
+                    fontSize: screenWidth * 0.045, color: Colors.black87),
+                children: [
+                  const TextSpan(text: 'BMI: '),
+                  TextSpan(
+                    text: bmiString,
+                    style: TextStyle(
+                      color: NeoSafeColors.primaryPink,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }),
+          SizedBox(height: screenWidth * 0.07),
+          SizedBox(
+            width: double.infinity,
+            child: Obx(() => ElevatedButton(
+                  onPressed:
+                      _inputValid(controller) ? controller.nextStep : null,
+                  child: const Text('Continue'),
+                )),
+          )
+        ],
+      ),
+    );
+  }
+
+  bool _inputValid(GoalOnboardingController c) {
+    final w = double.tryParse(c.prePregnancyWeight.value);
+    final h = double.tryParse(c.height.value);
+    return w != null && h != null && w > 0 && h > 0 && c.bmi.value > 0;
+  }
+
+  void _updateBmi(GoalOnboardingController c) {
+    final w = double.tryParse(c.prePregnancyWeight.value);
+    final h = double.tryParse(c.height.value);
+    if (w != null && h != null && w > 0 && h > 0) {
+      final heightMeters = h / 100.0;
+      final bmiCalc = w / (heightMeters * heightMeters);
+      c.bmi.value = bmiCalc;
+    } else {
+      c.bmi.value = 0.0;
+    }
   }
 }
