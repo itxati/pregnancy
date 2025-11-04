@@ -73,7 +73,21 @@ class GoalOnboardingView extends StatelessWidget {
                     }
                   } else if (controller.purpose.value == 'pregnant') {
                     if (controller.currentStep.value == 3) {
-                      return DueDateStep(
+                      // New: PregnantStep: Ask "Do you know your due date?"
+                      return PregnantDateMethodStep(
+                          controller: controller, screenWidth: screenWidth);
+                    } else if (controller.currentStep.value == 4) {
+                      // If knows due date, show DueDateStep, else show LMP/US flow
+                      if (controller.knowsDueDate.value) {
+                        return DueDateStep(
+                            controller: controller, screenWidth: screenWidth);
+                      } else {
+                        return PregnantLmpOrUsStep(
+                            controller: controller, screenWidth: screenWidth);
+                      }
+                    } else if (controller.currentStep.value == 5) {
+                      // Summary: show GA, EDD, trimester, warning, explanation
+                      return PregnantSummaryStep(
                           controller: controller, screenWidth: screenWidth);
                     } else {
                       return FinishStep(controller: controller);
@@ -1490,6 +1504,351 @@ class FinishStep extends StatelessWidget {
           color: NeoSafeColors.primaryPink,
           strokeWidth: 5,
         ),
+      ),
+    );
+  }
+}
+
+// Add UI step widgets below after FinishStep
+// --- NEW STEP: Ask "Do you know your due date?" ---
+class PregnantDateMethodStep extends StatelessWidget {
+  final GoalOnboardingController controller;
+  final double screenWidth;
+  const PregnantDateMethodStep(
+      {required this.controller, required this.screenWidth, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StepCard(
+      screenWidth: screenWidth,
+      child: Column(
+        children: [
+          Text(
+            'Do you know your due date?',
+            style: TextStyle(
+                color: NeoSafeColors.primaryPink,
+                fontWeight: FontWeight.w800,
+                fontSize: screenWidth * 0.055),
+          ),
+          SizedBox(height: screenWidth * 0.05),
+          Obx(() => Column(children: [
+                ElevatedButton(
+                  onPressed: () {
+                    controller.knowsDueDate.value = true;
+                    controller.nextStep();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: controller.knowsDueDate.value
+                        ? NeoSafeColors.primaryPink
+                        : Colors.grey[200],
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14)),
+                  ),
+                  child: Text('Yes, I know my due date'),
+                ),
+                SizedBox(height: screenWidth * 0.03),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.knowsDueDate.value = false;
+                    controller.nextStep();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: !controller.knowsDueDate.value
+                        ? NeoSafeColors.primaryPink
+                        : Colors.grey[200],
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14)),
+                  ),
+                  child: Text('No, calculate for me'),
+                ),
+              ])),
+        ],
+      ),
+    );
+  }
+}
+
+// --- NEW STEP: LMP and Ultrasound entry, shown if User doesn't know EDD ---
+class PregnantLmpOrUsStep extends StatelessWidget {
+  final GoalOnboardingController controller;
+  final double screenWidth;
+  const PregnantLmpOrUsStep(
+      {required this.controller, required this.screenWidth, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    int selectedWeeks = 6; // default weeks, will update with user input
+    int selectedDays = 0;
+    final weeksController = TextEditingController();
+    final daysController = TextEditingController();
+
+    return StepCard(
+      screenWidth: screenWidth,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+              'How many weeks and days pregnant are you (since last menstrual period)?',
+              style: TextStyle(
+                  color: NeoSafeColors.primaryPink,
+                  fontWeight: FontWeight.w700,
+                  fontSize: screenWidth * 0.048,
+                  height: 1.3)),
+          SizedBox(height: screenWidth * 0.03),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: weeksController,
+                  decoration: const InputDecoration(
+                      labelText: 'Weeks', border: OutlineInputBorder()),
+                  keyboardType: TextInputType.number,
+                  onChanged: (val) {
+                    int? v = int.tryParse(val);
+                    if (v != null && v >= 0 && v < 47) {
+                      selectedWeeks = v;
+                    }
+                  },
+                ),
+              ),
+              SizedBox(width: 8),
+              Expanded(
+                  child: TextField(
+                controller: daysController,
+                decoration: const InputDecoration(
+                    labelText: 'Days', border: OutlineInputBorder()),
+                keyboardType: TextInputType.number,
+                onChanged: (val) {
+                  int? v = int.tryParse(val);
+                  if (v != null && v >= 0 && v < 7) {
+                    selectedDays = v;
+                  }
+                },
+              )),
+            ],
+          ),
+          SizedBox(height: screenWidth * 0.025),
+          Row(children: [
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  // When Next is pressed, use weeks+days to calculate LMP Date
+                  DateTime gaLmp = DateTime.now().subtract(
+                      Duration(days: selectedWeeks * 7 + selectedDays));
+                  controller.lmpDate.value = gaLmp;
+                  controller.lmpCycleLength.value =
+                      28; // default, or let edit below
+                  controller.calculateDating();
+                  controller.nextStep();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: NeoSafeColors.primaryPink,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14)),
+                ),
+                child: Text('Next'),
+              ),
+            ),
+          ]),
+          SizedBox(height: screenWidth * 0.05),
+          Divider(),
+          Text('Provide ultrasound info for more precise dating (optional):',
+              style: TextStyle(fontWeight: FontWeight.w700)),
+          Row(
+            children: [
+              Expanded(
+                  child: ElevatedButton.icon(
+                onPressed: () async {
+                  DateTime? picked = await showDatePicker(
+                    context: context,
+                    initialDate:
+                        DateTime.now().subtract(const Duration(days: 60)),
+                    firstDate: DateTime(1970),
+                    lastDate: DateTime.now(),
+                  );
+                  if (picked != null) controller.ultrasoundDate.value = picked;
+                },
+                icon: Icon(Icons.medical_services),
+                label: Text(controller.ultrasoundDate.value == null
+                    ? 'UltraSound Date (optional)'
+                    : controller.ultrasoundDate.value!
+                        .toLocal()
+                        .toString()
+                        .split(' ')[0]),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: NeoSafeColors.roseAccent,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14)),
+                ),
+              )),
+            ],
+          ),
+          SizedBox(height: screenWidth * 0.03),
+          Row(children: [
+            Expanded(
+                child: TextField(
+              decoration: InputDecoration(
+                labelText: 'GA on scan (weeks)',
+                labelStyle: TextStyle(fontSize: 8),
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.number,
+              onChanged: (v) {
+                int? vv = int.tryParse(v);
+                if (vv != null && vv >= 4)
+                  controller.ultrasoundGAWeeks.value = vv;
+              },
+            )),
+            SizedBox(width: 8),
+            Expanded(
+                child: TextField(
+              decoration: InputDecoration(
+                labelText: 'GA on scan (days)',
+                labelStyle: TextStyle(fontSize: 8),
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.number,
+              onChanged: (v) {
+                int? vv = int.tryParse(v);
+                if (vv != null && vv >= 0 && vv < 7)
+                  controller.ultrasoundGADays.value = vv;
+              },
+            )),
+          ]),
+          SizedBox(height: screenWidth * 0.06),
+          Row(children: [
+            Expanded(
+              child: OutlinedButton(
+                onPressed: controller.previousStep,
+                child: const Text('Back'),
+              ),
+            ),
+          ]),
+        ],
+      ),
+    );
+  }
+}
+
+// --- NEW STEP: Summary/Confirmation ---
+class PregnantSummaryStep extends StatelessWidget {
+  final GoalOnboardingController controller;
+  final double screenWidth;
+  const PregnantSummaryStep(
+      {required this.controller, required this.screenWidth, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final gaWeeks = (controller.calcGestationalDays.value / 7).floor();
+    final gaDays = controller.calcGestationalDays.value % 7;
+    final isRedFlag = controller.showRedFlag.value;
+    return StepCard(
+      screenWidth: screenWidth,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Pregnancy Summary',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: screenWidth * 0.05,
+                  color: NeoSafeColors.primaryPink)),
+          SizedBox(height: 12),
+          Row(children: [
+            Icon(Icons.calendar_today, color: Colors.deepPurple),
+            SizedBox(width: 8),
+            Text("Estimated Due Date: ",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600, fontSize: screenWidth * 0.03)),
+            Text(
+              controller.dueDate.value != null
+                  ? controller.dueDate.value!.toLocal().toString().split(' ')[0]
+                  : "-",
+              style: TextStyle(
+                  color: Colors.deepPurple,
+                  fontWeight: FontWeight.bold,
+                  fontSize: screenWidth * 0.03),
+            ),
+          ]),
+          SizedBox(height: 8),
+          Row(children: [
+            Icon(Icons.hourglass_bottom, color: Colors.green),
+            SizedBox(width: 8),
+            Text("Gestational Age: $gaWeeks weeks + $gaDays days",
+                style: TextStyle(
+                    color: Colors.green[900],
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenWidth * 0.03)),
+          ]),
+          SizedBox(height: 8),
+          Row(children: [
+            Icon(Icons.timeline, color: Colors.deepOrange),
+            SizedBox(width: 8),
+            Text("Trimester: ${controller.calcTrimester.value}",
+                style: TextStyle(
+                    color: Colors.deepOrange[800],
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenWidth * 0.03)),
+          ]),
+          SizedBox(height: 12),
+          if (controller.datingMethod.value == 'US')
+            Text('Dating is based on ultrasound, preferred when available.',
+                style: TextStyle(color: NeoSafeColors.roseAccent)),
+          if (controller.datingMethod.value == 'LMP')
+            Text('Dating is based on your last period.'),
+          if (controller.datingMethod.value == 'EDD')
+            Text('Dating is based on the due date you entered.'),
+          SizedBox(height: 20),
+          if (isRedFlag)
+            Container(
+              color: Colors.red[100],
+              padding: EdgeInsets.all(8),
+              child: Row(children: [
+                Icon(Icons.warning, color: Colors.red[800]),
+                SizedBox(width: 8),
+                Expanded(
+                    child: Text(
+                        'Warning: The calculated gestational age is very early or late. Please recheck dates, consult a clinician, or confirm with an ultrasound.'))
+              ]),
+            ),
+          SizedBox(height: 16),
+          Center(
+              child: ElevatedButton(
+            onPressed: () async {
+              await controller.saveToPrefs();
+              if (controller.showRedFlag.value) {
+                showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                          title: Row(children: [
+                            Icon(Icons.warning, color: Colors.red),
+                            SizedBox(width: 4),
+                            Text('Red Flag Warning')
+                          ]),
+                          content: Text(
+                              'Your calculated gestational age is out of the normal range (too early or too advanced). Please check your inputs or consult a clinician.'),
+                          actions: [
+                            TextButton(
+                                onPressed: () => Get.back(), child: Text('OK'))
+                          ],
+                        ));
+              }
+              // Always navigate to tracker, passing dueDate and details
+              Get.offAllNamed('/track_my_pregnancy', arguments: {
+                'dueDate': controller.dueDate.value,
+                'gaDays': controller.calcGestationalDays.value,
+                'trimester': controller.calcTrimester.value
+              });
+            },
+            child: Text('Start Tracking Pregnancy'),
+          )),
+        ],
       ),
     );
   }

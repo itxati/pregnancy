@@ -123,6 +123,87 @@ class MainPregnancyCard extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
+                // --- Main Key Info Section ---
+                // Container(
+                //   width: double.infinity,
+                //   margin: const EdgeInsets.symmetric(vertical: 8),
+                //   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                //   decoration: BoxDecoration(
+                //     color: Colors.white.withOpacity(0.88),
+                //     borderRadius: BorderRadius.circular(18),
+                //     boxShadow: [
+                //       BoxShadow(
+                //         color: Colors.black.withOpacity(0.09),
+                //         blurRadius: 6,
+                //         offset: const Offset(0, 2),
+                //       ),
+                //     ],
+                //   ),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Row(
+                //         children: [
+                //           Icon(Icons.calendar_today, color: Colors.deepPurple, size: 21),
+                //           const SizedBox(width: 6),
+                //           Text(
+                //             'EDD:',
+                //             style: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                //           ),
+                //           const SizedBox(width: 5),
+                //           Text(
+                //             controller.dueDate.value,
+                //             style: TextStyle(color: Colors.deepPurple[800], fontWeight: FontWeight.bold, fontSize: 15),
+                //           ),
+                //         ],
+                //       ),
+                //       const SizedBox(height: 4),
+                //       Row(
+                //         children: [
+                //           Icon(Icons.access_time, color: Colors.green, size: 21),
+                //           const SizedBox(width: 6),
+                //           Text('Gestational Age:', style: TextStyle(color: Colors.green[800], fontWeight: FontWeight.w500)),
+                //           const SizedBox(width: 5),
+                //           Text(
+                //             () {
+                //               final weeks = (controller.pregnancyDays.value / 7).floor();
+                //               final days = controller.pregnancyDays.value % 7;
+                //               return '$weeks w $days d';
+                //             }(),
+                //             style: TextStyle(color: Colors.green[900], fontWeight: FontWeight.bold, fontSize: 14),
+                //           ),
+                //           if ((controller.pregnancyDays.value / 7).floor() < 4 || (controller.pregnancyDays.value / 7).floor() > 46) ...[
+                //             const SizedBox(width: 6),
+                //             Icon(Icons.warning, color: Colors.red, size: 18),
+                //           ]
+                //         ],
+                //       ),
+                //       const SizedBox(height: 4),
+                //       Row(
+                //         children: [
+                //           Icon(Icons.timeline, color: Colors.orange, size: 21),
+                //           const SizedBox(width: 6),
+                //           Text('Trimester:', style: TextStyle(color: Colors.orange[800], fontWeight: FontWeight.w500)),
+                //           const SizedBox(width: 5),
+                //           Text(
+                //             controller.trimester.value,
+                //             style: TextStyle(color: Colors.orange[900], fontWeight: FontWeight.bold, fontSize: 14),
+                //           ),
+                //         ],
+                //       ),
+                //       if ((controller.pregnancyDays.value / 7).floor() < 4 || (controller.pregnancyDays.value / 7).floor() > 46) ...[
+                //         const SizedBox(height: 6),
+                //         Row(
+                //           children:[
+                //             Icon(Icons.warning_amber, color:Colors.red, size:21),
+                //             const SizedBox(width:4),
+                //             Text('Red flag: Please consult a clinician or check your entered dates (GA out of range).', style: TextStyle(color:Colors.red[700], fontWeight: FontWeight.w600, fontSize:12)),
+                //           ]
+                //         )
+                //       ]
+                //     ],
+                //   ),
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

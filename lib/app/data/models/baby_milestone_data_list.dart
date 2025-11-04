@@ -1,24 +1,24 @@
 import 'baby_milestone_data.dart';
 
 const List<BabyMilestone> babyMilestones = [
-  BabyMilestone(
-    imageUrl: 'assets/afterbirth/4.jpg',
-    month: 0,
-    title: 'Newborn',
-    milestones: [
-      "Lifts head briefly when on tummy",
-      "Makes eye contact",
-      "Responds to sounds",
-      "Grasps your finger",
-      "Roots for feeding",
-      "Moves limbs symmetrically",
-      "Blinks to bright light",
-      "Startles or alerts to loud sounds",
-      "Gives response to faces and voice",
-    ],
-    description:
-        'Your baby has just entered the world! This is a time of rapid adjustment and bonding.',
-  ),
+  // BabyMilestone(
+  //   imageUrl: 'assets/afterbirth/4.jpg',
+  //   month: 0,
+  //   title: 'Newborn',
+  //   milestones: [
+  //     "Lifts head briefly when on tummy",
+  //     "Makes eye contact",
+  //     "Responds to sounds",
+  //     "Grasps your finger",
+  //     "Roots for feeding",
+  //     "Moves limbs symmetrically",
+  //     "Blinks to bright light",
+  //     "Startles or alerts to loud sounds",
+  //     "Gives response to faces and voice",
+  //   ],
+  //   description:
+  //       'Your baby has just entered the world! This is a time of rapid adjustment and bonding.',
+  // ),
   // 2–8 years extension
   BabyMilestone(
     imageUrl: 'assets/afterbirth/3.jpg',
@@ -94,85 +94,85 @@ const List<BabyMilestone> babyMilestones = [
     description:
         'By ~8 years, children show more stable cognitive, social, and motor patterns; experiences remain highly impactful.',
   ),
-  BabyMilestone(
-    imageUrl: 'assets/afterbirth/1.jpg',
-    month: 1,
-    title: '1 Month',
-    milestones: [
-      'Holds head up for longer periods',
-      'Follows objects with eyes',
-      'Smiles in response to faces',
-      'Makes cooing sounds',
-      'Recognizes familiar voices',
-    ],
-    description:
-        'Your baby is becoming more alert and responsive to the world around them.',
-  ),
-  // Added from trackmybabydata.txt
-  BabyMilestone(
-    imageUrl: 'assets/afterbirth/2.jpg',
-    month: 3,
-    title: '3 Months',
-    milestones: [
-      "Follows light and tracks with eyes",
-      "Regards mother’s face",
-      "Turns toward nearby voices",
-      "Shows happy response to caregiver’s face",
-      "Laughs during pleasurable social contact",
-      "Hands largely open; social smile appears",
-      "Sleeps most of the time (more predictable patterns emerging)",
-      "Holds neck steadily",
-      "Follows objects through small arc",
-      "Vocalizes and responds to sound",
-      "Shows interest in familiar faces",
-    ],
-  ),
-  BabyMilestone(
-    imageUrl: 'assets/afterbirth/3.jpg',
-    month: 6,
-    title: '6 Months',
-    milestones: [
-      "Rolls prone to supine and supine to prone",
-      "Sits with support",
-      "Reaches for or grasps objects",
-      "Turns head towards sounds or voices",
-      "Makes noises, laughs, chuckles, and squeals",
-      "Responds to familiar people",
-      "Eyes move in unison",
-      "Explores by bringing objects to mouth",
-      "Imitates simple gestures (e.g., bye-bye)",
-    ],
-  ),
-  BabyMilestone(
-    imageUrl: 'assets/afterbirth/4.jpg',
-    month: 9,
-    title: '9 Months',
-    milestones: [
-      "Sits without support",
-      "Crawls (usually by 10–11 months)",
-      "Transfers objects from one hand to another",
-      "Finger-feeds small bits of food",
-      "Babbles ('ba-ba', 'da-da')",
-      "Shows fear of strangers",
-      "Reaches for toys in front or behind",
-      "Pulls to stand and cruises on furniture",
-      "Drops and looks for objects (object permanence)",
-    ],
-  ),
-  BabyMilestone(
-    imageUrl: 'assets/afterbirth/1.jpg',
-    month: 12,
-    title: '12 Months',
-    milestones: [
-      "Walks with support",
-      "Picks small objects with thumb and index finger (pincer grasp)",
-      "Speaks single words",
-      "Responds to name",
-      "Follows one-step command",
-      "Enjoys peek-a-boo or pat-a-cake",
-      "Waves bye-bye",
-    ],
-  ),
+  // BabyMilestone(
+  //   imageUrl: 'assets/afterbirth/1.jpg',
+  //   month: 1,
+  //   title: '1 Month',
+  //   milestones: [
+  //     'Holds head up for longer periods',
+  //     'Follows objects with eyes',
+  //     'Smiles in response to faces',
+  //     'Makes cooing sounds',
+  //     'Recognizes familiar voices',
+  //   ],
+  //   description:
+  //       'Your baby is becoming more alert and responsive to the world around them.',
+  // ),
+  // // Added from trackmybabydata.txt
+  // BabyMilestone(
+  //   imageUrl: 'assets/afterbirth/2.jpg',
+  //   month: 3,
+  //   title: '3 Months',
+  //   milestones: [
+  //     "Follows light and tracks with eyes",
+  //     "Regards mother’s face",
+  //     "Turns toward nearby voices",
+  //     "Shows happy response to caregiver’s face",
+  //     "Laughs during pleasurable social contact",
+  //     "Hands largely open; social smile appears",
+  //     "Sleeps most of the time (more predictable patterns emerging)",
+  //     "Holds neck steadily",
+  //     "Follows objects through small arc",
+  //     "Vocalizes and responds to sound",
+  //     "Shows interest in familiar faces",
+  //   ],
+  // ),
+  // BabyMilestone(
+  //   imageUrl: 'assets/afterbirth/3.jpg',
+  //   month: 6,
+  //   title: '6 Months',
+  //   milestones: [
+  //     "Rolls prone to supine and supine to prone",
+  //     "Sits with support",
+  //     "Reaches for or grasps objects",
+  //     "Turns head towards sounds or voices",
+  //     "Makes noises, laughs, chuckles, and squeals",
+  //     "Responds to familiar people",
+  //     "Eyes move in unison",
+  //     "Explores by bringing objects to mouth",
+  //     "Imitates simple gestures (e.g., bye-bye)",
+  //   ],
+  // ),
+  // BabyMilestone(
+  //   imageUrl: 'assets/afterbirth/4.jpg',
+  //   month: 9,
+  //   title: '9 Months',
+  //   milestones: [
+  //     "Sits without support",
+  //     "Crawls (usually by 10–11 months)",
+  //     "Transfers objects from one hand to another",
+  //     "Finger-feeds small bits of food",
+  //     "Babbles ('ba-ba', 'da-da')",
+  //     "Shows fear of strangers",
+  //     "Reaches for toys in front or behind",
+  //     "Pulls to stand and cruises on furniture",
+  //     "Drops and looks for objects (object permanence)",
+  //   ],
+  // ),
+  // BabyMilestone(
+  //   imageUrl: 'assets/afterbirth/1.jpg',
+  //   month: 12,
+  //   title: '12 Months',
+  //   milestones: [
+  //     "Walks with support",
+  //     "Picks small objects with thumb and index finger (pincer grasp)",
+  //     "Speaks single words",
+  //     "Responds to name",
+  //     "Follows one-step command",
+  //     "Enjoys peek-a-boo or pat-a-cake",
+  //     "Waves bye-bye",
+  //   ],
+  // ),
   // Week-by-week milestones (weeks stored as month values starting from 100)
   // Week 1
   BabyMilestone(

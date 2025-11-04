@@ -108,6 +108,230 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
                 onEdit: () =>
                     _showEditCycleLengthDialog(context, data['cycle_length']),
               ),
+
+              // Add: Editable GA (weeks+days since LMP) and enhanced LMP/US for fertility tracking
+              const SizedBox(height: 16),
+              _EditableDetailRow(
+                icon: Icons.date_range,
+                label: 'Gestational Age (weeks+days)'.tr,
+                value: (() {
+                  final lmpStr = data['last_period'];
+                  if (lmpStr != null) {
+                    final lmpDate = DateTime.parse(lmpStr);
+                    final today = DateTime.now();
+                    final days = today.difference(lmpDate).inDays;
+                    final weeks = (days / 7).floor();
+                    final remDays = days % 7;
+                    return '$weeks w $remDays d';
+                  }
+                  return 'Unknown';
+                })(),
+                color: NeoSafeColors.info,
+                onEdit: () {
+                  int gaWeeks = 0;
+                  int gaDays = 0;
+                  String errorMsg = '';
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return StatefulBuilder(
+                        builder: (context, setState) {
+                          return AlertDialog(
+                            title: Row(children:[Text('Edit Gestational Age'), IconButton(
+                              icon: Icon(Icons.info_outline, color: Colors.blue),
+                              onPressed: () => _showEducationPopup(context, 'Gestational age is the number of weeks + days since your last period. If you are unsure, estimate or use your LMP.'),
+                            )]),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Row(children: [
+                                  Expanded(
+                                    child: TextField(
+                                      decoration: InputDecoration(labelText: 'Weeks'),
+                                      keyboardType: TextInputType.number,
+                                      onChanged: (w) {
+                                        var v = int.tryParse(w);
+                                        setState(() {
+                                          gaWeeks = v ?? 0;
+                                          errorMsg = '';
+                                          if (gaWeeks < 0 || gaWeeks > 46) errorMsg = 'Weeks should be in 0–46';
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: TextField(
+                                      decoration: InputDecoration(labelText: 'Days'),
+                                      keyboardType: TextInputType.number,
+                                      onChanged: (d) {
+                                        var v = int.tryParse(d);
+                                        setState(() {
+                                          gaDays = v ?? 0;
+                                          errorMsg = '';
+                                          if (gaDays < 0 || gaDays > 6) errorMsg = 'Days should be in 0–6';
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ]),
+                                if (errorMsg.isNotEmpty) ...[
+                                  SizedBox(height: 10),
+                                  Text(errorMsg, style: TextStyle(color: Colors.red, fontWeight: FontWeight.w600)),
+                                ],
+                              ],
+                            ),
+                            actions: [
+                              TextButton(onPressed:()=>Get.back(),child:const Text('Cancel')),
+                              ElevatedButton(
+                                onPressed: (errorMsg.isNotEmpty||gaWeeks==0&&gaDays==0)?null:() async {
+                                  DateTime newLmp = DateTime.now().subtract(Duration(days: gaWeeks * 7 + gaDays));
+                                  await _updateLastPeriod(newLmp);
+                                  Get.back();
+                                  Get.snackbar('Saved', 'Gestational Age updated successfully!',backgroundColor:Colors.green[50],colorText:Colors.green);
+                                  final edd = newLmp.add(const Duration(days:280));
+
+                                  if(gaWeeks<4||gaWeeks>46) {
+                                    _showEducationPopup(context, 'The gestational age you entered is very early or very advanced. Please check or consult a clinician.');
+                                    return;
+                                  }
+
+                                  // Auto-go to tracker with results
+                                  Future.delayed(const Duration(milliseconds:600),(){
+                                    Get.offAllNamed('/track_my_pregnancy', arguments: {
+                                      'dueDate': edd,
+                                      'gaDays': gaWeeks*7+gaDays,
+                                      'trimester': (gaWeeks<=13) ? 'First trimester' : (gaWeeks<=27) ? 'Second trimester' : 'Third trimester'
+                                    });
+                                  });
+                                },
+                                style:ElevatedButton.styleFrom(backgroundColor: NeoSafeColors.primaryPink,foregroundColor:Colors.white),
+                                child:Text('Save'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+
+              const SizedBox(height: 16),
+              _EditableDetailRow(
+                icon: Icons.medical_services,
+                label: 'Ultrasound Scan'.tr,
+                value: 'Add/edit scan info',
+                color: NeoSafeColors.warning,
+                onEdit: () {
+                  int usWeeks = 0, usDays = 0;
+                  String usError = '';
+                  DateTime? usDate;
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return StatefulBuilder(builder: (c, setState) {
+                        return AlertDialog(
+                          title: Row(children:[Text('Edit Ultrasound'), IconButton(
+                              icon: Icon(Icons.info_outline, color: Colors.blue),
+                              onPressed: () => _showEducationPopup(context, 'Ultrasound early in pregnancy gives a very accurate due date. Enter the scan date and gestational age as noted on report.'),
+                            )]),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ListTile(
+                                title: Text(usDate==null?'Select scan date':_formatDate(usDate!)),
+                                trailing: Icon(Icons.calendar_today),
+                                onTap: () async {
+                                  final picked = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime.now().subtract(Duration(days: 280)),
+                                    lastDate: DateTime.now(),
+                                  );
+                                  setState(()=>usDate=picked);
+                                },
+                              ),
+                              Row(children:[
+                                Expanded(child:TextField(
+                                decoration:InputDecoration(labelText:'Weeks'),
+                                keyboardType:TextInputType.number,
+                                onChanged:(val){var v=int.tryParse(val);setState(()=>usWeeks=v??0);if(v!=null&&(v<4||v>46))usError='Weeks in 4–46';else usError='';},
+                              )),
+                                SizedBox(width:8),
+                                Expanded(child:TextField(
+                                decoration:InputDecoration(labelText:'Days'),
+                                keyboardType:TextInputType.number,
+                                onChanged:(val){var v=int.tryParse(val); setState(()=>usDays=v??0);if(v!=null&&(v<0||v>6))usError='Days 0–6'; else usError='';},
+                              )),
+                              ]),
+                              if(usError.isNotEmpty)...[
+                                SizedBox(height:8),
+                                Text(usError,style:TextStyle(color:Colors.red)),
+                              ],
+                            ],
+                          ),
+                          actions: [
+                            TextButton(onPressed:()=>Get.back(),child:Text('Cancel')),
+                            ElevatedButton(
+                              onPressed:(usError.isNotEmpty||usDate==null)?null:() async{
+                                // Save to prefs, recalc
+                                final prefs = await SharedPreferences.getInstance();
+                                await prefs.setString('onboarding_us_date', usDate!.toIso8601String());
+                                await prefs.setInt('onboarding_us_weeks', usWeeks);
+                                await prefs.setInt('onboarding_us_days', usDays);
+                                Get.back();
+                                Get.snackbar('Saved','Ultrasound info updated!', backgroundColor:Colors.green[50], colorText:Colors.green);
+                                if(usWeeks<4||usWeeks>46)_showEducationPopup(context, 'Scan result is out of normal range. Double-check details or see doctor.');
+                              },
+                              style:ElevatedButton.styleFrom(backgroundColor:NeoSafeColors.primaryPink,foregroundColor:Colors.white),
+                              child:Text('Save'),
+                            ),
+                          ],
+                        );
+                      });
+                    },
+                  );
+                },
+              ),
+
+              // Calculated EDD
+              const SizedBox(height: 16),
+              _DetailRow(
+                icon: Icons.child_care,
+                label: 'Estimated Due Date',
+                value: (() {
+                  final lmpStr = data['last_period'];
+                  if (lmpStr != null) {
+                    final lmpDate = DateTime.parse(lmpStr);
+                    final edd = lmpDate.add(const Duration(days: 280));
+                    return _formatDate(edd);
+                  }
+                  return 'Not provided';
+                })(),
+                color: Colors.deepPurple,
+              ),
+
+              // Calculated trimester
+              const SizedBox(height: 16),
+              _DetailRow(
+                icon: Icons.timeline,
+                label: 'Trimester',
+                value: (() {
+                  final lmpStr = data['last_period'];
+                  if (lmpStr != null) {
+                    final lmpDate = DateTime.parse(lmpStr);
+                    final today = DateTime.now();
+                    final days = today.difference(lmpDate).inDays;
+                    final weeks = (days / 7).floor();
+                    if (weeks <= 13) return 'First trimester';
+                    if (weeks <= 27) return 'Second trimester';
+                    return 'Third trimester';
+                  }
+                  return 'Unknown';
+                })(),
+                color: Colors.deepOrange,
+              ),
             ],
           ),
         );
@@ -375,6 +599,18 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: NeoSafeColors.success.withOpacity(0.1),
       colorText: NeoSafeColors.success,
+    );
+  }
+
+  // Helper: show education/information popups
+  void _showEducationPopup(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: const Text('Why?'),
+        content: Text(message),
+        actions: [TextButton(onPressed: () => Navigator.of(c).pop(), child: const Text('OK'))],
+      ),
     );
   }
 }

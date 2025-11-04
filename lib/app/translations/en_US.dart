@@ -1871,23 +1871,23 @@ final Map<String, String> enUS = {
   "milestone_desc_96":
       "By ~8 years, children show more stable cognitive, social, and motor patterns; experiences remain impactful.",
 
-// Month 0 milestones
-  "milestone_0_1": "Lifts head briefly when on tummy",
-  "milestone_0_2": "Makes eye contact",
-  "milestone_0_3": "Responds to sounds",
-  "milestone_0_4": "Grasps your finger",
-  "milestone_0_5": "Roots for feeding",
-  "milestone_0_6": "Moves limbs symmetrically",
-  "milestone_0_7": "Blinks to bright light",
-  "milestone_0_8": "Startles or alerts to loud sounds",
-  "milestone_0_9": "Gives response to faces and voice",
+// // Month 0 milestones
+//   "milestone_0_1": "Lifts head briefly when on tummy",
+//   "milestone_0_2": "Makes eye contact",
+//   "milestone_0_3": "Responds to sounds",
+//   "milestone_0_4": "Grasps your finger",
+//   "milestone_0_5": "Roots for feeding",
+//   "milestone_0_6": "Moves limbs symmetrically",
+//   "milestone_0_7": "Blinks to bright light",
+//   "milestone_0_8": "Startles or alerts to loud sounds",
+//   "milestone_0_9": "Gives response to faces and voice",
 
-// Month 1 milestones
-  "milestone_1_1": "Holds head up for longer periods",
-  "milestone_1_2": "Follows objects with eyes",
-  "milestone_1_3": "Smiles in response to faces",
-  "milestone_1_4": "Makes cooing sounds",
-  "milestone_1_5": "Recognizes familiar voices",
+// // Month 1 milestones
+//   "milestone_1_1": "Holds head up for longer periods",
+//   "milestone_1_2": "Follows objects with eyes",
+//   "milestone_1_3": "Smiles in response to faces",
+//   "milestone_1_4": "Makes cooing sounds",
+//   "milestone_1_5": "Recognizes familiar voices",
 
 // Month 36 (3–4 years)
   "milestone_36_1": "Pedals tricycle",
@@ -1952,72 +1952,72 @@ final Map<String, String> enUS = {
   "milestone_96_4":
       "Organized, detailed work products (writing, crafts, projects)",
 
-// Month 3 milestones (English)
-  "milestone_3_1": "Follows light and tracks with eyes",
-  "milestone_3_2": "Regards mother’s face",
-  "milestone_3_3": "Turns toward nearby voices",
-  "milestone_3_4": "Shows happy response to caregiver’s face",
-  "milestone_3_5": "Laughs during pleasurable social contact",
-  "milestone_3_6": "Hands largely open; social smile appears",
-  "milestone_3_7":
-      "Sleeps most of the time (more predictable patterns emerging)",
-  "milestone_3_8": "Holds neck steadily",
-  "milestone_3_9": "Follows objects through a small arc",
-  "milestone_3_10": "Makes sounds and vocal responses to voices or noises",
-  "milestone_3_11": "Shows interest in familiar faces",
+// // Month 3 milestones (English)
+//   "milestone_3_1": "Follows light and tracks with eyes",
+//   "milestone_3_2": "Regards mother’s face",
+//   "milestone_3_3": "Turns toward nearby voices",
+//   "milestone_3_4": "Shows happy response to caregiver’s face",
+//   "milestone_3_5": "Laughs during pleasurable social contact",
+//   "milestone_3_6": "Hands largely open; social smile appears",
+//   "milestone_3_7":
+//       "Sleeps most of the time (more predictable patterns emerging)",
+//   "milestone_3_8": "Holds neck steadily",
+//   "milestone_3_9": "Follows objects through a small arc",
+//   "milestone_3_10": "Makes sounds and vocal responses to voices or noises",
+//   "milestone_3_11": "Shows interest in familiar faces",
 
-// Month 6 milestones (English)
-  "milestone_6_1":
-      "Rolls prone to supine (around 5 months) and supine to prone (around 6 months)",
-  "milestone_6_2": "Sits with support or back support",
-  "milestone_6_3": "Reaches for or grasps objects",
-  "milestone_6_4": "Eyes move in unison",
-  "milestone_6_5": "Vocalizes tunefully; shouts to attract attention",
-  "milestone_6_6": "Turns head towards sounds or voices",
-  "milestone_6_7": "Makes noises and babbles",
-  "milestone_6_8": "Laughs, chuckles, or squeals happily",
-  "milestone_6_9": "Responds to familiar people with smiles or excitement",
-  "milestone_6_10": "Explores by bringing objects to mouth",
-  "milestone_6_11": "Imitates simple gestures (e.g., bye-bye)",
+// // Month 6 milestones (English)
+//   "milestone_6_1":
+//       "Rolls prone to supine (around 5 months) and supine to prone (around 6 months)",
+//   "milestone_6_2": "Sits with support or back support",
+//   "milestone_6_3": "Reaches for or grasps objects",
+//   "milestone_6_4": "Eyes move in unison",
+//   "milestone_6_5": "Vocalizes tunefully; shouts to attract attention",
+//   "milestone_6_6": "Turns head towards sounds or voices",
+//   "milestone_6_7": "Makes noises and babbles",
+//   "milestone_6_8": "Laughs, chuckles, or squeals happily",
+//   "milestone_6_9": "Responds to familiar people with smiles or excitement",
+//   "milestone_6_10": "Explores by bringing objects to mouth",
+//   "milestone_6_11": "Imitates simple gestures (e.g., bye-bye)",
 
-// Month 9 milestones (English)
-  "milestone_9_1": "Sits without support (often by 8 months)",
-  "milestone_9_2": "Reaches for a toy in front (around 9 months)",
-  "milestone_9_3": "Pivots to reach toy behind (around 10 months)",
-  "milestone_9_4":
-      "Pulls to stand and cruises on furniture (may fall on bottom)",
-  "milestone_9_5": "Crawls or creeps on hands and knees (usually 10–11 months)",
-  "milestone_9_6": "Transfers objects from one hand to the other",
-  "milestone_9_7": "Finger-feeds small pieces of food",
-  "milestone_9_8":
-      "Visually alert to peripheral movement; grasps string/objects",
-  "milestone_9_9":
-      "Drops objects and looks for them (object permanence emerging)",
-  "milestone_9_10": "Babbles repeated syllables like “ba-ba” or “da-da”",
-  "milestone_9_11": "Holds, bites, and chews biscuits or soft foods",
-  "milestone_9_12": "Shows fear or shyness when strangers are around",
-  "milestone_9_13": "Waves and imitates hand clapping",
+// // Month 9 milestones (English)
+//   "milestone_9_1": "Sits without support (often by 8 months)",
+//   "milestone_9_2": "Reaches for a toy in front (around 9 months)",
+//   "milestone_9_3": "Pivots to reach toy behind (around 10 months)",
+//   "milestone_9_4":
+//       "Pulls to stand and cruises on furniture (may fall on bottom)",
+//   "milestone_9_5": "Crawls or creeps on hands and knees (usually 10–11 months)",
+//   "milestone_9_6": "Transfers objects from one hand to the other",
+//   "milestone_9_7": "Finger-feeds small pieces of food",
+//   "milestone_9_8":
+//       "Visually alert to peripheral movement; grasps string/objects",
+//   "milestone_9_9":
+//       "Drops objects and looks for them (object permanence emerging)",
+//   "milestone_9_10": "Babbles repeated syllables like “ba-ba” or “da-da”",
+//   "milestone_9_11": "Holds, bites, and chews biscuits or soft foods",
+//   "milestone_9_12": "Shows fear or shyness when strangers are around",
+//   "milestone_9_13": "Waves and imitates hand clapping",
 
-// Month 12 milestones (English)
-  "milestone_12_1": "Walks with support or holding one hand (around 12 months)",
-  "milestone_12_2": "Cruises along furniture; may take a few independent steps",
-  "milestone_12_3":
-      "Picks up small objects using thumb and index finger (pincer grasp)",
-  "milestone_12_4": "Responds when called by name",
-  "milestone_12_5": "Speaks a few single words",
-  "milestone_12_6": "Follows simple one-step commands (e.g., ‘come here’)",
-  "milestone_12_7": "Enjoys peek-a-boo and pat-a-cake games",
-  "milestone_12_8": "Waves bye-bye or imitates simple gestures",
-  "milestone_12_9": "Drinks from a cup with little help",
+// // Month 12 milestones (English)
+//   "milestone_12_1": "Walks with support or holding one hand (around 12 months)",
+//   "milestone_12_2": "Cruises along furniture; may take a few independent steps",
+//   "milestone_12_3":
+//       "Picks up small objects using thumb and index finger (pincer grasp)",
+//   "milestone_12_4": "Responds when called by name",
+//   "milestone_12_5": "Speaks a few single words",
+//   "milestone_12_6": "Follows simple one-step commands (e.g., ‘come here’)",
+//   "milestone_12_7": "Enjoys peek-a-boo and pat-a-cake games",
+//   "milestone_12_8": "Waves bye-bye or imitates simple gestures",
+//   "milestone_12_9": "Drinks from a cup with little help",
 
-// Month 18 milestones
-  "milestone_18_1": "Walks steadily",
-  "milestone_18_2": "Tries to eat with spoon or hand",
-  "milestone_18_3": "Copies domestic chores",
-  "milestone_18_4": "Scribbles",
-  "milestone_18_5": "Speaks 5–10 words",
-  "milestone_18_6": "Points to 3 body parts",
-  "milestone_18_7": "Plays using a single toy",
+// // Month 18 milestones
+//   "milestone_18_1": "Walks steadily",
+//   "milestone_18_2": "Tries to eat with spoon or hand",
+//   "milestone_18_3": "Copies domestic chores",
+//   "milestone_18_4": "Scribbles",
+//   "milestone_18_5": "Speaks 5–10 words",
+//   "milestone_18_6": "Points to 3 body parts",
+//   "milestone_18_7": "Plays using a single toy",
 
 // Week-by-week milestones (weeks stored as month values starting from 100)
 // Week 1 milestones (month 100)
