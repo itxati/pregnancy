@@ -23,6 +23,8 @@ import '../../profile/views/profile_view.dart';
 import '../../profile/controllers/profile_controller.dart';
 import '../../weight_tracking/widgets/weight_tracking_card.dart';
 import '../../weight_tracking/controllers/weight_tracking_controller.dart';
+import '../../risk_assessment/widgets/risk_assessment_card.dart';
+import '../../risk_assessment/controllers/risk_assessment_controller.dart';
 
 class TrackMyPregnancyView extends StatelessWidget {
   const TrackMyPregnancyView({Key? key}) : super(key: key);
@@ -172,6 +174,21 @@ class TrackMyPregnancyView extends StatelessWidget {
                     // Sync gestational week and trimester
                     weightController.setCurrentGestationalWeek(controller.pregnancyWeekNumber.value);
                     return WeightTrackingCard(controller: weightController);
+                  }),
+
+                  const SizedBox(height: 24),
+
+                  // Risk Assessment Card
+                  Obx(() {
+                    RiskAssessmentController riskController;
+                    if (Get.isRegistered<RiskAssessmentController>()) {
+                      riskController = Get.find<RiskAssessmentController>();
+                    } else {
+                      riskController = Get.put(RiskAssessmentController());
+                    }
+                    // Sync gestational week
+                    riskController.setCurrentGestationalWeek(controller.pregnancyWeekNumber.value);
+                    return RiskAssessmentCard(controller: riskController);
                   }),
 
                   const SizedBox(height: 24),

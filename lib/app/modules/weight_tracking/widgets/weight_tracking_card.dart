@@ -80,10 +80,28 @@ class WeightTrackingCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.add_circle_outline,
-                          color: NeoSafeColors.primaryPink),
-                      onPressed: () => _showAddWeightDialog(context),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Obx(() => IconButton(
+                              icon: Icon(
+                                controller.reminderEnabled.value
+                                    ? Icons.notifications_active
+                                    : Icons.notifications_off,
+                                color: controller.reminderEnabled.value
+                                    ? NeoSafeColors.primaryPink
+                                    : Colors.grey,
+                              ),
+                              onPressed: () =>
+                                  _showReminderSettingsDialog(context),
+                              tooltip: 'Weight Reminder Settings',
+                            )),
+                        IconButton(
+                          icon: Icon(Icons.add_circle_outline,
+                              color: NeoSafeColors.primaryPink),
+                          onPressed: () => _showAddWeightDialog(context),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -563,6 +581,184 @@ class WeightTrackingCard extends StatelessWidget {
                   ),
                 ],
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showReminderSettingsDialog(BuildContext context) {
+    final hourController = TextEditingController(
+        text: controller.reminderHour.value.toString().padLeft(2, '0'));
+    final minuteController = TextEditingController(
+        text: controller.reminderMinute.value.toString().padLeft(2, '0'));
+
+    Get.dialog(
+      Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Weight Tracking Reminder',
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Obx(() => SwitchListTile(
+                    title: Text(
+                      'Enable Daily Reminder',
+                      style: GoogleFonts.inter(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Get a daily notification to log your weight',
+                      style: GoogleFonts.inter(
+                        fontSize: 12,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                    value: controller.reminderEnabled.value,
+                    onChanged: (value) async {
+                      try {
+                        if (value) {
+                          await controller.enableReminder(
+                            controller.reminderHour.value,
+                            controller.reminderMinute.value,
+                          );
+                          Get.snackbar(
+                            'Reminder Enabled',
+                            'You\'ll receive daily reminders at ${controller.reminderHour.value.toString().padLeft(2, '0')}:${controller.reminderMinute.value.toString().padLeft(2, '0')}',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.green[100],
+                            colorText: Colors.green[900],
+                          );
+                        } else {
+                          await controller.disableReminder();
+                          Get.snackbar(
+                            'Reminder Disabled',
+                            'Daily reminders have been turned off',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.orange[100],
+                            colorText: Colors.orange[900],
+                          );
+                        }
+                      } catch (e) {
+                        Get.snackbar(
+                          'Error',
+                          'Failed to ${value ? "enable" : "disable"} reminder: $e',
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red[100],
+                          colorText: Colors.red[900],
+                        );
+                      }
+                    },
+                    activeColor: NeoSafeColors.primaryPink,
+                  )),
+              Obx(() {
+                if (controller.reminderEnabled.value) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 16),
+                      Text(
+                        'Reminder Time',
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey[700],
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: hourController,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                labelText: 'Hour (0-23)',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: TextField(
+                              controller: minuteController,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                labelText: 'Minute (0-59)',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
+              }),
+              const SizedBox(height: 24),
+              Obx(() => Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () => Get.back(),
+                        child: Text('Close'),
+                      ),
+                      if (controller.reminderEnabled.value) ...[
+                        const SizedBox(width: 12),
+                        ElevatedButton(
+                          onPressed: () async {
+                            final hour = int.tryParse(hourController.text);
+                            final minute = int.tryParse(minuteController.text);
+
+                            if (hour != null &&
+                                hour >= 0 &&
+                                hour <= 23 &&
+                                minute != null &&
+                                minute >= 0 &&
+                                minute <= 59) {
+                              await controller.enableReminder(hour, minute);
+                              Get.back();
+                              Get.snackbar(
+                                'Reminder Updated',
+                                'Reminder time set to ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}',
+                                snackPosition: SnackPosition.BOTTOM,
+                              );
+                            } else {
+                              Get.snackbar(
+                                'Error',
+                                'Please enter valid time (Hour: 0-23, Minute: 0-59)',
+                                snackPosition: SnackPosition.BOTTOM,
+                              );
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: NeoSafeColors.primaryPink,
+                            foregroundColor: Colors.white,
+                          ),
+                          child: Text('Update Time'),
+                        ),
+                      ],
+                    ],
+                  )),
             ],
           ),
         ),

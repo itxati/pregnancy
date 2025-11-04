@@ -280,6 +280,105 @@ class NotificationService {
   }
 
   // =================
+  // WEIGHT TRACKING REMINDERS
+  // =================
+
+  static const int _weightTrackingNotificationId = 6000;
+  static const String _weightTrackingChannelId = 'weight_tracking_reminders';
+  static const String _weightTrackingEnabledKey =
+      'weight_tracking_reminder_enabled';
+  static const String _weightTrackingHourKey = 'weight_tracking_reminder_hour';
+  static const String _weightTrackingMinuteKey =
+      'weight_tracking_reminder_minute';
+
+  /// Create weight tracking notification channel
+  Future<void> _createWeightTrackingNotificationChannel() async {
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      _weightTrackingChannelId,
+      'Weight Tracking Reminders',
+      description: 'Daily reminders to log your weight during pregnancy',
+      importance: Importance.high,
+      playSound: true,
+      enableVibration: true,
+    );
+
+    await _plugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+  }
+
+  /// Schedule daily weight tracking reminder
+  Future<void> scheduleWeightTrackingReminder({
+    int hour = 9,
+    int minute = 0,
+  }) async {
+    await _createWeightTrackingNotificationChannel();
+
+    // Cancel any existing weight tracking reminders
+    await cancelWeightTrackingReminder();
+
+    // Schedule daily recurring reminder
+    final tz.TZDateTime scheduled = _nextInstanceOfTime(
+      dayOffset: 0,
+      hour: hour,
+      minute: minute,
+    );
+
+    // Use inexact alarms for daily reminders - they're reliable and don't require special permission
+    // Inexact alarms are usually within a few minutes of the scheduled time, which is fine for reminders
+    await _plugin.zonedSchedule(
+      _weightTrackingNotificationId,
+      'Weight Tracking Reminder',
+      'Don\'t forget to log your weight today! 📊',
+      scheduled,
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          _weightTrackingChannelId,
+          'Weight Tracking Reminders',
+          channelDescription:
+              'Daily reminders to log your weight during pregnancy',
+          importance: Importance.high,
+          priority: Priority.high,
+          enableVibration: true,
+          playSound: true,
+        ),
+      ),
+      payload: '/track_my_pregnancy',
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+    );
+
+    // Save preferences
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_weightTrackingEnabledKey, true);
+    await prefs.setInt(_weightTrackingHourKey, hour);
+    await prefs.setInt(_weightTrackingMinuteKey, minute);
+  }
+
+  /// Cancel weight tracking reminder
+  Future<void> cancelWeightTrackingReminder() async {
+    await _plugin.cancel(_weightTrackingNotificationId);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_weightTrackingEnabledKey, false);
+  }
+
+  /// Check if weight tracking reminder is enabled
+  Future<bool> isWeightTrackingReminderEnabled() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_weightTrackingEnabledKey) ?? false;
+  }
+
+  /// Get weight tracking reminder time
+  Future<Map<String, int>> getWeightTrackingReminderTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    return {
+      'hour': prefs.getInt(_weightTrackingHourKey) ?? 9,
+      'minute': prefs.getInt(_weightTrackingMinuteKey) ?? 0,
+    };
+  }
+
+  // =================
   // BREASTFEEDING NOTIFICATIONS
   // =================
 

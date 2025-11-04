@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../data/models/weight_entry.dart';
 import '../../../services/auth_service.dart';
+import '../../../services/notification_service.dart';
 import 'dart:convert';
 
 class WeightTrackingController extends GetxController {
@@ -36,15 +37,63 @@ class WeightTrackingController extends GetxController {
   final RxBool showRapidGainAlert = false.obs;
   final RxString alertMessage = ''.obs;
 
+  // Reminder settings
+  final RxBool reminderEnabled = false.obs;
+  final RxInt reminderHour = 9.obs;
+  final RxInt reminderMinute = 0.obs;
+
   @override
   void onInit() async {
     super.onInit();
     authService = Get.find<AuthService>();
     await loadUserData();
     await loadWeightEntries();
+    await loadReminderSettings();
     calculateWeightGainTargets();
     updateCurrentWeight();
     checkAlerts();
+    _setupReminders();
+  }
+
+  Future<void> loadReminderSettings() async {
+    final notificationService = NotificationService.instance;
+    reminderEnabled.value = await notificationService.isWeightTrackingReminderEnabled();
+    final time = await notificationService.getWeightTrackingReminderTime();
+    reminderHour.value = time['hour'] ?? 9;
+    reminderMinute.value = time['minute'] ?? 0;
+  }
+
+  Future<void> _setupReminders() async {
+    if (reminderEnabled.value) {
+      await enableReminder(reminderHour.value, reminderMinute.value);
+    }
+  }
+
+  Future<void> enableReminder(int hour, int minute) async {
+    try {
+      final notificationService = NotificationService.instance;
+      await notificationService.scheduleWeightTrackingReminder(
+        hour: hour,
+        minute: minute,
+      );
+      reminderEnabled.value = true;
+      reminderHour.value = hour;
+      reminderMinute.value = minute;
+    } catch (e) {
+      print('Error enabling reminder: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> disableReminder() async {
+    try {
+      final notificationService = NotificationService.instance;
+      await notificationService.cancelWeightTrackingReminder();
+      reminderEnabled.value = false;
+    } catch (e) {
+      print('Error disabling reminder: $e');
+      rethrow;
+    }
   }
 
   Future<void> loadUserData() async {

@@ -94,6 +94,12 @@ class GoalOnboardingController extends GetxController {
       await prefs.setString('onboarding_pre_pregnancy_weight_$userId', prePregnancyWeight.value);
     }
     
+    // Save age for risk assessment
+    if (age.value.isNotEmpty) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('onboarding_age_$userId', age.value);
+    }
+    
     // Save onboarding complete flag for this user
     await authService.setOnboardingBool('onboarding_complete', userId, true);
   }
