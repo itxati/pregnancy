@@ -21,6 +21,7 @@ class GetPregnantRequirementsController extends GetxController
   int periodLength = 5;
 
   late AuthService authService;
+  bool _promptActive = false;
 
   // Pregnancy tracking variables
   RxInt pregnancyWeekNumber = 0.obs;
@@ -54,8 +55,7 @@ class GetPregnantRequirementsController extends GetxController
     // Load data from SharedPreferences
     _loadUserData();
 
-    // Check for auto-update of period start
-    _checkPeriodUpdate();
+    // Removed silent auto-update; prompts will handle user-driven updates
 
     // Load pregnancy data if available
     _loadPregnancyData();
@@ -217,9 +217,110 @@ class GetPregnantRequirementsController extends GetxController
 
   // Check and update period start if needed
   Future<void> _checkPeriodUpdate() async {
-    await authService.checkAndUpdatePeriodStart();
-    _loadUserData(); // Reload data after potential update
+    // No-op: we now prompt the user instead of silently updating
   }
+
+  // Prompt user about period start or ongoing bleeding; call from view after build
+  Future<void> maybePromptUser(BuildContext context) async {
+    if (_promptActive) return;
+    final user = authService.currentUser.value;
+    if (user == null) return;
+
+    final prefs = await SharedPreferences.getInstance();
+    final userId = user.id;
+    final today = DateTime.now();
+    final todayKey = _formatDateKey(today);
+
+    // 1) If today is expected next period day, ask if period started
+    if (user.lastPeriodStart != null) {
+      final expectedNext = user.lastPeriodStart!.add(Duration(days: user.cycleLength));
+      final alreadyAskedKey = 'period_start_prompt_shown_${userId}_$todayKey';
+      final alreadyAsked = prefs.getBool(alreadyAskedKey) ?? false;
+      // Prompt on expected day and all overdue days until user says Yes
+      if (!alreadyAsked && (_isSameCalendarDay(expectedNext, today) || today.isAfter(expectedNext))) {
+        _promptActive = true;
+        await _askPeriodStartToday(context);
+        await prefs.setBool(alreadyAskedKey, true);
+        _promptActive = false;
+        return; // show only one prompt per day
+      }
+    }
+
+    // 2) If within ongoing period window, ask if still bleeding today
+    if (user.lastPeriodStart != null) {
+      final start = user.lastPeriodStart!;
+      final daysSinceStart = today.difference(DateTime(start.year, start.month, start.day)).inDays + 1;
+      final finalizedKey = 'period_bleeding_finalized_${userId}_${_formatIsoDay(start)}';
+      final isFinalized = prefs.getBool(finalizedKey) ?? false;
+
+      // Start asking from day 2 to avoid immediate double prompts on day 1
+      if (!isFinalized && daysSinceStart >= 2) {
+        final askedKey = 'period_bleed_prompt_shown_${userId}_$todayKey';
+        final asked = prefs.getBool(askedKey) ?? false;
+        if (!asked) {
+          _promptActive = true;
+          await _askStillBleedingToday(context, daysSinceStart, finalizedKey);
+          await prefs.setBool(askedKey, true);
+          _promptActive = false;
+        }
+      }
+    }
+  }
+
+  Future<void> _askPeriodStartToday(BuildContext context) async {
+    final result = await Get.dialog<bool>(
+      AlertDialog(
+        title: const Text('Period Check'),
+        content: const Text('Did your period start today?'),
+        actions: [
+          TextButton(onPressed: () => Get.back(result: false), child: const Text('No')),
+          ElevatedButton(onPressed: () => Get.back(result: true), child: const Text('Yes')),
+        ],
+      ),
+    );
+
+    if (result == true) {
+      // Update last period to today and reset period length minimally to 1
+      final today = DateTime.now();
+      final prevLength = periodLength; // use previous period length as default
+      await setPeriodStart(DateTime(today.year, today.month, today.day));
+      await updateCycleSettings(newPeriodLength: prevLength);
+    } else if (result == false) {
+      // Period not started; increment cycle length by one day
+      await updateCycleSettings(newCycleLength: cycleLength + 1);
+    }
+  }
+
+  Future<void> _askStillBleedingToday(BuildContext context, int daysSinceStart, String finalizedKey) async {
+    final prefs = await SharedPreferences.getInstance();
+    final result = await Get.dialog<bool>(
+      AlertDialog(
+        title: const Text('Period Ongoing'),
+        content: const Text('Are you still bleeding today?'),
+        actions: [
+          TextButton(onPressed: () => Get.back(result: false), child: const Text('No')),
+          ElevatedButton(onPressed: () => Get.back(result: true), child: const Text('Yes')),
+        ],
+      ),
+    );
+
+    if (result == true) {
+      // Extend period length to cover today if needed
+      final desiredLength = daysSinceStart;
+      if (desiredLength > periodLength) {
+        await updateCycleSettings(newPeriodLength: desiredLength);
+      }
+    } else if (result == false) {
+      // Finalize period length as up to yesterday at minimum 1
+      final finalizedLength = daysSinceStart - 1;
+      await updateCycleSettings(newPeriodLength: finalizedLength > 0 ? finalizedLength : 1);
+      await prefs.setBool(finalizedKey, true);
+    }
+  }
+
+  String _formatDateKey(DateTime date) => '${date.year}-${date.month}-${date.day}';
+  String _formatIsoDay(DateTime date) => DateTime(date.year, date.month, date.day).toIso8601String();
+  bool _isSameCalendarDay(DateTime a, DateTime b) => a.year == b.year && a.month == b.month && a.day == b.day;
 
   // Update period start date and save to SharedPreferences
   Future<void> setPeriodStart(DateTime start) async {
@@ -228,6 +329,16 @@ class GetPregnantRequirementsController extends GetxController
 
     // Save to SharedPreferences
     await authService.updatePeriodStart(start);
+
+    // Also persist to user-scoped onboarding for consistency with calendar load
+    final userId = authService.currentUser.value?.id;
+    if (userId != null && userId.isNotEmpty) {
+      await authService.setOnboardingData(
+          'onboarding_last_period', userId, start.toIso8601String());
+    } else {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('onboarding_last_period', start.toIso8601String());
+    }
 
     // Schedule period reminder notification
     await NotificationService.instance.schedulePeriodReminder(
@@ -249,6 +360,15 @@ class GetPregnantRequirementsController extends GetxController
       cycleLength: cycleLength,
       periodLength: periodLength,
     );
+
+    // Also persist to user-scoped onboarding for consistency with calendar load
+    final userId = authService.currentUser.value?.id;
+    if (userId != null && userId.isNotEmpty) {
+      await authService.setOnboardingInt('onboarding_cycle_length', userId, cycleLength);
+    } else {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setInt('onboarding_cycle_length', cycleLength);
+    }
 
     // Update period reminder if period start is set
     if (periodStart.value != null) {

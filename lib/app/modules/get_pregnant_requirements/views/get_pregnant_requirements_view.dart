@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:babysafe/app/routes/app_pages.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 import '../widgets/legend.dart';
 import '../widgets/calendar.dart';
@@ -9,7 +8,6 @@ import '../widgets/day_info.dart';
 import '../widgets/cycle_info.dart';
 import '../widgets/insights.dart';
 import '../widgets/cycle_settings.dart';
-import '../widgets/pregnancy_status.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import 'package:babysafe/app/services/auth_service.dart';
 import 'dart:io';
@@ -22,8 +20,11 @@ class GetPregnantRequirementsView extends StatelessWidget {
     final theme = Theme.of(context);
     return GetBuilder<GetPregnantRequirementsController>(
       builder: (controller) {
-        final today = DateTime.now();
-        final currentDay = controller.selectedDay.value ?? today;
+        // Ask user relevant questions after first frame to avoid build-time dialogs
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          controller.maybePromptUser(context);
+        });
+        // Ensure controller state is kept fresh; variables computed inline where needed
         return Scaffold(
           body: Container(
             decoration: const BoxDecoration(
