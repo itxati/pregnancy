@@ -181,23 +181,34 @@ class GetPregnantRequirementsController extends GetxController
   // Load data from goal onboarding SharedPreferences
   Future<void> _loadGoalOnboardingData() async {
     final prefs = await SharedPreferences.getInstance();
+    final auth = Get.find<AuthService>();
+    final userId = auth.currentUser.value?.id;
 
-    // Load last period date from goal onboarding
-    final lastPeriodString = prefs.getString('onboarding_last_period');
-    print('Goal Onboarding - Last Period String: $lastPeriodString');
+    String? lastPeriodString;
+    int? cycleLen;
+
+    // Prefer user-scoped onboarding values
+    if (userId != null && userId.isNotEmpty) {
+      lastPeriodString = await auth.getOnboardingData('onboarding_last_period', userId);
+      // Ints are saved under per-user key; read directly from prefs
+      final userScopedCycleKey = 'onboarding_cycle_length_user_$userId';
+      cycleLen = prefs.getInt(userScopedCycleKey);
+    }
+
+    // Fallback to global keys if needed
+    lastPeriodString ??= prefs.getString('onboarding_last_period');
+    cycleLen ??= prefs.getInt('onboarding_cycle_length');
+
+    // Apply last period
     if (lastPeriodString != null) {
       final lastPeriodDate = DateTime.parse(lastPeriodString);
       periodStart.value = lastPeriodDate;
       periodEnd.value = lastPeriodDate.add(Duration(days: periodLength - 1));
-      print('Goal Onboarding - Period Start Set: $lastPeriodDate');
     }
 
-    // Load cycle length from goal onboarding
-    final onboardingCycleLength = prefs.getInt('onboarding_cycle_length');
-    print('Goal Onboarding - Cycle Length: $onboardingCycleLength');
-    if (onboardingCycleLength != null) {
-      cycleLength = onboardingCycleLength;
-      print('Goal Onboarding - Cycle Length Set: $cycleLength');
+    // Apply cycle length
+    if (cycleLen != null) {
+      cycleLength = cycleLen;
     }
 
     // Update the UI

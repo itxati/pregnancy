@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../services/auth_service.dart';
 import '../../../utils/neo_safe_theme.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 
@@ -14,11 +15,15 @@ class GetPregnantProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String?>(
-      future: _getUserName(),
-      builder: (context, snapshot) {
-        final userName = snapshot.data ?? 'User';
-        return Container(
+    return GetBuilder<GetPregnantRequirementsController>(
+      builder: (_) => FutureBuilder<Map<String, String?>>(
+        future: _getHeaderData(),
+        builder: (context, snapshot) {
+          final data = snapshot.data ?? {};
+          final userName = data['name'] ?? 'User';
+          final purpose = data['purpose'] ?? '';
+          final statusText = _mapPurposeToTitle(purpose);
+          return Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -103,7 +108,7 @@ class GetPregnantProfileHeader extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      'trying_to_conceive'.tr,
+                      statusText,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: NeoSafeColors.success,
                             fontWeight: FontWeight.w600,
@@ -115,13 +120,41 @@ class GetPregnantProfileHeader extends StatelessWidget {
             ],
           ),
         );
-      },
+        },
+      ),
     );
   }
 
-  Future<String?> _getUserName() async {
+  Future<Map<String, String?>> _getHeaderData() async {
+    final auth = Get.find<AuthService>();
+    final userId = auth.currentUser.value?.id;
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('onboarding_name');
+    String? getKey(String key) => prefs.getString(key);
+
+    String? name;
+    String? purpose;
+
+    if (userId != null && userId.isNotEmpty) {
+      name = await auth.getOnboardingData('onboarding_name', userId);
+      purpose = await auth.getOnboardingData('onboarding_purpose', userId);
+    }
+    name ??= getKey('onboarding_name');
+    purpose ??= getKey('onboarding_purpose');
+
+    return {'name': name, 'purpose': purpose};
+  }
+
+  String _mapPurposeToTitle(String purpose) {
+    switch (purpose) {
+      case 'get_pregnant':
+        return 'Get Pregnant';
+      case 'pregnant':
+        return 'Pregnant';
+      case 'have_baby':
+        return 'Have Baby';
+      default:
+        return 'Get Pregnant';
+    }
   }
 
   void _showEditNameDialog(BuildContext context, String currentName) {
@@ -149,8 +182,14 @@ class GetPregnantProfileHeader extends StatelessWidget {
             onPressed: () async {
               final newName = nameController.text.trim();
               if (newName.isNotEmpty) {
-                final prefs = await SharedPreferences.getInstance();
-                await prefs.setString('onboarding_name', newName);
+                final auth = Get.find<AuthService>();
+                final userId = auth.currentUser.value?.id;
+                if (userId != null && userId.isNotEmpty) {
+                  await auth.setOnboardingData('onboarding_name', userId, newName);
+                } else {
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setString('onboarding_name', newName);
+                }
                 Get.back();
                 Get.snackbar(
                   'success'.tr,
@@ -161,6 +200,9 @@ class GetPregnantProfileHeader extends StatelessWidget {
                 );
                 // Trigger rebuild
                 (context as Element).markNeedsBuild();
+                try {
+                  Get.find<GetPregnantRequirementsController>().update();
+                } catch (_) {}
               }
             },
             style: ElevatedButton.styleFrom(
