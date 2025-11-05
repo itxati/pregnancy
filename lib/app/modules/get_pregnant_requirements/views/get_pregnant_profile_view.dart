@@ -95,29 +95,64 @@ class GetPregnantProfileView extends StatelessWidget {
                   // // Fertility Section
                   // GetPregnantFertilitySection(controller: controller),
 
-                  const SizedBox(height: 40),
+                  // const SizedBox(height: 10),
 
+                  // // Logout Button
+                  // Container(
+                  //   width: double.infinity,
+                  //   margin: const EdgeInsets.symmetric(horizontal: 20),
+                  //   child: ElevatedButton.icon(
+                  //     onPressed: () async {
+                  //       final authService = Get.find<AuthService>();
+                  //       await authService.logout();
+                  //     },
+                  //     icon: const Icon(Icons.logout, color: Colors.white),
+                  //     label: Text(
+                  //       'logout'.tr,
+                  //       style: const TextStyle(
+                  //         color: Colors.white,
+                  //         fontSize: 16,
+                  //         fontWeight: FontWeight.w600,
+                  //       ),
+                  //     ),
+                  //     style: ElevatedButton.styleFrom(
+                  //       backgroundColor: NeoSafeColors.primaryPink,
+                  //       foregroundColor: Colors.white,
+                  //       padding: const EdgeInsets.symmetric(
+                  //         horizontal: 24,
+                  //         vertical: 16,
+                  //       ),
+                  //       shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(12),
+                  //       ),
+                  //       elevation: 4,
+                  //     ),
+                  //   ),
+                  // ),
                   // Logout Button
                   Container(
                     width: double.infinity,
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: ElevatedButton.icon(
+                    // margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: OutlinedButton.icon(
                       onPressed: () async {
                         final authService = Get.find<AuthService>();
                         await authService.logout();
                       },
-                      icon: const Icon(Icons.logout, color: Colors.white),
+                      icon:
+                          Icon(Icons.logout, color: NeoSafeColors.primaryPink),
                       label: Text(
                         'logout'.tr,
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: NeoSafeColors.primaryPink,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: NeoSafeColors.primaryPink,
-                        foregroundColor: Colors.white,
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(
+                          color: NeoSafeColors.primaryPink,
+                          width: 2,
+                        ),
                         padding: const EdgeInsets.symmetric(
                           horizontal: 24,
                           vertical: 16,
@@ -125,7 +160,7 @@ class GetPregnantProfileView extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        elevation: 4,
+                        foregroundColor: NeoSafeColors.primaryPink,
                       ),
                     ),
                   ),

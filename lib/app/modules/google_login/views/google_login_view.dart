@@ -255,8 +255,8 @@ class GoogleLoginView extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    child: Image.network(
-                      'https://developers.google.com/identity/images/g-logo.png',
+                    child: Image.asset(
+                      'assets/logos/google.png',
                       width: 20,
                       height: 20,
                       fit: BoxFit.contain,

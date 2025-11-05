@@ -19,6 +19,10 @@ class NotificationService {
   String? _pendingRoute;
   bool _appReady = false;
 
+  // Fertility/ovulation channel
+  static const String _fertilityChannelId = 'fertility_reminders';
+  static const int _fertilityBaseId = 7000; // reserve 7000-7099
+
   // Breastfeeding notification constants
   static const int _breastfeedingNotificationId = 5000;
   static const int _breastfeedingPrefetchCount =
@@ -65,6 +69,8 @@ class NotificationService {
       },
     );
 
+    // Android 13+ may require notification permission; ensure app requests it elsewhere if needed
+
     // Timezone setup
     tz.initializeTimeZones();
     final String localTz = await FlutterTimezone.getLocalTimezone();
@@ -74,6 +80,7 @@ class NotificationService {
 
     // Create notification channels
     await _createBreastfeedingNotificationChannel();
+    await _createFertilityNotificationChannel();
 
     // Request exact alarm permissions (Android 12+)
     // await _requestExactAlarmPermissions();
@@ -92,6 +99,131 @@ class NotificationService {
 
   Future<void> cancelAll() async {
     await _plugin.cancelAll();
+  }
+
+  Future<void> _createFertilityNotificationChannel() async {
+    try {
+      const AndroidNotificationChannel channel = AndroidNotificationChannel(
+        _fertilityChannelId,
+        'Fertility & Ovulation',
+        description: 'Reminders for fertile window and ovulation day',
+        importance: Importance.high,
+        playSound: true,
+        enableVibration: true,
+      );
+      await _plugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.createNotificationChannel(channel);
+    } catch (e) {
+      print('Error creating fertility channel: $e');
+    }
+  }
+
+  Future<void> cancelFertilityNotifications() async {
+    for (int i = 0; i < 100; i++) {
+      await _plugin.cancel(_fertilityBaseId + i);
+    }
+  }
+
+  Future<void> scheduleFertilityAndOvulation({
+    required DateTime lastPeriodStart,
+    required int periodLength,
+    required int cycleLength,
+    int hour = 10,
+    int minute = 6,
+  }) async {
+    await _createFertilityNotificationChannel();
+    // Clear existing fertility notifications in our reserved range
+    await cancelFertilityNotifications();
+
+    final now = DateTime.now();
+    // normalize base to start-of-day
+    DateTime base = DateTime(
+        lastPeriodStart.year, lastPeriodStart.month, lastPeriodStart.day);
+    // find the cycle window that includes or is after today
+    int k = 0;
+    while (base
+        .add(Duration(days: cycleLength))
+        .isBefore(DateTime(now.year, now.month, now.day))) {
+      k++;
+    }
+    base = base.add(Duration(days: k * cycleLength));
+
+    final fertileStart = base.add(Duration(days: periodLength));
+    final fertileDays =
+        List<DateTime>.generate(7, (i) => fertileStart.add(Duration(days: i)));
+    final ovulationDay = fertileStart.add(const Duration(days: 6));
+
+    int scheduledCount = 0;
+    for (final day in fertileDays) {
+      if (!day.isBefore(now)) {
+        final tz.TZDateTime nowTz = tz.TZDateTime.now(tz.local);
+        tz.TZDateTime whenTz = tz.TZDateTime.from(
+          DateTime(day.year, day.month, day.day, hour, minute),
+          tz.local,
+        );
+        // If scheduling for today and time already passed, schedule in 1 minute
+        if (day.year == now.year &&
+            day.month == now.month &&
+            day.day == now.day &&
+            whenTz.isBefore(nowTz)) {
+          whenTz = nowTz.add(const Duration(minutes: 1));
+        }
+        await _plugin.zonedSchedule(
+          _fertilityBaseId + scheduledCount,
+          'Fertile day',
+          'You\'re in your fertile window. Try to conceive today 💕',
+          whenTz,
+          const NotificationDetails(
+            android: AndroidNotificationDetails(
+              _fertilityChannelId,
+              'Fertility & Ovulation',
+              channelDescription:
+                  'Reminders for fertile window and ovulation day',
+              importance: Importance.high,
+              priority: Priority.high,
+            ),
+          ),
+          payload: '/get_pregnant_requirements',
+          androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+        );
+        scheduledCount++;
+      }
+    }
+
+    if (!ovulationDay.isBefore(now)) {
+      final tz.TZDateTime nowTz = tz.TZDateTime.now(tz.local);
+      tz.TZDateTime whenTz = tz.TZDateTime.from(
+        DateTime(ovulationDay.year, ovulationDay.month, ovulationDay.day, hour,
+            minute),
+        tz.local,
+      );
+      if (ovulationDay.year == now.year &&
+          ovulationDay.month == now.month &&
+          ovulationDay.day == now.day &&
+          whenTz.isBefore(nowTz)) {
+        whenTz = nowTz.add(const Duration(minutes: 1));
+      }
+      await _plugin.zonedSchedule(
+        _fertilityBaseId + 50, // fixed id for ovulation in current cycle
+        'Ovulation today',
+        'Ovulation day! Highest chances to conceive today 🌸',
+        whenTz,
+        const NotificationDetails(
+          android: AndroidNotificationDetails(
+            _fertilityChannelId,
+            'Fertility & Ovulation',
+            channelDescription:
+                'Reminders for fertile window and ovulation day',
+            importance: Importance.high,
+            priority: Priority.high,
+          ),
+        ),
+        payload: '/get_pregnant_requirements',
+        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      );
+    }
   }
 
   Future<void> scheduleDailyWeekAlerts({

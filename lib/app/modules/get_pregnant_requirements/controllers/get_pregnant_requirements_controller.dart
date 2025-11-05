@@ -176,6 +176,9 @@ class GetPregnantRequirementsController extends GetxController
 
     // Also load data from goal onboarding SharedPreferences
     _loadGoalOnboardingData();
+
+    // Schedule fertility notifications if applicable
+    _rescheduleFertilityNotifications();
   }
 
   // Load data from goal onboarding SharedPreferences
@@ -186,29 +189,38 @@ class GetPregnantRequirementsController extends GetxController
 
     String? lastPeriodString;
     int? cycleLen;
+    int? periodLen;
 
     // Prefer user-scoped onboarding values
     if (userId != null && userId.isNotEmpty) {
       lastPeriodString = await auth.getOnboardingData('onboarding_last_period', userId);
       // Ints are saved under per-user key; read directly from prefs
       final userScopedCycleKey = 'onboarding_cycle_length_user_$userId';
+      final userScopedPeriodKey = 'onboarding_period_length_user_$userId';
       cycleLen = prefs.getInt(userScopedCycleKey);
+      periodLen = prefs.getInt(userScopedPeriodKey);
     }
 
     // Fallback to global keys if needed
     lastPeriodString ??= prefs.getString('onboarding_last_period');
     cycleLen ??= prefs.getInt('onboarding_cycle_length');
+    periodLen ??= prefs.getInt('onboarding_period_length');
 
-    // Apply last period
-    if (lastPeriodString != null) {
-      final lastPeriodDate = DateTime.parse(lastPeriodString);
-      periodStart.value = lastPeriodDate;
-      periodEnd.value = lastPeriodDate.add(Duration(days: periodLength - 1));
+    // Apply period length first (before calculating periodEnd)
+    if (periodLen != null) {
+      periodLength = periodLen;
     }
 
     // Apply cycle length
     if (cycleLen != null) {
       cycleLength = cycleLen;
+    }
+
+    // Apply last period (using the loaded periodLength)
+    if (lastPeriodString != null) {
+      final lastPeriodDate = DateTime.parse(lastPeriodString);
+      periodStart.value = lastPeriodDate;
+      periodEnd.value = lastPeriodDate.add(Duration(days: periodLength - 1));
     }
 
     // Update the UI
@@ -232,8 +244,13 @@ class GetPregnantRequirementsController extends GetxController
     final todayKey = _formatDateKey(today);
 
     // 1) If today is expected next period day, ask if period started
-    if (user.lastPeriodStart != null) {
-      final expectedNext = user.lastPeriodStart!.add(Duration(days: user.cycleLength));
+    final DateTime? lastStartForPrompt = periodStart.value ?? user.lastPeriodStart;
+    if (lastStartForPrompt != null) {
+      final expectedNext = DateTime(
+        lastStartForPrompt.year,
+        lastStartForPrompt.month,
+        lastStartForPrompt.day,
+      ).add(Duration(days: cycleLength));
       final alreadyAskedKey = 'period_start_prompt_shown_${userId}_$todayKey';
       final alreadyAsked = prefs.getBool(alreadyAskedKey) ?? false;
       // Prompt on expected day and all overdue days until user says Yes
@@ -246,25 +263,7 @@ class GetPregnantRequirementsController extends GetxController
       }
     }
 
-    // 2) If within ongoing period window, ask if still bleeding today
-    if (user.lastPeriodStart != null) {
-      final start = user.lastPeriodStart!;
-      final daysSinceStart = today.difference(DateTime(start.year, start.month, start.day)).inDays + 1;
-      final finalizedKey = 'period_bleeding_finalized_${userId}_${_formatIsoDay(start)}';
-      final isFinalized = prefs.getBool(finalizedKey) ?? false;
-
-      // Start asking from day 2 to avoid immediate double prompts on day 1
-      if (!isFinalized && daysSinceStart >= 2) {
-        final askedKey = 'period_bleed_prompt_shown_${userId}_$todayKey';
-        final asked = prefs.getBool(askedKey) ?? false;
-        if (!asked) {
-          _promptActive = true;
-          await _askStillBleedingToday(context, daysSinceStart, finalizedKey);
-          await prefs.setBool(askedKey, true);
-          _promptActive = false;
-        }
-      }
-    }
+    // Removed bleeding prompt as requested
   }
 
   Future<void> _askPeriodStartToday(BuildContext context) async {
@@ -288,33 +287,6 @@ class GetPregnantRequirementsController extends GetxController
     } else if (result == false) {
       // Period not started; increment cycle length by one day
       await updateCycleSettings(newCycleLength: cycleLength + 1);
-    }
-  }
-
-  Future<void> _askStillBleedingToday(BuildContext context, int daysSinceStart, String finalizedKey) async {
-    final prefs = await SharedPreferences.getInstance();
-    final result = await Get.dialog<bool>(
-      AlertDialog(
-        title: const Text('Period Ongoing'),
-        content: const Text('Are you still bleeding today?'),
-        actions: [
-          TextButton(onPressed: () => Get.back(result: false), child: const Text('No')),
-          ElevatedButton(onPressed: () => Get.back(result: true), child: const Text('Yes')),
-        ],
-      ),
-    );
-
-    if (result == true) {
-      // Extend period length to cover today if needed
-      final desiredLength = daysSinceStart;
-      if (desiredLength > periodLength) {
-        await updateCycleSettings(newPeriodLength: desiredLength);
-      }
-    } else if (result == false) {
-      // Finalize period length as up to yesterday at minimum 1
-      final finalizedLength = daysSinceStart - 1;
-      await updateCycleSettings(newPeriodLength: finalizedLength > 0 ? finalizedLength : 1);
-      await prefs.setBool(finalizedKey, true);
     }
   }
 
@@ -346,6 +318,9 @@ class GetPregnantRequirementsController extends GetxController
       cycleLength: cycleLength,
     );
 
+    // Reschedule fertility notifications
+    await _rescheduleFertilityNotifications();
+
     update();
   }
 
@@ -365,9 +340,11 @@ class GetPregnantRequirementsController extends GetxController
     final userId = authService.currentUser.value?.id;
     if (userId != null && userId.isNotEmpty) {
       await authService.setOnboardingInt('onboarding_cycle_length', userId, cycleLength);
+      await authService.setOnboardingInt('onboarding_period_length', userId, periodLength);
     } else {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setInt('onboarding_cycle_length', cycleLength);
+      await prefs.setInt('onboarding_period_length', periodLength);
     }
 
     // Update period reminder if period start is set
@@ -379,7 +356,36 @@ class GetPregnantRequirementsController extends GetxController
       );
     }
 
+    // Reschedule fertility notifications
+    await _rescheduleFertilityNotifications();
+
     update();
+  }
+
+  Future<void> _rescheduleFertilityNotifications() async {
+    try {
+      final user = authService.currentUser.value;
+      if (user == null) return;
+      // Check onboarding purpose: only schedule in get pregnant flow
+      final purpose = await authService.getOnboardingPurpose(user.id);
+      if (purpose != 'get_pregnant') {
+        await NotificationService.instance.cancelFertilityNotifications();
+        return;
+      }
+
+      final lastStart = periodStart.value ?? user.lastPeriodStart;
+      if (lastStart == null) return;
+
+      await NotificationService.instance.scheduleFertilityAndOvulation(
+        lastPeriodStart: lastStart,
+        periodLength: periodLength,
+        cycleLength: cycleLength,
+        hour: 9,
+        minute: 0,
+      );
+    } catch (e) {
+      print('Error scheduling fertility notifications: $e');
+    }
   }
 
   // Toggle intercourse log and save to SharedPreferences
