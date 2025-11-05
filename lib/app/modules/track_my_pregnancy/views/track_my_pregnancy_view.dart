@@ -25,6 +25,11 @@ import '../../weight_tracking/widgets/weight_tracking_card.dart';
 import '../../weight_tracking/controllers/weight_tracking_controller.dart';
 import '../../risk_assessment/widgets/risk_assessment_card.dart';
 import '../../risk_assessment/controllers/risk_assessment_controller.dart';
+import '../widgets/miscarriage_awareness_card.dart';
+import '../widgets/preterm_birth_card.dart';
+import '../widgets/breastfeeding_card.dart';
+import '../widgets/delivery_planning_card.dart';
+import '../widgets/pregnancy_risk_factors_card.dart';
 
 class TrackMyPregnancyView extends StatelessWidget {
   const TrackMyPregnancyView({Key? key}) : super(key: key);
@@ -150,7 +155,25 @@ class TrackMyPregnancyView extends StatelessWidget {
 
                   // Main Pregnancy Card
                   MainPregnancyCard(controller: controller),
+                  const SizedBox(height: 24),
 
+                  // Miscarriage Awareness Card
+                  const MiscarriageAwarenessCard(),
+                  const SizedBox(height: 24),
+                  // Preterm Birth Card
+                  const PretermBirthCard(),
+                  const SizedBox(height: 24),
+
+                  // Breastfeeding Card
+                  const BreastfeedingCard(),
+                  const SizedBox(height: 24),
+
+                  // Delivery Planning Card
+                  const DeliveryPlanningCard(),
+                  const SizedBox(height: 24),
+
+                  // Pregnancy Risk Factors Card
+                  const PregnancyRiskFactorsCard(),
                   const SizedBox(height: 24),
 
                   // // Pregnancy Status Card

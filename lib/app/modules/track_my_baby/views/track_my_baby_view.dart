@@ -19,6 +19,8 @@ import 'package:babysafe/app/widgets/speech_button.dart';
 import 'package:babysafe/app/services/theme_service.dart';
 import '../widgets/zoomable_image_viewer.dart';
 import '../../good_bad_touch/views/good_bad_touch_view.dart';
+import '../widgets/nutrition_card.dart';
+import '../widgets/school_readiness_card.dart';
 
 // TODO: Replace image placeholders with actual baby images from assets:
 // - Baby profile image in overview card
@@ -157,6 +159,12 @@ class TrackMyBabyView extends StatelessWidget {
                   const SizedBox(height: 24),
                   // Health Info Card
                   _HealthInfoSummaryCard(),
+                  const SizedBox(height: 24),
+                  // Nutrition Card
+                  const NutritionCard(),
+                  const SizedBox(height: 24),
+                  // School Readiness Card
+                  const SchoolReadinessCard(),
                   const SizedBox(height: 24),
                   // Newborn Responsibilities Card
                   _NewbornResponsibilitiesCard(),
