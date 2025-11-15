@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 
 @immutable
 class InfoSection {
@@ -16,6 +17,69 @@ class NewbornResponsibilities {
   const NewbornResponsibilities({required this.title, required this.sections});
 }
 
+NewbornResponsibilities getNewbornResponsibilities() {
+  return NewbornResponsibilities(
+    title: 'newborn_responsibilities_title'.tr,
+    sections: [
+      InfoSection(
+        title: 'why_important'.tr,
+        points: [
+          'establishes_legal_identity'.tr,
+          'required_passport_school'.tr,
+        ],
+      ),
+      InfoSection(
+        title: 'how_register'.tr,
+        points: [
+          'register_60_days'.tr,
+          'apply_union_council'.tr,
+        ],
+      ),
+      InfoSection(
+        title: 'documents_needed'.tr,
+        points: [
+          'hospital_birth_slip'.tr,
+          'cnic_both_parents'.tr,
+          'marriage_certificate'.tr,
+          'application_form_signatures'.tr,
+        ],
+      ),
+      InfoSection(
+        title: 'nadra_form_b'.tr,
+        points: [
+          'required_school_passport_government_records'.tr,
+          'bring_child_birth_certificate_parents_cnics'.tr,
+          'one_parent_present_biometric_verification'.tr,
+        ],
+      ),
+      InfoSection(
+        title: 'hospital_documents_to_keep'.tr,
+        points: [
+          'discharge_summary_mother_child'.tr,
+          'vaccination_card_record_started_birth'.tr,
+          'medical_test_results_blood_group'.tr,
+        ],
+      ),
+      InfoSection(
+        title: 'vaccination_schedule'.tr,
+        points: [
+          'starts_immediately_after_birth'.tr,
+          'record_epi_card'.tr,
+          'keep_card_safe_updated'.tr,
+        ],
+      ),
+      InfoSection(
+        title: 'passport_application_if_needed'.tr,
+        points: [
+          'apply_after_form_b_registration'.tr,
+          'submit_online_office_birth_certificate_form_b_parents_passports'.tr,
+        ],
+      ),
+    ],
+  );
+}
+
+// Keep the old const for backward compatibility, but it will use English
 const NewbornResponsibilities newbornResponsibilities = NewbornResponsibilities(
   title: 'Newborn Responsibilities for Parents After Child Birth',
   sections: [

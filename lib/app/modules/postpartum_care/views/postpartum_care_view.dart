@@ -1,3 +1,4 @@
+import 'package:babysafe/app/modules/get_pregnant_requirements/widgets/go_to_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/neo_safe_theme.dart';
@@ -17,6 +18,16 @@ class PostpartumCareView extends GetView<PostpartumCareController> {
       child: Scaffold(
         backgroundColor: NeoSafeColors.warmWhite,
         appBar: AppBar(
+          actions: [
+            GoToHomeIconButton(
+              circleColor: NeoSafeColors.primaryPink,
+              iconColor: Colors.white,
+              top: 0,
+            ),
+            SizedBox(
+              width: 12,
+            )
+          ],
           automaticallyImplyLeading: false,
           centerTitle: true,
           elevation: 0,

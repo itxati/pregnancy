@@ -1,9 +1,15 @@
 final Map<String, String> enUS = {
+  "bmi": "BMI",
+  "please_select_language_first": "Please select your language first",
+
   'hello': 'Hello',
   'welcome': 'Welcome',
   'week': 'Week',
-  'sardar_trust': 'Sardar Trust',
-  'pregnancy_companion': 'Your pregnancy companion',
+  'size': 'Size',
+  'start_birth_plan': 'Start Your Birth Plan',
+  'start_birth_plan_title': 'Begin comprehensive preparation',
+  'sardar_trust': 'SPHERE CONSULTING',
+  'pregnancy_companion': 'Your Motherhood Journey',
   'pregnancy_journey': 'Pregnancy Journey',
   'weeks': 'weeks',
   'weeks_pregnant': 'weeks pregnant',
@@ -48,10 +54,25 @@ final Map<String, String> enUS = {
   'enter_your_email': 'Enter your email',
   'enter_your_password': 'Enter your password',
   'invalid_email': 'Please enter a valid email',
+  'gestational_age': 'Gestational Age',
+
+  'speack_button_title': 'Explain in detail',
+  'understand_your_days': 'Understanding Your Days\n'
+      'Every month, a woman’s body goes through a natural cycle.\n\n'
+      'The pink days are your period days. These are the days when you bleed. '
+      'Your body is cleaning itself and getting ready for a new cycle.\n'
+      'After the pink days, you will have green days. These are your fertile days '
+      'when your body starts to prepare for pregnancy. If you have sex during these green days, '
+      'there are more chances to get pregnant.\n'
+      'In the middle of these green days comes the red day — this is your ovulation day, '
+      'when your body releases an egg. This is the best day to try if you want to have a baby.\n\n'
+      'By knowing your pink, green, and red days, you can understand your body better — '
+      'when you can get pregnant, and when you cannot.',
 
   // Google Login page
-  'welcome_to_babysafe': 'Welcome to SardarTrust',
-  'your_pregnancy_companion': 'Your Pregnancy Companion',
+  'welcome_to_babysafe': 'Welcome to SPHERE CONSULTING',
+  'your_pregnancy_companion': 'Your Motherhood Journey ',
+  'your_pregnancy': 'Your Pregnancy',
   'what_you_get': 'What You Get',
   'track_pregnancy': 'Track Pregnancy',
   'track_pregnancy_desc':
@@ -65,7 +86,7 @@ final Map<String, String> enUS = {
   'or_use_email_password': 'Or use email and password',
   'by_continuing_you_agree':
       'By continuing, you agree to our Terms of Service and Privacy Policy',
-  'welcome_back_user': 'Welcome back, {name}!',
+  'welcome_back_user': 'Welcome back, @name !',
   'google_signin_failed': 'Google sign-in failed',
   'account_exists_different_credential':
       'An account already exists with a different credential',
@@ -92,6 +113,17 @@ final Map<String, String> enUS = {
   // Goal selection page
   'what_is_your_goal': 'What is your goal?',
   'choose_your_journey': 'Choose your journey with us',
+  // Onboarding minimal questions
+  'onboarding_name_title': "Enter your name",
+  'onboarding_name_hint': 'Enter your name',
+  'onboarding_age_title': 'Enter your age',
+  'onboarding_age_hint': 'Enter your age',
+  'onboarding_gender_title': "What's your gender?",
+  'onboarding_gender_female': 'Female',
+  'onboarding_gender_male': 'Male',
+  'onboarding_next': 'Next',
+  'onboarding_continue': 'Continue',
+  'onboarding_back': 'Back',
   'get_pregnant': 'Get pregnant',
   'get_pregnant_subtitle': 'Track your cycles and best days to conceive',
   'track_my_pregnancy': 'Track my pregnancy',
@@ -118,8 +150,8 @@ final Map<String, String> enUS = {
   'set_period_start': 'Set Period Start',
   'log_intimacy': 'Log Intimacy',
   'remove_log': 'Remove Log',
-  'day_of_cycle': 'Day {day} of cycle',
-  'pregnancy_chance': 'Pregnancy Chance: {chance}',
+  'day_of_cycle': 'Day @day of cycle',
+  'pregnancy_chance': 'Pregnancy Chance: @chance',
   'period_day': 'Period Day',
   'fertile_window': 'Fertile Window',
   'ovulation_day': 'Ovulation Day',
@@ -127,9 +159,9 @@ final Map<String, String> enUS = {
   'cycle_overview': 'Cycle Overview',
   'last_period': 'Last Period',
   'next_period': 'Next Period',
-  'in_days': 'in {days} days',
+  'in_days': 'in @days days',
   'no_period_data': 'No period data available',
-  'overdue': 'Overdue by {days} days',
+  'overdue': 'Overdue by @days days',
   'get_pregnant_profile': 'Get Pregnant Profile',
   'manage_fertility_journey': 'Manage your fertility journey',
   'get_pregnant_user': 'Fertility Tracker',
@@ -167,6 +199,7 @@ final Map<String, String> enUS = {
   'fertility': 'Fertility',
   'cycle_day': 'Cycle Day',
   'logs': 'Logs',
+  'gender': 'Gender',
   // Month names
   'jan': 'Jan',
   'feb': 'Feb',
@@ -612,7 +645,7 @@ final Map<String, String> enUS = {
   'baby_birth_date_saved_success': 'Baby birth date saved successfully!',
   'due_date_set': 'Due Date Set',
   'due_date_calculated_message':
-      'Due date calculated based on 42 days pregnancy: {date}',
+      'Due date calculated based on 42 days pregnancy: @date',
   'error': 'Error',
   'invalid_goal_selected': 'Invalid goal selected',
   // Gender Selector
@@ -625,11 +658,12 @@ final Map<String, String> enUS = {
   'weeks': 'WEEKS',
   'your_weekly_update': 'Your weekly update',
   'important_alerts': 'Important Alerts',
-  'week_reminders': 'Week {week} reminders',
+  'week_reminders': 'Week @week reminders',
   'good_morning': 'Good morning,',
   'good_afternoon': 'Good afternoon,',
   'good_evening': 'Good evening,',
   'good_night': 'Good night,',
+  'trimester': 'Trimester',
   'first_trimester': 'First trimester',
   'second_trimester': 'Second trimester',
   'third_trimester': 'Third trimester',
@@ -640,7 +674,7 @@ final Map<String, String> enUS = {
   'first_trimester_title': 'First Trimester',
   'second_trimester_title': 'Second Trimester',
   'third_trimester_title': 'Third Trimester',
-  'week_of': 'Week {current} of {total}',
+  'week_of': 'Week @current of @total',
   'early_development_stage': 'Early development stage',
   'growth_and_movement': 'Growth and movement',
   'final_preparation': 'Final preparation',
@@ -674,6 +708,7 @@ final Map<String, String> enUS = {
   'essential_counselling_mothers': 'Essential counselling for new mothers',
 
   // Weekly details fallbacks
+  'baby_size': 'Baby Size',
   'pregnancy_week_baby_dev_fallback':
       'Your baby is developing rapidly this week.',
   'baby_size_info_fallback':
@@ -1784,7 +1819,7 @@ final Map<String, String> enUS = {
   //risk factors
   "looking_good": "Looking Good!",
   "no_known_risk_factors": "No known risk factors identified at this stage.",
-  "more_categories": "+%{count} more categories",
+  "more_categories": "@count more categories",
   "complete_your_profile": "Complete Your Profile",
   "please_provide_info_for_risk_assessment":
       "Please provide the following information to assess risk factors",
@@ -1807,11 +1842,10 @@ final Map<String, String> enUS = {
   // "due_date": "Due %{date}",
   "edit": "Edit",
   "where_you_are": "Where you are",
-  "estimated_due_date": "Your estimated due date is %{date}.",
+  "estimated_due_date": "Your estimated due date is @date.",
   "pregnancy_progress":
-      "This means you're %{weeks} weeks and %{days} days pregnant.",
-  "time_remaining":
-      "This means you have %{weeks} weeks and %{days} days to go.",
+      "This means you're @weeks weeks and @days days pregnant.",
+  "time_remaining": "This means you have @weeks weeks and @days days to go.",
   "edit_due_date": "Edit due date",
 
   "Nutrition": "Nutrition",
@@ -2655,6 +2689,35 @@ final Map<String, String> enUS = {
   "health_3_point_5":
       "Consult your provider for catch-up doses if any were missed",
 
+  // Vaccination Schedule Table
+  "vaccination_schedule_table_title": "Vaccination Schedule",
+  "vaccination_table_header_stage": "Stage",
+  "vaccination_table_header_age": "Age",
+  "vaccination_table_header_vaccines": "Vaccines",
+  "vaccination_table_stage_1": "1st Visit",
+  "vaccination_table_age_1": "At birth",
+  "vaccination_table_vaccines_1": "OPV-0, BCG, Hepatitis-B",
+  "vaccination_table_stage_2": "2nd Visit",
+  "vaccination_table_age_2": "6 weeks",
+  "vaccination_table_vaccines_2":
+      "OPV-1, Rotavirus-1, Pentavalent-1, Pneumococcal-1",
+  "vaccination_table_stage_3": "3rd Visit",
+  "vaccination_table_age_3": "10 weeks",
+  "vaccination_table_vaccines_3":
+      "OPV-2, Rotavirus-2, Pentavalent-2, Pneumococcal-2",
+  "vaccination_table_stage_4": "4th Visit",
+  "vaccination_table_age_4": "14 weeks",
+  "vaccination_table_vaccines_4": "OPV-3, IPV-1, Pentavalent-3, Pneumococcal-3",
+  "vaccination_table_stage_5": "5th Visit",
+  "vaccination_table_age_5": "9 months",
+  "vaccination_table_vaccines_5": "MR-1, IPV-2, TCV",
+  "vaccination_table_stage_6": "6th Visit",
+  "vaccination_table_age_6": "15 months",
+  "vaccination_table_vaccines_6": "MR-2",
+  "vaccination_table_stage_7": "7th Visit",
+  "vaccination_table_age_7": "18 months",
+  "vaccination_table_vaccines_7": "DTP Booster",
+
   // Health 4: School Readiness and Early Education
   "health_4_title": "School Readiness and Early Education",
   "health_4_desc":
@@ -2726,9 +2789,10 @@ final Map<String, String> enUS = {
   "keep_followup_appointments": "Keep follow-up appointments",
 
   "baby_default_name": "Baby",
-  "weeks_old": "%{weeks} weeks old",
+  "weeks_old": "@weeks weeks old",
+
   "one_month_old": "1 month old",
-  "months_old": "%{months} months old",
+  "months_old": "@months months old",
   "newborn_phase": "Newborn phase",
   "infant_development": "Infant development",
   "baby_milestones": "Baby milestones",
@@ -2822,7 +2886,7 @@ final Map<String, String> enUS = {
   "no_additional_risks": "No additional genetic risks",
 
   "important_alerts": "Important alerts",
-  "week_reminders": "Week %{week} reminders",
+  "week_reminders": "Week @week reminders",
   "all_caught_up_no_alerts": "All caught up! No alerts for this week.",
 
 //   reminders
@@ -2899,5 +2963,1182 @@ final Map<String, String> enUS = {
   "good_bad_touch_reminders_point_2":
       "Never blame the child for anything they report.",
   "good_bad_touch_reminders_point_3":
-      "Your child’s safety and trust come first—always."
+      "Your child’s safety and trust come first—always.",
+
+  // Header
+  'miscarriage_awareness': 'Miscarriage Awareness',
+
+  // Main Points
+  'miscarriage_main_point_1': 'Spontaneous pregnancy loss before 20 weeks',
+  'miscarriage_main_point_2': 'Watch for bleeding, cramping, or tissue passing',
+  'miscarriage_main_point_3': 'Seek medical care if symptoms occur',
+
+  // Call to Action
+  'tap_to_learn_more': 'Tap to learn more',
+
+  // Section Titles
+  'what_is_miscarriage': 'What is a miscarriage?',
+  'common_signs': 'Common Signs',
+  'what_should_i_do': 'What Should I Do?',
+  'emotional_support': 'Emotional Support',
+  'prevention_risk_factors': 'Prevention & Risk Factors',
+
+  // What is a miscarriage - Description
+  'miscarriage_description':
+      'A miscarriage is a spontaneous loss of a pregnancy before 20 weeks gestation. (In some countries, this is defined as before 24 weeks.) Miscarriage is more common than many realize and can happen for many reasons, most of which are outside anyone\'s control.',
+
+  // Common Signs - Bullet Points
+  'sign_vaginal_bleeding':
+      'Vaginal bleeding (light spotting or heavy bleeding)',
+  'sign_abdominal_cramping': 'Abdominal cramping or pain',
+  'sign_passing_tissue': 'Passing tissue or clots from the vagina',
+  'sign_loss_of_symptoms': 'Sudden loss of pregnancy symptoms',
+
+  // What Should I Do - Bullet Points
+  'action_seek_immediate_care':
+      'Seek immediate medical care for severe bleeding, dizziness, or shoulder pain',
+  'action_contact_provider':
+      'Contact your healthcare provider if worried about symptoms',
+  'action_not_alone':
+      'Remember: You are not alone - healthcare professionals are here to help',
+
+  // Emotional Support - Description
+  'emotional_support_description':
+      'Experiencing a miscarriage can be very emotional, and every reaction is valid. Acknowledge your feelings. Talk to friends, family, or a counselor, and consider support organizations or online communities.',
+
+  // Prevention & Risk Factors - Description
+  'prevention_description':
+      'Most miscarriages cannot be prevented and are not caused by anything you did or didn\'t do. Risk factors can include age, a history of miscarriage, certain medical conditions, and lifestyle factors.',
+
+  // Final Note
+  'final_note_be_gentle':
+      'Be gentle with yourself. Reach out to your healthcare provider or support organizations for help.',
+
+  // Weight Tracking Card
+  'weight_bmi_tracking': 'Weight & BMI Tracking',
+  'bmi_colon': 'BMI: ',
+  'weight_reminder_settings': 'Weight Reminder Settings',
+  'current_weight': 'Current Weight',
+  'total_gain': 'Total Gain',
+  'kg_unit': 'kg',
+  'recommended_weight_gain': 'Recommended Weight Gain',
+  'set_height_prepregnancy_weight_message':
+      'Set your height and pre-pregnancy weight to get a personalized target range.',
+  'min_colon': 'Min: ',
+  'current_colon': 'Current: ',
+  'max_colon': 'Max: ',
+  'gdm_screening_recommended': 'GDM Screening Recommended',
+  'gdm_screening_high_bmi_message':
+      'Due to your higher BMI, consider early GDM screening (16-20 weeks). Standard screening is recommended at 24-28 weeks.',
+  'gdm_screening_standard_message':
+      'Standard GDM screening is recommended at 24-28 weeks. Consult your healthcare provider.',
+  'anemia_risk': 'Anemia Risk',
+  'anemia_risk_message':
+      'Your underweight BMI may increase the risk of anemia. Ensure adequate nutrition and iron intake. Consult your healthcare provider for screening and dietary counseling.',
+  'weight_gain_alert': 'Weight Gain Alert',
+  'why_weight_matters': 'Why Weight Matters',
+  'why_weight_matters_description':
+      'Your pre-pregnancy weight and weight gain during pregnancy affect both your health and your baby\'s growth. Tracking helps ensure you stay within healthy ranges.',
+  'weight_gain_risks':
+      '• Insufficient gain: May increase risk of IUGR and preterm birth\n• Excessive gain: May increase risk of gestational diabetes, hypertension, and cesarean delivery',
+  'recent_entries': 'Recent Entries',
+  'week_space': 'Week ',
+  'add_weight_entry': 'Add Weight Entry',
+  'weight_kg': 'Weight (kg)',
+  'date_colon': 'Date: ',
+  'please_enter_valid_weight': 'Please enter a valid weight',
+  'weight_tracking_reminder': 'Weight Tracking Reminder',
+  'enable_daily_reminder': 'Enable Daily Reminder',
+  'get_daily_notification_log_weight':
+      'Get a daily notification to log your weight',
+  'reminder_enabled': 'Reminder Enabled',
+  'youll_receive_daily_reminders_at': 'You\'ll receive daily reminders at',
+  'reminder_disabled': 'Reminder Disabled',
+  'daily_reminders_turned_off': 'Daily reminders have been turned off',
+  'failed_to_enable': 'Failed to enable',
+  'failed_to_disable': 'Failed to disable',
+  'reminder_colon': 'reminder: ',
+  'reminder_time': 'Reminder Time',
+  'hour_0_23': 'Hour (0-23)',
+  'minute_0_59': 'Minute (0-59)',
+  'reminder_updated': 'Reminder Updated',
+  'reminder_time_set_to': 'Reminder time set to',
+  'please_enter_valid_time':
+      'Please enter valid time (Hour: 0-23, Minute: 0-59)',
+  'update_time': 'Update Time',
+
+  // Weight Tracking Controller
+  'bmi_underweight': 'Underweight',
+  'bmi_normal': 'Normal',
+  'bmi_overweight': 'Overweight',
+  'bmi_obese': 'Obese',
+  'insufficient_weight_gain_alert_message':
+      'Your weight gain is below the recommended range. Insufficient weight gain may increase the risk of IUGR and preterm birth. Please consult your healthcare provider for nutrition counseling.',
+  'excessive_weight_gain_alert_message':
+      'Your weight gain is above the recommended range. Excessive weight gain may increase the risk of gestational diabetes, hypertension, cesarean delivery, and large-for-gestational-age babies. Please consult your healthcare provider.',
+  'rapid_weight_gain_alert_message':
+      'Rapid weight gain detected. Please consult your healthcare provider for dietary guidance.',
+
+  // Risk Assessment Card
+  'pregnancy_risk_assessment': 'Pregnancy Risk Assessment',
+  'down_syndrome_gdm_iugr_sga': 'Down Syndrome • GDM • IUGR/SGA',
+  'risk_factors': 'Risk Factors',
+  'about_risk_assessment': 'About Risk Assessment',
+  'risk_assessment_description':
+      'Risk assessments are estimates based on available information. They help guide screening and monitoring decisions. Always consult your healthcare provider for personalized medical advice.',
+  'common_risk_factors': 'Common Risk Factors',
+  'risk_factors_affect_pregnancy_outcomes':
+      'Risk factors that may affect pregnancy outcomes include:',
+  'maternal_hypertension': 'Maternal hypertension',
+  'preeclampsia': 'Preeclampsia',
+  'placental_insufficiency': 'Placental insufficiency',
+  'infections': 'Infections',
+  'smoking_substance_use': 'Smoking and substance use',
+  'chronic_diseases': 'Chronic diseases',
+  'multiple_gestation': 'Multiple gestation',
+  'poor_maternal_nutrition': 'Poor maternal nutrition',
+  'down_syndrome_risk': 'Down Syndrome Risk',
+  'age_required_calculate_risk': 'Age Required to Calculate Risk',
+  'risk_colon': 'Risk:',
+  'in': 'in',
+  'risk': 'Risk',
+  'enter_age_risk_factors_settings':
+      'Please enter your age in Risk Factors settings to calculate your Down syndrome risk.',
+  'understanding_risk_assessment': 'Understanding Risk Assessment',
+  'risk_assessment_explanation':
+      'Risk varies by maternal age and other factors. Screening tests assess risk and provide estimates, not diagnoses. Screening helps identify those who may benefit from diagnostic testing.',
+  'screening_options_non_invasive': 'Screening Options (Non-invasive)',
+  'screening_tests_description':
+      'Screening tests assess risk but do not provide a diagnosis. They are non-invasive and help identify pregnancies that may benefit from diagnostic testing.',
+  'diagnostic_options_invasive': 'Diagnostic Options (Invasive)',
+  'diagnostic_tests_description':
+      'Diagnostic tests can provide a definitive diagnosis but are invasive procedures with a small risk of complications. They are typically recommended when screening indicates elevated risk.',
+  'gdm_risk_assessment': 'GDM Risk Assessment',
+  'risk_level_colon': 'Risk Level:',
+  'risk_factors_colon': 'Risk Factors:',
+  'screening_recommendation': 'Screening Recommendation',
+  'about_gdm_screening': 'About GDM Screening',
+  'gdm_risk_title': 'Gestational Diabetes Mellitus (GDM) Risk:',
+  'gdm_risk_description':
+      'GDM risk is high when risk factors exist such as obesity, advanced maternal age, family history of diabetes, previous GDM, or certain ethnic backgrounds (Asian, Hispanic, African, Native American).',
+  'screening_guidelines': 'Screening Guidelines:',
+  'screening_guidelines_description':
+      'Universal or risk-based screening occurs in many guidelines. Standard screening typically happens at 24-28 weeks with a glucose tolerance test. Early screening (16-20 weeks) may be recommended if multiple high-risk factors are present.',
+  'iugr_sga_risk_assessment': 'IUGR/SGA Risk Assessment',
+  'iugr_detected_message':
+      'IUGR Detected - Fetus not reaching growth potential',
+  'sga_detected_message': 'SGA Detected - Baby smaller than typical',
+  'estimated_fetal_weight_colon': 'Estimated Fetal Weight:',
+  'percentile_colon': 'Percentile:',
+  'no_ultrasound_data_message':
+      'No ultrasound data available. Risk assessment is based on risk factors. Add ultrasound measurements for more accurate assessment.',
+  'recommendation': 'Recommendation',
+  'understanding_iugr_sga': 'Understanding IUGR & SGA',
+  'what_is_iugr_sga': 'What is IUGR/SGA?',
+  'iugr_sga_definition':
+      '• IUGR (Intrauterine Growth Restriction): Refers to a fetus not reaching its growth potential, usually defined by estimated fetal weight below the 10th percentile for gestational age.\n\n'
+          '• SGA (Small-for-Gestational-Age): Means a baby is smaller than typical for gestational age but can be constitutionally small with normal health.',
+  'why_it_matters': 'Why it matters:',
+  'iugr_sga_why_matters':
+      'Increased risk of stillbirth, perinatal distress, and later-onset health issues.',
+  'how_its_detected': 'How it\'s detected:',
+  'iugr_sga_detection':
+      'Regular fundal height measurements, ultrasound estimated fetal weight (EFW), Doppler studies, and growth velocity tracking.',
+  'management_principles': 'Management principles:',
+  'iugr_sga_management':
+      'Increased surveillance, timely delivery planning if there are signs of distress or abnormal Dopplers. Decision on expectant vs early delivery based on gestational age and fetal status.',
+  'risk_assessment_controller_not_available':
+      'Risk assessment controller not available',
+  'family_history_diabetes': 'Family History of Diabetes',
+  'previous_gdm': 'Previous GDM',
+  'hypertension': 'Hypertension',
+  'smoking': 'Smoking',
+  'ethnicity': 'Ethnicity',
+  'ethnicity_asian': 'Asian',
+  'ethnicity_hispanic': 'Hispanic',
+  'ethnicity_african': 'African',
+  'ethnicity_caucasian': 'Caucasian',
+  'ethnicity_native_american': 'Native American',
+  'ethnicity_other': 'Other',
+
+  // Pregnancy Risk Factors Card
+  'risk_factors_danger_signs': 'Risk Factors & Danger Signs',
+  'anemia_common_pregnancy': 'Anemia: common in pregnancy',
+  'multiple_risk_factors_aware': 'Multiple risk factors to be aware of',
+  'know_danger_signs_urgent_care': 'Know danger signs requiring urgent care',
+  'tap_to_learn_more': 'Tap to learn more',
+  'anemia_in_pregnancy': 'Anemia in Pregnancy',
+  'anemia_pregnancy_description':
+      'Anemia is common in pregnancy. Risk factors include iron deficiency, dietary insufficiency, and increased iron demands. Symptoms can be subtle, so routine screening is standard.',
+  'management_colon': 'Management:',
+  'dietary_iron_intake': 'Dietary iron intake',
+  'vitamin_c_co_supplementation': 'Vitamin C co-supplementation',
+  'prescribed_iron_deficiency': 'Prescribed iron if deficiency is found',
+  'monitor_hemoglobin_hematocrit': 'Monitor hemoglobin/hematocrit levels',
+  'other_major_risk_factors': 'Other Major Risk Factors',
+  'diabetes': 'Diabetes',
+  'kidney_disease': 'Kidney disease',
+  'autoimmune_disorders': 'Autoimmune disorders',
+  'advanced_maternal_age': 'Advanced maternal age',
+  'cigarette_smoking': 'Cigarette smoking',
+  'substance_use': 'Substance use',
+  'previous_obstetric_complications': 'Previous obstetric complications',
+  'undernutrition': 'Undernutrition',
+  'danger_signs_pregnancy': 'Danger Signs in Pregnancy',
+  'seek_immediate_medical_attention_danger_signs':
+      'Seek immediate medical attention if you experience any of these danger signs:',
+  'severe_vaginal_bleeding': 'Severe vaginal bleeding',
+  'severe_persistent_headaches_vision':
+      'Severe or persistent headaches with vision changes',
+  'swelling_hands_face': 'Swelling of hands/face',
+  'severe_abdominal_pain': 'Severe abdominal pain',
+  'decreased_fetal_movement': 'Decreased fetal movement',
+  'fever_chills': 'Fever/chills',
+  'severe_vomiting': 'Severe vomiting',
+  'dizziness_fainting': 'Dizziness or fainting',
+  'gush_fluid_rupture_membranes':
+      'Gush of fluid indicating rupture of membranes',
+  'danger_signs_seek_medical_care':
+      'If you experience any danger signs, seek immediate medical care. Regular prenatal checkups help monitor and manage risk factors.',
+
+  // Risk Assessment Controller
+  'down_syndrome_risk_explanation_unknown':
+      'Please enter your age in the settings to calculate Down syndrome risk. Risk varies significantly by maternal age.',
+  'nipt_screening_option':
+      'Non-invasive Prenatal Testing (NIPT) - Can be done from 10 weeks',
+  'first_trimester_screening_option':
+      'First-trimester Combined Screening (11-13 weeks) - Blood test + ultrasound',
+  'quadruple_screen_option': 'Quadruple Screen (15-20 weeks) - Blood test',
+  'cvs_diagnostic_option':
+      'Chorionic Villus Sampling (CVS) - 10-13 weeks (invasive)',
+  'amniocentesis_diagnostic_option': 'Amniocentesis - 15-20 weeks (invasive)',
+  'down_syndrome_risk_explanation_base':
+      'Down syndrome risk is primarily based on maternal age. Your age of',
+  'years_places_you_in': 'years places you in the',
+  'risk_category_explanation':
+      'risk category. Screening tests help estimate risk more accurately, but they do not provide a diagnosis.',
+  'risk_low': 'Low',
+  'risk_intermediate': 'Intermediate',
+  'risk_high': 'High',
+  'obesity_bmi_30': 'Obesity (BMI ≥ 30)',
+  'overweight_bmi_25_29': 'Overweight (BMI 25-29.9)',
+  'advanced_maternal_age_35': 'Advanced maternal age (≥35 years)',
+  'previous_gestational_diabetes': 'Previous gestational diabetes',
+  'high_risk_ethnicity': 'High-risk ethnicity',
+  'early_screening_recommended_16_20_weeks':
+      'Early screening recommended at 16-20 weeks due to high-risk factors. Follow with standard screening at 24-28 weeks.',
+  'screening_recommended_24_28_weeks':
+      'Screening recommended at 24-28 weeks with glucose tolerance test. Consider early screening if other risk factors develop.',
+  'standard_screening_recommended_24_28_weeks':
+      'Standard screening recommended at 24-28 weeks with glucose tolerance test.',
+  'no_major_risk_factors_identified': 'No major risk factors identified',
+  'no_major_risk_factors': 'No major risk factors',
+  'underweight_poor_nutrition': 'Underweight (poor nutrition)',
+  'high_risk_factors_present_recommendation':
+      'High-risk factors present. Regular fundal height measurements and ultrasound monitoring recommended. Consult your healthcare provider for increased surveillance.',
+  'moderate_risk_factors_present_recommendation':
+      'Moderate risk factors present. Regular fundal height measurements and growth monitoring recommended. Consider discussing surveillance options with your healthcare provider.',
+  'low_risk_factors_recommendation':
+      'Low risk factors. Continue standard prenatal care with regular fundal height measurements. Ultrasound estimated fetal weight (EFW) can help assess growth if concerns arise.',
+  'iugr_detected_recommendation':
+      'IUGR detected. Requires increased surveillance with regular ultrasounds, Doppler studies, and growth velocity tracking. Delivery planning should be discussed with your healthcare provider based on gestational age and fetal status.',
+  'sga_detected_recommendation':
+      'SGA detected. Baby may be constitutionally small and healthy. Regular monitoring recommended to rule out IUGR.',
+  'moderate_risk_factors_growth_monitoring':
+      'Moderate risk factors present. Regular fundal height measurements and growth monitoring recommended.',
+  'low_risk_standard_care':
+      'Low risk. Continue standard prenatal care with regular fundal height measurements.',
+
+  // Preterm Birth Card
+  'preterm_birth_awareness': 'Preterm Birth Awareness',
+  'birth_before_37_weeks': 'Birth before 37 completed weeks',
+  'preterm_types_late_moderate_very_early':
+      'Types: Late, Moderate, Very Early Preterm',
+  'higher_risks_babies_preterm': 'Higher risks for babies born preterm',
+  'what_is_preterm_birth': 'What is preterm birth?',
+  'preterm_birth_definition':
+      'Preterm birth means giving birth before 37 completed weeks of gestation. The earlier a baby is born, the greater the risk of health problems.',
+  'types_of_preterm_birth': 'Types of preterm birth',
+  'late_preterm_34_36_weeks': 'Late preterm: 34 0/7 to 36 6/7 weeks',
+  'moderate_preterm_32_33_weeks': 'Moderate preterm: 32 0/7 to 33 6/7 weeks',
+  'very_early_preterm_under_32_weeks': 'Very early preterm: <32 weeks',
+  'higher_risk_respiratory_issues': 'Higher risk of respiratory issues',
+  'feeding_difficulties': 'Feeding difficulties',
+  'temperature_instability': 'Temperature instability',
+  'longer_hospital_stays': 'Longer hospital stays',
+  'maternal_infections_chronic_diseases':
+      'Maternal infections or chronic diseases',
+  'history_prior_preterm_birth': 'History of prior preterm birth',
+  'placenta_problems': 'Placenta problems',
+  'obstetric_complications': 'Obstetric complications',
+  'maternal_stress': 'Maternal stress',
+  'prevention_management': 'Prevention and management',
+  'progesterone_therapy_high_risk':
+      'Progesterone therapy in some high-risk pregnancies',
+  'treating_infections_promptly': 'Treating infections promptly',
+  'cervical_cerclage_selected_cases': 'Cervical cerclage in selected cases',
+  'managing_anxiety_depression': 'Managing anxiety and depression',
+  'ensuring_perinatal_neonatal_care':
+      'Ensuring access to perinatal & neonatal care',
+  'regular_checkups_reduce_preterm_risk':
+      'Regular checkups and healthy habits can reduce the risk of preterm birth.',
+
+  // Delivery Planning Card
+  'delivery_planning_labor': 'Delivery Planning & Labor',
+  'plan_birth_preferences_methods': 'Plan your birth preferences and methods',
+  'know_signs_labor_when_to_go': 'Know signs of labor and when to go',
+  'recognize_red_flags_during_labor': 'Recognize red flags during labor',
+  'delivery_planning_basics': 'Delivery Planning Basics',
+  'delivery_planning_basics_description':
+      'Know your birth plan, preferred delivery methods, and potential contingencies (emergency cesarean, vaginal birth after cesarean (VBAC) if appropriate).',
+  'signs_of_labor': 'Signs of Labor',
+  'regular_contractions': 'Regular contractions',
+  'water_break_rupture_membranes': 'Water break (rupture of membranes)',
+  'backache': 'Backache',
+  'changes_baby_movement_patterns': 'Changes in baby movement patterns',
+  'transportation_birth_plan': 'Transportation & Birth Plan',
+  'know_when_go_hospital_birth_center':
+      'Know when to go to the hospital or birth center',
+  'have_contact_information_ready': 'Have contact information ready',
+  'plan_transportation_labor_onset':
+      'Plan transportation in case of labor onset',
+  'prepare_birth_plan_documents': 'Prepare your birth plan documents',
+  'delivery_methods': 'Delivery Methods',
+  'vaginal_delivery': 'Vaginal delivery',
+  'cesarean_section': 'Cesarean section',
+  'assisted_vaginal_delivery':
+      'Assisted vaginal delivery (forceps/vacuum) if needed',
+  'red_flags_during_labor': 'Red Flags During Labor',
+  'heavy_bleeding': 'Heavy bleeding',
+  'persistent_vomiting': 'Persistent vomiting',
+  'signs_fetal_distress': 'Signs of fetal distress',
+  'risk_assessment_labor': 'Risk Assessment for Labor',
+  'previous_cesarean': 'Previous cesarean',
+  'placenta_previa': 'Placenta previa',
+  'breech_presentation': 'Breech presentation',
+  'multiple_pregnancies': 'Multiple pregnancies',
+  'maternal_chronic_conditions': 'Maternal chronic conditions',
+  'intrapartum_complications': 'Intrapartum Complications',
+  'shoulder_dystocia': 'Shoulder dystocia',
+  'fetal_distress': 'Fetal distress',
+  'non_reassuring_fetal_heart_rate': 'Non-reassuring fetal heart rate patterns',
+  'emergency_preparedness': 'Emergency Preparedness',
+  'emergency_preparedness_description':
+      'Know when to seek urgent care and what to expect. Have emergency contacts ready and understand your healthcare facility\'s protocols.',
+  'discuss_birth_plan_emergency_contacts':
+      'Always discuss your birth plan with your healthcare provider and have emergency contacts ready.',
+
+  // Breastfeeding Card
+  'breastfeeding_feeding': 'Breastfeeding & Feeding',
+  'optimal_nutrition_immunity_baby': 'Optimal nutrition & immunity for baby',
+  'colostrum_first_milk_antibodies': 'Colostrum: first milk rich in antibodies',
+  'three_types_feeding_exclusive_mixed_formula':
+      'Three types: exclusive, mixed, or formula',
+  'benefits_breastfeeding': 'Benefits of Breastfeeding',
+  'benefits_breastfeeding_description':
+      'Breastfeeding provides optimal nutrition, immunity, bonding support, and health benefits for both mother and baby.',
+  'colostrum': 'Colostrum',
+  'colostrum_description':
+      'Colostrum is the first milk, rich in antibodies and nutrients. It starts immediately after birth and gradually transitions to mature milk.',
+  'types_of_feeding': 'Types of Feeding',
+  'exclusive_breastfeeding_description':
+      'Exclusive breastfeeding: only breast milk (no other liquids or solids except vitamins or medications as advised)',
+  'mixed_feeding_description':
+      'Mixed feeding: breast milk plus formula or other feeds',
+  'exclusive_formula_feeding_description':
+      'Exclusive formula feeding: no breast milk',
+  'introducing_complementary_foods': 'Introducing Complementary Foods',
+  'introducing_complementary_foods_description':
+      'Start around 6 months of age for most babies, with continued breastfeeding or formula feeding.',
+  'common_challenges_solutions': 'Common Challenges & Solutions',
+  'latching_issues_solution':
+      'Latching issues: seek help from lactation consultants',
+  'nipple_pain_solution': 'Nipple pain: check positioning and latch',
+  'milk_supply_concerns_solution':
+      'Milk supply concerns: frequent feeding helps',
+  'pumping_expressing_guidelines':
+      'Pumping/expressing guidelines: follow safe practices',
+  'safety': 'Safety',
+  'maintain_good_hygiene': 'Maintain good hygiene practices',
+  'safe_storage_expressed_milk': 'Safe storage of expressed milk',
+  'avoid_substances_pass_to_baby':
+      'Avoid certain substances that can pass to baby',
+  'consult_lactation_specialists_guidance':
+      'Consult with lactation specialists or healthcare providers for personalized feeding guidance.',
+
+  // Nutrition Card
+  'nutrition_guide': 'Nutrition Guide',
+  'age_appropriate_feeding_guidelines': 'Age-appropriate feeding guidelines',
+  'key_nutrients_iron_calcium_vitamin_d':
+      'Key nutrients: Iron, Calcium, Vitamin D',
+  'healthy_feeding_habits_routines': 'Healthy feeding habits & routines',
+  'what_how_much': 'What & How Much',
+  'infants_0_6_months': 'Infants (0-6 months):',
+  'exclusive_breastfeeding_best_who':
+      'Exclusive breastfeeding is best where possible. The World Health Organization (WHO) emphasizes that every child has the right to good nutrition.',
+  'transition_complementary_foods_6_months':
+      'Transition to complementary foods (~6 months):',
+  'meals_nutrient_dense_multiple_food_groups':
+      'Meals should be nutrient-dense, include multiple food groups, prepared hygienically, and eaten frequently.',
+  'toddlers_12_24_months': 'Toddlers (~12-24 months):',
+  'offer_eat_drink_every_2_3_hours':
+      'Offer something to eat or drink every 2-3 hours (about 3 meals + 2-3 snacks).',
+  'older_children_3_8_years': 'Older children (3-8 years):',
+  'balanced_diet_fruits_vegetables_whole_grains':
+      'Focus on balanced diet: fruits/vegetables, whole grains, lean proteins, low-fat dairy, limit added sugars & sodium.',
+  'key_nutrients_habits': 'Key Nutrients & Habits',
+  'iron_critical_infancy_toddler_years':
+      'Iron: Especially critical in infancy and toddler years — iron-rich foods should be offered early',
+  'calcium_vitamin_d_bone_health':
+      'Calcium & Vitamin D: For bone health, especially when the child is older and more active',
+  'limit_added_sugars_ultra_processed_snacks':
+      'Limit added sugars and ultra-processed snacks',
+  'fat_intake_children_2_3_years':
+      'Fat intake: For children 2-3 years, total fat may be ~30-35% of calories; for older children ~25-35% (with fats from good sources)',
+  'routine_consistent_meal_snack_times':
+      'Routine: Encourage consistent meal/snack times so the child knows mealtime structure',
+  'self_feeding_autonomy_toddlers_preschoolers':
+      'Self-feeding & autonomy: For toddlers/preschoolers, let them try feeding themselves (with supervision)',
+  'family_meals_children_learn_watching':
+      'Family meals: Children learn by watching caregivers\' eating habits',
+  'variety_texture_progression_6_months':
+      'Variety & texture progression: At ~6 months start soft purees → mashed → chopped → family-food textures by ~2-3 years',
+  'responsive_feeding_watch_hunger_fullness_cues':
+      'Responsive feeding: Watch hunger/fullness cues; don\'t force eat',
+  'limit_screen_time_during_meals':
+      'Limit screen time during meals: Less distraction helps children tune into hunger/fullness cues',
+  'impact_development_school_readiness':
+      'Impact on Development & School Readiness',
+  'good_nutrition_supports_brain_growth':
+      'Good nutrition supports brain growth, cognitive development, energy regulation and physical health — all of which tie into being ready for school (attention, behaviour, stamina).',
+  'local_tips_pakistan': 'Local Tips for Pakistan',
+  'use_local_foods_lentils_chapati':
+      'Use local foods: lentils (dal), whole wheat chapati, fresh seasonal fruits/vegetables, and local lean protein sources (eggs, chicken, fish)',
+  'water_hygiene_clean_water_safe_storage':
+      'Water & hygiene: Emphasize clean water for cooking/feeding, safe storage',
+  'snack_ideas_yogurt_fruit_roasted_chickpeas':
+      'Snack ideas: Instead of sugary biscuits, propose yogurt with fruit, roasted chickpeas, fresh fruit slices',
+  'cultural_family_context_extended_family':
+      'Cultural and family context: Encourage extended family involvement, sharing meals, and involving older siblings',
+  'micronutrient_monitoring_iron_deficiency_anemia':
+      'Micronutrient monitoring: Since iron-deficiency anemia is common in South Asia, include a "check iron" reminder around toddler age',
+  'growth_tracking_local_standards_who_charts':
+      'Growth tracking: Consider including local growth standards or WHO charts',
+  'nutritious_foods_throughout_day':
+      'Nutritious foods should be offered throughout the day to ensure children are getting the nourishment and energy they need to learn and grow.',
+
+  // School Readiness Card
+  'school_readiness': 'School Readiness',
+  'more_than_letters_numbers_holistic':
+      'More than letters/numbers - holistic development',
+  'social_emotional_cognitive_language_skills':
+      'Social-emotional, cognitive, language skills',
+  'age_appropriate_activities_milestones':
+      'Age-appropriate activities & milestones',
+  'what_is_school_readiness': 'What is School Readiness?',
+  'school_readiness_definition':
+      'School readiness is more than knowing letters/numbers. It\'s a combination of skills, knowledge, attitudes and behaviours that enable a child to begin school and thrive.',
+  'key_domains': 'Key Domains',
+  'social_emotional_development_domain':
+      'Social-emotional development: self-control, forming relationships, recognising feelings, cooperating with others',
+  'cognitive_general_knowledge_domain':
+      'Cognitive / general knowledge: problem-solving, curiosity, early math, understanding cause & effect',
+  'language_literacy_domain':
+      'Language & literacy: vocabulary, storytelling, letter recognition, asking/answering questions',
+  'physical_motor_development_domain':
+      'Physical & motor development: fine motor skills (holding a pencil), gross motor (running, jumping), stamina to sit and focus',
+  'approaches_learning_executive_function_domain':
+      'Approaches to learning / executive function / self-regulation: ability to focus, shift attention, follow directions, impulse control',
+  'age_wise_progression': 'Age-wise Progression',
+  'birth_to_3_years': 'Birth to ~3 years:',
+  'encourage_talking_reading_singing':
+      'Encourage lots of talking, reading, singing. Respond to baby\'s cues (turn-taking)',
+  'play_simple_cause_effect_toys':
+      'Play: simple cause-and-effect toys, sensorimotor exploration, safe environment',
+  'social_snuggling_interacting_imitating':
+      'Social: snuggling, interacting, imitating, simple turn-taking',
+  'self_help_safe_exploration_picking_items':
+      'Self-help: allow safe exploration, picking up items, simple decisions (with supervision)',
+  '3_5_years_preschool_stage': '3–5 years (pre-school stage):',
+  'fine_motor_drawing_crafts_scissors':
+      'Fine-motor: drawing, simple crafts, using scissors (with help)',
+  'language_literacy_tell_stories_letters':
+      'Language & literacy: tell stories together, ask "what happens next?", introduce letters/numbers through play',
+  'social_emotional_cooperative_play_sharing':
+      'Social-emotional: cooperative play, sharing, recognising others\' feelings, taking turns',
+  'cognitive_sorting_games_puzzles_counting':
+      'Cognitive: sorting games, puzzles, counting objects, simple board games',
+  'routine_self_help_skills_dressing_toilet':
+      'Routine & self-help skills: dressing (with help), going to toilet independently, cleaning up toys, following simple two-step instructions',
+  'transition_group_setting_play_groups':
+      'Transition to a group setting: Encourage play groups or preschool to get used to routines, group interaction',
+  '5_8_years_early_school_age': '5–8 years (early school age):',
+  'reading_readiness_recognising_letters_words':
+      'Reading readiness: Recognising letters, attempting words, reading for fun',
+  'numeracy_counting_addition_subtraction_shapes':
+      'Numeracy: Counting, basic addition/subtraction, understanding shapes, patterns',
+  'attention_span_sit_story_follow_instructions':
+      'Attention span: Ability to sit for a short story or task, follow multi-step instructions',
+  'self_management_packing_bag_responsible_tasks':
+      'Self-management: Packing school bag, being responsible for small tasks, following classroom rules',
+  'social_skills_making_friends_resolving_conflicts':
+      'Social skills: Making and keeping friends, resolving small conflicts, cooperating in teams',
+  'health_physical_sleep_meals_outdoor_play':
+      'Health & physical: Good sleep, regular meals, outdoor play, and independence in bathroom/hygiene',
+  'self_regulation_school_readiness_research':
+      'Research shows self-regulation is strongly tied to school readiness. Support your child\'s development through play, routines, and age-appropriate activities.',
+
+  // Profile Views
+  'go_to_homepage': 'Go to HomePage',
+  'your_profile': 'Your Profile',
+  'why': 'Why?',
+  'change': 'Change',
+  'current_interval': 'Current Interval',
+  'next_feeding': 'Next Feeding',
+  'log_now': 'Log Now',
+  'history': 'History',
+
+  // Goal Selection Controller
+  'track_my_pregnancy_setup': 'Track my pregnancy setup',
+  'i_know_my_due_date': 'I know my due date',
+  'i_dont_know': 'I don\'t know',
+  'use_lmp_or_ultrasound_calculate_edd':
+      'Use LMP (last period) or ultrasound to calculate EDD',
+  'select_lmp_date': 'Select LMP date',
+  'cycle_length_days_default_28': 'Cycle length (days) — default 28',
+  'select_ultrasound_date_optional': 'Select ultrasound date (optional)',
+  'ga_weeks_on_scan': 'GA weeks on scan',
+  'ga_days_on_scan': 'GA days on scan',
+  'height_weight_calculate_bmi': 'Calculate BMI',
+  'pre_pregnancy_weight': 'Pre-pregnancy weight',
+  'feet': 'Feet',
+  'inch': 'Inch',
+  'calculate_bmi': 'Calculate BMI',
+  'please_enter_height_and_weight': 'Please enter your height and weight',
+  'bmi_saved_successfully': 'BMI saved successfully',
+  'invalid_height_format': 'Invalid height format',
+  'please_enter_valid_height_and_weight':
+      'Please enter valid height and weight',
+  'failed_to_save_bmi': 'Failed to save BMI. Please try again.',
+  'oops': 'Oops!',
+  'please_provide_due_date_or_info':
+      'Please provide due date or enough info to calculate it',
+  'cycle_details': 'Cycle details',
+  'select_last_period_date': 'Select last period date',
+  'typical_cycle_length_21_35_days': 'Typical cycle length is 21-35 days',
+  'please_select_last_period_date': 'Please select your last period date',
+  'please_enter_valid_cycle_length':
+      'Please enter a valid cycle length (16-45 days)',
+  'example_28': 'e.g., 28',
+
+  // Newborn Responsibilities
+  'why_is_it_important': 'Why is it important?',
+  'establishes_child_legal_identity': 'Establishes the child\'s legal identity',
+  'required_passport_school_health_insurance':
+      'Required for passport, school admission, and health insurance',
+  'how_to_register': 'How to register?',
+  'register_within_60_days_birth': 'Register within 60 days of birth',
+  'apply_local_union_council_nadra':
+      'Apply at your local Union Council or NADRA office',
+  'documents_needed': 'Documents needed',
+  'hospital_birth_slip': 'Hospital birth slip',
+  'cnic_both_parents': 'CNIC of both parents',
+  'marriage_certificate': 'Marriage certificate',
+  'application_form_signatures': 'Application form with signatures',
+  'nadra_form_b_after_birth_certificate':
+      'NADRA Form B (after Birth Certificate)',
+  'required_school_passport_government_records':
+      'Required for school admission, passport, and government records',
+  'bring_child_birth_certificate_parents_cnics':
+      'Bring: Child\'s birth certificate and parents\' CNICs',
+  'one_parent_present_biometric_verification':
+      'One parent must be present for biometric verification',
+  'hospital_documents_to_keep': 'Hospital documents to keep',
+  'discharge_summary_mother_child': 'Discharge summary for mother and child',
+  'vaccination_card_record_started_birth':
+      'Vaccination card/record started at birth',
+  'medical_test_results_blood_group':
+      'Any medical test results (including blood group)',
+  'vaccination_schedule': 'Vaccination schedule',
+  'starts_immediately_after_birth': 'Starts immediately after birth',
+  'record_epi_card': 'Record on the EPI card',
+  'keep_card_safe_updated': 'Keep the card safe and updated',
+  'passport_application_if_needed': 'Passport application (if needed)',
+  'apply_after_form_b_registration': 'Apply after Form B registration',
+  'submit_online_office_birth_certificate_form_b_parents_passports':
+      'Submit online or at the office with: Birth certificate, Form B, Parents\' passports',
+
+  // Good Touch & Bad Touch
+  'tip_one_parent_present_biometric_form_b':
+      'Tip: One parent must be present for biometric verification when applying for Form B.',
+  'good_touch_bad_touch': 'Good Touch & Bad Touch',
+  'teach_child_safe_unsafe_touch_empower':
+      'Teach your child about safe and unsafe touch. Empower them with knowledge.',
+
+// BIRTH PREPAREDNESS DETAIL VIEW
+
+// General
+  'birth_preparedness_title': 'Birth Preparedness',
+  'birth_preparedness_desc':
+      'Be prepared for childbirth with these essential steps.',
+
+// Section Headers and Points – Labor Signs
+  'labor_signs_early_signs_header': 'Early Labor Signs',
+  'labor_signs_regular_contractions':
+      'Regular contractions that get stronger and closer together',
+  'labor_signs_lower_back_pain': 'Lower back pain or cramping',
+  'labor_signs_water_breaking': 'Water breaking (amniotic fluid)',
+  'labor_signs_bloody_show': 'Bloody show (mucus plug)',
+  'labor_signs_nesting_instinct': 'Nesting instinct or energy burst',
+
+  'labor_signs_call_doctor_header': 'When to Call Your Doctor',
+  'labor_signs_contractions_every_5min':
+      'Contractions every 5 minutes for 1 hour',
+  'labor_signs_water_breaks_even_without_contractions':
+      'Water breaks (even without contractions)',
+  'labor_signs_heavy_bleeding': 'Heavy bleeding',
+  'labor_signs_severe_headache_or_vision': 'Severe headache or vision changes',
+  'labor_signs_decreased_fetal_movement': 'Decreased fetal movement',
+
+  'labor_signs_what_to_do_header': 'What to Do During Early Labor',
+  'labor_signs_stay_calm': 'Stay calm and time contractions',
+  'labor_signs_eat_light_snacks': 'Eat light snacks and stay hydrated',
+  'labor_signs_take_shower': 'Take a warm shower or bath',
+  'labor_signs_practice_breathing': 'Practice breathing techniques',
+  'labor_signs_pack_hospital_bag': 'Pack your hospital bag if not done',
+
+// Section: Delivery Mode
+  'delivery_mode_vaginal_header': 'Vaginal Delivery',
+  'delivery_mode_vaginal_common_natural':
+      'Most common and natural delivery method',
+  'delivery_mode_faster_recovery': 'Faster recovery time',
+  'delivery_mode_lower_risk_complications': 'Lower risk of complications',
+  'delivery_mode_pain_management_options': 'Can use pain management options',
+  'delivery_mode_vbac_possible':
+      'Vaginal birth after cesarean (VBAC) may be possible',
+
+  'delivery_mode_csection_header': 'Cesarean Section (C-Section)',
+  'delivery_mode_surgical_delivery':
+      'Surgical delivery through abdominal incision',
+  'delivery_mode_may_be_planned_or_emergency':
+      'May be planned or emergency procedure',
+  'delivery_mode_longer_recovery': 'Longer recovery time (6-8 weeks)',
+  'delivery_mode_higher_risk_complications': 'Higher risk of complications',
+  'delivery_mode_necessary_for_medical': 'May be necessary for medical reasons',
+
+  'delivery_mode_pain_header': 'Pain Management Options',
+  'delivery_mode_epidural_anesthesia': 'Epidural anesthesia',
+  'delivery_mode_natural_pain_relief': 'Natural pain relief techniques',
+  'delivery_mode_nitrous_oxide': 'Nitrous oxide (laughing gas)',
+  'delivery_mode_water_birth': 'Water birth',
+  'delivery_mode_breathing_relaxation': 'Breathing and relaxation techniques',
+
+// Section: Hospital Bag
+  'hospital_bag_for_mom_header': 'For Mom',
+  'hospital_bag_comfortable_nightgowns': 'Comfortable nightgowns or pajamas',
+  'hospital_bag_nursing_bras': 'Nursing bras and breast pads',
+  'hospital_bag_underwear_pads': 'Underwear and maternity pads',
+  'hospital_bag_toiletries': 'Toiletries and personal items',
+  'hospital_bag_going_home_outfit': 'Comfortable going-home outfit',
+  'hospital_bag_charger_camera': 'Phone charger and camera',
+
+  'hospital_bag_for_baby_header': 'For Baby',
+  'hospital_bag_newborn_diapers_wipes': 'Newborn diapers and wipes',
+  'hospital_bag_going_home_outfit_options': 'Going-home outfit (2-3 options)',
+  'hospital_bag_blanket_hat': 'Baby blanket and hat',
+  'hospital_bag_car_seat': 'Car seat (required for discharge)',
+  'hospital_bag_nail_clippers': 'Baby nail clippers',
+  'hospital_bag_pacifiers': 'Pacifiers (optional)',
+
+  'hospital_bag_documents_header': 'Important Documents',
+  'hospital_bag_insurance_id': 'Insurance cards and ID',
+  'hospital_bag_birth_plan': 'Birth plan and medical records',
+  'hospital_bag_pre_registration': 'Hospital pre-registration forms',
+  'hospital_bag_emergency_contacts': 'Emergency contact list',
+  'hospital_bag_camera_phone': 'Camera or phone for photos',
+
+// Section: Transport Plan
+  'transport_plan_emergency_contacts_header': 'Emergency Contacts',
+  'transport_plan_ambulance_1034': 'Ambulance: 1034 (Emergency)',
+  'transport_plan_doctor_emergency_number': 'Your doctor\'s emergency number',
+  'transport_plan_labor_unit': 'Hospital labor and delivery unit',
+  'transport_plan_partner_support': 'Partner or support person',
+  'transport_plan_backup_contact': 'Backup transportation contact',
+
+  'transport_plan_options_header': 'Transportation Options',
+  'transport_plan_ambulance': 'Ambulance for emergencies',
+  'transport_plan_family_friend_ride': 'Pre-arranged ride with family/friend',
+  'transport_plan_ride_sharing': 'Ride-sharing service (Uber/Lyft)',
+  'transport_plan_own_vehicle': 'Your own vehicle (if not in labor)',
+  'transport_plan_public_transport': 'Public transportation (if early labor)',
+
+  'transport_plan_emergency_do_header': 'What to Do in Emergency',
+  'transport_plan_call_1034': 'Call 1034 immediately',
+  'transport_plan_stay_calm_follow': 'Stay calm and follow instructions',
+  'transport_plan_someone_with_you': 'Have someone stay with you',
+  'transport_plan_grab_bag': 'Grab your hospital bag',
+  'transport_plan_time_contractions': 'Time contractions if possible',
+
+// Section: Breastfeeding
+  'breastfeeding_benefits_header': 'Benefits of Breastfeeding',
+  'breastfeeding_perfect_nutrition': 'Perfect nutrition for your baby',
+  'breastfeeding_immune_boost': 'Boosts immune system',
+  'breastfeeding_bonding': 'Bonds with your baby',
+  'breastfeeding_postpartum_recovery': 'Helps with postpartum recovery',
+  'breastfeeding_cost_effective': 'Cost-effective and convenient',
+
+  'breastfeeding_getting_started_header': 'Getting Started',
+  'breastfeeding_start_within_hour': 'Start within first hour after birth',
+  'breastfeeding_skin_to_skin': 'Skin-to-skin contact immediately',
+  'breastfeeding_feed_on_demand': 'Feed on demand (8-12 times per day)',
+  'breastfeeding_proper_latch': 'Learn proper latch technique',
+  'breastfeeding_hydrated_nourished': 'Stay hydrated and well-nourished',
+
+  'breastfeeding_challenges_header': 'Common Challenges',
+  'breastfeeding_sore_nipples': 'Sore or cracked nipples',
+  'breastfeeding_low_supply': 'Low milk supply concerns',
+  'breastfeeding_not_latching': 'Baby not latching properly',
+  'breastfeeding_engorgement': 'Engorgement and blocked ducts',
+  'breastfeeding_getting_enough_sleep': 'Getting enough sleep',
+
+  'breastfeeding_support_header': 'Support Resources',
+  'breastfeeding_lactation_consultant': 'Lactation consultant',
+  'breastfeeding_support_groups': 'Breastfeeding support groups',
+  'breastfeeding_online_resources': 'Online resources and apps',
+  'breastfeeding_family_support': 'Family and partner support',
+  'breastfeeding_healthcare_provider': 'Healthcare provider guidance',
+
+// Default Content
+  'birth_info_important_header': 'Important Information',
+  'birth_info_consult_provider': 'Consult with your healthcare provider',
+  'birth_info_follow_birth_plan': 'Follow your birth plan',
+  'birth_info_stay_informed': 'Stay informed and prepared',
+  'birth_info_trust_instincts': 'Trust your instincts',
+  'birth_info_ask_questions': 'Ask questions when in doubt',
+
+// Button
+  'call_ambulance_1034': 'Call Ambulance (1034)',
+
+// LIFESTYLE ADVICE DETAIL VIEW
+
+// Nutrition
+  'lifestyle_nutrition_essential_nutrients':
+      'Essential Nutrients During Pregnancy',
+  'lifestyle_nutrition_folic_acid':
+      'Folic Acid: 400-800 mcg daily to prevent birth defects',
+  'lifestyle_nutrition_iron':
+      'Iron: 27 mg daily to support increased blood volume',
+  'lifestyle_nutrition_calcium':
+      'Calcium: 1000 mg daily for baby\'s bone development',
+  'lifestyle_nutrition_protein': 'Protein: 75-100g daily for fetal growth',
+  'lifestyle_nutrition_omega3_dha':
+      'Omega-3 DHA: 200-300 mg daily for brain development',
+  'lifestyle_nutrition_vitamin_d': 'Vitamin D: 600 IU daily for bone health',
+  'lifestyle_nutrition_include_header': 'Foods to Include',
+  'lifestyle_nutrition_leafy_greens':
+      'Leafy green vegetables (spinach, kale, broccoli)',
+  'lifestyle_nutrition_lean_proteins':
+      'Lean proteins (chicken, fish, beans, lentils)',
+  'lifestyle_nutrition_whole_grains': 'Whole grains (brown rice, quinoa, oats)',
+  'lifestyle_nutrition_dairy': 'Dairy products (milk, yogurt, cheese)',
+  'lifestyle_nutrition_fruits_vegetables': 'Fresh fruits and vegetables',
+  'lifestyle_nutrition_nuts_seeds':
+      'Nuts and seeds (almonds, walnuts, chia seeds)',
+  'lifestyle_nutrition_avoid_header': 'Foods to Avoid',
+  'lifestyle_nutrition_raw_meat_fish': 'Raw or undercooked meat and fish',
+  'lifestyle_nutrition_unpasteurized_dairy': 'Unpasteurized dairy products',
+  'lifestyle_nutrition_high_mercury_fish':
+      'High-mercury fish (shark, swordfish, king mackerel)',
+  'lifestyle_nutrition_excessive_caffeine':
+      'Excessive caffeine (limit to 200mg daily)',
+  'lifestyle_nutrition_alcohol_tobacco': 'Alcohol and tobacco',
+  'lifestyle_nutrition_raw_eggs_deli_meat': 'Raw eggs and deli meats',
+  'lifestyle_nutrition_hydration_header': 'Hydration Tips',
+  'lifestyle_nutrition_drink_water': 'Drink 8-10 glasses of water daily',
+  'lifestyle_nutrition_carry_bottle': 'Carry a water bottle with you',
+  'lifestyle_nutrition_lemon_cucumber': 'Add lemon or cucumber for flavor',
+  'lifestyle_nutrition_monitor_urine':
+      'Monitor urine color (should be pale yellow)',
+  'lifestyle_nutrition_increase_intake':
+      'Increase intake during hot weather or exercise',
+  'lifestyle_nutrition_limit_sugary_sodas': 'Limit sugary drinks and sodas',
+
+// Repeat above for all exercise, hygiene, sleep, and default tips used in _getDetailedContent and _buildSectionCard.
+// (Provide keys as shown above; you can use similar patterns for each item.)
+
+// Sleep Section
+  "lifestyle_sleep_sleep_position_recommendations":
+      "Sleep Position Recommendations",
+  "lifestyle_sleep_sleep_on_left_side_detail":
+      "Sleep on your left side for optimal blood flow",
+  "lifestyle_sleep_use_pregnancy_pillows_detail":
+      "Use pregnancy pillows for support and comfort",
+  "lifestyle_sleep_avoid_sleeping_on_back_after_20_weeks_detail":
+      "Avoid sleeping on your back after 20 weeks",
+  "lifestyle_sleep_place_pillow_between_knees_detail":
+      "Place pillow between knees for hip support",
+  "lifestyle_sleep_elevate_upper_body_if_heartburn_detail":
+      "Elevate upper body if experiencing heartburn",
+  "lifestyle_sleep_find_comfortable_positions_detail":
+      "Find comfortable positions that work for you",
+
+  "lifestyle_sleep_creating_sleep_friendly_environment":
+      "Creating a Sleep-Friendly Environment",
+  "lifestyle_sleep_keep_bedroom_cool_dark_quiet_detail":
+      "Keep bedroom cool, dark, and quiet",
+  "lifestyle_sleep_use_blackout_curtains_eye_mask_detail":
+      "Use blackout curtains or eye mask",
+  "lifestyle_sleep_invest_in_comfortable_mattress_pillows_detail":
+      "Invest in comfortable mattress and pillows",
+  "lifestyle_sleep_remove_electronic_devices_from_bedroom_detail":
+      "Remove electronic devices from bedroom",
+  "lifestyle_sleep_use_white_noise_machine_if_needed_detail":
+      "Use white noise machine if needed",
+  "lifestyle_sleep_keep_room_well_ventilated_detail":
+      "Keep room well-ventilated",
+
+  "lifestyle_sleep_sleep_hygiene_tips": "Sleep Hygiene Tips",
+  "lifestyle_sleep_maintain_consistent_sleep_schedule_detail":
+      "Maintain consistent sleep schedule",
+  "lifestyle_sleep_avoid_large_meals_caffeine_before_bed_detail":
+      "Avoid large meals and caffeine before bed",
+  "lifestyle_sleep_limit_screen_time_1_hour_before_sleep_detail":
+      "Limit screen time 1 hour before sleep",
+  "lifestyle_sleep_practice_relaxation_techniques_detail":
+      "Practice relaxation techniques",
+  "lifestyle_sleep_take_warm_bath_shower_before_bed_detail":
+      "Take warm bath or shower before bed",
+  "lifestyle_sleep_create_bedtime_routine_to_signal_sleep_time_detail":
+      "Create bedtime routine to signal sleep time",
+
+  "lifestyle_sleep_managing_sleep_disruptions": "Managing Sleep Disruptions",
+  "lifestyle_sleep_frequent_urination_limit_fluids_before_bed_detail":
+      "Frequent urination: Limit fluids before bed",
+  "lifestyle_sleep_heartburn_eat_smaller_meals_avoid_spicy_foods_detail":
+      "Heartburn: Eat smaller meals, avoid spicy foods",
+  "lifestyle_sleep_leg_cramps_stretch_before_bed_stay_hydrated_detail":
+      "Leg cramps: Stretch before bed, stay hydrated",
+  "lifestyle_sleep_anxiety_practice_meditation_deep_breathing_detail":
+      "Anxiety: Practice meditation or deep breathing",
+  "lifestyle_sleep_restless_legs_gentle_massage_warm_bath_detail":
+      "Restless legs: Gentle massage and warm bath",
+  "lifestyle_sleep_snoring_use_nasal_strips_humidifier_detail":
+      "Snoring: Use nasal strips or humidifier",
+
+  "lifestyle_sleep_when_to_seek_help": "When to Seek Help",
+  "lifestyle_sleep_persistent_insomnia_affecting_daily_function_detail":
+      "Persistent insomnia affecting daily function",
+  "lifestyle_sleep_severe_sleep_apnea_breathing_problems_detail":
+      "Severe sleep apnea or breathing problems",
+  "lifestyle_sleep_excessive_daytime_sleepiness_detail":
+      "Excessive daytime sleepiness",
+  "lifestyle_sleep_sleep_disturbances_due_to_anxiety_depression_detail":
+      "Sleep disturbances due to anxiety or depression",
+  "lifestyle_sleep_physical_pain_preventing_sleep_detail":
+      "Physical pain preventing sleep",
+  "lifestyle_sleep_any_concerns_about_sleep_quality_detail":
+      "Any concerns about sleep quality",
+
+// Hygiene Section
+  "lifestyle_hygiene_daily_hygiene_routine": "Daily Hygiene Routine",
+  "lifestyle_hygiene_shower_bathe_detail":
+      "Shower or bathe daily with mild, fragrance-free soap",
+  "lifestyle_hygiene_wash_hands_detail":
+      "Wash hands frequently, especially before eating",
+  "lifestyle_hygiene_brush_teeth_detail":
+      "Brush teeth twice daily with fluoride toothpaste",
+  "lifestyle_hygiene_floss_detail": "Floss daily to prevent gum disease",
+  "lifestyle_hygiene_keep_nails_detail": "Keep nails clean and trimmed",
+  "lifestyle_hygiene_change_underwear_detail":
+      "Change underwear and clothes daily",
+
+  "lifestyle_hygiene_skin_care_during_pregnancy": "Skin Care During Pregnancy",
+  "lifestyle_hygiene_gentle_skincare_detail":
+      "Use gentle, pregnancy-safe skincare products",
+  "lifestyle_hygiene_apply_sunscreen_detail":
+      "Apply sunscreen daily to prevent melasma",
+  "lifestyle_hygiene_moisturize_detail":
+      "Moisturize regularly to prevent stretch marks",
+  "lifestyle_hygiene_avoid_harsh_chemicals_detail":
+      "Avoid harsh chemicals and retinoids",
+  "lifestyle_hygiene_keep_skin_clean_dry_detail":
+      "Keep skin clean and dry to prevent infections",
+  "lifestyle_hygiene_consult_dermatologist_detail":
+      "Consult dermatologist for skin concerns",
+
+  "lifestyle_hygiene_oral_health": "Oral Health",
+  "lifestyle_hygiene_schedule_dental_checkups_detail":
+      "Schedule regular dental checkups",
+  "lifestyle_hygiene_inform_dentist_detail":
+      "Inform dentist about your pregnancy",
+  "lifestyle_hygiene_use_soft_bristled_toothbrush_detail":
+      "Use soft-bristled toothbrush",
+  "lifestyle_hygiene_rinse_fluoride_mouthwash_detail":
+      "Rinse with fluoride mouthwash",
+  "lifestyle_hygiene_eat_calcium_rich_foods_detail":
+      "Eat calcium-rich foods for strong teeth",
+  "lifestyle_hygiene_avoid_sugary_snacks_detail":
+      "Avoid sugary snacks and drinks",
+
+  "lifestyle_hygiene_personal_care_products": "Personal Care Products",
+  "lifestyle_hygiene_choose_fragrance_free_detail":
+      "Choose fragrance-free and hypoallergenic products",
+  "lifestyle_hygiene_avoid_harsh_chemicals_detail":
+      "Avoid products with harsh chemicals",
+  "lifestyle_hygiene_use_pregnancy_safe_deodorants_detail":
+      "Use pregnancy-safe deodorants and antiperspirants",
+  "lifestyle_hygiene_select_gentle_sulfate_free_shampoo_detail":
+      "Select gentle, sulfate-free shampoos",
+  "lifestyle_hygiene_read_labels_avoid_harmful_ingredients_detail":
+      "Read labels and avoid harmful ingredients",
+  "lifestyle_hygiene_consider_natural_organic_alternatives_detail":
+      "Consider natural and organic alternatives",
+
+// Exercise Section
+  "lifestyle_exercise_safe_exercises": "Safe Exercises During Pregnancy",
+  "lifestyle_exercise_walking_detail":
+      "Walking: 30 minutes daily at moderate pace",
+  "lifestyle_exercise_swimming_detail":
+      "Swimming: Low-impact, full-body workout",
+  "lifestyle_exercise_prenatal_yoga_detail":
+      "Prenatal yoga: Improves flexibility and relaxation",
+  "lifestyle_exercise_stationary_cycling_detail":
+      "Stationary cycling: Safe cardiovascular exercise",
+  "lifestyle_exercise_pilates_detail":
+      "Pilates: Strengthens core and improves posture",
+  "lifestyle_exercise_light_strength_training_detail":
+      "Light strength training with proper form",
+
+  "lifestyle_exercise_benefits": "Benefits of Exercise",
+  "lifestyle_exercise_back_pain_detail":
+      "Reduces back pain and improves posture",
+  "lifestyle_exercise_sleep_mood_detail":
+      "Helps with sleep and mood regulation",
+  "lifestyle_exercise_labor_delivery_detail":
+      "Prepares body for labor and delivery",
+  "lifestyle_exercise_gestational_diabetes_detail":
+      "Reduces risk of gestational diabetes",
+  "lifestyle_exercise_healthy_weight_gain_detail":
+      "Maintains healthy weight gain",
+  "lifestyle_exercise_energy_levels_detail": "Increases energy levels",
+
+  "lifestyle_exercise_safety_guidelines": "Exercise Safety Guidelines",
+  "lifestyle_exercise_consult_healthcare_detail":
+      "Always consult your healthcare provider first",
+  "lifestyle_exercise_stop_if_dizzy_detail":
+      "Stop if you feel dizzy, short of breath, or pain",
+  "lifestyle_exercise_avoid_lying_back_after_16_weeks_detail":
+      "Avoid exercises lying flat on your back after 16 weeks",
+  "lifestyle_exercise_stay_hydrated_avoid_overheating_detail":
+      "Stay hydrated and avoid overheating",
+  "lifestyle_exercise_wear_supportive_detail":
+      "Wear supportive, comfortable clothing",
+  "lifestyle_exercise_listen_body_rest_detail":
+      "Listen to your body and rest when needed",
+
+  "lifestyle_exercise_exercises_to_avoid": "Exercises to Avoid",
+  "lifestyle_exercise_high_impact_detail":
+      "High-impact activities (running, jumping)",
+  "lifestyle_exercise_contact_sports_detail":
+      "Contact sports and activities with fall risk",
+  "lifestyle_exercise_exercises_lying_back_detail":
+      "Exercises that require lying on your back",
+  "lifestyle_exercise_hot_yoga_detail": "Hot yoga or exercise in extreme heat",
+  "lifestyle_exercise_heavy_lifting_detail": "Heavy lifting or straining",
+  "lifestyle_exercise_activities_sudden_direction_detail":
+      "Activities with sudden direction changes",
+
+// General Lifestyle
+  "lifestyle_general_lifestyle_tips": "General Lifestyle Tips",
+  "lifestyle_general_maintain_regular_prenatal_care_appointments_detail":
+      "Maintain regular prenatal care appointments",
+  "lifestyle_general_follow_healthcare_provider_recommendations_detail":
+      "Follow healthcare provider recommendations",
+  "lifestyle_general_listen_body_rest_when_needed_detail":
+      "Listen to your body and rest when needed",
+  "lifestyle_general_stay_informed_about_pregnancy_changes_detail":
+      "Stay informed about pregnancy changes",
+  "lifestyle_general_connect_with_other_expectant_mothers_detail":
+      "Connect with other expectant mothers",
+  "lifestyle_general_prepare_for_baby_arrival_detail":
+      "Prepare for baby arrival",
+  // Labor Signs Section
+  "labor_signs_early_signs_header": "Early Signs of Labor",
+  "labor_signs_regular_contractions":
+      "Regular contractions that increase in frequency and intensity",
+  "labor_signs_lower_back_pain": "Persistent lower back pain or cramping",
+  "labor_signs_water_breaking": "Water breaking (rupture of membranes)",
+  "labor_signs_bloody_show": "Bloody show (mucus plug discharge)",
+  "labor_signs_nesting_instinct": "Sudden burst of energy or nesting instinct",
+
+  "labor_signs_when_to_call_header": "When to Call Your Doctor",
+  "labor_signs_every_5_minutes": "Contractions every 5 minutes for 1 hour",
+  "labor_signs_water_breaks":
+      "Water breaks, especially if fluid is green or brown",
+  "labor_signs_heavy_bleeding": "Heavy bleeding or bright red blood",
+  "labor_signs_severe_headache": "Severe headache or vision changes",
+  "labor_signs_decreased_fetal_movement": "Decreased fetal movement",
+
+  "labor_signs_what_to_do_header": "What to Do When Labor Starts",
+  "labor_signs_stay_calm_time_contractions":
+      "Stay calm and start timing contractions",
+  "labor_signs_eat_light_snacks_stay_hydrated":
+      "Eat light snacks and stay hydrated",
+  "labor_signs_take_warm_shower_bath": "Take a warm shower or bath",
+  "labor_signs_practice_breathing_techniques":
+      "Practice breathing and relaxation techniques",
+  "labor_signs_pack_hospital_bag_if_not_done":
+      "Pack your hospital bag if not already done",
+
+// Delivery Mode Section
+  "delivery_mode_vaginal_header": "Vaginal Delivery",
+  "delivery_mode_vaginal_most_common": "Most common type of delivery",
+  "delivery_mode_vaginal_faster_recovery": "Faster recovery time",
+  "delivery_mode_vaginal_lower_risk": "Lower risk of complications",
+  "delivery_mode_vaginal_can_use_pain_management":
+      "Can use various pain management options",
+  "delivery_mode_vaginal_vbac_may_be_possible":
+      "VBAC may be possible for future pregnancies",
+
+  "delivery_mode_cesarean_header": "Cesarean Section (C-Section)",
+  "delivery_mode_cesarean_surgical_delivery":
+      "Surgical delivery through abdominal incision",
+  "delivery_mode_cesarean_may_be_planned_or_emergency":
+      "May be planned or performed as emergency",
+  "delivery_mode_cesarean_longer_recovery_time":
+      "Longer recovery time (4-6 weeks)",
+  "delivery_mode_cesarean_higher_risk":
+      "Higher risk of infection and complications",
+  "delivery_mode_cesarean_may_be_necessary_for_medical_reasons":
+      "May be necessary for medical reasons",
+
+  "delivery_mode_pain_management_header": "Pain Management Options",
+  "delivery_mode_epidural_anesthesia": "Epidural anesthesia for pain relief",
+  "delivery_mode_natural_pain_relief":
+      "Natural pain relief techniques (massage, positioning)",
+  "delivery_mode_nitrous_oxide":
+      "Nitrous oxide (laughing gas) for mild pain relief",
+  "delivery_mode_water_birth": "Water birth for relaxation and pain management",
+  "delivery_mode_breathing_relaxation": "Breathing and relaxation techniques",
+
+// Hospital Bag Section
+  "hospital_bag_for_mom_header": "For Mom",
+  "hospital_bag_for_mom_comfortable_nightgowns":
+      "Comfortable nightgowns or loose clothing",
+  "hospital_bag_for_mom_nursing_bras_breast_pads":
+      "Nursing bras and breast pads",
+  "hospital_bag_for_mom_underwear_maternity_pads":
+      "Comfortable underwear and maternity pads",
+  "hospital_bag_for_mom_toiletries_personal_items":
+      "Toiletries and personal care items",
+  "hospital_bag_for_mom_comfortable_going_home_outfit":
+      "Comfortable going-home outfit",
+  "hospital_bag_for_mom_phone_charger_camera": "Phone charger and camera",
+
+  "hospital_bag_for_baby_header": "For Baby",
+  "hospital_bag_for_baby_newborn_diapers_wipes":
+      "Newborn diapers and wipes (hospital usually provides)",
+  "hospital_bag_for_baby_going_home_outfit":
+      "Going-home outfit in newborn and 0-3 month sizes",
+  "hospital_bag_for_baby_baby_blanket_hat": "Baby blanket and hat",
+  "hospital_bag_for_baby_car_seat_required_for_discharge":
+      "Car seat (required for discharge)",
+  "hospital_bag_for_baby_baby_nail_clippers": "Baby nail clippers",
+  "hospital_bag_for_baby_pacifiers_optional": "Pacifiers (optional)",
+
+  "hospital_bag_important_documents_header": "Important Documents",
+  "hospital_bag_insurance_cards_id": "Insurance cards and identification",
+  "hospital_bag_birth_plan_medical_records": "Birth plan and medical records",
+  "hospital_bag_hospital_pre_registration_forms":
+      "Hospital pre-registration forms",
+  "hospital_bag_emergency_contact_list": "Emergency contact list",
+  "hospital_bag_camera_or_phone_for_photos":
+      "Camera or phone for photos and videos",
+
+// Transport Plan Section
+  "transport_plan_emergency_contacts_header": "Emergency Contacts",
+  "transport_plan_ambulance_1034": "Ambulance: 1034 (Emergency)",
+  "transport_plan_your_doctors_emergency_number":
+      "Your doctor's emergency number",
+  "transport_plan_hospital_labor_delivery_unit":
+      "Hospital labor and delivery unit number",
+  "transport_plan_partner_or_support_person":
+      "Partner or support person contact",
+  "transport_plan_backup_transportation_contact":
+      "Backup transportation contact",
+
+  "transport_plan_transportation_options_header": "Transportation Options",
+  "transport_plan_ambulance_for_emergencies":
+      "Ambulance for emergencies or complications",
+  "transport_plan_pre_arranged_ride_with_family_friend":
+      "Pre-arranged ride with family or friend",
+  "transport_plan_ride_sharing_service":
+      "Ride-sharing service (Uber, Careem, etc.)",
+  "transport_plan_your_own_vehicle_if_not_in_labor":
+      "Your own vehicle (if not in active labor)",
+  "transport_plan_public_transportation_if_early_labor":
+      "Public transportation (only if early labor)",
+
+  "transport_plan_what_to_do_in_emergency_header": "What to Do in an Emergency",
+  "transport_plan_call_1034_immediately": "Call 1034 immediately",
+  "transport_plan_stay_calm_and_follow_instructions":
+      "Stay calm and follow dispatcher's instructions",
+  "transport_plan_have_someone_stay_with_you":
+      "Have someone stay with you until help arrives",
+  "transport_plan_grab_your_hospital_bag": "Grab your pre-packed hospital bag",
+  "transport_plan_time_contractions_if_possible":
+      "Time contractions if possible",
+
+// Breastfeeding Section
+  "breastfeeding_benefits_header": "Benefits of Breastfeeding",
+  "breastfeeding_perfect_nutrition_for_your_baby":
+      "Provides perfect nutrition for your baby",
+  "breastfeeding_boosts_immune_system":
+      "Boosts baby's immune system and protects against infections",
+  "breastfeeding_bonds_with_your_baby":
+      "Promotes bonding between mother and baby",
+  "breastfeeding_helps_with_postpartum_recovery":
+      "Helps with postpartum recovery and weight loss",
+  "breastfeeding_cost_effective_and_convenient":
+      "Cost-effective and convenient",
+
+  "breastfeeding_getting_started_header": "Getting Started",
+  "breastfeeding_start_within_first_hour_after_birth":
+      "Start breastfeeding within first hour after birth",
+  "breastfeeding_skin_to_skin_contact_immediately":
+      "Skin-to-skin contact immediately after delivery",
+  "breastfeeding_feed_on_demand_8_12_times_per_day":
+      "Feed on demand, 8-12 times per day",
+  "breastfeeding_learn_proper_latch_technique": "Learn proper latch technique",
+  "breastfeeding_stay_hydrated_well_nourished":
+      "Stay hydrated and well-nourished",
+
+  "breastfeeding_common_challenges_header": "Common Challenges",
+  "breastfeeding_sore_or_cracked_nipples": "Sore or cracked nipples",
+  "breastfeeding_low_milk_supply_concerns": "Low milk supply concerns",
+  "breastfeeding_baby_not_latching_properly": "Baby not latching properly",
+  "breastfeeding_engorgement_and_blocked_ducts":
+      "Breast engorgement and blocked ducts",
+  "breastfeeding_getting_enough_sleep":
+      "Difficulty getting enough rest and sleep",
+
+  "breastfeeding_support_resources_header": "Support Resources",
+  "breastfeeding_lactation_consultant": "Lactation consultant at your hospital",
+  "breastfeeding_breastfeeding_support_groups": "Breastfeeding support groups",
+  "breastfeeding_online_resources_and_apps":
+      "Online resources and breastfeeding apps",
+  "breastfeeding_family_and_partner_support": "Family and partner support",
+  "breastfeeding_healthcare_provider_guidance":
+      "Healthcare provider guidance and advice",
+
+// Default Section
+  "default_important_information_header": "Important Information",
+  "default_consult_with_your_healthcare_provider":
+      "Consult with your healthcare provider regularly",
+  "default_follow_your_birth_plan": "Follow your birth plan but be flexible",
+  "default_stay_informed_and_prepared":
+      "Stay informed and prepared for delivery",
+  "default_trust_your_instincts":
+      "Trust your instincts and ask for help when needed",
+  "default_ask_questions_when_in_doubt": "Ask questions when in doubt",
 };

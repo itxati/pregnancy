@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utils/neo_safe_theme.dart';
+import '../../../services/auth_service.dart';
 import '../controllers/profile_controller.dart';
 
 class PregnancyInfoSection extends StatelessWidget {
@@ -30,14 +32,14 @@ class PregnancyInfoSection extends StatelessWidget {
               const SizedBox(height: 12),
 
               // Pregnancy Info Items
-              _buildInfoItem(
-                context,
-                icon: Icons.calendar_today,
-                iconColor: NeoSafeColors.primaryPink,
-                title: "due_date".tr,
-                value: controller.dueDate.value,
-                onTap: () => _showDatePicker(context),
-              ),
+              // _buildInfoItem(
+              //   context,
+              //   icon: Icons.calendar_today,
+              //   iconColor: NeoSafeColors.primaryPink,
+              //   title: "due_date".tr,
+              //   value: controller.dueDate.value,
+              //   onTap: () => _showDatePicker(context),
+              // ),
 
               // Simplified: removed Baby's sex, Baby's name, and First Child options
 
@@ -79,6 +81,17 @@ class PregnancyInfoSection extends StatelessWidget {
                 value: controller.babyBirthDate.value,
                 onTap: () => _showBirthDatePicker(context),
               ),
+
+              const SizedBox(height: 8),
+
+              // _buildInfoItem(
+              //   context,
+              //   icon: Icons.flag_circle,
+              //   iconColor: NeoSafeColors.primaryPink,
+              //   title: 'Purpose',
+              //   value: controller.purpose.value, // (or calculate from data if needed)
+              //   onTap: () => _showEditPurposeDialog(context, controller.purpose.value),
+              // ),
             ],
           ),
         ));
@@ -504,6 +517,100 @@ class PregnancyInfoSection extends StatelessWidget {
             "${date.day} ${_getMonthName(date.month)} ${date.year}");
       }
     });
+  }
+
+  void _showEditPurposeDialog(BuildContext context, String? currentPurpose) {
+    Get.dialog(
+      AlertDialog(
+        title: Text('Select Purpose'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: Text('Trying to Conceive'),
+              leading: Radio<String>(
+                value: 'get_pregnant',
+                groupValue: currentPurpose,
+                onChanged: (value) async {
+                  Get.back();
+                  if (value != null) {
+                    controller.purpose.value = value;
+                    // Save purpose to onboarding before navigating
+                    final auth = Get.find<AuthService>();
+                    final userId = auth.currentUser.value?.id;
+                    if (userId != null && userId.isNotEmpty) {
+                      await auth.setOnboardingData(
+                          'onboarding_purpose', userId, value);
+                    } else {
+                      final prefs = await SharedPreferences.getInstance();
+                      await prefs.setString('onboarding_purpose', value);
+                    }
+                    Get.toNamed('/goal_onboarding',
+                        arguments: {'purpose': value});
+                  }
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('Pregnant'),
+              leading: Radio<String>(
+                value: 'pregnant',
+                groupValue: currentPurpose,
+                onChanged: (value) async {
+                  Get.back();
+                  if (value != null) {
+                    controller.purpose.value = value;
+                    // Save purpose to onboarding before navigating
+                    final auth = Get.find<AuthService>();
+                    final userId = auth.currentUser.value?.id;
+                    if (userId != null && userId.isNotEmpty) {
+                      await auth.setOnboardingData(
+                          'onboarding_purpose', userId, value);
+                    } else {
+                      final prefs = await SharedPreferences.getInstance();
+                      await prefs.setString('onboarding_purpose', value);
+                    }
+                    Get.toNamed('/goal_onboarding',
+                        arguments: {'purpose': value});
+                  }
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('Have Baby'),
+              leading: Radio<String>(
+                value: 'have_baby',
+                groupValue: currentPurpose,
+                onChanged: (value) async {
+                  Get.back();
+                  if (value != null) {
+                    controller.purpose.value = value;
+                    // Save purpose to onboarding before navigating
+                    final auth = Get.find<AuthService>();
+                    final userId = auth.currentUser.value?.id;
+                    if (userId != null && userId.isNotEmpty) {
+                      await auth.setOnboardingData(
+                          'onboarding_purpose', userId, value);
+                    } else {
+                      final prefs = await SharedPreferences.getInstance();
+                      await prefs.setString('onboarding_purpose', value);
+                    }
+                    Get.toNamed('/goal_onboarding',
+                        arguments: {'purpose': value});
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('Cancel'),
+          ),
+        ],
+      ),
+    );
   }
 
   String _getMonthName(int month) {

@@ -1,9 +1,12 @@
+import 'package:babysafe/app/modules/pregnancy_splash/widgets/language_switcher.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/neo_safe_theme.dart';
 import '../controllers/goal_onboarding_controller.dart';
+import '../../../widgets/speech_button.dart';
 
 class GoalOnboardingView extends StatelessWidget {
   const GoalOnboardingView({super.key});
@@ -41,7 +44,12 @@ class GoalOnboardingView extends StatelessWidget {
               ),
             ),
           ),
-
+          // Language switcher - Fixed at top right
+          // Positioned(
+          //   top: 50,
+          //   right: 24,
+          //   child: const LanguageSwitcher(),
+          // ),
           // Main content
           SafeArea(
             child: Center(
@@ -53,63 +61,19 @@ class GoalOnboardingView extends StatelessWidget {
                 ),
                 child: Obx(() {
                   if (controller.currentStep.value == 0) {
-                    return NameStep(
+                    return LanguageStep(
                         controller: controller, screenWidth: screenWidth);
                   } else if (controller.currentStep.value == 1) {
-                    return GenderStep(
+                    return NameStep(
                         controller: controller, screenWidth: screenWidth);
                   } else if (controller.currentStep.value == 2) {
-                    return AgeStep(
+                    return GenderStep(
                         controller: controller, screenWidth: screenWidth);
                   } else if (controller.currentStep.value == 3) {
-                    return HeightWeightBmiStep(
+                    return AgeStep(
                         controller: controller, screenWidth: screenWidth);
-                  } else if (controller.currentStep.value == 4) {
-                    return PurposeStep(
-                        controller: controller, screenWidth: screenWidth);
-                  } else if (controller.purpose.value == 'get_pregnant') {
-                    if (controller.currentStep.value == 5) {
-                      return LastPeriodStep(
-                          controller: controller, screenWidth: screenWidth);
-                    } else if (controller.currentStep.value == 6) {
-                      return CycleLengthStep(
-                          controller: controller, screenWidth: screenWidth);
-                    } else {
-                      return FinishStep(controller: controller);
-                    }
-                  } else if (controller.purpose.value == 'pregnant') {
-                    if (controller.currentStep.value == 5) {
-                      // New: PregnantStep: Ask "Do you know your due date?"
-                      return PregnantDateMethodStep(
-                          controller: controller, screenWidth: screenWidth);
-                    } else if (controller.currentStep.value == 6) {
-                      // If knows due date, show DueDateStep, else show LMP/US flow
-                      if (controller.knowsDueDate.value) {
-                        return DueDateStep(
-                            controller: controller, screenWidth: screenWidth);
-                      } else {
-                        return PregnantLmpOrUsStep(
-                            controller: controller, screenWidth: screenWidth);
-                      }
-                    } else if (controller.currentStep.value == 7) {
-                      // Summary: show GA, EDD, trimester, warning, explanation
-                      return PregnantSummaryStep(
-                          controller: controller, screenWidth: screenWidth);
-                    } else {
-                      return FinishStep(controller: controller);
-                    }
-                  } else if (controller.purpose.value == 'have_baby') {
-                    if (controller.currentStep.value == 5) {
-                      return BabyBirthDateStep(
-                          controller: controller, screenWidth: screenWidth);
-                    } else if (controller.currentStep.value == 6) {
-                      return BornBabyGenderStep(
-                          controller: controller, screenWidth: screenWidth);
-                    } else {
-                      return FinishStep(controller: controller);
-                    }
                   } else {
-                    return const SizedBox();
+                    return FinishStep(controller: controller);
                   }
                 }),
               ),
@@ -137,29 +101,42 @@ class NameStep extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            "What's your name?",
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-              color: NeoSafeColors.primaryPink,
-              fontWeight: FontWeight.w800,
-              fontSize: screenWidth * 0.068,
-              letterSpacing: 0.3,
-              height: 1.2,
-              shadows: [
-                Shadow(color: Colors.white.withOpacity(0.8), blurRadius: 15),
-                Shadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 8,
-                    offset: Offset(0, 2)),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Text(
+                  'onboarding_name_title'.tr,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    color: NeoSafeColors.primaryPink,
+                    fontWeight: FontWeight.w800,
+                    fontSize: screenWidth * 0.068,
+                    letterSpacing: 0.3,
+                    height: 1.2,
+                    shadows: [
+                      Shadow(
+                          color: Colors.white.withOpacity(0.8), blurRadius: 15),
+                      Shadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 8,
+                          offset: Offset(0, 2)),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: 8),
+              SpeechButton(
+                  text: 'onboarding_name_title'.tr,
+                  color: NeoSafeColors.primaryPink,
+                  size: 22),
+            ],
           ),
           SizedBox(height: screenWidth * 0.05),
           TextField(
             controller: nameController,
             decoration: InputDecoration(
-              hintText: 'Enter your name',
+              // hintText: 'onboarding_name_hint'.tr,
               hintStyle: GoogleFonts.inter(
                 color: Colors.grey[400],
                 fontSize: screenWidth * 0.04,
@@ -220,7 +197,7 @@ class NameStep extends StatelessWidget {
                 shadowColor: NeoSafeColors.primaryPink.withOpacity(0.5),
               ),
               child: Text(
-                'Next',
+                'onboarding_next'.tr,
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.bold,
                   fontSize: screenWidth * 0.045,
@@ -244,77 +221,171 @@ class AgeStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ageController = TextEditingController(text: controller.age.value);
+    // Generate age list from 18 to 100
+    final List<int> ageList = List.generate(86, (index) => 18 + index);
+
     return StepCard(
       screenWidth: screenWidth,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            'How old are you?',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-              color: NeoSafeColors.primaryPink,
-              fontWeight: FontWeight.w800,
-              fontSize: screenWidth * 0.068,
-              letterSpacing: 0.3,
-              height: 1.2,
-              shadows: [
-                Shadow(color: Colors.white.withOpacity(0.8), blurRadius: 15),
-                Shadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 8,
-                    offset: Offset(0, 2)),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Text(
+                  'onboarding_age_title'.tr,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    color: NeoSafeColors.primaryPink,
+                    fontWeight: FontWeight.w800,
+                    fontSize: screenWidth * 0.068,
+                    letterSpacing: 0.3,
+                    height: 1.2,
+                    shadows: [
+                      Shadow(
+                          color: Colors.white.withOpacity(0.8), blurRadius: 15),
+                      Shadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 8,
+                          offset: Offset(0, 2)),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: 8),
+              SpeechButton(
+                  text: 'onboarding_age_title'.tr,
+                  color: NeoSafeColors.primaryPink,
+                  size: 22),
+            ],
           ),
           SizedBox(height: screenWidth * 0.05),
-          TextField(
-            controller: ageController,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              hintText: 'Enter your age',
-              hintStyle: GoogleFonts.inter(
-                color: Colors.grey[400],
-                fontSize: screenWidth * 0.04,
-              ),
-              filled: true,
-              fillColor: Colors.grey[50],
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey[300]!),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey[300]!),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide:
-                    BorderSide(color: NeoSafeColors.primaryPink, width: 2),
+          Obx(() => Container(
+                constraints: BoxConstraints(
+                  maxWidth: screenWidth * 0.5,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.95),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.grey[200]!, width: 1.5),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<int>(
+                    value: controller.age.value.trim().isNotEmpty
+                        ? int.tryParse(controller.age.value)
+                        : null,
+                    hint: Text(
+                      'Select Age',
+                      style: GoogleFonts.inter(
+                        color: Colors.grey[400],
+                        fontSize: screenWidth * 0.04,
+                      ),
+                    ),
+                    isExpanded: true,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.05,
+                      vertical: screenWidth * 0.02,
+                    ),
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      color: NeoSafeColors.primaryPink,
+                      size: screenWidth * 0.08,
+                    ),
+                    style: GoogleFonts.inter(
+                      fontSize: screenWidth * 0.042,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87,
+                    ),
+                    dropdownColor: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    menuMaxHeight: screenWidth * 0.8,
+                    items: ageList.map((int age) {
+                      return DropdownMenuItem<int>(
+                        value: age,
+                        child: Center(
+                          child: Text(
+                            age.toString(),
+                            style: GoogleFonts.inter(
+                              fontSize: screenWidth * 0.042,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (int? newValue) {
+                      if (newValue != null) {
+                        controller.age.value = newValue.toString();
+                      }
+                    },
+                  ),
+                ),
+              )),
+          SizedBox(height: screenWidth * 0.04),
+          TextButton(
+            onPressed: () async {
+              // Set default age to 25 when skipped
+              controller.age.value = '25';
+
+              // Minimal validation
+              if (controller.name.value.trim().isEmpty) {
+                Get.snackbar('Oops!', 'Please enter your name',
+                    snackPosition: SnackPosition.BOTTOM);
+                return;
+              }
+              if (controller.gender.value.trim().isEmpty) {
+                Get.snackbar('Oops!', 'Please select your gender',
+                    snackPosition: SnackPosition.BOTTOM);
+                return;
+              }
+
+              await controller.saveToPrefs();
+              Get.offAllNamed('/goal_selection');
+            },
+            child: Text(
+              'Skip',
+              style: GoogleFonts.inter(
+                color: Colors.grey[600],
+                fontSize: screenWidth * 0.038,
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.underline,
               ),
             ),
-            style: GoogleFonts.inter(
-              fontSize: screenWidth * 0.042,
-              fontWeight: FontWeight.w500,
-              color: Colors.black87,
-            ),
-            onChanged: (value) => controller.age.value = value,
           ),
-          SizedBox(height: screenWidth * 0.07),
+          SizedBox(height: screenWidth * 0.03),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                if (controller.age.value.trim().isNotEmpty) {
-                  controller.nextStep();
-                } else {
+              onPressed: () async {
+                if (controller.age.value.trim().isEmpty) {
                   Get.snackbar(
                     'Oops!',
-                    'Please enter your age',
+                    'Please select your age or skip',
                     snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: NeoSafeColors.primaryPink.withOpacity(0.9),
+                    colorText: Colors.white,
+                    margin: EdgeInsets.all(screenWidth * 0.04),
+                    borderRadius: 12,
                   );
+                  return;
                 }
+
+                // Minimal onboarding: require name, gender, age
+                if (controller.name.value.trim().isEmpty) {
+                  Get.snackbar('Oops!', 'Please enter your name',
+                      snackPosition: SnackPosition.BOTTOM);
+                  return;
+                }
+                if (controller.gender.value.trim().isEmpty) {
+                  Get.snackbar('Oops!', 'Please select your gender',
+                      snackPosition: SnackPosition.BOTTOM);
+                  return;
+                }
+
+                await controller.saveToPrefs();
+                Get.offAllNamed('/goal_selection');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: NeoSafeColors.primaryPink,
@@ -323,9 +394,11 @@ class AgeStep extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
+                elevation: 6,
+                shadowColor: NeoSafeColors.primaryPink.withOpacity(0.5),
               ),
               child: Text(
-                'Continue',
+                'onboarding_continue'.tr,
                 style: GoogleFonts.inter(
                   fontSize: screenWidth * 0.045,
                   fontWeight: FontWeight.w600,
@@ -354,23 +427,36 @@ class GenderStep extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            'What\'s your gender?',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-              color: NeoSafeColors.primaryPink,
-              fontWeight: FontWeight.w800,
-              fontSize: screenWidth * 0.068,
-              letterSpacing: 0.3,
-              height: 1.2,
-              shadows: [
-                Shadow(color: Colors.white.withOpacity(0.8), blurRadius: 15),
-                Shadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 8,
-                    offset: Offset(0, 2)),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Text(
+                  'onboarding_gender_title'.tr,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    color: NeoSafeColors.primaryPink,
+                    fontWeight: FontWeight.w800,
+                    fontSize: screenWidth * 0.068,
+                    letterSpacing: 0.3,
+                    height: 1.2,
+                    shadows: [
+                      Shadow(
+                          color: Colors.white.withOpacity(0.8), blurRadius: 15),
+                      Shadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 8,
+                          offset: Offset(0, 2)),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(width: 8),
+              SpeechButton(
+                  text: 'onboarding_gender_title'.tr,
+                  color: NeoSafeColors.primaryPink,
+                  size: 22),
+            ],
           ),
           SizedBox(height: screenWidth * 0.08),
           // WRAPPED WITH OBX FOR REACTIVITY
@@ -380,7 +466,7 @@ class GenderStep extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 children: [
                   GenderChip(
-                    label: 'Female',
+                    label: 'onboarding_gender_female'.tr,
                     isSelected: controller.gender.value == 'female',
                     onTap: () => controller.gender.value = 'female',
                     icon: Icons.female,
@@ -388,7 +474,7 @@ class GenderStep extends StatelessWidget {
                     screenWidth: screenWidth,
                   ),
                   GenderChip(
-                    label: 'Male',
+                    label: 'onboarding_gender_male'.tr,
                     isSelected: controller.gender.value == 'male',
                     onTap: () => controller.gender.value = 'male',
                     icon: Icons.male,
@@ -412,7 +498,7 @@ class GenderStep extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(vertical: screenWidth * 0.038),
                   ),
-                  child: Text('Back',
+                  child: Text('onboarding_back'.tr,
                       style: GoogleFonts.inter(
                           fontWeight: FontWeight.w600,
                           fontSize: screenWidth * 0.04)),
@@ -435,7 +521,7 @@ class GenderStep extends StatelessWidget {
                         elevation: 6,
                         shadowColor: NeoSafeColors.primaryPink.withOpacity(0.5),
                       ),
-                      child: Text('Next',
+                      child: Text('onboarding_next'.tr,
                           style: GoogleFonts.inter(
                               fontWeight: FontWeight.bold,
                               fontSize: screenWidth * 0.04)),
@@ -1286,7 +1372,24 @@ class PregnantBabyGenderStep extends StatelessWidget {
                       onPressed: controller.babyGender.value.isNotEmpty
                           ? () async {
                               await controller.saveToPrefs();
-                              Get.offAllNamed('/track_my_pregnancy');
+
+                              // Check if baby is more than 2 weeks old
+                              final birthDate = controller.babyBirthDate.value;
+                              if (birthDate != null) {
+                                final now = DateTime.now();
+                                final daysSinceBirth =
+                                    now.difference(birthDate).inDays;
+
+                                // If more than 2 weeks (14 days), skip goal selection and go to track_my_baby
+                                if (daysSinceBirth > 14) {
+                                  Get.offAllNamed('/track_my_baby');
+                                } else {
+                                  Get.offAllNamed('/goal_selection');
+                                }
+                              } else {
+                                // Fallback to goal selection if no birth date
+                                Get.offAllNamed('/goal_selection');
+                              }
                             }
                           : null,
                       style: ElevatedButton.styleFrom(
@@ -2083,5 +2186,205 @@ class HeightWeightBmiStep extends StatelessWidget {
     } else {
       c.bmi.value = 0.0;
     }
+  }
+}
+
+// Add LanguageStep above NameStep
+class LanguageStep extends StatelessWidget {
+  final GoalOnboardingController controller;
+  final double screenWidth;
+  const LanguageStep(
+      {required this.controller, required this.screenWidth, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StepCard(
+      screenWidth: screenWidth,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Text(
+          //   'please_select_language_first'.tr,
+          //   style: GoogleFonts.poppins(
+          //     color: NeoSafeColors.primaryPink,
+          //     fontWeight: FontWeight.w800,
+          //     fontSize: screenWidth * 0.058,
+          //     letterSpacing: 0.3,
+          //     height: 1.15,
+          //     shadows: [
+          //       Shadow(color: Colors.white.withOpacity(0.8), blurRadius: 15),
+          //       Shadow(
+          //           color: Colors.black.withOpacity(0.1),
+          //           blurRadius: 8,
+          //           offset: Offset(0, 2)),
+          //     ],
+          //   ),
+          //   textAlign: TextAlign.center,
+          // ),
+          Row(
+            children: [
+              Flexible(
+                child: Text(
+                  'please_select_language_first'.tr,
+                  style: GoogleFonts.poppins(
+                    color: NeoSafeColors.primaryPink,
+                    fontWeight: FontWeight.w800,
+                    fontSize: screenWidth * 0.058,
+                    letterSpacing: 0.3,
+                    height: 1.15,
+                    shadows: [
+                      Shadow(
+                          color: Colors.white.withOpacity(0.8), blurRadius: 15),
+                      Shadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 8,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(width: 8),
+              SpeechButton(
+                text: 'please_select_language_first'.tr,
+                color: NeoSafeColors.primaryPink,
+                size: 22,
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 24),
+          const OnboardingLanguageSwitcher(),
+          SizedBox(height: screenWidth * 0.07),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                controller.nextStep();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: NeoSafeColors.primaryPink,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
+                padding: EdgeInsets.symmetric(vertical: screenWidth * 0.042),
+                elevation: 6,
+                shadowColor: NeoSafeColors.primaryPink.withOpacity(0.5),
+              ),
+              child: Text(
+                'onboarding_next'.tr,
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.bold,
+                  fontSize: screenWidth * 0.045,
+                  letterSpacing: 0.8,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class OnboardingLanguageSwitcher extends StatefulWidget {
+  final Color? backgroundColor;
+  final Color? selectedTextColor;
+
+  const OnboardingLanguageSwitcher({
+    super.key,
+    this.backgroundColor,
+    this.selectedTextColor,
+  });
+
+  @override
+  State<OnboardingLanguageSwitcher> createState() =>
+      _OnboardingLanguageSwitcherState();
+}
+
+class _OnboardingLanguageSwitcherState
+    extends State<OnboardingLanguageSwitcher> {
+  final box = GetStorage();
+  late String _selectedLang;
+
+  final List<Map<String, dynamic>> _languages = [
+    {'code': 'en', 'name': 'English', 'locale': const Locale('en', 'US')},
+    {'code': 'ur', 'name': 'اردو', 'locale': const Locale('ur', 'PK')},
+    {'code': 'ar', 'name': 'سرائیکی', 'locale': const Locale('ar', 'SA')},
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedLang = box.read('locale') ?? Get.locale?.languageCode ?? 'en';
+  }
+
+  void _changeLanguage(String code) {
+    final selected = _languages.firstWhere((lang) => lang['code'] == code);
+    Get.updateLocale(selected['locale']);
+    box.write('locale', code);
+    setState(() => _selectedLang = code);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(
+        horizontal: screenWidth * 0.03,
+        vertical: screenWidth * 0.007,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.95),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: Colors.grey[200]!,
+          width: 1.5,
+        ),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          isExpanded: true,
+          value: _selectedLang,
+          icon: Icon(
+            Icons.arrow_drop_down_rounded,
+            size: 24,
+            color: NeoSafeColors.primaryPink,
+          ),
+          style: GoogleFonts.inter(
+            fontSize: screenWidth * 0.042,
+            fontWeight: FontWeight.w500,
+            color: Colors.black87,
+          ),
+          dropdownColor: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+
+          // items
+          items: _languages.map((lang) {
+            return DropdownMenuItem<String>(
+              value: lang['code'],
+              child: Text(
+                lang['name'],
+                style: GoogleFonts.inter(
+                  fontSize: screenWidth * 0.042,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+              ),
+            );
+          }).toList(),
+
+          // on change
+          onChanged: (value) {
+            if (value != null) _changeLanguage(value);
+          },
+        ),
+      ),
+    );
   }
 }

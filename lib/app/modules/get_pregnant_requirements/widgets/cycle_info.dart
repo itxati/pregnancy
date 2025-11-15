@@ -148,7 +148,7 @@ class CycleInfoWidget extends StatelessWidget {
                     value:
                         "${ovulationDay.day} ${_monthName(ovulationDay.month)}",
                     icon: Icons.star,
-                    color: NeoSafeColors.warning,
+                    color: NeoSafeColors.ovalutionDay,
                   ),
                 ),
                 const SizedBox(width: 12),

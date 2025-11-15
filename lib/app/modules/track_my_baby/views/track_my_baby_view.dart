@@ -1,3 +1,4 @@
+import 'package:babysafe/app/modules/get_pregnant_requirements/widgets/go_to_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/data/models/baby_milestone_data_list.dart';
@@ -6,7 +7,8 @@ import 'package:babysafe/app/data/models/baby_milestone_data.dart';
 // import '../../../widgets/sync_indicator.dart';
 // import '../../../widgets/offline_indicator.dart';
 // Removed SmartImage; using local file previews via ArticleService
-import 'package:babysafe/app/data/models/newborn_responsibilities.dart';
+import 'package:babysafe/app/data/models/newborn_responsibilities.dart'
+    show getNewbornResponsibilities;
 import 'package:babysafe/app/modules/track_my_pregnancy/views/article_page.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import '../controllers/track_my_baby_controller.dart';
@@ -17,7 +19,6 @@ import '../../profile/views/profile_view.dart';
 import '../../profile/controllers/profile_controller.dart';
 import 'package:babysafe/app/widgets/speech_button.dart';
 import 'package:babysafe/app/services/theme_service.dart';
-import '../widgets/zoomable_image_viewer.dart';
 import '../../good_bad_touch/views/good_bad_touch_view.dart';
 import '../widgets/nutrition_card.dart';
 import '../widgets/school_readiness_card.dart';
@@ -57,12 +58,18 @@ class TrackMyBabyView extends StatelessWidget {
               elevation: 0,
               backgroundColor: Colors.transparent,
               actions: [
+                const GoToHomeIconButton(
+                  circleColor: NeoSafeColors.primaryPink,
+                  iconColor: Colors.white,
+                  top: 0,
+                ),
+                SizedBox(width: 12),
                 GetX<AuthService>(
                   builder: (authService) {
                     final user = authService.currentUser.value;
                     final profileImagePath = user?.profileImagePath;
                     return Container(
-                      margin: const EdgeInsets.only(right: 16),
+                      margin: const EdgeInsets.only(right: 16, left: 16),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -196,6 +203,8 @@ class _BabyOverviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeService = Get.find<ThemeService>();
+    // debugPrint("Baby age in weeks: ${controller.babyAgeInWeeks.value}");
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -252,12 +261,13 @@ class _BabyOverviewCard extends StatelessWidget {
                         ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    controller.getBabyAgeText(),
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: NeoSafeColors.secondaryText,
-                        ),
-                  ),
+                  Obx(() => Text(
+                        controller.getBabyAgeText(),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: NeoSafeColors.secondaryText,
+                                ),
+                      )),
                   const SizedBox(height: 8),
                   Text(
                     controller.getTimelineSubtitle(),
@@ -939,6 +949,25 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
     }
   }
 
+  Widget _buildTableCell(String text,
+      {required bool isHeader, required ThemeData theme}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      child: Text(
+        text,
+        style: isHeader
+            ? theme.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: NeoSafeColors.primaryPink,
+              )
+            : theme.textTheme.bodySmall?.copyWith(
+                color: NeoSafeColors.primaryText,
+                height: 1.4,
+              ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1172,8 +1201,8 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                   const SizedBox(height: 12),
                 ],
 
-                // Vaccination Image Section
-                if (item.imageUrl != null) ...[
+                // Vaccination Schedule Table Section
+                if (item.imageUrl != null && _items.indexOf(item) == 2) ...[
                   Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     decoration: BoxDecoration(
@@ -1181,116 +1210,108 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                       border: Border.all(
                         color: NeoSafeColors.primaryPink.withOpacity(0.2),
                       ),
+                      color: Colors.white,
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ZoomableImageViewer(
-                                  imageUrl: item.imageUrl!,
-                                  title:
-                                      'health_${_items.indexOf(item) + 1}_title'
-                                          .tr,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'vaccination_schedule_table_title'.tr,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              color: NeoSafeColors.primaryPink,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          // Table Header
+                          Container(
+                            decoration: BoxDecoration(
+                              color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(8),
+                                topRight: Radius.circular(8),
+                              ),
+                            ),
+                            child: Table(
+                              columnWidths: const {
+                                0: FlexColumnWidth(1.2),
+                                1: FlexColumnWidth(1),
+                                2: FlexColumnWidth(2.5),
+                              },
+                              children: [
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: NeoSafeColors.primaryPink
+                                        .withOpacity(0.1),
+                                  ),
+                                  children: [
+                                    _buildTableCell(
+                                      'vaccination_table_header_stage'.tr,
+                                      isHeader: true,
+                                      theme: theme,
+                                    ),
+                                    _buildTableCell(
+                                      'vaccination_table_header_age'.tr,
+                                      isHeader: true,
+                                      theme: theme,
+                                    ),
+                                    _buildTableCell(
+                                      'vaccination_table_header_vaccines'.tr,
+                                      isHeader: true,
+                                      theme: theme,
+                                    ),
+                                  ],
                                 ),
+                              ],
+                            ),
+                          ),
+                          // Table Rows
+                          ...List.generate(7, (index) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color:
+                                        NeoSafeColors.softGray.withOpacity(0.3),
+                                    width: 1,
+                                  ),
+                                ),
+                              ),
+                              child: Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(1.2),
+                                  1: FlexColumnWidth(1),
+                                  2: FlexColumnWidth(2.5),
+                                },
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      _buildTableCell(
+                                        'vaccination_table_stage_${index + 1}'
+                                            .tr,
+                                        isHeader: false,
+                                        theme: theme,
+                                      ),
+                                      _buildTableCell(
+                                        'vaccination_table_age_${index + 1}'.tr,
+                                        isHeader: false,
+                                        theme: theme,
+                                      ),
+                                      _buildTableCell(
+                                        'vaccination_table_vaccines_${index + 1}'
+                                            .tr,
+                                        isHeader: false,
+                                        theme: theme,
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             );
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color:
-                                      NeoSafeColors.softGray.withOpacity(0.1),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    Center(
-                                      child: Image.asset(
-                                        item.imageUrl!,
-                                        fit: BoxFit.contain,
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                          return Container(
-                                            padding: const EdgeInsets.all(20),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.image_not_supported,
-                                                  size: 48,
-                                                  color: NeoSafeColors
-                                                      .primaryPink
-                                                      .withOpacity(0.5),
-                                                ),
-                                                const SizedBox(height: 8),
-                                                Text(
-                                                  'Image not available',
-                                                  style: theme
-                                                      .textTheme.bodySmall
-                                                      ?.copyWith(
-                                                    color: NeoSafeColors
-                                                        .secondaryText,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 8,
-                                      right: 8,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(6),
-                                        decoration: BoxDecoration(
-                                          color: Colors.black.withOpacity(0.6),
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                        ),
-                                        child: const Icon(
-                                          Icons.zoom_in,
-                                          color: Colors.white,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(12),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.visibility,
-                                      color: NeoSafeColors.primaryPink,
-                                      size: 16,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      'Tap to view full screen',
-                                      style:
-                                          theme.textTheme.bodySmall?.copyWith(
-                                        color: NeoSafeColors.primaryPink,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                          }),
+                        ],
                       ),
                     ),
                   ),
@@ -1531,13 +1552,14 @@ class _NewbornResponsibilitiesDetailPage extends StatelessWidget {
           const SizedBox(height: 12),
 
           // Important callout container
-          _importantCallout(context,
-              'Tip: One parent must be present for biometric verification when applying for Form B.'),
+          _importantCallout(
+              context, 'tip_one_parent_present_biometric_form_b'.tr),
 
           const SizedBox(height: 16),
 
           // Section containers
-          ...newbornResponsibilities.sections
+          ...getNewbornResponsibilities()
+              .sections
               .map((s) => _cardSection(context, s.title, s.points)),
         ],
       ),
@@ -1736,7 +1758,7 @@ class _GoodBadTouchCard extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      'Good Touch & Bad Touch',
+                      'good_touch_bad_touch'.tr,
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 color: NeoSafeColors.primaryText,
@@ -1773,19 +1795,19 @@ class _GoodBadTouchCard extends StatelessWidget {
                             ],
                           ),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.touch_app,
                                 size: 48,
                                 color: NeoSafeColors.primaryPink,
                               ),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
                               Text(
-                                'Good Touch Bad Touch',
-                                style: TextStyle(
+                                'good_touch_bad_touch'.tr,
+                                style: const TextStyle(
                                   color: NeoSafeColors.primaryPink,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -1800,7 +1822,7 @@ class _GoodBadTouchCard extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                'Teach your child about safe and unsafe touch. Empower them with knowledge.',
+                'teach_child_safe_unsafe_touch_empower'.tr,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: NeoSafeColors.secondaryText,
                       height: 1.4,

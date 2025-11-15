@@ -57,7 +57,8 @@ class WeightTrackingController extends GetxController {
 
   Future<void> loadReminderSettings() async {
     final notificationService = NotificationService.instance;
-    reminderEnabled.value = await notificationService.isWeightTrackingReminderEnabled();
+    reminderEnabled.value =
+        await notificationService.isWeightTrackingReminderEnabled();
     final time = await notificationService.getWeightTrackingReminderTime();
     reminderHour.value = time['hour'] ?? 9;
     reminderMinute.value = time['minute'] ?? 0;
@@ -101,22 +102,29 @@ class WeightTrackingController extends GetxController {
     if (userId == null) return;
 
     final prefs = await SharedPreferences.getInstance();
-    
-    // Load pre-pregnancy weight and height from onboarding
-    final weightStr = prefs.getString('onboarding_pre_pregnancy_weight_$userId');
-    final heightStr = prefs.getString('onboarding_height_$userId');
-    
-    if (weightStr != null) {
+
+    // Load pre-pregnancy weight and height from onboarding (AuthService per-user keys preferred)
+    String? weightStr = await authService.getOnboardingData(
+        'onboarding_pre_pregnancy_weight', userId);
+    String? heightStr =
+        await authService.getOnboardingData('onboarding_height', userId);
+
+    // Fallback to legacy keys without AuthService
+    weightStr ??= prefs.getString('onboarding_pre_pregnancy_weight_$userId');
+    heightStr ??= prefs.getString('onboarding_height_$userId');
+
+    if (weightStr != null && weightStr.isNotEmpty) {
       prePregnancyWeight.value = double.tryParse(weightStr) ?? 0.0;
     }
-    if (heightStr != null) {
+    if (heightStr != null && heightStr.isNotEmpty) {
       height.value = double.tryParse(heightStr) ?? 0.0;
     }
 
     // Calculate BMI
     if (prePregnancyWeight.value > 0 && height.value > 0) {
       final heightMeters = height.value / 100.0;
-      prePregnancyBMI.value = prePregnancyWeight.value / (heightMeters * heightMeters);
+      prePregnancyBMI.value =
+          prePregnancyWeight.value / (heightMeters * heightMeters);
       _determineBMICategory();
     }
   }
@@ -124,26 +132,26 @@ class WeightTrackingController extends GetxController {
   void _determineBMICategory() {
     final bmi = prePregnancyBMI.value;
     if (bmi < 18.5) {
-      bmiCategory.value = 'Underweight';
+      bmiCategory.value = 'bmi_underweight'.tr;
     } else if (bmi < 25.0) {
-      bmiCategory.value = 'Normal';
+      bmiCategory.value = 'bmi_normal'.tr;
     } else if (bmi < 30.0) {
-      bmiCategory.value = 'Overweight';
+      bmiCategory.value = 'bmi_overweight'.tr;
     } else {
-      bmiCategory.value = 'Obese';
+      bmiCategory.value = 'bmi_obese'.tr;
     }
   }
 
   void calculateWeightGainTargets() {
     if (isMultipleGestation.value) {
       // Multiple gestation: higher targets
-      if (bmiCategory.value == 'Underweight') {
+      if (bmiCategory.value == 'bmi_underweight'.tr) {
         minTargetGain.value = 16.8; // 37-54 lb
         maxTargetGain.value = 24.5;
-      } else if (bmiCategory.value == 'Normal') {
+      } else if (bmiCategory.value == 'bmi_normal'.tr) {
         minTargetGain.value = 17.0; // 37-54 lb
         maxTargetGain.value = 24.5;
-      } else if (bmiCategory.value == 'Overweight') {
+      } else if (bmiCategory.value == 'bmi_overweight'.tr) {
         minTargetGain.value = 14.0; // 31-50 lb
         maxTargetGain.value = 22.7;
       } else {
@@ -152,13 +160,13 @@ class WeightTrackingController extends GetxController {
       }
     } else {
       // Single gestation
-      if (bmiCategory.value == 'Underweight') {
+      if (bmiCategory.value == 'bmi_underweight'.tr) {
         minTargetGain.value = 12.5; // 28-40 lb
         maxTargetGain.value = 18.0;
-      } else if (bmiCategory.value == 'Normal') {
+      } else if (bmiCategory.value == 'bmi_normal'.tr) {
         minTargetGain.value = 11.0; // 25-35 lb
         maxTargetGain.value = 16.0;
-      } else if (bmiCategory.value == 'Overweight') {
+      } else if (bmiCategory.value == 'bmi_overweight'.tr) {
         minTargetGain.value = 7.0; // 15-25 lb
         maxTargetGain.value = 11.0;
       } else {
@@ -174,17 +182,16 @@ class WeightTrackingController extends GetxController {
 
     final prefs = await SharedPreferences.getInstance();
     final entriesJson = prefs.getString('weight_entries_$userId');
-    
+
     if (entriesJson != null) {
       final List<dynamic> decoded = jsonDecode(entriesJson);
-      weightEntries.value = decoded
-          .map((e) => WeightEntry.fromJson(e))
-          .toList()
-          ..sort((a, b) => a.date.compareTo(b.date));
+      weightEntries.value = decoded.map((e) => WeightEntry.fromJson(e)).toList()
+        ..sort((a, b) => a.date.compareTo(b.date));
     }
   }
 
-  Future<void> saveWeightEntry(double weight, DateTime date, {int? gestationalWeek, String? trimester}) async {
+  Future<void> saveWeightEntry(double weight, DateTime date,
+      {int? gestationalWeek, String? trimester}) async {
     final userId = authService.currentUser.value?.id;
     if (userId == null) return;
 
@@ -196,18 +203,18 @@ class WeightTrackingController extends GetxController {
     );
 
     // Remove existing entry for same date if any
-    weightEntries.removeWhere((e) => 
-      e.date.year == date.year && 
-      e.date.month == date.month && 
-      e.date.day == date.day
-    );
+    weightEntries.removeWhere((e) =>
+        e.date.year == date.year &&
+        e.date.month == date.month &&
+        e.date.day == date.day);
 
     weightEntries.add(entry);
     weightEntries.sort((a, b) => a.date.compareTo(b.date));
 
     // Save to SharedPreferences
     final prefs = await SharedPreferences.getInstance();
-    final entriesJson = jsonEncode(weightEntries.map((e) => e.toJson()).toList());
+    final entriesJson =
+        jsonEncode(weightEntries.map((e) => e.toJson()).toList());
     await prefs.setString('weight_entries_$userId', entriesJson);
 
     updateCurrentWeight();
@@ -240,12 +247,10 @@ class WeightTrackingController extends GetxController {
 
     if (totalGain.value < minTargetGain.value * 0.8) {
       showInsufficientGainAlert.value = true;
-      alertMessage.value = 
-          'Your weight gain is below the recommended range. Insufficient weight gain may increase the risk of IUGR and preterm birth. Please consult your healthcare provider for nutrition counseling.';
+      alertMessage.value = 'insufficient_weight_gain_alert_message'.tr;
     } else if (totalGain.value > maxTargetGain.value * 1.1) {
       showExcessiveGainAlert.value = true;
-      alertMessage.value = 
-          'Your weight gain is above the recommended range. Excessive weight gain may increase the risk of gestational diabetes, hypertension, cesarean delivery, and large-for-gestational-age babies. Please consult your healthcare provider.';
+      alertMessage.value = 'excessive_weight_gain_alert_message'.tr;
     }
 
     // Check for rapid gain (more than 2kg in 4 weeks)
@@ -253,11 +258,12 @@ class WeightTrackingController extends GetxController {
       final recent = weightEntries.sublist(weightEntries.length - 4);
       if (recent.length >= 2) {
         final gain = recent.last.weight - recent.first.weight;
-        final weeksDiff = (recent.last.date.difference(recent.first.date).inDays / 7).ceil();
-        if (weeksDiff > 0 && gain / weeksDiff > 0.5) { // More than 0.5kg per week
+        final weeksDiff =
+            (recent.last.date.difference(recent.first.date).inDays / 7).ceil();
+        if (weeksDiff > 0 && gain / weeksDiff > 0.5) {
+          // More than 0.5kg per week
           showRapidGainAlert.value = true;
-          alertMessage.value = 
-              'Rapid weight gain detected. Please consult your healthcare provider for dietary guidance.';
+          alertMessage.value = 'rapid_weight_gain_alert_message'.tr;
         }
       }
     }
@@ -270,9 +276,15 @@ class WeightTrackingController extends GetxController {
     final secondTrimesterWeeks = 14.0; // weeks 14-27
     final thirdTrimesterWeeks = 13.0; // weeks 28-40
 
-    final firstTarget = (minTargetGain.value + maxTargetGain.value) / 2 * (firstTrimesterWeeks / totalWeeks);
-    final secondTarget = (minTargetGain.value + maxTargetGain.value) / 2 * (secondTrimesterWeeks / totalWeeks);
-    final thirdTarget = (minTargetGain.value + maxTargetGain.value) / 2 * (thirdTrimesterWeeks / totalWeeks);
+    final firstTarget = (minTargetGain.value + maxTargetGain.value) /
+        2 *
+        (firstTrimesterWeeks / totalWeeks);
+    final secondTarget = (minTargetGain.value + maxTargetGain.value) /
+        2 *
+        (secondTrimesterWeeks / totalWeeks);
+    final thirdTarget = (minTargetGain.value + maxTargetGain.value) /
+        2 *
+        (thirdTrimesterWeeks / totalWeeks);
 
     return {
       'first': firstTarget,
@@ -284,38 +296,39 @@ class WeightTrackingController extends GetxController {
   // Get current trimester gain
   double getCurrentTrimesterGain() {
     if (weightEntries.isEmpty) return 0.0;
-    
+
     final trimester = currentTrimester.value;
     if (trimester.isEmpty) return 0.0;
 
-    final trimesterStartWeek = trimester == 'First trimester' 
-        ? 1 
-        : trimester == 'Second trimester' 
-            ? 14 
+    final trimesterStartWeek = trimester == 'first_trimester'.tr
+        ? 1
+        : trimester == 'second_trimester'.tr
+            ? 14
             : 28;
-    
-    final trimesterEntries = weightEntries.where((e) => 
-      e.gestationalWeek != null && 
-      e.gestationalWeek! >= trimesterStartWeek &&
-      e.gestationalWeek! < (trimesterStartWeek + 13)
-    ).toList();
+
+    final trimesterEntries = weightEntries
+        .where((e) =>
+            e.gestationalWeek != null &&
+            e.gestationalWeek! >= trimesterStartWeek &&
+            e.gestationalWeek! < (trimesterStartWeek + 13))
+        .toList();
 
     if (trimesterEntries.isEmpty) return 0.0;
-    
+
     final firstInTrimester = trimesterEntries.first.weight;
     final latestInTrimester = trimesterEntries.last.weight;
-    
+
     return latestInTrimester - firstInTrimester;
   }
 
   void setCurrentGestationalWeek(int week) {
     currentGestationalWeek.value = week;
     if (week <= 13) {
-      currentTrimester.value = 'First trimester';
+      currentTrimester.value = 'first_trimester'.tr;
     } else if (week <= 27) {
-      currentTrimester.value = 'Second trimester';
+      currentTrimester.value = 'second_trimester'.tr;
     } else {
-      currentTrimester.value = 'Third trimester';
+      currentTrimester.value = 'third_trimester'.tr;
     }
   }
 
@@ -323,7 +336,7 @@ class WeightTrackingController extends GetxController {
   bool shouldScreenForGDM() {
     final week = currentGestationalWeek.value;
     final bmi = prePregnancyBMI.value;
-    
+
     // High risk: BMI >= 30 or BMI >= 25 with other risk factors
     // Screen at 24-28 weeks (or earlier if high risk)
     if (bmi >= 30 && week >= 16) {
@@ -340,4 +353,3 @@ class WeightTrackingController extends GetxController {
     return prePregnancyBMI.value < 18.5; // Underweight
   }
 }
-

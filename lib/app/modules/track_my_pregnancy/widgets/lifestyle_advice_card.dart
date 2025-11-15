@@ -227,7 +227,7 @@ class _LifeStyleAdviceCardState extends State<LifeStyleAdviceCard> {
                         return GestureDetector(
                           onTap: () {
                             Get.to(() => LifestyleAdviceDetailView(
-                                  title: entry.key,
+                                  title: entry.key.tr,
                                   description: entry.value.tr,
                                   icon: icon,
                                 ));

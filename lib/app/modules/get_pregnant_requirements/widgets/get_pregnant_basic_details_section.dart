@@ -21,99 +21,100 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
         builder: (context, snapshot) {
           final data = snapshot.data ?? {};
           return Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 10,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: NeoSafeColors.primaryPink.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Icon(
+                        Icons.quiz_outlined,
+                        color: NeoSafeColors.primaryPink,
+                        size: 20,
+                      ),
                     ),
-                    child: Icon(
-                      Icons.quiz_outlined,
-                      color: NeoSafeColors.primaryPink,
-                      size: 20,
+                    const SizedBox(width: 12),
+                    Text(
+                      'your_profile'.tr,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: NeoSafeColors.primaryText,
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    'Your Profile',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: NeoSafeColors.primaryText,
-                          fontWeight: FontWeight.w700,
-                        ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
 
-              const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-              // Gender
-              _EditableDetailRow(
-                icon: Icons.person_outline,
-                label: 'Gender',
-                value: _mapGenderFull(data['gender']),
-                color: NeoSafeColors.info,
-                onEdit: () => _showEditGenderDialog(context, data['gender']),
-              ),
+                // Gender
+                _EditableDetailRow(
+                  icon: Icons.person_outline,
+                  label: 'gender'.tr,
+                  value: _mapGenderFull(data['gender']),
+                  color: NeoSafeColors.info,
+                  onEdit: () => _showEditGenderDialog(context, data['gender']),
+                ),
 
-              const SizedBox(height: 16),
+                const SizedBox(height: 16),
 
-              // Purpose
-              _EditableDetailRow(
-                icon: Icons.flag_outlined,
-                label: 'Purpose',
-                value: _mapPurposeFriendly(data['purpose']),
-                color: NeoSafeColors.success,
-                onEdit: () => _showEditPurposeDialog(context, data['purpose']),
-              ),
+                // Purpose
+                // _EditableDetailRow(
+                //   icon: Icons.flag_outlined,
+                //   label: 'Purpose',
+                //   value: _mapPurposeFriendly(data['purpose']),
+                //   color: NeoSafeColors.success,
+                //   onEdit: () =>
+                //       _showEditPurposeDialog(context, data['purpose']),
+                // ),
 
-              const SizedBox(height: 16),
+                // const SizedBox(height: 16),
 
-              // Last Period Date
-              _EditableDetailRow(
-                icon: Icons.calendar_today_outlined,
-                label: 'Last Period Date',
-                value: data['last_period'] != null
-                    ? _formatDate(DateTime.parse(data['last_period']!))
-                    : 'Not provided',
-                color: NeoSafeColors.warning,
-                onEdit: () =>
-                    _showEditLastPeriodDialog(context, data['last_period']),
-              ),
+                // Last Period Date
+                _EditableDetailRow(
+                  icon: Icons.calendar_today_outlined,
+                  label: 'last_period_date'.tr,
+                  value: data['last_period'] != null
+                      ? _formatDate(DateTime.parse(data['last_period']!))
+                      : 'not_provided'.tr,
+                  color: NeoSafeColors.warning,
+                  onEdit: () =>
+                      _showEditLastPeriodDialog(context, data['last_period']),
+                ),
 
-              const SizedBox(height: 16),
+                const SizedBox(height: 16),
 
-              // Cycle Length
-              _EditableDetailRow(
-                icon: Icons.schedule_outlined,
-                label: 'Cycle Length',
-                value: data['cycle_length'] != null
-                    ? '${data['cycle_length']} days'
-                    : 'Not provided',
-                color: NeoSafeColors.error,
-                onEdit: () =>
-                    _showEditCycleLengthDialog(context, data['cycle_length']),
-              ),
-              // Removed GA/Ultrasound/EDD/Trimester per request
-            ],
-          ),
-        );
+                // Cycle Length
+                _EditableDetailRow(
+                  icon: Icons.schedule_outlined,
+                  label: 'cycle_length'.tr,
+                  value: data['cycle_length'] != null
+                      ? '${data['cycle_length']} ${'days'.tr}'
+                      : 'not_provided'.tr,
+                  color: NeoSafeColors.error,
+                  onEdit: () =>
+                      _showEditCycleLengthDialog(context, data['cycle_length']),
+                ),
+                // Removed GA/Ultrasound/EDD/Trimester per request
+              ],
+            ),
+          );
         },
       ),
     );
@@ -125,46 +126,71 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
     final prefs = await SharedPreferences.getInstance();
 
     Future<String?> getStringKey(String key) async {
+      String? value;
+      // Priority 1: Try from AuthService onboarding data (user-scoped)
       if (userId != null && userId.isNotEmpty) {
-        final v = await auth.getOnboardingData(key, userId);
-        if (v != null && v.isNotEmpty) return v;
+        value = await auth.getOnboardingData(key, userId);
+        if (value != null && value.isNotEmpty) return value;
       }
-      return prefs.getString(key);
+      // Priority 2: Fallback to SharedPreferences directly
+      value = prefs.getString(key);
+      if (value != null && value.isNotEmpty) return value;
+      return null;
     }
 
     Future<String?> getIntKey(String key) async {
+      int? intVal;
+      // Priority 1: Try user-scoped int key
       if (userId != null && userId.isNotEmpty) {
         final userScoped = '${key}_user_$userId';
-        final intVal = prefs.getInt(userScoped);
+        intVal = prefs.getInt(userScoped);
         if (intVal != null) return intVal.toString();
       }
-      final intVal = prefs.getInt(key);
-      return intVal?.toString();
+      // Priority 2: Fallback to global int key
+      intVal = prefs.getInt(key);
+      if (intVal != null) return intVal.toString();
+      return null;
+    }
+
+    // Load all data with proper fallbacks
+    String? name = await getStringKey('onboarding_name');
+    String? gender = await getStringKey('onboarding_gender');
+    String? purpose = await getStringKey('onboarding_purpose');
+    String? lastPeriod = await getStringKey('onboarding_last_period');
+    String? cycleLength = await getIntKey('onboarding_cycle_length');
+
+    // Final fallback for name - use user model fullName
+    if ((name == null || name.isEmpty) && auth.currentUser.value != null) {
+      final userFullName = auth.currentUser.value!.fullName;
+      if (userFullName.isNotEmpty && userFullName != 'User') {
+        name = userFullName;
+        debugPrint('name: $name');
+      }
     }
 
     return {
-      'name': await getStringKey('onboarding_name'),
-      'gender': await getStringKey('onboarding_gender'),
-      'purpose': await getStringKey('onboarding_purpose'),
-      'last_period': await getStringKey('onboarding_last_period'),
-      'cycle_length': await getIntKey('onboarding_cycle_length'),
+      'name': name ?? 'user'.tr,
+      'gender': gender ?? '',
+      'purpose': purpose ?? '',
+      'last_period': lastPeriod,
+      'cycle_length': cycleLength,
     };
   }
 
   String _formatDate(DateTime date) {
     final months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+      'jan'.tr,
+      'feb'.tr,
+      'mar'.tr,
+      'apr'.tr,
+      'may'.tr,
+      'jun'.tr,
+      'jul'.tr,
+      'aug'.tr,
+      'sep'.tr,
+      'oct'.tr,
+      'nov'.tr,
+      'dec'.tr
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
@@ -185,7 +211,9 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
                   Get.back();
                   _updateGender(value!);
                   (context as Element).markNeedsBuild();
-                  try { controller.update(); } catch (_) {}
+                  try {
+                    controller.update();
+                  } catch (_) {}
                 },
               ),
             ),
@@ -198,7 +226,9 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
                   Get.back();
                   _updateGender(value!);
                   (context as Element).markNeedsBuild();
-                  try { controller.update(); } catch (_) {}
+                  try {
+                    controller.update();
+                  } catch (_) {}
                 },
               ),
             ),
@@ -230,7 +260,9 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
                   Get.back();
                   _updatePurpose(value!);
                   (context as Element).markNeedsBuild();
-                  try { controller.update(); } catch (_) {}
+                  try {
+                    controller.update();
+                  } catch (_) {}
                 },
               ),
             ),
@@ -242,8 +274,14 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
                 onChanged: (value) {
                   Get.back();
                   _updatePurpose(value!);
+                  // Immediately launch pregnancy onboarding if new purpose is pregnant
+                  if (value == 'pregnant') {
+                    Get.toNamed('/goal_onboarding');
+                  }
                   (context as Element).markNeedsBuild();
-                  try { controller.update(); } catch (_) {}
+                  try {
+                    controller.update();
+                  } catch (_) {}
                 },
               ),
             ),
@@ -255,8 +293,14 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
                 onChanged: (value) {
                   Get.back();
                   _updatePurpose(value!);
+                  if (value == 'have_baby') {
+                    Get.toNamed('/goal_onboarding',
+                        arguments: {'purpose': 'have_baby'});
+                  }
                   (context as Element).markNeedsBuild();
-                  try { controller.update(); } catch (_) {}
+                  try {
+                    controller.update();
+                  } catch (_) {}
                 },
               ),
             ),
@@ -298,7 +342,9 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
                   Get.back();
                   _updateLastPeriod(date);
                   (context as Element).markNeedsBuild();
-                  try { controller.update(); } catch (_) {}
+                  try {
+                    controller.update();
+                  } catch (_) {}
                 }
               },
             ),
@@ -343,7 +389,9 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
                 Get.back();
                 _updateCycleLength(length);
                 (context as Element).markNeedsBuild();
-                try { controller.update(); } catch (_) {}
+                try {
+                  controller.update();
+                } catch (_) {}
               }
             },
             style: ElevatedButton.styleFrom(
@@ -373,6 +421,62 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
       backgroundColor: NeoSafeColors.success.withOpacity(0.1),
       colorText: NeoSafeColors.success,
     );
+    (controller as GetxController).update();
+  }
+
+  void _showEditNameDialog(BuildContext context, String currentName) {
+    final TextEditingController nameController = TextEditingController(
+      text: currentName,
+    );
+    Get.dialog(
+      AlertDialog(
+        title: Text('edit_name'.tr),
+        content: TextField(
+          controller: nameController,
+          decoration: InputDecoration(
+            labelText: 'name'.tr,
+            border: const OutlineInputBorder(),
+          ),
+          autofocus: true,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('cancel'.tr),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              final newName = nameController.text.trim();
+              if (newName.isNotEmpty) {
+                final auth = Get.find<AuthService>();
+                final userId = auth.currentUser.value?.id;
+                if (userId != null && userId.isNotEmpty) {
+                  await auth.setOnboardingData(
+                      'onboarding_name', userId, newName);
+                } else {
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setString('onboarding_name', newName);
+                }
+                Get.back();
+                Get.snackbar(
+                  'success'.tr,
+                  'name_updated_success'.tr,
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: NeoSafeColors.success.withOpacity(0.1),
+                  colorText: NeoSafeColors.success,
+                );
+                (controller as GetxController).update();
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: NeoSafeColors.primaryPink,
+              foregroundColor: Colors.white,
+            ),
+            child: Text('save'.tr),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _updatePurpose(String purpose) async {
@@ -397,7 +501,8 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
     final auth = Get.find<AuthService>();
     final userId = auth.currentUser.value?.id;
     if (userId != null && userId.isNotEmpty) {
-      await auth.setOnboardingData('onboarding_last_period', userId, date.toIso8601String());
+      await auth.setOnboardingData(
+          'onboarding_last_period', userId, date.toIso8601String());
     } else {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('onboarding_last_period', date.toIso8601String());
@@ -446,20 +551,23 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
     showDialog(
       context: context,
       builder: (c) => AlertDialog(
-        title: const Text('Why?'),
+        title: Text('why'.tr),
         content: Text(message),
-        actions: [TextButton(onPressed: () => Navigator.of(c).pop(), child: const Text('OK'))],
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.of(c).pop(), child: Text('ok'.tr))
+        ],
       ),
     );
   }
 
   String _mapGenderShort(String? gender) {
-    if (gender == null || gender.isEmpty) return 'Not provided';
+    if (gender == null || gender.isEmpty) return 'not_provided'.tr;
     switch (gender.toLowerCase()) {
       case 'male':
-        return 'Male';
+        return 'male'.tr;
       case 'female':
-        return 'Female';
+        return 'female'.tr;
       default:
         return gender;
     }
@@ -468,14 +576,14 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
   String _mapGenderFull(String? gender) => _mapGenderShort(gender);
 
   String _mapPurposeFriendly(String? purpose) {
-    if (purpose == null || purpose.isEmpty) return 'Not provided';
+    if (purpose == null || purpose.isEmpty) return 'not_provided'.tr;
     switch (purpose) {
       case 'get_pregnant':
-        return 'Get Pregnant';
+        return 'trying_to_conceive'.tr;
       case 'pregnant':
-        return 'Pregnant';
+        return 'pregnant'.tr;
       case 'have_baby':
-        return 'Have Baby';
+        return 'have_baby'.tr;
       default:
         return purpose;
     }

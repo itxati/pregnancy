@@ -46,8 +46,8 @@ class LoginController extends GetxController {
       );
 
       if (success) {
-        // Navigate to goal selection on successful login
-        Get.offAllNamed('/goal_selection');
+        // Navigate based on onboarding completion and user state
+        await _authService.navigateAfterLogin();
       }
 
       isLoading.value = false;

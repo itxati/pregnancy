@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SchoolReadinessCard extends StatefulWidget {
   const SchoolReadinessCard({Key? key}) : super(key: key);
@@ -98,15 +99,15 @@ class _SchoolReadinessCardState extends State<SchoolReadinessCard>
                       ),
                     ),
                     const SizedBox(width: 16),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'School Readiness',
-                        style: TextStyle(
+                        'school_readiness'.tr,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color(0xFF0D47A1),
                           letterSpacing: -0.5,
-        ),
+                        ),
                       ),
                     ),
                     RotationTransition(
@@ -130,17 +131,17 @@ class _SchoolReadinessCardState extends State<SchoolReadinessCard>
                 // Main Points (Always Visible)
                 _buildMainPoint(
                   Icons.psychology_rounded,
-                  'More than letters/numbers - holistic development',
+                  'more_than_letters_numbers_holistic'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.people_rounded,
-                  'Social-emotional, cognitive, language skills',
+                  'social_emotional_cognitive_language_skills'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.trending_up_rounded,
-                  'Age-appropriate activities & milestones',
+                  'age_appropriate_activities_milestones'.tr,
                 ),
                 // Expandable Details
                 AnimatedCrossFade(
@@ -163,19 +164,19 @@ class _SchoolReadinessCardState extends State<SchoolReadinessCard>
                           color: const Color(0xFF2196F3).withOpacity(0.10),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Tap to learn more',
-                              style: TextStyle(
+                              'tap_to_learn_more'.tr,
+                              style: const TextStyle(
                                 fontSize: 13,
                                 color: Color(0xFF0D47A1),
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(width: 4),
-                            Icon(
+                            const SizedBox(width: 4),
+                            const Icon(
                               Icons.touch_app_rounded,
                               size: 16,
                               color: Color(0xFF1976D2),
@@ -242,53 +243,53 @@ class _SchoolReadinessCardState extends State<SchoolReadinessCard>
           ),
         ),
         const SizedBox(height: 24),
-        _sectionTitle('What is School Readiness?'),
+        _sectionTitle('what_is_school_readiness'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'School readiness is more than knowing letters/numbers. It\'s a combination of skills, knowledge, attitudes and behaviours that enable a child to begin school and thrive.',
+          'school_readiness_definition'.tr,
         ),
         const SizedBox(height: 20),
-        _sectionTitle('Key Domains'),
+        _sectionTitle('key_domains'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Social-emotional development: self-control, forming relationships, recognising feelings, cooperating with others',
-          'Cognitive / general knowledge: problem-solving, curiosity, early math, understanding cause & effect',
-          'Language & literacy: vocabulary, storytelling, letter recognition, asking/answering questions',
-          'Physical & motor development: fine motor skills (holding a pencil), gross motor (running, jumping), stamina to sit and focus',
-          'Approaches to learning / executive function / self-regulation: ability to focus, shift attention, follow directions, impulse control',
+          'social_emotional_development_domain'.tr,
+          'cognitive_general_knowledge_domain'.tr,
+          'language_literacy_domain'.tr,
+          'physical_motor_development_domain'.tr,
+          'approaches_learning_executive_function_domain'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Age-wise Progression'),
+        _sectionTitle('age_wise_progression'.tr),
         const SizedBox(height: 12),
-        _subsectionTitle('Birth to ~3 years:'),
+        _subsectionTitle('birth_to_3_years'.tr),
         const SizedBox(height: 8),
         _bulletList([
-          'Encourage lots of talking, reading, singing. Respond to baby\'s cues (turn-taking)',
-          'Play: simple cause-and-effect toys, sensorimotor exploration, safe environment',
-          'Social: snuggling, interacting, imitating, simple turn-taking',
-          'Self-help: allow safe exploration, picking up items, simple decisions (with supervision)',
+          'encourage_talking_reading_singing'.tr,
+          'play_simple_cause_effect_toys'.tr,
+          'social_snuggling_interacting_imitating'.tr,
+          'self_help_safe_exploration_picking_items'.tr,
         ]),
         const SizedBox(height: 12),
-        _subsectionTitle('3–5 years (pre-school stage):'),
+        _subsectionTitle('3_5_years_preschool_stage'.tr),
         const SizedBox(height: 8),
         _bulletList([
-          'Fine-motor: drawing, simple crafts, using scissors (with help)',
-          'Language & literacy: tell stories together, ask "what happens next?", introduce letters/numbers through play',
-          'Social-emotional: cooperative play, sharing, recognising others\' feelings, taking turns',
-          'Cognitive: sorting games, puzzles, counting objects, simple board games',
-          'Routine & self-help skills: dressing (with help), going to toilet independently, cleaning up toys, following simple two-step instructions',
-          'Transition to a group setting: Encourage play groups or preschool to get used to routines, group interaction',
+          'fine_motor_drawing_crafts_scissors'.tr,
+          'language_literacy_tell_stories_letters'.tr,
+          'social_emotional_cooperative_play_sharing'.tr,
+          'cognitive_sorting_games_puzzles_counting'.tr,
+          'routine_self_help_skills_dressing_toilet'.tr,
+          'transition_group_setting_play_groups'.tr,
         ]),
         const SizedBox(height: 12),
-        _subsectionTitle('5–8 years (early school age):'),
+        _subsectionTitle('5_8_years_early_school_age'.tr),
         const SizedBox(height: 8),
         _bulletList([
-          'Reading readiness: Recognising letters, attempting words, reading for fun',
-          'Numeracy: Counting, basic addition/subtraction, understanding shapes, patterns',
-          'Attention span: Ability to sit for a short story or task, follow multi-step instructions',
-          'Self-management: Packing school bag, being responsible for small tasks, following classroom rules',
-          'Social skills: Making and keeping friends, resolving small conflicts, cooperating in teams',
-          'Health & physical: Good sleep, regular meals, outdoor play, and independence in bathroom/hygiene',
+          'reading_readiness_recognising_letters_words'.tr,
+          'numeracy_counting_addition_subtraction_shapes'.tr,
+          'attention_span_sit_story_follow_instructions'.tr,
+          'self_management_packing_bag_responsible_tasks'.tr,
+          'social_skills_making_friends_resolving_conflicts'.tr,
+          'health_physical_sleep_meals_outdoor_play'.tr,
         ]),
         const SizedBox(height: 24),
         Container(
@@ -323,10 +324,10 @@ class _SchoolReadinessCardState extends State<SchoolReadinessCard>
                 ),
               ),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Research shows self-regulation is strongly tied to school readiness. Support your child\'s development through play, routines, and age-appropriate activities.',
-                  style: TextStyle(
+                  'self_regulation_school_readiness_research'.tr,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF0D47A1),
                     fontSize: 14,

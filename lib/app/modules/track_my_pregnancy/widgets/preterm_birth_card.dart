@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PretermBirthCard extends StatefulWidget {
   const PretermBirthCard({Key? key}) : super(key: key);
@@ -98,10 +99,10 @@ class _PretermBirthCardState extends State<PretermBirthCard>
                       ),
                     ),
                     const SizedBox(width: 16),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Preterm Birth Awareness',
-                        style: TextStyle(
+                        'preterm_birth_awareness'.tr,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color(0xFF0D47A1),
@@ -130,17 +131,17 @@ class _PretermBirthCardState extends State<PretermBirthCard>
                 // Main Points (Always Visible)
                 _buildMainPoint(
                   Icons.schedule_rounded,
-                  'Birth before 37 completed weeks',
+                  'birth_before_37_weeks'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.baby_changing_station_rounded,
-                  'Types: Late, Moderate, Very Early Preterm',
+                  'preterm_types_late_moderate_very_early'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.stacked_bar_chart_rounded,
-                  'Higher risks for babies born preterm',
+                  'higher_risks_babies_preterm'.tr,
                 ),
                 // Expandable Details
                 AnimatedCrossFade(
@@ -163,12 +164,12 @@ class _PretermBirthCardState extends State<PretermBirthCard>
                           color: const Color(0xFF6DADE4).withOpacity(0.10),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Tap to learn more',
-                              style: TextStyle(
+                              'tap_to_learn_more'.tr,
+                              style: const TextStyle(
                                 fontSize: 13,
                                 color: Color(0xFF0D47A1),
                                 fontWeight: FontWeight.w500,
@@ -242,48 +243,48 @@ class _PretermBirthCardState extends State<PretermBirthCard>
           ),
         ),
         const SizedBox(height: 24),
-        _sectionTitle('What is preterm birth?'),
+        _sectionTitle('what_is_preterm_birth'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'Preterm birth means giving birth before 37 completed weeks of gestation. The earlier a baby is born, the greater the risk of health problems.',
+          'preterm_birth_definition'.tr,
         ),
         const SizedBox(height: 18),
-        _sectionTitle('Types of preterm birth'),
+        _sectionTitle('types_of_preterm_birth'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Late preterm: 34 0/7 to 36 6/7 weeks',
-          'Moderate preterm: 32 0/7 to 33 6/7 weeks',
-          'Very early preterm: <32 weeks',
+          'late_preterm_34_36_weeks'.tr,
+          'moderate_preterm_32_33_weeks'.tr,
+          'very_early_preterm_under_32_weeks'.tr,
         ]),
         const SizedBox(height: 18),
-        _sectionTitle('Why it matters'),
+        _sectionTitle('why_it_matters'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Higher risk of respiratory issues',
-          'Feeding difficulties',
-          'Temperature instability',
-          'Longer hospital stays',
+          'higher_risk_respiratory_issues'.tr,
+          'feeding_difficulties'.tr,
+          'temperature_instability'.tr,
+          'longer_hospital_stays'.tr,
         ]),
         const SizedBox(height: 18),
-        _sectionTitle('Risk factors'),
+        _sectionTitle('risk_factors'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Maternal infections or chronic diseases',
-          'History of prior preterm birth',
-          'Placenta problems',
-          'Obstetric complications',
-          'Smoking, substance use',
-          'Maternal stress',
+          'maternal_infections_chronic_diseases'.tr,
+          'history_prior_preterm_birth'.tr,
+          'placenta_problems'.tr,
+          'obstetric_complications'.tr,
+          'smoking_substance_use'.tr,
+          'maternal_stress'.tr,
         ]),
         const SizedBox(height: 18),
-        _sectionTitle('Prevention and management'),
+        _sectionTitle('prevention_management'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Progesterone therapy in some high-risk pregnancies',
-          'Treating infections promptly',
-          'Cervical cerclage in selected cases',
-          'Managing anxiety and depression',
-          'Ensuring access to perinatal & neonatal care',
+          'progesterone_therapy_high_risk'.tr,
+          'treating_infections_promptly'.tr,
+          'cervical_cerclage_selected_cases'.tr,
+          'managing_anxiety_depression'.tr,
+          'ensuring_perinatal_neonatal_care'.tr,
         ]),
         const SizedBox(height: 24),
         Container(
@@ -318,10 +319,10 @@ class _PretermBirthCardState extends State<PretermBirthCard>
                 ),
               ),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Regular checkups and healthy habits can reduce the risk of preterm birth.',
-                  style: TextStyle(
+                  'regular_checkups_reduce_preterm_risk'.tr,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF0D47A1),
                     fontSize: 14,

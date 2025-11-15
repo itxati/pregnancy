@@ -74,7 +74,7 @@ class LegendWidget extends StatelessWidget {
                       icon: Icons.eco,
                     ),
                     _LegendItem(
-                      color: NeoSafeColors.warning,
+                      color: NeoSafeColors.ovalutionDay,
                       label: "ovulation".tr,
                       icon: Icons.star,
                     ),

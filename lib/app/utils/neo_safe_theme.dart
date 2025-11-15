@@ -39,6 +39,7 @@ class NeoSafeColors {
   static const Color babyPink = Color(0xFFFFCCCB);
   static const Color maternalGlow = Color(0xFFFFF0F0);
   static const Color nurturingRose = Color(0xFFE6B8B8);
+  static const Color ovalutionDay = Colors.red;
 }
 
 class NeoSafeTheme {

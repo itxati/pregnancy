@@ -14,54 +14,42 @@ class WeeklyDetailsContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       final weekData = controller.currentWeekData;
+      final twinsInfo =
+          _getTranslated('twinsInfo', controller.currentWeek.value);
 
       return Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             // Baby size info card
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.95),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: NeoSafeColors.primaryPink.withOpacity(0.08),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 18),
-              child: Stack(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          Icon(Icons.straighten,
-                              color: NeoSafeColors.primaryPink, size: 22),
-                          const SizedBox(height: 4),
-                          Text(
-                            weekData.length,
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: NeoSafeColors.primaryText,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 10,
-                                    ),
-                          ),
-                        ],
-                      ),
-                      if (weekData.weight.trim().isNotEmpty)
+            if (controller.currentWeek.value != 1 &&
+                controller.currentWeek.value != 2)
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.95),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: NeoSafeColors.primaryPink.withOpacity(0.08),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 18, horizontal: 18),
+                child: Stack(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
                         Column(
                           children: [
-                            Icon(Icons.monitor_weight,
-                                color: NeoSafeColors.roseAccent, size: 22),
+                            Icon(Icons.straighten,
+                                color: NeoSafeColors.primaryPink, size: 22),
                             const SizedBox(height: 4),
                             Text(
-                              weekData.weight,
+                              weekData.length,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
@@ -73,38 +61,59 @@ class WeeklyDetailsContent extends StatelessWidget {
                             ),
                           ],
                         ),
-                      Column(
-                        children: [
-                          Icon(Icons.circle,
-                              color: NeoSafeColors.info, size: 22),
-                          const SizedBox(height: 4),
-                          Text(
-                            weekData.size,
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                        if (weekData.weight.trim().isNotEmpty)
+                          Column(
+                            children: [
+                              Icon(Icons.monitor_weight,
+                                  color: NeoSafeColors.roseAccent, size: 22),
+                              const SizedBox(height: 4),
+                              Text(
+                                weekData.weight,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
                                       color: NeoSafeColors.primaryText,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 10,
                                     ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  // Speech button in top right corner
-                  // Positioned(
-                  //   top: 0,
-                  //   right: 0,
-                  //   child: SpeechButton(
-                  //     text: _getBabySizeSpeechText(weekData),
-                  //     color: NeoSafeColors.primaryPink,
-                  //     size: 18,
-                  //     padding: const EdgeInsets.all(4),
-                  //   ),
-                  // ),
-                ],
+                        Column(
+                          children: [
+                            Icon(Icons.circle,
+                                color: NeoSafeColors.info, size: 22),
+                            const SizedBox(height: 4),
+                            Text(
+                              weekData.size,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: NeoSafeColors.primaryText,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 10,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    // Speech button in top right corner
+                    // Positioned(
+                    //   top: 0,
+                    //   right: 0,
+                    //   child: SpeechButton(
+                    //     text: _getBabySizeSpeechText(weekData),
+                    //     color: NeoSafeColors.primaryPink,
+                    //     size: 18,
+                    //     padding: const EdgeInsets.all(4),
+                    //   ),
+                    // ),
+                  ],
+                ),
               ),
-            ),
 
             const SizedBox(height: 24),
 
@@ -157,15 +166,28 @@ class WeeklyDetailsContent extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Twins Info
-            _buildInfoSection(
-              title: 'pregnancy_week_twins_info'.tr,
-              description:
-                  _getTranslated('twinsInfo', controller.currentWeek.value),
-              icon: Icons.child_care,
-              color: const Color(0xFFFF9800),
+            // // Twins Info
+            // _buildInfoSection(
+            //   title: 'pregnancy_week_twins_info'.tr,
+            //   description:
+            //       _getTranslated('twinsInfo', controller.currentWeek.value),
+            //   icon: Icons.child_care,
+            //   color: const Color(0xFFFF9800),
+            // ),
+            // const SizedBox(height: 40),
+            Column(
+              children: [
+                if (twinsInfo != null &&
+                    twinsInfo.trim().isNotEmpty &&
+                    controller.currentWeek.value != 0)
+                  _buildInfoSection(
+                    title: 'pregnancy_week_twins_info'.tr,
+                    description: twinsInfo,
+                    icon: Icons.child_care,
+                    color: const Color(0xFFFF9800),
+                  ),
+              ],
             ),
-            const SizedBox(height: 40),
           ],
         ),
       );

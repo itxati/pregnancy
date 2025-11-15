@@ -196,8 +196,37 @@ class ProfileView extends StatelessWidget {
                   // Breastfeeding Section
                   BreastfeedingSection(controller: controller),
 
-                  // const SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: NeoSafeColors.primaryPink,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          elevation: 0,
+                        ),
+                        onPressed: () {
+                          Get.toNamed('/goal_selection');
+                        },
+                        child: Text(
+                          'go_to_homepage'.tr,
+                          // 'go_to_goal_selection'.tr,
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                        ),
+                      ),
+                    ),
+                  ),
                   // App Options Section
                   AppOptionsSection(controller: controller),
 

@@ -95,7 +95,7 @@ class BreastfeedingSection extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Current Interval',
+                              'current_interval'.tr,
                               style: Get.textTheme.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w500,
                                 color: NeoSafeColors.primaryText,
@@ -114,7 +114,7 @@ class BreastfeedingSection extends StatelessWidget {
                         ElevatedButton.icon(
                           onPressed: controller.showBreastfeedingIntervalPicker,
                           icon: const Icon(Icons.edit, size: 16),
-                          label: const Text('Change'),
+                          label: Text('change'.tr),
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
                                 NeoSafeColors.primaryPink.withOpacity(0.1),
@@ -155,7 +155,7 @@ class BreastfeedingSection extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Next Feeding',
+                            'next_feeding'.tr,
                             style: Get.textTheme.bodyMedium?.copyWith(
                               color: NeoSafeColors.secondaryText,
                             ),
@@ -188,7 +188,7 @@ class BreastfeedingSection extends StatelessWidget {
                             onPressed: controller.logBreastfeedingSession,
                             icon:
                                 const Icon(Icons.add_circle_outline, size: 18),
-                            label: const Text('Log Now'),
+                            label: Text('log_now'.tr),
                             style: OutlinedButton.styleFrom(
                               foregroundColor: NeoSafeColors.primaryPink,
                               side:
@@ -205,7 +205,7 @@ class BreastfeedingSection extends StatelessWidget {
                           child: ElevatedButton.icon(
                             onPressed: () => _showLastFeedingInfo(context),
                             icon: const Icon(Icons.history, size: 18),
-                            label: const Text('History'),
+                            label: Text('history'.tr),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: NeoSafeColors.primaryPink,
                               foregroundColor: Colors.white,

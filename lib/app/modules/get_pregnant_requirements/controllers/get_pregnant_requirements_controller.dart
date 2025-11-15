@@ -18,7 +18,7 @@ class GetPregnantRequirementsController extends GetxController
   RxSet<DateTime> intercourseLog = <DateTime>{}.obs;
 
   int cycleLength = 28;
-  int periodLength = 5;
+  int periodLength = 7;
 
   late AuthService authService;
   bool _promptActive = false;
@@ -74,17 +74,26 @@ class GetPregnantRequirementsController extends GetxController
         periodLength, (i) => periodStart.value!.add(Duration(days: i)));
   }
 
+  // List<DateTime> getFertileDays() {
+  //   if (periodStart.value == null) return [];
+  //   // Fertile days start after period ends and last for 7 days
+  //   final fertileStart = periodStart.value!.add(Duration(days: periodLength));
+  //   return List.generate(7, (i) => fertileStart.add(Duration(days: i)));
+  // }
+
   List<DateTime> getFertileDays() {
     if (periodStart.value == null) return [];
-    // Fertile days start after period ends and last for 7 days
-    final fertileStart = periodStart.value!.add(Duration(days: periodLength));
-    return List.generate(7, (i) => fertileStart.add(Duration(days: i)));
+
+    // Fertile window = 5 days before ovulation + ovulation day + 1 day after
+    final ovulation = getOvulationDay();
+    return List.generate(7, (i) => ovulation.subtract(Duration(days: 5 - i)));
   }
 
   DateTime getOvulationDay() {
     if (periodStart.value == null) return DateTime.now();
     // Ovulation day is the last day of fertile window (7th day after period ends)
-    return periodStart.value!.add(Duration(days: periodLength + 6));
+    // return periodStart.value!.add(Duration(days: periodLength + 6));
+    return periodStart.value!.add(Duration(days: cycleLength - 14));
   }
 
   DateTime getNextPeriod() {
@@ -193,7 +202,8 @@ class GetPregnantRequirementsController extends GetxController
 
     // Prefer user-scoped onboarding values
     if (userId != null && userId.isNotEmpty) {
-      lastPeriodString = await auth.getOnboardingData('onboarding_last_period', userId);
+      lastPeriodString =
+          await auth.getOnboardingData('onboarding_last_period', userId);
       // Ints are saved under per-user key; read directly from prefs
       final userScopedCycleKey = 'onboarding_cycle_length_user_$userId';
       final userScopedPeriodKey = 'onboarding_period_length_user_$userId';
@@ -244,7 +254,8 @@ class GetPregnantRequirementsController extends GetxController
     final todayKey = _formatDateKey(today);
 
     // 1) If today is expected next period day, ask if period started
-    final DateTime? lastStartForPrompt = periodStart.value ?? user.lastPeriodStart;
+    final DateTime? lastStartForPrompt =
+        periodStart.value ?? user.lastPeriodStart;
     if (lastStartForPrompt != null) {
       final expectedNext = DateTime(
         lastStartForPrompt.year,
@@ -254,7 +265,9 @@ class GetPregnantRequirementsController extends GetxController
       final alreadyAskedKey = 'period_start_prompt_shown_${userId}_$todayKey';
       final alreadyAsked = prefs.getBool(alreadyAskedKey) ?? false;
       // Prompt on expected day and all overdue days until user says Yes
-      if (!alreadyAsked && (_isSameCalendarDay(expectedNext, today) || today.isAfter(expectedNext))) {
+      if (!alreadyAsked &&
+          (_isSameCalendarDay(expectedNext, today) ||
+              today.isAfter(expectedNext))) {
         _promptActive = true;
         await _askPeriodStartToday(context);
         await prefs.setBool(alreadyAskedKey, true);
@@ -272,8 +285,12 @@ class GetPregnantRequirementsController extends GetxController
         title: const Text('Period Check'),
         content: const Text('Did your period start today?'),
         actions: [
-          TextButton(onPressed: () => Get.back(result: false), child: const Text('No')),
-          ElevatedButton(onPressed: () => Get.back(result: true), child: const Text('Yes')),
+          TextButton(
+              onPressed: () => Get.back(result: false),
+              child: const Text('No')),
+          ElevatedButton(
+              onPressed: () => Get.back(result: true),
+              child: const Text('Yes')),
         ],
       ),
     );
@@ -290,9 +307,12 @@ class GetPregnantRequirementsController extends GetxController
     }
   }
 
-  String _formatDateKey(DateTime date) => '${date.year}-${date.month}-${date.day}';
-  String _formatIsoDay(DateTime date) => DateTime(date.year, date.month, date.day).toIso8601String();
-  bool _isSameCalendarDay(DateTime a, DateTime b) => a.year == b.year && a.month == b.month && a.day == b.day;
+  String _formatDateKey(DateTime date) =>
+      '${date.year}-${date.month}-${date.day}';
+  String _formatIsoDay(DateTime date) =>
+      DateTime(date.year, date.month, date.day).toIso8601String();
+  bool _isSameCalendarDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
 
   // Update period start date and save to SharedPreferences
   Future<void> setPeriodStart(DateTime start) async {
@@ -339,8 +359,10 @@ class GetPregnantRequirementsController extends GetxController
     // Also persist to user-scoped onboarding for consistency with calendar load
     final userId = authService.currentUser.value?.id;
     if (userId != null && userId.isNotEmpty) {
-      await authService.setOnboardingInt('onboarding_cycle_length', userId, cycleLength);
-      await authService.setOnboardingInt('onboarding_period_length', userId, periodLength);
+      await authService.setOnboardingInt(
+          'onboarding_cycle_length', userId, cycleLength);
+      await authService.setOnboardingInt(
+          'onboarding_period_length', userId, periodLength);
     } else {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setInt('onboarding_cycle_length', cycleLength);

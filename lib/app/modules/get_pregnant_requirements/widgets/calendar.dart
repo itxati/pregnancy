@@ -34,6 +34,15 @@ class CalendarWidget extends StatelessWidget {
           selectedDayPredicate: (day) =>
               controller.selectedDay.value != null &&
               controller.isSameDay(controller.selectedDay.value!, day),
+          // enabledDayPredicate: (day) {
+          //   DateTime now = DateTime.now();
+          //   DateTime firstDayOfPreviousMonth =
+          //       DateTime(now.year, now.month - 1, 1);
+          //   DateTime lastDayOfPreviousMonth = DateTime(now.year, now.month, 0);
+          //   return day.isAfter(
+          //           firstDayOfPreviousMonth.subtract(Duration(days: 1))) &&
+          //       day.isBefore(lastDayOfPreviousMonth.add(Duration(days: 1)));
+          // },
           onDaySelected: (selected, focused) {
             controller.setSelectedDay(selected);
           },
@@ -83,8 +92,19 @@ class CalendarWidget extends StatelessWidget {
             ),
             titleTextFormatter: (date, locale) {
               final monthNames = [
-                '', 'jan'.tr, 'feb'.tr, 'mar'.tr, 'apr'.tr, 'may'.tr, 'jun'.tr,
-                'jul'.tr, 'aug'.tr, 'sep'.tr, 'oct'.tr, 'nov'.tr, 'dec'.tr
+                '',
+                'jan'.tr,
+                'feb'.tr,
+                'mar'.tr,
+                'apr'.tr,
+                'may'.tr,
+                'jun'.tr,
+                'jul'.tr,
+                'aug'.tr,
+                'sep'.tr,
+                'oct'.tr,
+                'nov'.tr,
+                'dec'.tr
               ];
               return '${monthNames[date.month]} ${date.year}';
             },
@@ -116,7 +136,13 @@ class CalendarWidget extends StatelessWidget {
                 _buildCalendarDay(context, date, controller),
             dowBuilder: (context, day) {
               final dayNames = [
-                'sun'.tr, 'mon'.tr, 'tue'.tr, 'wed'.tr, 'thu'.tr, 'fri'.tr, 'sat'.tr
+                'sun'.tr,
+                'mon'.tr,
+                'tue'.tr,
+                'wed'.tr,
+                'thu'.tr,
+                'fri'.tr,
+                'sat'.tr
               ];
               return Center(
                 child: Text(
@@ -153,12 +179,12 @@ class CalendarWidget extends StatelessWidget {
         ),
       ];
     } else if (controller.isOvulationDay(date)) {
-      backgroundColor = NeoSafeColors.warning;
-      borderColor = const Color(0xFFFF9800);
+      backgroundColor = NeoSafeColors.ovalutionDay;
+      borderColor = NeoSafeColors.ovalutionDay;
       borderWidth = 2;
       shadows = [
         BoxShadow(
-          color: NeoSafeColors.warning.withOpacity(0.5),
+          color: NeoSafeColors.ovalutionDay.withOpacity(0.5),
           blurRadius: 12,
           offset: const Offset(0, 4),
         ),
@@ -170,7 +196,7 @@ class CalendarWidget extends StatelessWidget {
             scale: controller.pulseAnimation.value * 0.8,
             child: const Icon(
               Icons.star,
-              color: Color(0xFFFF6F00),
+              color: Colors.white,
               size: 8,
             ),
           );

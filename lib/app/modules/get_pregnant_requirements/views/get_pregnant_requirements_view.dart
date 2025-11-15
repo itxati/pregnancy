@@ -1,4 +1,6 @@
+import 'package:babysafe/app/modules/get_pregnant_requirements/widgets/go_to_home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 import '../controllers/get_pregnant_requirements_controller.dart';
 import '../widgets/legend.dart';
@@ -12,8 +14,56 @@ import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import 'package:babysafe/app/services/auth_service.dart';
 import 'dart:io';
 
-class GetPregnantRequirementsView extends StatelessWidget {
-  const GetPregnantRequirementsView({Key? key}) : super(key: key);
+class GetPregnantRequirementsView extends StatefulWidget {
+  const GetPregnantRequirementsView({super.key});
+
+  @override
+  State<GetPregnantRequirementsView> createState() =>
+      _GetPregnantRequirementsViewState();
+}
+
+class _GetPregnantRequirementsViewState
+    extends State<GetPregnantRequirementsView> {
+  final FlutterTts flutterTts = FlutterTts();
+  bool _isSpeaking = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Listen to TTS complete/cancel for reactive button update
+    flutterTts.setCompletionHandler(() {
+      setState(() {
+        _isSpeaking = false;
+      });
+    });
+    flutterTts.setCancelHandler(() {
+      setState(() {
+        _isSpeaking = false;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    flutterTts.stop();
+    super.dispose();
+  }
+
+  Future<void> _handleSpeakToggle() async {
+    if (!_isSpeaking) {
+      setState(() {
+        _isSpeaking = true;
+      });
+      await flutterTts.setLanguage("ur-PK");
+      await flutterTts.setPitch(1.0);
+      await flutterTts.speak('understand_your_days'.tr);
+    } else {
+      await flutterTts.stop();
+      setState(() {
+        _isSpeaking = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +71,9 @@ class GetPregnantRequirementsView extends StatelessWidget {
     return GetBuilder<GetPregnantRequirementsController>(
       builder: (controller) {
         // Ask user relevant questions after first frame to avoid build-time dialogs
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          controller.maybePromptUser(context);
-        });
+        // WidgetsBinding.instance.addPostFrameCallback((_) {
+        //   controller.maybePromptUser(context);
+        // });
         // Ensure controller state is kept fresh; variables computed inline where needed
         return Scaffold(
           body: Container(
@@ -41,6 +91,7 @@ class GetPregnantRequirementsView extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   leading: const SizedBox.shrink(), // Remove back button
                   actions: [
+                    GoToHomeIconButton(),
                     GetX<AuthService>(
                       builder: (authService) {
                         final user = authService.currentUser.value;
@@ -137,7 +188,22 @@ class GetPregnantRequirementsView extends StatelessWidget {
                       const SizedBox(height: 24),
                       CalendarWidget(controller: controller, theme: theme),
                       const SizedBox(height: 24),
+
                       ActionButtonsWidget(controller: controller),
+                      const SizedBox(height: 24),
+                      ElevatedButton.icon(
+                        onPressed: _handleSpeakToggle,
+                        icon: Icon(
+                            _isSpeaking ? Icons.volume_up : Icons.volume_off),
+                        label: Text(_isSpeaking
+                            ? 'speack_button_title'.tr
+                            : 'speack_button_title'.tr),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 12),
+                          textStyle: const TextStyle(fontSize: 18),
+                        ),
+                      ),
                       const SizedBox(height: 24),
                       if (controller.selectedDay.value != null)
                         DayInfoWidget(controller: controller, theme: theme),

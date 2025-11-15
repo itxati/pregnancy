@@ -111,16 +111,15 @@ class RiskAssessmentController extends GetxController {
       downSyndromeRisk.value = DownSyndromeRisk(
         riskValue: 0.0,
         riskCategory: 'Unknown',
-        explanation:
-            'Please enter your age in the settings to calculate Down syndrome risk. Risk varies significantly by maternal age.',
+        explanation: 'down_syndrome_risk_explanation_unknown'.tr,
         screeningOptions: [
-          'Non-invasive Prenatal Testing (NIPT) - Can be done from 10 weeks',
-          'First-trimester Combined Screening (11-13 weeks) - Blood test + ultrasound',
-          'Quadruple Screen (15-20 weeks) - Blood test',
+          'nipt_screening_option'.tr,
+          'first_trimester_screening_option'.tr,
+          'quadruple_screen_option'.tr,
         ],
         diagnosticOptions: [
-          'Chorionic Villus Sampling (CVS) - 10-13 weeks (invasive)',
-          'Amniocentesis - 15-20 weeks (invasive)',
+          'cvs_diagnostic_option'.tr,
+          'amniocentesis_diagnostic_option'.tr,
         ],
       );
       return;
@@ -151,19 +150,25 @@ class RiskAssessmentController extends GetxController {
       riskCategory = 'High';
     }
 
+    final riskCategoryKey = riskCategory == 'Low'
+        ? 'risk_low'
+        : riskCategory == 'Intermediate'
+            ? 'risk_intermediate'
+            : 'risk_high';
+
     downSyndromeRisk.value = DownSyndromeRisk(
       riskValue: riskValue,
       riskCategory: riskCategory,
       explanation:
-          'Down syndrome risk is primarily based on maternal age. Your age of ${maternalAge.value} years places you in the ${riskCategory.toLowerCase()} risk category. Screening tests help estimate risk more accurately, but they do not provide a diagnosis.',
+          '${'down_syndrome_risk_explanation_base'.tr} ${maternalAge.value} ${'years_places_you_in'.tr} ${riskCategoryKey.tr.toLowerCase()} ${'risk_category_explanation'.tr}',
       screeningOptions: [
-        'Non-invasive Prenatal Testing (NIPT) - Can be done from 10 weeks',
-        'First-trimester Combined Screening (11-13 weeks) - Blood test + ultrasound',
-        'Quadruple Screen (15-20 weeks) - Blood test',
+        'nipt_screening_option'.tr,
+        'first_trimester_screening_option'.tr,
+        'quadruple_screen_option'.tr,
       ],
       diagnosticOptions: [
-        'Chorionic Villus Sampling (CVS) - 10-13 weeks (invasive)',
-        'Amniocentesis - 15-20 weeks (invasive)',
+        'cvs_diagnostic_option'.tr,
+        'amniocentesis_diagnostic_option'.tr,
       ],
     );
   }
@@ -175,17 +180,17 @@ class RiskAssessmentController extends GetxController {
 
     // BMI risk
     if (prePregnancyBMI.value >= 30) {
-      riskFactors.add('Obesity (BMI ≥ 30)');
+      riskFactors.add('obesity_bmi_30'.tr);
       riskScore += 3;
       needsEarlyScreening = true;
     } else if (prePregnancyBMI.value >= 25) {
-      riskFactors.add('Overweight (BMI 25-29.9)');
+      riskFactors.add('overweight_bmi_25_29'.tr);
       riskScore += 2;
     }
 
     // Age risk
     if (maternalAge.value >= 35) {
-      riskFactors.add('Advanced maternal age (≥35 years)');
+      riskFactors.add('advanced_maternal_age_35'.tr);
       riskScore += 2;
     } else if (maternalAge.value >= 25) {
       riskScore += 1;
@@ -193,23 +198,23 @@ class RiskAssessmentController extends GetxController {
 
     // Family history
     if (hasFamilyHistoryGDM.value) {
-      riskFactors.add('Family history of diabetes');
+      riskFactors.add('family_history_diabetes'.tr);
       riskScore += 2;
     }
 
     // Previous GDM
     if (hasPreviousGDM.value) {
-      riskFactors.add('Previous gestational diabetes');
+      riskFactors.add('previous_gestational_diabetes'.tr);
       riskScore += 3;
       needsEarlyScreening = true;
     }
 
-    // Ethnicity risk
-    if (ethnicity.value == 'Asian' ||
-        ethnicity.value == 'Hispanic' ||
-        ethnicity.value == 'African' ||
-        ethnicity.value == 'Native American') {
-      riskFactors.add('High-risk ethnicity (${ethnicity.value})');
+    // Ethnicity risk - compare against translated values
+    if (ethnicity.value == 'ethnicity_asian'.tr ||
+        ethnicity.value == 'ethnicity_hispanic'.tr ||
+        ethnicity.value == 'ethnicity_african'.tr ||
+        ethnicity.value == 'ethnicity_native_american'.tr) {
+      riskFactors.add('${'high_risk_ethnicity'.tr} (${ethnicity.value})');
       riskScore += 2;
     }
 
@@ -229,20 +234,17 @@ class RiskAssessmentController extends GetxController {
 
     String screeningRecommendation;
     if (needsEarlyScreening) {
-      screeningRecommendation =
-          'Early screening recommended at 16-20 weeks due to high-risk factors. Follow with standard screening at 24-28 weeks.';
+      screeningRecommendation = 'early_screening_recommended_16_20_weeks'.tr;
     } else if (riskLevel == 'High') {
-      screeningRecommendation =
-          'Screening recommended at 24-28 weeks with glucose tolerance test. Consider early screening if other risk factors develop.';
+      screeningRecommendation = 'screening_recommended_24_28_weeks'.tr;
     } else {
-      screeningRecommendation =
-          'Standard screening recommended at 24-28 weeks with glucose tolerance test.';
+      screeningRecommendation = 'standard_screening_recommended_24_28_weeks'.tr;
     }
 
     gdmRisk.value = GDMRisk(
       riskLevel: riskLevel,
       riskFactors: riskFactors.isEmpty
-          ? ['No major risk factors identified']
+          ? ['no_major_risk_factors_identified'.tr]
           : riskFactors,
       recommendedScreeningWeek: screeningWeek,
       screeningRecommendation: screeningRecommendation,
@@ -257,27 +259,27 @@ class RiskAssessmentController extends GetxController {
 
     // Risk factors
     if (hasHypertension.value) {
-      riskFactors.add('Maternal hypertension');
+      riskFactors.add('maternal_hypertension'.tr);
       riskScore += 2;
     }
     if (hasPreeclampsia.value) {
-      riskFactors.add('Preeclampsia');
+      riskFactors.add('preeclampsia'.tr);
       riskScore += 3;
     }
     if (isSmoking.value) {
-      riskFactors.add('Smoking');
+      riskFactors.add('smoking'.tr);
       riskScore += 2;
     }
     if (hasChronicDisease.value) {
-      riskFactors.add('Chronic diseases');
+      riskFactors.add('chronic_diseases'.tr);
       riskScore += 2;
     }
     if (isMultipleGestation.value) {
-      riskFactors.add('Multiple gestation');
+      riskFactors.add('multiple_gestation'.tr);
       riskScore += 2;
     }
     if (prePregnancyBMI.value < 18.5 && prePregnancyBMI.value > 0) {
-      riskFactors.add('Underweight (poor nutrition)');
+      riskFactors.add('underweight_poor_nutrition'.tr);
       riskScore += 1;
     }
 
@@ -290,17 +292,14 @@ class RiskAssessmentController extends GetxController {
       if (riskScore >= 4) {
         riskLevel = 'High';
         needsSurveillance = true;
-        recommendation =
-            'High-risk factors present. Regular fundal height measurements and ultrasound monitoring recommended. Consult your healthcare provider for increased surveillance.';
+        recommendation = 'high_risk_factors_present_recommendation'.tr;
       } else if (riskScore >= 2) {
         riskLevel = 'Moderate';
         needsSurveillance = true;
-        recommendation =
-            'Moderate risk factors present. Regular fundal height measurements and growth monitoring recommended. Consider discussing surveillance options with your healthcare provider.';
+        recommendation = 'moderate_risk_factors_present_recommendation'.tr;
       } else {
         riskLevel = 'Low';
-        recommendation =
-            'Low risk factors. Continue standard prenatal care with regular fundal height measurements. Ultrasound estimated fetal weight (EFW) can help assess growth if concerns arise.';
+        recommendation = 'low_risk_factors_recommendation'.tr;
       }
 
       iugrSgaRisk.value = IUGRSGARisk(
@@ -309,7 +308,7 @@ class RiskAssessmentController extends GetxController {
         isSGA: false,
         percentile: 0,
         riskFactors: riskFactors.isEmpty
-            ? ['No major risk factors identified']
+            ? ['no_major_risk_factors_identified'.tr]
             : riskFactors,
         recommendation: recommendation,
         needsIncreasedSurveillance: needsSurveillance,
@@ -339,20 +338,16 @@ class RiskAssessmentController extends GetxController {
     needsSurveillance = false;
 
     if (isIUGR) {
-      recommendation =
-          'IUGR detected. Requires increased surveillance with regular ultrasounds, Doppler studies, and growth velocity tracking. Delivery planning should be discussed with your healthcare provider based on gestational age and fetal status.';
+      recommendation = 'iugr_detected_recommendation'.tr;
       needsSurveillance = true;
     } else if (isSGA) {
-      recommendation =
-          'SGA detected. Baby may be constitutionally small and healthy. Regular monitoring recommended to rule out IUGR.';
+      recommendation = 'sga_detected_recommendation'.tr;
       needsSurveillance = true;
     } else if (riskLevel == 'Moderate') {
-      recommendation =
-          'Moderate risk factors present. Regular fundal height measurements and growth monitoring recommended.';
+      recommendation = 'moderate_risk_factors_growth_monitoring'.tr;
       needsSurveillance = true;
     } else {
-      recommendation =
-          'Low risk. Continue standard prenatal care with regular fundal height measurements.';
+      recommendation = 'low_risk_standard_care'.tr;
     }
 
     iugrSgaRisk.value = IUGRSGARisk(
@@ -362,7 +357,7 @@ class RiskAssessmentController extends GetxController {
       estimatedFetalWeight: latest.estimatedFetalWeight,
       percentile: percentile,
       riskFactors:
-          riskFactors.isEmpty ? ['No major risk factors'] : riskFactors,
+          riskFactors.isEmpty ? ['no_major_risk_factors'.tr] : riskFactors,
       recommendation: recommendation,
       needsIncreasedSurveillance: needsSurveillance,
     );

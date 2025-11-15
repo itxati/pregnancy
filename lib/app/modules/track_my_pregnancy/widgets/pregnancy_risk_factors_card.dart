@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PregnancyRiskFactorsCard extends StatefulWidget {
   const PregnancyRiskFactorsCard({Key? key}) : super(key: key);
@@ -99,10 +100,10 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                       ),
                     ),
                     const SizedBox(width: 16),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Risk Factors & Danger Signs',
-                        style: TextStyle(
+                        'risk_factors_danger_signs'.tr,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color(0xFFC62828),
@@ -131,17 +132,17 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                 // Main Points (Always Visible)
                 _buildMainPoint(
                   Icons.bloodtype_rounded,
-                  'Anemia: common in pregnancy',
+                  'anemia_common_pregnancy'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.health_and_safety_rounded,
-                  'Multiple risk factors to be aware of',
+                  'multiple_risk_factors_aware'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.emergency_rounded,
-                  'Know danger signs requiring urgent care',
+                  'know_danger_signs_urgent_care'.tr,
                 ),
                 // Expandable Details
                 AnimatedCrossFade(
@@ -164,12 +165,12 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                           color: const Color(0xFFEF5350).withOpacity(0.10),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Tap to learn more',
-                              style: TextStyle(
+                              'tap_to_learn_more'.tr,
+                              style: const TextStyle(
                                 fontSize: 13,
                                 color: Color(0xFFC62828),
                                 fontWeight: FontWeight.w500,
@@ -243,52 +244,52 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
           ),
         ),
         const SizedBox(height: 24),
-        _sectionTitle('Anemia in Pregnancy'),
+        _sectionTitle('anemia_in_pregnancy'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'Anemia is common in pregnancy. Risk factors include iron deficiency, dietary insufficiency, and increased iron demands. Symptoms can be subtle, so routine screening is standard.',
+          'anemia_pregnancy_description'.tr,
         ),
         const SizedBox(height: 12),
-        _subsectionTitle('Management:'),
+        _subsectionTitle('management_colon'.tr),
         const SizedBox(height: 8),
         _bulletList([
-          'Dietary iron intake',
-          'Vitamin C co-supplementation',
-          'Prescribed iron if deficiency is found',
-          'Monitor hemoglobin/hematocrit levels',
+          'dietary_iron_intake'.tr,
+          'vitamin_c_co_supplementation'.tr,
+          'prescribed_iron_deficiency'.tr,
+          'monitor_hemoglobin_hematocrit'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Other Major Risk Factors'),
+        _sectionTitle('other_major_risk_factors'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Hypertension',
-          'Diabetes',
-          'Kidney disease',
-          'Autoimmune disorders',
-          'Infections',
-          'Advanced maternal age',
-          'Cigarette smoking',
-          'Substance use',
-          'Previous obstetric complications',
-          'Undernutrition',
+          'hypertension'.tr,
+          'diabetes'.tr,
+          'kidney_disease'.tr,
+          'autoimmune_disorders'.tr,
+          'infections'.tr,
+          'advanced_maternal_age'.tr,
+          'cigarette_smoking'.tr,
+          'substance_use'.tr,
+          'previous_obstetric_complications'.tr,
+          'undernutrition'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Danger Signs in Pregnancy'),
+        _sectionTitle('danger_signs_pregnancy'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'Seek immediate medical attention if you experience any of these danger signs:',
+          'seek_immediate_medical_attention_danger_signs'.tr,
         ),
         const SizedBox(height: 12),
         _bulletList([
-          'Severe vaginal bleeding',
-          'Severe or persistent headaches with vision changes',
-          'Swelling of hands/face',
-          'Severe abdominal pain',
-          'Decreased fetal movement',
-          'Fever/chills',
-          'Severe vomiting',
-          'Dizziness or fainting',
-          'Gush of fluid indicating rupture of membranes',
+          'severe_vaginal_bleeding'.tr,
+          'severe_persistent_headaches_vision'.tr,
+          'swelling_hands_face'.tr,
+          'severe_abdominal_pain'.tr,
+          'decreased_fetal_movement'.tr,
+          'fever_chills'.tr,
+          'severe_vomiting'.tr,
+          'dizziness_fainting'.tr,
+          'gush_fluid_rupture_membranes'.tr,
         ]),
         const SizedBox(height: 24),
         Container(
@@ -323,10 +324,10 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                 ),
               ),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'If you experience any danger signs, seek immediate medical care. Regular prenatal checkups help monitor and manage risk factors.',
-                  style: TextStyle(
+                  'danger_signs_seek_medical_care'.tr,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Color(0xFFC62828),
                     fontSize: 14,
@@ -440,4 +441,3 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
     );
   }
 }
-

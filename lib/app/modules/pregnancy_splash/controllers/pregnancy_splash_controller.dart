@@ -31,52 +31,19 @@ class PregnancySplashController extends GetxController {
           final authService = Get.find<AuthService>();
 
           if (authService.isLoggedIn && authService.currentUser.value != null) {
+            // Check minimal onboarding (name, gender, age) on app start
             final userId = authService.currentUser.value!.id;
-            final isOnboardingComplete =
-                await authService.isOnboardingComplete(userId);
-
-            if (isOnboardingComplete) {
-              // Get the user's onboarding purpose to route to the correct screen
-              final onboardingPurpose =
-                  await authService.getOnboardingPurpose(userId);
-
-              if (onboardingPurpose == 'get_pregnant') {
-                Get.offAllNamed('/get_pregnant_requirements');
-              } else if (onboardingPurpose == 'pregnant') {
-                // Load due date if available
-                final dueDateStr = await authService.getOnboardingData(
-                    'onboarding_due_date', userId);
-                if (dueDateStr != null) {
-                  final dueDate = DateTime.parse(dueDateStr);
-                  Get.offAllNamed('/track_my_pregnancy',
-                      arguments: {'dueDate': dueDate});
-                } else {
-                  Get.offAllNamed('/track_my_pregnancy');
-                }
-              } else if (onboardingPurpose == 'have_baby') {
-                // Check baby birth date to determine route
-                final babyBirthDateStr = await authService.getOnboardingData(
-                    'onboarding_baby_birth_date', userId);
-                if (babyBirthDateStr != null) {
-                  final babyBirthDate = DateTime.parse(babyBirthDateStr);
-                  final now = DateTime.now();
-                  final daysSinceBirth = now.difference(babyBirthDate).inDays;
-
-                  // If more than 2 weeks (14 days), go to track_my_baby
-                  if (daysSinceBirth > 14) {
-                    Get.offAllNamed('/track_my_baby');
-                  } else {
-                    Get.offAllNamed('/goal_selection');
-                  }
-                } else {
-                  // Fallback to goal selection if no birth date
-                  Get.offAllNamed('/goal_selection');
-                }
-              } else {
-                // Fallback to goal selection if purpose is unknown
+            try {
+              final name = await authService.getOnboardingData('onboarding_name', userId) ?? '';
+              final gender = await authService.getOnboardingData('onboarding_gender', userId) ?? '';
+              final age = await authService.getOnboardingData('onboarding_age', userId) ?? '';
+              final hasMinimal = name.trim().isNotEmpty && gender.trim().isNotEmpty && age.trim().isNotEmpty;
+              if (hasMinimal) {
                 Get.offAllNamed('/goal_selection');
+              } else {
+                Get.offAllNamed('/goal_onboarding');
               }
-            } else {
+            } catch (e) {
               Get.offAllNamed('/goal_onboarding');
             }
           } else {

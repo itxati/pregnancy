@@ -94,7 +94,8 @@ class DayInfoWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "day_of_cycle".trParams({'day': controller.getCycleDay(day).toString()}),
+                      "day_of_cycle".trParams(
+                          {'day': controller.getCycleDay(day).toString()}),
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: NeoSafeColors.secondaryText,
                       ),
@@ -110,8 +111,8 @@ class DayInfoWidget extends StatelessWidget {
             runSpacing: 8,
             children: [
               _StatusChip(
-                label:
-                    "pregnancy_chance".trParams({'chance': controller.getPregnancyChance(day)}),
+                label: "pregnancy_chance"
+                    .trParams({'chance': controller.getPregnancyChance(day)}),
                 color: _getChanceColor(controller.getPregnancyChance(day)),
                 icon: Icons.trending_up,
               ),
@@ -130,7 +131,7 @@ class DayInfoWidget extends StatelessWidget {
               if (controller.isOvulationDay(day))
                 _StatusChip(
                   label: "ovulation_day".tr,
-                  color: NeoSafeColors.warning,
+                  color: NeoSafeColors.ovalutionDay,
                   icon: Icons.star,
                 ),
               if (controller.hasIntercourse(day))

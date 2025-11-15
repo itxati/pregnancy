@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NutritionCard extends StatefulWidget {
   const NutritionCard({Key? key}) : super(key: key);
@@ -98,10 +99,10 @@ class _NutritionCardState extends State<NutritionCard>
                       ),
                     ),
                     const SizedBox(width: 16),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Nutrition Guide',
-                        style: TextStyle(
+                        'nutrition_guide'.tr,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color(0xFFE65100),
@@ -130,17 +131,17 @@ class _NutritionCardState extends State<NutritionCard>
                 // Main Points (Always Visible)
                 _buildMainPoint(
                   Icons.child_care_rounded,
-                  'Age-appropriate feeding guidelines',
+                  'age_appropriate_feeding_guidelines'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.auto_awesome_rounded,
-                  'Key nutrients: Iron, Calcium, Vitamin D',
+                  'key_nutrients_iron_calcium_vitamin_d'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.family_restroom_rounded,
-                  'Healthy feeding habits & routines',
+                  'healthy_feeding_habits_routines'.tr,
                 ),
                 // Expandable Details
                 AnimatedCrossFade(
@@ -163,19 +164,19 @@ class _NutritionCardState extends State<NutritionCard>
                           color: const Color(0xFFFF9800).withOpacity(0.10),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Tap to learn more',
-                              style: TextStyle(
+                              'tap_to_learn_more'.tr,
+                              style: const TextStyle(
                                 fontSize: 13,
                                 color: Color(0xFFE65100),
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(width: 4),
-                            Icon(
+                            const SizedBox(width: 4),
+                            const Icon(
                               Icons.touch_app_rounded,
                               size: 16,
                               color: Color(0xFFFF6F00),
@@ -242,67 +243,67 @@ class _NutritionCardState extends State<NutritionCard>
           ),
         ),
         const SizedBox(height: 24),
-        _sectionTitle('What & How Much'),
+        _sectionTitle('what_how_much'.tr),
         const SizedBox(height: 12),
-        _subsectionTitle('Infants (0-6 months):'),
+        _subsectionTitle('infants_0_6_months'.tr),
         const SizedBox(height: 8),
         _descriptionText(
-          'Exclusive breastfeeding is best where possible. The World Health Organization (WHO) emphasizes that every child has the right to good nutrition.',
+          'exclusive_breastfeeding_best_who'.tr,
         ),
         const SizedBox(height: 12),
-        _subsectionTitle('Transition to complementary foods (~6 months):'),
+        _subsectionTitle('transition_complementary_foods_6_months'.tr),
         const SizedBox(height: 8),
         _descriptionText(
-          'Meals should be nutrient-dense, include multiple food groups, prepared hygienically, and eaten frequently.',
+          'meals_nutrient_dense_multiple_food_groups'.tr,
         ),
         const SizedBox(height: 12),
-        _subsectionTitle('Toddlers (~12-24 months):'),
+        _subsectionTitle('toddlers_12_24_months'.tr),
         const SizedBox(height: 8),
         _descriptionText(
-          'Offer something to eat or drink every 2-3 hours (about 3 meals + 2-3 snacks).',
+          'offer_eat_drink_every_2_3_hours'.tr,
         ),
         const SizedBox(height: 12),
-        _subsectionTitle('Older children (3-8 years):'),
+        _subsectionTitle('older_children_3_8_years'.tr),
         const SizedBox(height: 8),
         _descriptionText(
-          'Focus on balanced diet: fruits/vegetables, whole grains, lean proteins, low-fat dairy, limit added sugars & sodium.',
+          'balanced_diet_fruits_vegetables_whole_grains'.tr,
         ),
         const SizedBox(height: 20),
-        _sectionTitle('Key Nutrients & Habits'),
+        _sectionTitle('key_nutrients_habits'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Iron: Especially critical in infancy and toddler years — iron-rich foods should be offered early',
-          'Calcium & Vitamin D: For bone health, especially when the child is older and more active',
-          'Limit added sugars and ultra-processed snacks',
-          'Fat intake: For children 2-3 years, total fat may be ~30-35% of calories; for older children ~25-35% (with fats from good sources)',
+          'iron_critical_infancy_toddler_years'.tr,
+          'calcium_vitamin_d_bone_health'.tr,
+          'limit_added_sugars_ultra_processed_snacks'.tr,
+          'fat_intake_children_2_3_years'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Feeding Habits'),
+        _sectionTitle('feeding_habits'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Routine: Encourage consistent meal/snack times so the child knows mealtime structure',
-          'Self-feeding & autonomy: For toddlers/preschoolers, let them try feeding themselves (with supervision)',
-          'Family meals: Children learn by watching caregivers\' eating habits',
-          'Variety & texture progression: At ~6 months start soft purees → mashed → chopped → family-food textures by ~2-3 years',
-          'Responsive feeding: Watch hunger/fullness cues; don\'t force eat',
-          'Limit screen time during meals: Less distraction helps children tune into hunger/fullness cues',
+          'routine_consistent_meal_snack_times'.tr,
+          'self_feeding_autonomy_toddlers_preschoolers'.tr,
+          'family_meals_children_learn_watching'.tr,
+          'variety_texture_progression_6_months'.tr,
+          'responsive_feeding_watch_hunger_fullness_cues'.tr,
+          'limit_screen_time_during_meals'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Impact on Development & School Readiness'),
+        _sectionTitle('impact_development_school_readiness'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'Good nutrition supports brain growth, cognitive development, energy regulation and physical health — all of which tie into being ready for school (attention, behaviour, stamina).',
+          'good_nutrition_supports_brain_growth'.tr,
         ),
         const SizedBox(height: 20),
-        _sectionTitle('Local Tips for Pakistan'),
+        _sectionTitle('local_tips_pakistan'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Use local foods: lentils (dal), whole wheat chapati, fresh seasonal fruits/vegetables, and local lean protein sources (eggs, chicken, fish)',
-          'Water & hygiene: Emphasize clean water for cooking/feeding, safe storage',
-          'Snack ideas: Instead of sugary biscuits, propose yogurt with fruit, roasted chickpeas, fresh fruit slices',
-          'Cultural and family context: Encourage extended family involvement, sharing meals, and involving older siblings',
-          'Micronutrient monitoring: Since iron-deficiency anemia is common in South Asia, include a "check iron" reminder around toddler age',
-          'Growth tracking: Consider including local growth standards or WHO charts',
+          'use_local_foods_lentils_chapati'.tr,
+          'water_hygiene_clean_water_safe_storage'.tr,
+          'snack_ideas_yogurt_fruit_roasted_chickpeas'.tr,
+          'cultural_family_context_extended_family'.tr,
+          'micronutrient_monitoring_iron_deficiency_anemia'.tr,
+          'growth_tracking_local_standards_who_charts'.tr,
         ]),
         const SizedBox(height: 24),
         Container(
@@ -337,10 +338,10 @@ class _NutritionCardState extends State<NutritionCard>
                 ),
               ),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Nutritious foods should be offered throughout the day to ensure children are getting the nourishment and energy they need to learn and grow.',
-                  style: TextStyle(
+                  'nutritious_foods_throughout_day'.tr,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Color(0xFFE65100),
                     fontSize: 14,
@@ -454,4 +455,3 @@ class _NutritionCardState extends State<NutritionCard>
     );
   }
 }
-

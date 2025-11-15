@@ -3,13 +3,22 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/risk_assessment_controller.dart';
 
-class RiskAssessmentCard extends StatelessWidget {
+class RiskAssessmentCard extends StatefulWidget {
   final RiskAssessmentController controller;
 
   const RiskAssessmentCard({
     Key? key,
     required this.controller,
   }) : super(key: key);
+
+  @override
+  State<RiskAssessmentCard> createState() => _RiskAssessmentCardState();
+}
+
+class _RiskAssessmentCardState extends State<RiskAssessmentCard> {
+  bool _isDownSyndromeExpanded = false;
+  bool _isGDMExpanded = false;
+  bool _isIUGRSGAExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +68,7 @@ class RiskAssessmentCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Pregnancy Risk Assessment',
+                        'pregnancy_risk_assessment'.tr,
                         style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
@@ -67,7 +76,7 @@ class RiskAssessmentCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Down Syndrome • GDM • IUGR/SGA',
+                        'down_syndrome_gdm_iugr_sga'.tr,
                         style: GoogleFonts.inter(
                           fontSize: 12,
                           color: Colors.grey[600],
@@ -79,26 +88,29 @@ class RiskAssessmentCard extends StatelessWidget {
                 IconButton(
                   icon:
                       Icon(Icons.settings_outlined, color: Colors.purple[700]),
-                  onPressed: () => _showRiskFactorsDialog(context),
-                  tooltip: 'Risk Factors',
+                  onPressed: () =>
+                      _showRiskFactorsDialog(context, widget.controller),
+                  tooltip: 'risk_factors'.tr,
                 ),
               ],
             ),
           ),
 
-          // Down Syndrome Risk - Always show (will prompt for age if needed)
-          Obx(() => controller.downSyndromeRisk.value != null
-              ? _buildDownSyndromeSection(controller.downSyndromeRisk.value!)
+          // Down Syndrome Risk - Expandable section
+          Obx(() => widget.controller.downSyndromeRisk.value != null
+              ? _buildExpandableDownSyndromeSection(
+                  widget.controller.downSyndromeRisk.value!)
               : const SizedBox.shrink()),
 
-          // GDM Risk - Always calculated
-          Obx(() => controller.gdmRisk.value != null
-              ? _buildGDMSection(controller.gdmRisk.value!)
+          // GDM Risk - Expandable section
+          Obx(() => widget.controller.gdmRisk.value != null
+              ? _buildExpandableGDMSection(widget.controller.gdmRisk.value!)
               : const SizedBox.shrink()),
 
-          // IUGR/SGA Risk - Always show (based on risk factors even without ultrasound)
-          Obx(() => controller.iugrSgaRisk.value != null
-              ? _buildIUGRSGASection(controller.iugrSgaRisk.value!)
+          // IUGR/SGA Risk - Expandable section
+          Obx(() => widget.controller.iugrSgaRisk.value != null
+              ? _buildExpandableIUGRSGASection(
+                  widget.controller.iugrSgaRisk.value!)
               : const SizedBox.shrink()),
 
           // Educational Footer
@@ -118,7 +130,7 @@ class RiskAssessmentCard extends StatelessWidget {
                     Icon(Icons.info_outline, color: Colors.blue[700], size: 20),
                     const SizedBox(width: 8),
                     Text(
-                      'About Risk Assessment',
+                      'about_risk_assessment'.tr,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -129,7 +141,7 @@ class RiskAssessmentCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Risk assessments are estimates based on available information. They help guide screening and monitoring decisions. Always consult your healthcare provider for personalized medical advice.',
+                  'risk_assessment_description'.tr,
                   style: GoogleFonts.inter(
                     fontSize: 12,
                     color: Colors.blue[800],
@@ -139,7 +151,7 @@ class RiskAssessmentCard extends StatelessWidget {
                 const SizedBox(height: 12),
                 ExpansionTile(
                   title: Text(
-                    'Common Risk Factors',
+                    'common_risk_factors'.tr,
                     style: GoogleFonts.inter(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -152,21 +164,21 @@ class RiskAssessmentCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Risk factors that may affect pregnancy outcomes include:',
+                            'risk_factors_affect_pregnancy_outcomes'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 12,
                               color: Colors.blue[800],
                             ),
                           ),
                           const SizedBox(height: 8),
-                          _buildRiskFactorItem('Maternal hypertension'),
-                          _buildRiskFactorItem('Preeclampsia'),
-                          _buildRiskFactorItem('Placental insufficiency'),
-                          _buildRiskFactorItem('Infections'),
-                          _buildRiskFactorItem('Smoking and substance use'),
-                          _buildRiskFactorItem('Chronic diseases'),
-                          _buildRiskFactorItem('Multiple gestation'),
-                          _buildRiskFactorItem('Poor maternal nutrition'),
+                          _buildRiskFactorItem('maternal_hypertension'.tr),
+                          _buildRiskFactorItem('preeclampsia'.tr),
+                          _buildRiskFactorItem('placental_insufficiency'.tr),
+                          _buildRiskFactorItem('infections'.tr),
+                          _buildRiskFactorItem('smoking_substance_use'.tr),
+                          _buildRiskFactorItem('chronic_diseases'.tr),
+                          _buildRiskFactorItem('multiple_gestation'.tr),
+                          _buildRiskFactorItem('poor_maternal_nutrition'.tr),
                         ],
                       ),
                     ),
@@ -177,6 +189,250 @@ class RiskAssessmentCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildExpandableDownSyndromeSection(dynamic risk) {
+    if (risk == null) return const SizedBox.shrink();
+
+    Color riskColor;
+    if (risk.riskCategory == 'High') {
+      riskColor = Colors.red;
+    } else if (risk.riskCategory == 'Intermediate') {
+      riskColor = Colors.orange;
+    } else if (risk.riskCategory == 'Unknown') {
+      riskColor = Colors.grey;
+    } else {
+      riskColor = Colors.green;
+    }
+
+    return Container(
+      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+      decoration: BoxDecoration(
+        color: riskColor.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: riskColor.withOpacity(0.3)),
+      ),
+      child: Column(
+        children: [
+          // Header with title and dropdown button
+          InkWell(
+            onTap: () {
+              setState(() {
+                _isDownSyndromeExpanded = !_isDownSyndromeExpanded;
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Icon(Icons.analytics, color: riskColor, size: 24),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'down_syndrome_risk'.tr,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
+                  Icon(
+                    _isDownSyndromeExpanded
+                        ? Icons.keyboard_arrow_up
+                        : Icons.keyboard_arrow_down,
+                    color: riskColor,
+                    size: 28,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Expandable content
+          if (_isDownSyndromeExpanded)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              child: _buildDownSyndromeContent(risk, riskColor),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDownSyndromeContent(dynamic risk, Color riskColor) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 8),
+        Text(
+          risk.riskCategory == 'Unknown'
+              ? 'age_required_calculate_risk'.tr
+              : '${'risk_colon'.tr} 1 ${'in'.tr} ${risk.riskValue.toStringAsFixed(0)} (${risk.riskCategory} ${'risk'.tr})',
+          style: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: riskColor,
+          ),
+        ),
+        if (risk.riskCategory == 'Unknown') ...[
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.amber[50],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.info_outline, color: Colors.amber[700], size: 20),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'enter_age_risk_factors_settings'.tr,
+                    style: GoogleFonts.inter(
+                      fontSize: 12,
+                      color: Colors.amber[900],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+        const SizedBox(height: 8),
+        Text(
+          risk.explanation,
+          style: GoogleFonts.inter(
+            fontSize: 12,
+            color: Colors.grey[700],
+            height: 1.4,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.blue[50],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.info_outline, size: 16, color: Colors.blue[700]),
+                  const SizedBox(width: 8),
+                  Text(
+                    'understanding_risk_assessment'.tr,
+                    style: GoogleFonts.inter(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blue[900],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'risk_assessment_explanation'.tr,
+                style: GoogleFonts.inter(
+                  fontSize: 11,
+                  color: Colors.blue[800],
+                  height: 1.4,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        ExpansionTile(
+          title: Text(
+            'screening_options_non_invasive'.tr,
+            style: GoogleFonts.inter(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                'screening_tests_description'.tr,
+                style: GoogleFonts.inter(
+                  fontSize: 11,
+                  color: Colors.grey[600],
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ),
+            ...risk.screeningOptions
+                .map((option) => Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 4),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(Icons.check_circle_outline,
+                              size: 16, color: Colors.green),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              option,
+                              style: GoogleFonts.inter(fontSize: 12),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ))
+                .toList(),
+          ],
+        ),
+        const SizedBox(height: 8),
+        ExpansionTile(
+          title: Text(
+            'diagnostic_options_invasive'.tr,
+            style: GoogleFonts.inter(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: Colors.red[700],
+            ),
+          ),
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                'diagnostic_tests_description'.tr,
+                style: GoogleFonts.inter(
+                  fontSize: 11,
+                  color: Colors.red[600],
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ),
+            ...risk.diagnosticOptions
+                .map((option) => Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 4),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(Icons.warning_amber_rounded,
+                              size: 16, color: Colors.orange),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              option,
+                              style: GoogleFonts.inter(fontSize: 12),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ))
+                .toList(),
+          ],
+        ),
+      ],
     );
   }
 
@@ -210,7 +466,7 @@ class RiskAssessmentCard extends StatelessWidget {
               Icon(Icons.analytics, color: riskColor, size: 24),
               const SizedBox(width: 8),
               Text(
-                'Down Syndrome Risk',
+                'down_syndrome_risk'.tr,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -222,8 +478,8 @@ class RiskAssessmentCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             risk.riskCategory == 'Unknown'
-                ? 'Age Required to Calculate Risk'
-                : 'Risk: 1 in ${risk.riskValue.toStringAsFixed(0)} (${risk.riskCategory} Risk)',
+                ? 'age_required_calculate_risk'.tr
+                : '${'risk_colon'.tr} 1 ${'in'.tr} ${risk.riskValue.toStringAsFixed(0)} (${risk.riskCategory} ${'risk'.tr})',
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -244,7 +500,7 @@ class RiskAssessmentCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Please enter your age in Risk Factors settings to calculate your Down syndrome risk.',
+                      'enter_age_risk_factors_settings'.tr,
                       style: GoogleFonts.inter(
                         fontSize: 12,
                         color: Colors.amber[900],
@@ -279,7 +535,7 @@ class RiskAssessmentCard extends StatelessWidget {
                     Icon(Icons.info_outline, size: 16, color: Colors.blue[700]),
                     const SizedBox(width: 8),
                     Text(
-                      'Understanding Risk Assessment',
+                      'understanding_risk_assessment'.tr,
                       style: GoogleFonts.inter(
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
@@ -290,7 +546,7 @@ class RiskAssessmentCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  'Risk varies by maternal age and other factors. Screening tests assess risk and provide estimates, not diagnoses. Screening helps identify those who may benefit from diagnostic testing.',
+                  'risk_assessment_explanation'.tr,
                   style: GoogleFonts.inter(
                     fontSize: 11,
                     color: Colors.blue[800],
@@ -303,7 +559,7 @@ class RiskAssessmentCard extends StatelessWidget {
           const SizedBox(height: 12),
           ExpansionTile(
             title: Text(
-              'Screening Options (Non-invasive)',
+              'screening_options_non_invasive'.tr,
               style: GoogleFonts.inter(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
@@ -313,7 +569,7 @@ class RiskAssessmentCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: Text(
-                  'Screening tests assess risk but do not provide a diagnosis. They are non-invasive and help identify pregnancies that may benefit from diagnostic testing.',
+                  'screening_tests_description'.tr,
                   style: GoogleFonts.inter(
                     fontSize: 11,
                     color: Colors.grey[600],
@@ -346,7 +602,7 @@ class RiskAssessmentCard extends StatelessWidget {
           const SizedBox(height: 8),
           ExpansionTile(
             title: Text(
-              'Diagnostic Options (Invasive)',
+              'diagnostic_options_invasive'.tr,
               style: GoogleFonts.inter(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
@@ -357,7 +613,7 @@ class RiskAssessmentCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: Text(
-                  'Diagnostic tests can provide a definitive diagnosis but are invasive procedures with a small risk of complications. They are typically recommended when screening indicates elevated risk.',
+                  'diagnostic_tests_description'.tr,
                   style: GoogleFonts.inter(
                     fontSize: 11,
                     color: Colors.red[600],
@@ -392,6 +648,206 @@ class RiskAssessmentCard extends StatelessWidget {
     );
   }
 
+  Widget _buildExpandableGDMSection(dynamic risk) {
+    Color riskColor;
+    if (risk.riskLevel == 'High') {
+      riskColor = Colors.red;
+    } else if (risk.riskLevel == 'Moderate') {
+      riskColor = Colors.orange;
+    } else {
+      riskColor = Colors.green;
+    }
+
+    return Container(
+      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+      decoration: BoxDecoration(
+        color: riskColor.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: riskColor.withOpacity(0.3)),
+      ),
+      child: Column(
+        children: [
+          // Header with title and dropdown button
+          InkWell(
+            onTap: () {
+              setState(() {
+                _isGDMExpanded = !_isGDMExpanded;
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Icon(Icons.bloodtype, color: riskColor, size: 24),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'gdm_risk_assessment'.tr,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
+                  Icon(
+                    _isGDMExpanded
+                        ? Icons.keyboard_arrow_up
+                        : Icons.keyboard_arrow_down,
+                    color: riskColor,
+                    size: 28,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Expandable content
+          if (_isGDMExpanded)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              child: _buildGDMContent(risk, riskColor),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGDMContent(dynamic risk, Color riskColor) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 8),
+        Text(
+          '${'risk_level_colon'.tr} ${risk.riskLevel}',
+          style: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: riskColor,
+          ),
+        ),
+        const SizedBox(height: 8),
+        if (risk.riskFactors.isNotEmpty) ...[
+          Text(
+            'risk_factors_colon'.tr,
+            style: GoogleFonts.inter(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey[700],
+            ),
+          ),
+          const SizedBox(height: 4),
+          ...risk.riskFactors.map((factor) => Padding(
+                padding: const EdgeInsets.only(left: 16, top: 4),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(Icons.circle, size: 6, color: riskColor),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        factor,
+                        style: GoogleFonts.inter(
+                            fontSize: 12, color: Colors.grey[700]),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+          const SizedBox(height: 12),
+        ],
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.blue[50],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.calendar_today, size: 16, color: Colors.blue[700]),
+                  const SizedBox(width: 8),
+                  Text(
+                    'screening_recommendation'.tr,
+                    style: GoogleFonts.inter(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blue[900],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                risk.screeningRecommendation,
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  color: Colors.blue[800],
+                ),
+              ),
+              const SizedBox(height: 12),
+              ExpansionTile(
+                title: Text(
+                  'about_gdm_screening'.tr,
+                  style: GoogleFonts.inter(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'gdm_risk_title'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blue[900],
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'gdm_risk_description'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 11,
+                            color: Colors.blue[800],
+                            height: 1.5,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'screening_guidelines'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blue[900],
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'screening_guidelines_description'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 11,
+                            color: Colors.blue[800],
+                            height: 1.5,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildGDMSection(dynamic risk) {
     Color riskColor;
     if (risk.riskLevel == 'High') {
@@ -418,7 +874,7 @@ class RiskAssessmentCard extends StatelessWidget {
               Icon(Icons.bloodtype, color: riskColor, size: 24),
               const SizedBox(width: 8),
               Text(
-                'GDM Risk Assessment',
+                'gdm_risk_assessment'.tr,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -429,7 +885,7 @@ class RiskAssessmentCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'Risk Level: ${risk.riskLevel}',
+            '${'risk_level_colon'.tr} ${risk.riskLevel}',
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -439,7 +895,7 @@ class RiskAssessmentCard extends StatelessWidget {
           const SizedBox(height: 8),
           if (risk.riskFactors.isNotEmpty) ...[
             Text(
-              'Risk Factors:',
+              'risk_factors_colon'.tr,
               style: GoogleFonts.inter(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
@@ -481,7 +937,7 @@ class RiskAssessmentCard extends StatelessWidget {
                         size: 16, color: Colors.blue[700]),
                     const SizedBox(width: 8),
                     Text(
-                      'Screening Recommendation',
+                      'screening_recommendation'.tr,
                       style: GoogleFonts.inter(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -501,7 +957,7 @@ class RiskAssessmentCard extends StatelessWidget {
                 const SizedBox(height: 12),
                 ExpansionTile(
                   title: Text(
-                    'About GDM Screening',
+                    'about_gdm_screening'.tr,
                     style: GoogleFonts.inter(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
@@ -514,7 +970,7 @@ class RiskAssessmentCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Gestational Diabetes Mellitus (GDM) Risk:',
+                            'gdm_risk_title'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -523,7 +979,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'GDM risk is high when risk factors exist such as obesity, advanced maternal age, family history of diabetes, previous GDM, or certain ethnic backgrounds (Asian, Hispanic, African, Native American).',
+                            'gdm_risk_description'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 11,
                               color: Colors.blue[800],
@@ -532,7 +988,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'Screening Guidelines:',
+                            'screening_guidelines'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -541,7 +997,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'Universal or risk-based screening occurs in many guidelines. Standard screening typically happens at 24-28 weeks with a glucose tolerance test. Early screening (16-20 weeks) may be recommended if multiple high-risk factors are present.',
+                            'screening_guidelines_description'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 11,
                               color: Colors.blue[800],
@@ -558,6 +1014,314 @@ class RiskAssessmentCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildExpandableIUGRSGASection(dynamic risk) {
+    if (risk == null) return const SizedBox.shrink();
+
+    Color riskColor;
+    if (risk.riskLevel == 'High') {
+      riskColor = Colors.red;
+    } else if (risk.riskLevel == 'Moderate') {
+      riskColor = Colors.orange;
+    } else {
+      riskColor = Colors.green;
+    }
+
+    return Container(
+      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+      decoration: BoxDecoration(
+        color: riskColor.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: riskColor.withOpacity(0.3)),
+      ),
+      child: Column(
+        children: [
+          // Header with title and dropdown button
+          InkWell(
+            onTap: () {
+              setState(() {
+                _isIUGRSGAExpanded = !_isIUGRSGAExpanded;
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Icon(Icons.child_care, color: riskColor, size: 24),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'iugr_sga_risk_assessment'.tr,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
+                  Icon(
+                    _isIUGRSGAExpanded
+                        ? Icons.keyboard_arrow_up
+                        : Icons.keyboard_arrow_down,
+                    color: riskColor,
+                    size: 28,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Expandable content
+          if (_isIUGRSGAExpanded)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              child: _buildIUGRSGAContent(risk, riskColor),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildIUGRSGAContent(dynamic risk, Color riskColor) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 8),
+        if (risk.isIUGR || risk.isSGA) ...[
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: riskColor.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  risk.isIUGR ? Icons.warning : Icons.info_outline,
+                  color: riskColor,
+                  size: 20,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    risk.isIUGR
+                        ? 'iugr_detected_message'.tr
+                        : 'sga_detected_message'.tr,
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: riskColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
+        Text(
+          '${'risk_level_colon'.tr} ${risk.riskLevel}',
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: riskColor,
+          ),
+        ),
+        if (risk.estimatedFetalWeight != null &&
+            risk.estimatedFetalWeight! > 0) ...[
+          const SizedBox(height: 8),
+          Text(
+            '${'estimated_fetal_weight_colon'.tr} ${(risk.estimatedFetalWeight! / 1000).toStringAsFixed(2)} ${'kg_unit'.tr}',
+            style: GoogleFonts.inter(fontSize: 13, color: Colors.grey[700]),
+          ),
+          Text(
+            '${'percentile_colon'.tr} ${risk.percentile}th',
+            style: GoogleFonts.inter(fontSize: 13, color: Colors.grey[700]),
+          ),
+        ] else if (risk.estimatedFetalWeight == null ||
+            risk.estimatedFetalWeight == 0) ...[
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.blue[50],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.info_outline, color: Colors.blue[700], size: 20),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'no_ultrasound_data_message'.tr,
+                    style: GoogleFonts.inter(
+                      fontSize: 11,
+                      color: Colors.blue[800],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+        const SizedBox(height: 12),
+        if (risk.riskFactors.isNotEmpty) ...[
+          Text(
+            'risk_factors_colon'.tr,
+            style: GoogleFonts.inter(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey[700],
+            ),
+          ),
+          const SizedBox(height: 4),
+          ...risk.riskFactors.map((factor) => Padding(
+                padding: const EdgeInsets.only(left: 16, top: 4),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(Icons.circle, size: 6, color: riskColor),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        factor,
+                        style: GoogleFonts.inter(
+                            fontSize: 12, color: Colors.grey[700]),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+          const SizedBox(height: 12),
+        ],
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.orange[50],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.medical_services,
+                      size: 16, color: Colors.orange[700]),
+                  const SizedBox(width: 8),
+                  Text(
+                    'recommendation'.tr,
+                    style: GoogleFonts.inter(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.orange[900],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                risk.recommendation,
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  color: Colors.orange[800],
+                ),
+              ),
+              const SizedBox(height: 12),
+              ExpansionTile(
+                title: Text(
+                  'understanding_iugr_sga'.tr,
+                  style: GoogleFonts.inter(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'what_is_iugr_sga'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.orange[900],
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'iugr_sga_definition'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 11,
+                            color: Colors.orange[800],
+                            height: 1.5,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'why_it_matters'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.orange[900],
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'iugr_sga_why_matters'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 11,
+                            color: Colors.orange[800],
+                            height: 1.5,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'how_its_detected'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.orange[900],
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'iugr_sga_detection'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 11,
+                            color: Colors.orange[800],
+                            height: 1.5,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'management_principles'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.orange[900],
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'iugr_sga_management'.tr,
+                          style: GoogleFonts.inter(
+                            fontSize: 11,
+                            color: Colors.orange[800],
+                            height: 1.5,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -589,9 +1353,9 @@ class RiskAssessmentCard extends StatelessWidget {
               Icon(Icons.child_care, color: riskColor, size: 24),
               const SizedBox(width: 8),
               Text(
-                'IUGR/SGA Risk Assessment',
+                'iugr_sga_risk_assessment'.tr,
                 style: GoogleFonts.poppins(
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87,
                 ),
@@ -617,8 +1381,8 @@ class RiskAssessmentCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       risk.isIUGR
-                          ? 'IUGR Detected - Fetus not reaching growth potential'
-                          : 'SGA Detected - Baby smaller than typical',
+                          ? 'iugr_detected_message'.tr
+                          : 'sga_detected_message'.tr,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -632,7 +1396,7 @@ class RiskAssessmentCard extends StatelessWidget {
             const SizedBox(height: 12),
           ],
           Text(
-            'Risk Level: ${risk.riskLevel}',
+            '${'risk_level_colon'.tr} ${risk.riskLevel}',
             style: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -643,11 +1407,11 @@ class RiskAssessmentCard extends StatelessWidget {
               risk.estimatedFetalWeight! > 0) ...[
             const SizedBox(height: 8),
             Text(
-              'Estimated Fetal Weight: ${(risk.estimatedFetalWeight! / 1000).toStringAsFixed(2)} kg',
+              '${'estimated_fetal_weight_colon'.tr} ${(risk.estimatedFetalWeight! / 1000).toStringAsFixed(2)} ${'kg_unit'.tr}',
               style: GoogleFonts.inter(fontSize: 13, color: Colors.grey[700]),
             ),
             Text(
-              'Percentile: ${risk.percentile}th',
+              '${'percentile_colon'.tr} ${risk.percentile}th',
               style: GoogleFonts.inter(fontSize: 13, color: Colors.grey[700]),
             ),
           ] else if (risk.estimatedFetalWeight == null ||
@@ -665,7 +1429,7 @@ class RiskAssessmentCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'No ultrasound data available. Risk assessment is based on risk factors. Add ultrasound measurements for more accurate assessment.',
+                      'no_ultrasound_data_message'.tr,
                       style: GoogleFonts.inter(
                         fontSize: 11,
                         color: Colors.blue[800],
@@ -679,7 +1443,7 @@ class RiskAssessmentCard extends StatelessWidget {
           const SizedBox(height: 12),
           if (risk.riskFactors.isNotEmpty) ...[
             Text(
-              'Risk Factors:',
+              'risk_factors_colon'.tr,
               style: GoogleFonts.inter(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
@@ -721,7 +1485,7 @@ class RiskAssessmentCard extends StatelessWidget {
                         size: 16, color: Colors.orange[700]),
                     const SizedBox(width: 8),
                     Text(
-                      'Recommendation',
+                      'recommendation'.tr,
                       style: GoogleFonts.inter(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -741,7 +1505,7 @@ class RiskAssessmentCard extends StatelessWidget {
                 const SizedBox(height: 12),
                 ExpansionTile(
                   title: Text(
-                    'Understanding IUGR & SGA',
+                    'understanding_iugr_sga'.tr,
                     style: GoogleFonts.inter(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
@@ -754,7 +1518,7 @@ class RiskAssessmentCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'What is IUGR/SGA?',
+                            'what_is_iugr_sga'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -763,8 +1527,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            '• IUGR (Intrauterine Growth Restriction): Refers to a fetus not reaching its growth potential, usually defined by estimated fetal weight below the 10th percentile for gestational age.\n\n'
-                            '• SGA (Small-for-Gestational-Age): Means a baby is smaller than typical for gestational age but can be constitutionally small with normal health.',
+                            'iugr_sga_definition'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 11,
                               color: Colors.orange[800],
@@ -773,7 +1536,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'Why it matters:',
+                            'why_it_matters'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -782,7 +1545,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'Increased risk of stillbirth, perinatal distress, and later-onset health issues.',
+                            'iugr_sga_why_matters'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 11,
                               color: Colors.orange[800],
@@ -791,7 +1554,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'How it\'s detected:',
+                            'how_its_detected'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -800,7 +1563,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'Regular fundal height measurements, ultrasound estimated fetal weight (EFW), Doppler studies, and growth velocity tracking.',
+                            'iugr_sga_detection'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 11,
                               color: Colors.orange[800],
@@ -809,7 +1572,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'Management principles:',
+                            'management_principles'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -818,7 +1581,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'Increased surveillance, timely delivery planning if there are signs of distress or abnormal Dopplers. Decision on expectant vs early delivery based on gestational age and fetal status.',
+                            'iugr_sga_management'.tr,
                             style: GoogleFonts.inter(
                               fontSize: 11,
                               color: Colors.orange[800],
@@ -838,11 +1601,12 @@ class RiskAssessmentCard extends StatelessWidget {
     );
   }
 
-  void _showRiskFactorsDialog(BuildContext context) {
+  void _showRiskFactorsDialog(
+      BuildContext context, RiskAssessmentController controller) {
     // Safety check before showing dialog
     if (!Get.isRegistered<RiskAssessmentController>() &&
         controller.runtimeType != RiskAssessmentController) {
-      Get.snackbar('Error', 'Risk assessment controller not available');
+      Get.snackbar('error'.tr, 'risk_assessment_controller_not_available'.tr);
       return;
     }
 
@@ -857,7 +1621,7 @@ class RiskAssessmentCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Risk Factors',
+                  'risk_factors'.tr,
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -867,7 +1631,7 @@ class RiskAssessmentCard extends StatelessWidget {
                 Obx(() => Column(
                       children: [
                         SwitchListTile(
-                          title: Text('Family History of Diabetes'),
+                          title: Text('family_history_diabetes'.tr),
                           value: controller.hasFamilyHistoryGDM.value,
                           onChanged: (v) {
                             controller.hasFamilyHistoryGDM.value = v;
@@ -875,7 +1639,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           },
                         ),
                         SwitchListTile(
-                          title: Text('Previous GDM'),
+                          title: Text('previous_gdm'.tr),
                           value: controller.hasPreviousGDM.value,
                           onChanged: (v) {
                             controller.hasPreviousGDM.value = v;
@@ -883,7 +1647,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           },
                         ),
                         SwitchListTile(
-                          title: Text('Hypertension'),
+                          title: Text('hypertension'.tr),
                           value: controller.hasHypertension.value,
                           onChanged: (v) {
                             controller.hasHypertension.value = v;
@@ -891,7 +1655,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           },
                         ),
                         SwitchListTile(
-                          title: Text('Preeclampsia'),
+                          title: Text('preeclampsia'.tr),
                           value: controller.hasPreeclampsia.value,
                           onChanged: (v) {
                             controller.hasPreeclampsia.value = v;
@@ -899,7 +1663,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           },
                         ),
                         SwitchListTile(
-                          title: Text('Smoking'),
+                          title: Text('smoking'.tr),
                           value: controller.isSmoking.value,
                           onChanged: (v) {
                             controller.isSmoking.value = v;
@@ -907,7 +1671,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           },
                         ),
                         SwitchListTile(
-                          title: Text('Chronic Diseases'),
+                          title: Text('chronic_diseases'.tr),
                           value: controller.hasChronicDisease.value,
                           onChanged: (v) {
                             controller.hasChronicDisease.value = v;
@@ -915,7 +1679,7 @@ class RiskAssessmentCard extends StatelessWidget {
                           },
                         ),
                         SwitchListTile(
-                          title: Text('Multiple Gestation'),
+                          title: Text('multiple_gestation'.tr),
                           value: controller.isMultipleGestation.value,
                           onChanged: (v) {
                             controller.isMultipleGestation.value = v;
@@ -924,7 +1688,7 @@ class RiskAssessmentCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          'Ethnicity',
+                          'ethnicity'.tr,
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -941,12 +1705,12 @@ class RiskAssessmentCard extends StatelessWidget {
                             ),
                           ),
                           items: [
-                            'Asian',
-                            'Hispanic',
-                            'African',
-                            'Caucasian',
-                            'Native American',
-                            'Other'
+                            'ethnicity_asian'.tr,
+                            'ethnicity_hispanic'.tr,
+                            'ethnicity_african'.tr,
+                            'ethnicity_caucasian'.tr,
+                            'ethnicity_native_american'.tr,
+                            'ethnicity_other'.tr
                           ]
                               .map((e) =>
                                   DropdownMenuItem(value: e, child: Text(e)))
@@ -966,7 +1730,7 @@ class RiskAssessmentCard extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () => Get.back(),
-                      child: Text('Close'),
+                      child: Text('close'.tr),
                     ),
                   ],
                 ),

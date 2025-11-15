@@ -1,9 +1,15 @@
 final Map<String, String> skrPK = {
+  "bmi": "بی ایم آئی",
+  "please_select_language_first": "سڀ توں پہلے اپنی زبان چُنّو",
+
   'hello': 'ہیلو',
   'welcome': 'بھلی کریا آھیں',
   'week': 'ہفتہ',
-  'sardar_trust': 'سردار ٹرسٹ',
-  'pregnancy_companion': 'تُہاڈی حمل دی سنگی',
+  'size': 'سائز',
+  'start_birth_plan': 'جنم دی تیاری شروع کرو',
+  'start_birth_plan_title': 'تمام پہلے تیاری شروع کرو',
+  'sardar_trust': 'اسفیئر کنسلٹنگ',
+  'pregnancy_companion': 'آپ کا سفرِ مادریت',
   'pregnancy_journey': 'حمل دا سفر',
   'weeks': 'ہفتے',
   'weeks_pregnant': 'حمل دے ہفتے',
@@ -48,10 +54,24 @@ final Map<String, String> skrPK = {
   'enter_your_email': 'اپنی ای میل لکھو',
   'enter_your_password': 'اپنا پاس ورڈ لکھو',
   'invalid_email': 'صحیح ای میل لکھو',
+  'gestational_age': 'جیستیشنل عمر',
+
+  'speack_button_title': 'تفصیل سے وضاحت کریں',
+  'understand_your_days': 'اپنے دنوں کو سمجھیں\n'
+      'ہر مہینے عورت کے جسم میں ایک قدرتی نظام ہوتا ہے۔\n\n'
+      'گلابی دن آپ کے حیض کے دن ہوتے ہیں۔ ان دنوں میں خون آتا ہے۔ '
+      'آپ کا جسم خود کو صاف کر کے نئے چکر کے لیے تیار کر رہا ہوتا ہے۔\n'
+      'گلابی دنوں کے بعد سبز دن آتے ہیں۔ یہ آپ کے زرخیز دن ہوتے ہیں۔ '
+      'ان دنوں میں اگر آپ شوہر کے ساتھ ہمبستری کریں تو حمل ٹھہرنے کے زیادہ امکانات ہوتے ہیں۔\n'
+      'سبز دنوں کے درمیان ایک سرخ دن آتا ہے — یہ انڈہ بننے کا دن (اوویولیشن کا دن) ہوتا ہے۔ '
+      'اس دن حمل ٹھہرنے کے سب سے زیادہ امکانات ہوتے ہیں۔\n\n'
+      'اپنے گلابی، سبز، اور سرخ دنوں کو جان کر آپ اپنے جسم کو بہتر طور پر سمجھ سکتی ہیں — '
+      'کب حمل ٹھہر سکتا ہے اور کب نہیں۔',
 
   // Google Login page
-  'welcome_to_babysafe': 'بیبی سیف وچ بھلی کریا آھیں',
-  'your_pregnancy_companion': 'تُہاڈی حمل دی سنگی',
+  'welcome_to_babysafe': 'اسفیئر کنسلٹنگ وچ بھلی کریا آھیں',
+  'your_pregnancy_companion': 'آپ کا سفرِ مادریت',
+  'your_pregnancy': 'تُہاڈی حمل',
   'what_you_get': 'تُہاکوں کیا ملسی',
   'track_pregnancy': 'حمل ٹریک کرو',
   'track_pregnancy_desc': 'تفصیلی معلومات نال اپنے حمل کوں ہفتہ وار مانیٹر کرو',
@@ -62,7 +82,7 @@ final Map<String, String> skrPK = {
   'continue_with_google': 'گوگل نال جاری رکھو',
   'by_continuing_you_agree':
       'جاری رکھن نال، تُہاں ساڈی شرائط تے رازداری دی پالیسی نال متفق آؤ',
-  'welcome_back_user': 'واپس بھلی کریا آھیں، {name}!',
+  'welcome_back_user': 'واپس بھلی کریا آھیں، @name !',
   'google_signin_failed': 'گوگل سائن ان ناکام',
   'account_exists_different_credential':
       'ایں کریڈنشل نال پہلے ہی کھاتہ موجود اے',
@@ -87,6 +107,19 @@ final Map<String, String> skrPK = {
   'reset_link_sent': 'ری سیٹ لنک بھیج دِتا',
   'ok': 'ٹھیک آہے',
 
+// آن بورڈنگ دے تھوڑے سوال
+  'onboarding_name_title': 'اپنا ناں لکھو',
+  'onboarding_name_hint': 'اپنا ناں لکھو',
+  'onboarding_age_title': 'اپنی عمر لکھو',
+  'onboarding_age_hint': 'اپنی عمر لکھو',
+  'onboarding_gender_title': 'تُہاڈی جنس کیا ہے؟',
+  'onboarding_gender_female': 'عورت',
+  'onboarding_gender_male': 'مرد',
+  'onboarding_next': 'اگلا',
+  'onboarding_continue': 'جاری رکھو',
+  'onboarding_back': 'پچھے واپس',
+  'gender': 'جنس',
+
   // Goal selection page
   'what_is_your_goal': 'تہاݙا مقصد کیا ہے؟',
   'choose_your_journey': 'ساݙے نال اپنی سفر دا انتخاب کرو',
@@ -94,7 +127,7 @@ final Map<String, String> skrPK = {
   'get_pregnant_subtitle': 'اپنے چکر تے بہترین دن ٹریک کرو',
   'track_my_pregnancy': 'میری حمل دی نگرانی کرو',
   'track_my_pregnancy_subtitle':
-      'اپنے بچے دی ترقی تے آنے والے مراحل دا پتہ رکھو',
+      'اپنے بچے دی نشونما تے آنے والے مراحل دا پتہ رکھو',
   'child_development': 'بچے دی نشونما',
   'child_development_subtitle':
       'اپنے نواں جنے بچے دے پہلے چھ مہینے بارے باخبر رہو',
@@ -103,7 +136,7 @@ final Map<String, String> skrPK = {
       'بحالی، نواں جنے بچے دی دیکھ بھال تے ذہنی سکون لئی رہنمائی',
 
   // Get Pregnant Flow
-  'fertility_journey': 'زرخیزی دا سفر',
+  'fertility_journey': 'حمل دا سفر',
   'track_your_cycle': 'اپنے چکر نال دھیان نال ٹریک کرو',
   'calendar_guide': 'کیلنڈر رہنمائی',
   'period': 'حیض',
@@ -117,8 +150,8 @@ final Map<String, String> skrPK = {
   'set_period_start': 'حیض دا آغاز مقرر کرو',
   'log_intimacy': 'قربت درج کرو',
   'remove_log': 'اندراج ہٹاؤ',
-  'day_of_cycle': 'چکر دا دن {day}',
-  'pregnancy_chance': 'حمل دا امکان: {chance}',
+  'day_of_cycle': 'چکر دا دن @day',
+  'pregnancy_chance': 'حمل دا امکان: @chance',
   'period_day': 'حیض دا دن',
   'fertile_window': 'زرخیز مدت',
   'ovulation_day': 'انڈہ چھوڑن دا دن',
@@ -126,9 +159,9 @@ final Map<String, String> skrPK = {
   'cycle_overview': 'چکر دا جائزہ',
   'last_period': 'پچھلا حیض',
   'next_period': 'اگلا حیض',
-  'in_days': '{days} دن وچ',
+  'in_days': '@days دن وچ',
   'no_period_data': 'کوئی ماہواری دا ڈیٹا دستیاب کائنی',
-  'overdue': '{days} دن توں زیادہ',
+  'overdue': '@days دن توں زیادہ',
   'fertile_window_range': 'زرخیز مدت دا وقت',
   'todays_insights': 'اڄ دیاں معلومات',
   'fertility': 'زرخیزی',
@@ -168,7 +201,7 @@ final Map<String, String> skrPK = {
   'breastfeeding': 'دودھ پلانا',
   'family_planning': 'خاندانی منصوبہ بندی',
   'dos': 'کرنے والیاں گلّاں',
-  'donts': 'نہ کرنے والیاں گلّاں',
+  'donts': 'اِن کمّوں توں گریز کرو',
   'supplements': 'خوراکی سپلیمنٹس',
 
   // Physical Changes
@@ -593,7 +626,7 @@ final Map<String, String> skrPK = {
   'baby_birth_date_saved_success': 'ٻال دی ڄڻ دی تاريخ محفوظ ٿئی!',
   'due_date_set': 'ڄڻ دی تاريخ مقرر ٿئی',
   'due_date_calculated_message':
-      '42 ڏينهن دی حمل دے حساب نال ڄڻ دی تاريخ: {date}',
+      '42 ڏينهن دی حمل دے حساب نال ڄڻ دی تاريخ: @date',
   'error': 'غلطی',
   'invalid_goal_selected': 'غلط مقصد چونڊيو ڳيا',
 // Gender Selector
@@ -606,11 +639,12 @@ final Map<String, String> skrPK = {
   'weeks': 'هفتا',
   'your_weekly_update': 'تُہاݙی هفتيوار تازه کاری',
   'important_alerts': 'اهم اطلاع',
-  'week_reminders': 'هفته {week} ياد دہانی',
+  'week_reminders': 'هفته @week ياد دہانی',
   'good_morning': 'سڀا خير،',
   'good_afternoon': 'دوپہر بخير،',
   'good_evening': 'شام بخير،',
   'good_night': 'رات بخير،',
+  'trimester': 'ٽرائيمسٽر',
   'first_trimester': 'پهريون ٽرائيمسٽر',
   'second_trimester': 'ٻيون ٽرائيمسٽر',
   'third_trimester': 'ٽيون ٽرائيمسٽر',
@@ -621,7 +655,7 @@ final Map<String, String> skrPK = {
   'first_trimester_title': 'پهريون ٽرائيمسٽر',
   'second_trimester_title': 'ٻيون ٽرائيمسٽر',
   'third_trimester_title': 'ٽيون ٽرائيمسٽر',
-  'week_of': 'هفته {current} وچوں {total}',
+  'week_of': 'هفته @current وچوں @total',
   'early_development_stage': 'ابتدائی ترقي جو مرحلو',
   'growth_and_movement': 'واڌ تے حرڪت',
   'final_preparation': 'آخری تياری',
@@ -657,6 +691,7 @@ final Map<String, String> skrPK = {
   'essential_counselling_mothers': 'نویں ماواں لئی ضروری مشورے',
 
 // Weekly details fallbacks
+  'baby_size': 'بچے کی جسامت',
   'pregnancy_week_baby_dev_fallback':
       'توانڈا بچہ ای ہفتے تیزی نال ترقی کر ریا اے۔',
   'baby_size_info_fallback': 'ای ہفتے بچہ دی جسامت دی معلومات دستیاب نئیں۔',
@@ -688,8 +723,8 @@ final Map<String, String> skrPK = {
       "ہارمونز: تُہاڈے ہارمونز انڈاشیاں وچ انڈیاں نوں پُختہ کرندے نیں۔",
 
   'pregnancy_week_0_dos_0': "فولک ایسڈ شروع کرو (400–800 mg روزانہ)",
-  'pregnancy_week_0_dos_1': "چھوٹی بیماریوں توں بچاؤ (Tropical Diseases)",
-  'pregnancy_week_0_dos_2': "جے Hb < 11 ہووے تاں لوہا (Fe) شروع کرو",
+  'pregnancy_week_0_dos_1': "دماغ تے ریڑھ دی ہڈی دے سنگین نقص توں بچاؤ",
+  'pregnancy_week_0_dos_2': "جے خون دی شرح 11 توں گھٹ ہے تاں آئرن شروع کرو",
   'pregnancy_week_0_dos_3': "سگریٹ تے منشیات توں پرہیز کرو",
   'pregnancy_week_0_dos_4': "صحت مند خوراک تے پانی دا خیال رکھو",
 
@@ -724,8 +759,8 @@ final Map<String, String> skrPK = {
       "انڈا: اوولیوشن توں بعد 24 گھنٹے زندہ رہندا اے، ایہ وقت حمل ٹھہراون دا موقعہ ہوندا اے۔",
 
   'pregnancy_week_1_dos_0': "فولک ایسڈ شروع کرو (400–800 mg روزانہ)",
-  'pregnancy_week_1_dos_1': "چھوٹی بیماریوں توں بچاؤ (Tropical Diseases)",
-  'pregnancy_week_1_dos_2': "جے Hb < 11 ہووے تاں لوہا (Fe) شروع کرو",
+  'pregnancy_week_1_dos_1': "دماغ تے ریڑھ دی ہڈی دے سنگین نقص توں بچاؤ",
+  'pregnancy_week_1_dos_2': "جے خون دی شرح 11 توں گھٹ ہے تاں آئرن شروع کرو",
   'pregnancy_week_1_dos_3': "سگریٹ تے منشیات توں پرہیز کرو",
   'pregnancy_week_1_dos_4': "صحت مند خوراک تے پانی دا خیال رکھو",
 
@@ -756,8 +791,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_2_details_2':
       "مورولا: زائیگوٹ ونددا رہندا اے تے خلییاں دا گُچھا بن جاندے اے۔",
   'pregnancy_week_2_dos_0': "فولوک ایسڈ شروع کرو (400–800mg روزانہ)",
-  'pregnancy_week_2_dos_1': "نظرانداز کیتیاں بیماریاں توں بچاؤ",
-  'pregnancy_week_2_dos_2': "جے Hb < 11 اے تاں آئرن شروع کرو",
+  'pregnancy_week_2_dos_1': "دماغ تے ریڑھ دی ہڈی دے سنگین نقص توں بچاؤ",
+  'pregnancy_week_2_dos_2': "جے خون دی شرح 11 توں گھٹ ہے تاں آئرن شروع کرو",
   'pregnancy_week_2_dos_3': "سگریٹ تے نشہ توں پرہیز کرو",
   'pregnancy_week_2_dos_4': "صحت مند خوراک تے پانی پیندے رہو",
   'pregnancy_week_2_donts_0': "زیادہ کیفین توں پرہیز کرو",
@@ -787,8 +822,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_3_details_2':
       "ایمبریو: بلاسٹوسسٹ دے خلیے تیزی نال وند کے ایمبریو بناؤندے نیں۔",
   'pregnancy_week_3_dos_0': "فولوک ایسڈ شروع کرو (400–800mg روزانہ)",
-  'pregnancy_week_3_dos_1': "نظرانداز کیتیاں بیماریاں توں بچاؤ",
-  'pregnancy_week_3_dos_2': "جے Hb < 11 اے تاں آئرن شروع کرو",
+  'pregnancy_week_3_dos_1': "دماغ تے ریڑھ دی ہڈی دے سنگین نقص توں بچاؤ",
+  'pregnancy_week_3_dos_2': "جے خون دی شرح 11 توں گھٹ ہے تاں آئرن شروع کرو",
   'pregnancy_week_3_dos_3': "سگریٹ تے نشہ توں پرہیز کرو",
   'pregnancy_week_3_dos_4': "صحت مند خوراک تے پانی پیندے رہو",
   'pregnancy_week_3_donts_0': "زیادہ کیفین توں پرہیز کرو",
@@ -822,8 +857,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_4_details_2':
       "دوجا تے تیسرا پرت: دوجا پرت دل، پٹھے، ڑڳڑیاں تے ہڈیاں بݨاوے سَے، تیسرا پرت نروس سسٹم، وَلے، چمڑی تے اکھاں بݨاوے سَے۔",
   'pregnancy_week_4_dos_0': "فولِک ایسِڈ شروع کرو (400–800mg روزانہ)",
-  'pregnancy_week_4_dos_1': "غفلت نال ودھدی بیماریاں توں بچاؤ",
-  'pregnancy_week_4_dos_2': "جے Hb < 11 ہووے تاں آئرن شروع کرو",
+  'pregnancy_week_4_dos_1': "دماغ تے ریڑھ دی ہڈی دے سنگین نقص توں بچاؤ",
+  'pregnancy_week_4_dos_2': "جے خون دی شرح 11 توں گھٹ ہے تاں آئرن شروع کرو",
   'pregnancy_week_4_dos_3': "سگریٹ تے نشہ آور چیزاں توں بچو",
   'pregnancy_week_4_dos_4': "صحت مند خوراک تے پانی پِیو",
   'pregnancy_week_4_donts_0': "زیادہ کیفین توں پرہیز کرو",
@@ -1804,7 +1839,7 @@ final Map<String, String> skrPK = {
   //risk factors
   "looking_good": "چنگا لگدا پئے!",
   "no_known_risk_factors": "ایں مرحلے تے کوئی خطرے دے عوامل نئیں لبھے۔",
-  "more_categories": "+%{count} ہور قسماں",
+  "more_categories": "@count ہور قسماں",
   "complete_your_profile": "آپݨا پروفائل مکمل کرو",
   "please_provide_info_for_risk_assessment":
       "خطرے دے عوامل دا جائزہ لین لئی ایہہ معلومات فراہم کرو",
@@ -1818,11 +1853,11 @@ final Map<String, String> skrPK = {
   //pregnancy status
   "edit": "تبدیل کرو",
   "where_you_are": "تساں کتھاں او",
-  "estimated_due_date": "تہاݙی اندازے دی تاریخ %{date} اے۔",
+  "estimated_due_date": "تہاݙی اندازے دی تاریخ @date اے۔",
   "pregnancy_progress":
-      "مطلب ایہہ اے کہ تساں %{weeks} ہفتے تے %{days} ݙین دے حمل تے او۔",
+      "مطلب ایہہ اے کہ تساں @weeks ہفتے تے @days ݙین دے حمل تے او۔",
   "time_remaining":
-      "مطلب ایہہ اے کہ تہاݙے کول %{weeks} ہفتے تے %{days} ݙین رہ ڳئے نیں۔",
+      "مطلب ایہہ اے کہ تہاݙے کول @weeks ہفتے تے @days ݙین رہ ڳئے نیں۔",
   "edit_due_date": "تاریخ تبدیل کرو",
 
   "Nutrition": "خوراک",
@@ -2257,9 +2292,9 @@ final Map<String, String> skrPK = {
   "keep_followup_appointments": "فالو اپ ملاقاتاں رکھو",
 
   "baby_default_name": "بچہ",
-  "weeks_old": "%{weeks} ہفتے پرانا",
+  "weeks_old": "@weeks ہفتے پرانا",
   "one_month_old": "1 مہینہ پرانا",
-  "months_old": "%{months} مہینے پرانا",
+  "months_old": "@months مہینے پرانا",
   "newborn_phase": "نویں جمے دا مرحلہ",
   "infant_development": "شیرخوار دی نشوونما",
   "baby_milestones": "بچے دے سنگ میل",
@@ -2349,7 +2384,7 @@ final Map<String, String> skrPK = {
   "no_additional_risks": "کوئی اضافی جینیاتی خطرہ نئیں",
 
   "important_alerts": "اہم اطلاع نامے",
-  "week_reminders": "ہفتہ %{week} یاددہانیاں",
+  "week_reminders": "ہفتہ @week یاددہانیاں",
   "all_caught_up_no_alerts": "سارے کام مکمل! اس ہفتے کوئی اطلاع نئیں.",
 
 // reminders
@@ -2427,4 +2462,1719 @@ final Map<String, String> skrPK = {
       "بچے نوں کدی وی الزام ناں دیو، جے اوہ کچھ دسّے۔",
   "good_bad_touch_reminders_point_3":
       "بچے دی حفاظت تے بھروسہ ہمیشہ پہلاں نمبر تے ہونا چاہیدا اے۔",
+
+// Header
+  'miscarriage_awareness': 'حمل ضائع تھیوݨ دی آگاہی',
+
+// Main Points
+  'miscarriage_main_point_1': '20 ہفتیاں کنوں پہلاں حمل دا خود بخود ضائع تھیوݨ',
+  'miscarriage_main_point_2': 'خون وگݨ، درد یا ٹشو نکلݨ تے نظر رکھو',
+  'miscarriage_main_point_3': 'علامتاں ظاہر تھیوݨ تے طبی مدد گھنو',
+
+// Call to Action
+  'tap_to_learn_more': 'ودھیک جاݨݨ کیتے ٹیپ کرو',
+
+// Section Titles
+  'what_is_miscarriage': 'حمل ضائع تھیوݨ کیا ہے؟',
+  'common_signs': 'عام علامتاں',
+  'what_should_i_do': 'میں کیا کراں؟',
+  'emotional_support': 'جذباتی مدد',
+  'prevention_risk_factors': 'روک تھام تے خطرے دے عامل',
+
+// What is a miscarriage - Description
+  'miscarriage_description':
+      'حمل ضائع تھیوݨ حمل دے 20 ہفتیاں کنوں پہلاں حمل دا خود بخود ضائع تھیوݨ ہے۔ (کجھ ملکاں وچ ایہ 24 ہفتیاں کنوں پہلاں دے طور تے بیان کیتا ویندا ہے۔) حمل ضائع تھیوݨ بوہت سارے لوکاں دے خیال کنوں ودھیک عام ہے تے کئی وجوہات دی بنا تے تھی سڳدا ہے، جہناں وچوں زیادہ تر کہیں دے قابو کنوں باہر ہن۔',
+
+// Common Signs - Bullet Points
+  'sign_vaginal_bleeding':
+      'اندام نہانی کنوں خون وگݨ (ہلکا دھبہ یا زیادہ خون وگݨ)',
+  'sign_abdominal_cramping': 'پیٹ وچ درد یا مروڑ',
+  'sign_passing_tissue': 'اندام نہانی کنوں ٹشو یا خون دے لوتھڑے نکلݨ',
+  'sign_loss_of_symptoms': 'حمل دیاں علامتاں دا اچانک ختم تھیوݨ',
+
+// What Should I Do - Bullet Points
+  'action_seek_immediate_care':
+      'شدید خون وگݨ، چکر آوݨ، یا موڈھے وچ درد دی صورت وچ فوری طبی مدد گھنو',
+  'action_contact_provider':
+      'جے علامتاں بارے فکرمند ہو تے اپݨے صحت دی دیکھ بھال فراہم کرݨ آلے نال رابطہ کرو',
+  'action_not_alone':
+      'یاد رکھو: تساں اکلے نہیں ہو - صحت دی دیکھ بھال دے پیشہ ور لوک تہاݙی مدد کیتے موجود ہن',
+
+// Emotional Support - Description
+  'emotional_support_description':
+      'حمل ضائع تھیوݨ دا تجربہ بوہت جذباتی تھی سڳدا ہے، تے ہر ردعمل صحیح ہے۔ اپݨے جذبات کوں تسلیم کرو۔ یاراں، خاندان، یا مشیر نال گل کرو، تے مددگار تنظیماں یا آن لائن کمیونٹیاں تے غور کرو۔',
+
+// Prevention & Risk Factors - Description
+  'prevention_description':
+      'زیادہ تر حمل ضائع تھیوݨ کوں روکیا نہیں ونج سڳدا تے ایہ تساں جو کجھ کیتا یا نہیں کیتا اوندی وجہ کنوں نہیں تھیندا۔ خطرے دے عامل وچ عمر، حمل ضائع تھیوݨ دی تاریخ، کجھ طبی حالت، تے طرزِ زندگی دے عامل شامل تھی سڳدے ہن۔',
+
+// Final Note
+  'final_note_be_gentle':
+      'اپݨے نال نرمی نال پیش آوو۔ مدد کیتے اپݨے صحت دی دیکھ بھال فراہم کرݨ آلے یا مددگار تنظیماں نال رابطہ کرو۔',
+
+// وزن کی نگرانی کارڈ
+  'weight_bmi_tracking': 'وزن تے بی ایم آئی دی نگرانی',
+  'bmi_colon': 'بی ایم آئی: ',
+  'weight_reminder_settings': 'وزن یاددہانی سیٹنگز',
+  'current_weight': 'موجودہ وزن',
+  'total_gain': 'کل ودھوتری',
+  'kg_unit': 'کلوگرام',
+  'recommended_weight_gain': 'تجویز کردہ وزن وچ ودھوتری',
+  'set_height_prepregnancy_weight_message':
+      'ذاتی ہدف دی حد حاصل کرݨ کیتے اپݨی لمبائی تے حمل کنوں پہلاں دا وزن سیٹ کرو۔',
+  'min_colon': 'گھٹ توں گھٹ: ',
+  'current_colon': 'موجودہ: ',
+  'max_colon': 'زیادہ توں زیادہ: ',
+
+  'gdm_screening_recommended': 'جی ڈی ایم ٹیسٹ دی سفارش',
+  'gdm_screening_high_bmi_message':
+      'تہاݙے زیادہ بی ایم آئی دی وجہ کنوں 16 توں 20 ہفتیاں وچ جی ڈی ایم (شوگر ٹیسٹ) کرواوݨ دی سفارش کیتی ویندی ہے۔ معمول دا ٹیسٹ 24 توں 28 ہفتیاں وچ تجویز کیتا ویندا ہے۔',
+  'gdm_screening_standard_message':
+      'جی ڈی ایم دا معمول دا ٹیسٹ 24 توں 28 ہفتیاں وچ تجویز کیتا ویندا ہے۔ مہربانی کر کے اپݨے معالج نال مشورہ کرو۔',
+
+  'anemia_risk': 'خون دی کمی (انیمیا) دا خطرہ',
+  'anemia_risk_message':
+      'تہاݙا گھٹ وزن بی ایم آئی خون دی کمی دے خطرے کوں ودھا سڳدا ہے۔ مناسب غذائیت تے آئرن دا استعمال یقینی بݨاوو۔ معالج کنوں اسکریننگ تے غذائی مشورے کیتے رجوع کرو۔',
+
+  'weight_gain_alert': 'وزن وچ ودھوتری دا انتباہ',
+  'why_weight_matters': 'وزن کیوں ضروری ہے',
+  'why_weight_matters_description':
+      'حمل کنوں پہلاں دا وزن تے حمل دے دوران وزن وچ ودھوتری، تساں تے تہاݙے بچے دوہاں دی صحت تے اثر پاندی ہے۔ وزن دی نگرانی تہاکوں صحت مند حد وچ رہݨ وچ مدد ݙیندی ہے۔',
+
+  'weight_gain_risks':
+      '• وزن وچ کمی: بچے دی گھٹ افزائش یا قبل از وقت پیدائش دا خطرہ ودھا سڳدی ہے\n• زیادہ ودھوتری: ذیابیطس، بلڈ پریشر تے آپریشن دے امکانات ودھا سڳدی ہے',
+
+  'recent_entries': 'حالیہ اندراجات',
+  'week_space': 'ہفتہ ',
+  'add_weight_entry': 'وزن دا اندراج شامل کرو',
+  'weight_kg': 'وزن (کلوگرام)',
+  'date_colon': 'تاریخ: ',
+  'please_enter_valid_weight': 'مہربانی کر کے صحیح وزن درج کرو',
+
+  'weight_tracking_reminder': 'وزن دی نگرانی دی یاددہانی',
+  'enable_daily_reminder': 'روزانہ یاددہانی فعال کرو',
+  'get_daily_notification_log_weight': 'روزانہ وزن درج کرݨ کیتے اطلاع حاصل کرو',
+  'reminder_enabled': 'یاددہانی فعال تھی ڳئی',
+  'youll_receive_daily_reminders_at': 'تہاکوں روزانہ یاددہانیاں ملسن ویلا:',
+  'reminder_disabled': 'یاددہانی غیر فعال تھی ڳئی',
+  'daily_reminders_turned_off': 'روزانہ یاددہانیاں بند کر ݙتیاں ڳئیاں',
+  'failed_to_enable': 'فعال کرݨ وچ ناکامی',
+  'failed_to_disable': 'غیر فعال کرݨ وچ ناکامی',
+  'reminder_colon': 'یاددہانی: ',
+  'reminder_time': 'یاددہانی دا ویلا',
+  'hour_0_23': 'گھنٹہ (0-23)',
+  'minute_0_59': 'منٹ (0-59)',
+  'reminder_updated': 'یاددہانی اپ ڈیٹ تھی ڳئی',
+  'reminder_time_set_to': 'یاددہانی دا ویلا مقرر کیتا ڳیا: ',
+  'please_enter_valid_time':
+      'مہربانی کر کے صحیح ویلا درج کرو (گھنٹہ: 0-23، منٹ: 0-59)',
+  'update_time': 'ویلا اپ ڈیٹ کرو',
+
+// وزن کی نگرانی کنٹرولر
+  'bmi_underweight': 'گھٹ وزن',
+  'bmi_normal': 'نارمل وزن',
+  'bmi_overweight': 'زیادہ وزن',
+  'bmi_obese': 'موٹاپا',
+
+  'insufficient_weight_gain_alert_message':
+      'تہاݙا وزن تجویز کردہ حد کنوں گھٹ ودھیا ہے۔ وزن وچ کافی نہ ودھوتری بچے دی گھٹ افزائش (IUGR) تے قبل از وقت پیدائش دے خطرے کوں ودھا سڳدی ہے۔ مہربانی کر کے اپݨے معالج نال غذائی مشورے کیتے رابطہ کرو۔',
+
+  'excessive_weight_gain_alert_message':
+      'تہاݙا وزن تجویز کردہ حد کنوں زیادہ ودھ ڳیا ہے۔ زیادہ وزن ودھݨ نال حمل دی ذیابیطس، ہائی بلڈ پریشر، آپریشن (سی سیکشن)، تے وݙے سائز دے بچے دے امکانات ودھ سڳدے ہن۔ مہربانی کر کے اپݨے معالج نال مشورہ کرو۔',
+
+  'rapid_weight_gain_alert_message':
+      'وزن وچ تیزی نال ودھوتری پائی ڳئی ہے۔ مہربانی کر کے اپݨے معالج نال غذائی رہنمائی کیتے مشورہ کرو۔',
+
+// خطرے کی جانچ کارڈ
+  'pregnancy_risk_assessment': 'حمل دے خطرے دی جانچ',
+  'down_syndrome_gdm_iugr_sga':
+      'ڈاؤن سنڈروم • جی ڈی ایم • آئی یو جی آر / ایس جی اے',
+  'risk_factors': 'خطرے دے عامل',
+  'about_risk_assessment': 'خطرے دی جانچ بارے',
+  'risk_assessment_description':
+      'خطرے دی جانچ دستیاب معلومات دی بنیاد تے اک اندازہ تھیندی ہے۔ ایہ جانچ تے نگرانی دے فیصلیاں وچ مدد ݙیندی ہے۔ ہمیشہ ذاتی طبی مشورے کیتے اپݨے معالج نال رجوع کرو۔',
+
+  'common_risk_factors': 'عام خطرے دے عامل',
+  'risk_factors_affect_pregnancy_outcomes':
+      'او خطرے دے عامل جیہڑے حمل دے نتائج کوں متاثر کر سڳدے ہن:',
+  'maternal_hypertension': 'ماں دا ہائی بلڈ پریشر',
+  'preeclampsia': 'پری ایکلیمپسیا (حمل دا بلڈ پریشر)',
+  'placental_insufficiency': 'نالی دی کمزوری (پلیسینٹل انسفیشنسی)',
+  'infections': 'انفیکشنز (جراثیمی بیماریاں)',
+  'smoking_substance_use': 'سگریٹ نوشی تے منشیات دا استعمال',
+  'chronic_diseases': 'دائمی بیماریاں',
+  'multiple_gestation': 'متعدد حمل (جڑواں یا زیادہ بچے)',
+  'poor_maternal_nutrition': 'ماں دی ناقص غذائیت',
+
+  'down_syndrome_risk': 'ڈاؤن سنڈروم دا خطرہ',
+  'age_required_calculate_risk': 'عمر خطرے دا حساب لاوݨ کیتے ضروری ہے',
+  'risk_colon': 'خطرہ:',
+  'in': 'وچ',
+  'risk': 'خطرہ',
+  'enter_age_risk_factors_settings':
+      'مہربانی کر کے خطرے دے عامل دی سیٹنگز وچ اپݨی عمر درج کرو تاں جو ڈاؤن سنڈروم دے خطرے دا حساب لایا ونج سڳے۔',
+
+  'understanding_risk_assessment': 'خطرے دی جانچ کوں سمجھݨا',
+  'risk_assessment_explanation':
+      'خطرہ ماں دی عمر تے دوجے عامل دے لحاظ نال مختلف تھیندا ہے۔ اسکریننگ ٹیسٹ صرف اندازہ لاندے ہن، تشخیص نہیں کردے۔ اسکریننگ انہاں زنانیاں دی شناخت وچ مدد کردی ہے جنہاں کوں ودھیک جانچ دی ضرورت تھی سڳدی ہے۔',
+
+  'screening_options_non_invasive': 'اسکریننگ دے اختیار (غیر مداخلتی)',
+  'screening_tests_description':
+      'اسکریننگ ٹیسٹ خطرے دا اندازہ لاندے ہن پر حتمی تشخیص نہیں ݙیندے۔ ایہ غیر مداخلتی تھیندے ہن تے انہاں حملاں دی نشاندہی وچ مدد کردے ہن جنہاں کوں ودھیک جانچ دی ضرورت تھی سڳدی ہے۔',
+
+  'diagnostic_options_invasive': 'تشخیصی اختیار (مداخلتی)',
+  'diagnostic_tests_description':
+      'تشخیصی ٹیسٹ حتمی نتیجہ ݙے سڳدے ہن پر ایہ مداخلتی تھیندے ہن تے انہاں کنوں معمولی پیچیدگیاں دا خطرہ تھیندا ہے۔ عام طور تے ایہ اوں ویلے تجویز کیتے ویندے ہن جݙݨ اسکریننگ وچ خطرہ زیادہ ہووے۔',
+
+  'gdm_risk_assessment': 'جی ڈی ایم خطرے دی جانچ',
+  'risk_level_colon': 'خطرے دی سطح:',
+  'risk_factors_colon': 'خطرے دے عامل:',
+  'screening_recommendation': 'اسکریننگ دی سفارش',
+  'about_gdm_screening': 'جی ڈی ایم اسکریننگ بارے',
+
+  'gdm_risk_title': 'حمل دی ذیابیطس (GDM) دا خطرہ:',
+  'gdm_risk_description':
+      'جی ڈی ایم دا خطرہ انہاں صورتاں وچ زیادہ تھیندا ہے جݙݨ موٹاپا، زیادہ عمر، ذیابیطس دی خاندانی تاریخ، پچھلے حمل کا ذیابیطس، یا مخصوص نسلی پس منظر (ایشیائی، ہسپانوی، افریقی، یا نیٹیو امریکن) موجود ہوون۔',
+
+  'screening_guidelines': 'اسکریننگ دے رہنما اصول:',
+  'screening_guidelines_description':
+      'کئی رہنما اصولاں وچ عام یا خطرے تے مبنی اسکریننگ کیتی ویندی ہے۔ عام طور تے 24 توں 28 ہفتیاں وچ گلوکوز ٹالرنس ٹیسٹ کیتا ویندا ہے۔ جے زیادہ خطرے آلے عامل ہوون تے 16 توں 20 ہفتیاں وچ ابتدائی ٹیسٹ تجویز کیتا ونج سڳدا ہے۔',
+
+  'iugr_sga_risk_assessment': 'آئی یو جی آر / ایس جی اے خطرے دی جانچ',
+  'iugr_detected_message':
+      'آئی یو جی آر پایا ڳیا - بچہ اپݨی افزائشی صلاحیت تائیں نہیں پہنچ رہیا',
+  'sga_detected_message': 'ایس جی اے پایا ڳیا - بچہ عام سائز کنوں نکا ہے',
+  'estimated_fetal_weight_colon': 'متوقع بچے دا وزن:',
+  'percentile_colon': 'فیصدی درجہ:',
+  'no_ultrasound_data_message':
+      'کوئی الٹراساؤنڈ ڈیٹا دستیاب نہیں۔ خطرے دی جانچ صرف عامل دی بنیاد تے کیتی ڳئی ہے۔ صحیح اندازے کیتے الٹراساؤنڈ پیمائش شامل کرو۔',
+
+  'recommendation': 'سفارش',
+  'understanding_iugr_sga': 'آئی یو جی آر تے ایس جی اے کوں سمجھݨا',
+  'what_is_iugr_sga': 'آئی یو جی آر / ایس جی اے کیا ہے؟',
+  'iugr_sga_definition':
+      '• آئی یو جی آر (انٹرا یوٹرائن گروتھ ری اسٹرکشن): اوں حالت کوں آکھدے ہن جݙݨ بچہ رحم وچ اپݨی ممکنہ افزائش تائیں نہیں پہنچ پاندا، عام طور تے جݙݨ بچے دا وزن عمر دے لحاظ نال 10 ویں فیصد کنوں گھٹ ہووے۔\n\n'
+          '• ایس جی اے (سمال فار جیسٹیشنل ایج): اوندا مطلب ہے کہ بچہ اپݨی عمر دے لحاظ نال نکا ہے پر صحت مند تھی سڳدا ہے۔',
+
+  'why_it_matters': 'ایہ کیوں ضروری ہے:',
+  'iugr_sga_why_matters':
+      'اوں نال مردہ پیدائش، پیدائش دے دوران مسئلے، تے بعد دی زندگی وچ صحت دے خطرات ودھ سڳدے ہن۔',
+
+  'how_its_detected': 'ایہ کین٘ویں پتہ لڳدا ہے:',
+  'iugr_sga_detection':
+      'باقاعدہ فنڈل ہائٹ پیمائش، الٹراساؤنڈ نال بچے دے وزن دا تخمینہ (EFW)، ڈوپلر اسٹڈیز، تے گروتھ مانیٹرنگ دے ذریعے۔',
+
+  'management_principles': 'انتظامی اصول:',
+  'iugr_sga_management':
+      'زیادہ نگرانی، بروقت ڈیلیوری دی منصوبہ بندی جے تکلیف یا غیر معمولی ڈوپلر رپورٹس ہوون۔ حمل دی عمر تے بچے دی حالت دے مطابق فیصلہ کیتا ویندا ہے کہ انتظار کیتا ونجے یا جلدی ڈیلیوری کیتی ونجے۔',
+
+  'risk_assessment_controller_not_available':
+      'خطرے دی جانچ دا کنٹرولر دستیاب نہیں ہے',
+  'family_history_diabetes': 'ذیابیطس دا خاندانی ریکاڑڈ',
+  'previous_gdm': 'پچھلے حمل کا ذیابیطس',
+  'hypertension': 'ہائی بلڈ پریشر',
+  'smoking': 'سگریٹ نوشی',
+  'ethnicity': 'نسلی پس منظر',
+  'ethnicity_asian': 'ایشیائی',
+  'ethnicity_hispanic': 'ہسپانوی',
+  'ethnicity_african': 'افریقی',
+  'ethnicity_caucasian': 'کاکیشیائی',
+  'ethnicity_native_american': 'نیٹیو امریکن',
+  'ethnicity_other': 'دوجے',
+
+// حمل کے خطرے کے عوامل کارڈ
+  'risk_factors_danger_signs': 'خطرے دے عامل تے خطرناک علامتاں',
+  'anemia_common_pregnancy': 'انیمیا: حمل وچ عام مسئلہ',
+  'multiple_risk_factors_aware': 'متعدد خطرے دے عامل کنوں آگاہ رہوو',
+  'know_danger_signs_urgent_care':
+      'انہاں خطرناک علامتاں کوں پہچاݨو جنہاں وچ فوری توجہ ضروری ہے',
+
+  'anemia_in_pregnancy': 'حمل وچ خون دی کمی',
+  'anemia_pregnancy_description':
+      'حمل دے دوران خون دی کمی اک عام حالت ہے۔ خطرے دے عامل وچ آئرن دی کمی، ناقص غذا، تے آئرن دی زیادہ ضرورت شامل ہن۔ علامتاں ہلکیاں تھی سڳدیاں ہن، ایں کیتے معمول دی اسکریننگ ضروری ہے۔',
+
+  'management_colon': 'انتظام:',
+  'dietary_iron_intake': 'خوراک وچ آئرن دا اضافہ',
+  'vitamin_c_co_supplementation': 'وٹامن سی دے نال آئرن دا استعمال',
+  'prescribed_iron_deficiency':
+      'جے آئرن دی کمی ہووے تے ڈاکٹر دی ہدایت نال سپلیمنٹ گھنو',
+  'monitor_hemoglobin_hematocrit': 'ہیموگلوبن/ہیمیٹوکریٹ دی نگرانی کرو',
+
+  'other_major_risk_factors': 'دوجے وݙے خطرے دے عامل',
+  'diabetes': 'ذیابیطس',
+  'kidney_disease': 'گردیاں دی بیماری',
+  'autoimmune_disorders': 'خودکار مدافعتی بیماریاں',
+  'advanced_maternal_age': 'ماں دی زیادہ عمر',
+  'cigarette_smoking': 'سگریٹ نوشی',
+  'substance_use': 'منشیات دا استعمال',
+  'previous_obstetric_complications': 'پچھلی زچگی دیاں پیچیدگیاں',
+  'undernutrition': 'غذائی کمی',
+
+  'danger_signs_pregnancy': 'حمل وچ خطرناک علامتاں',
+  'seek_immediate_medical_attention_danger_signs':
+      'جے تہاکوں تلے ݙتیاں وچوں کوئی علامت محسوس تھیوے تے فوراً طبی مدد حاصل کرو:',
+  'severe_vaginal_bleeding': 'زیادہ اندام نہانی کنوں خون آوݨ',
+  'severe_persistent_headaches_vision':
+      'شدید یا مسلسل سر درد دے نال بینائی وچ تبدیلی',
+  'swelling_hands_face': 'ہتھاں یا مُنہڑے دی سوج',
+  'severe_abdominal_pain': 'شدید پیٹ درد',
+  'decreased_fetal_movement': 'بچے دی حرکت وچ کمی',
+  'fever_chills': 'بخار یا کپکپی',
+  'severe_vomiting': 'شدید الٹی',
+  'dizziness_fainting': 'چکر آوݨ یا بے ہوشی',
+  'gush_fluid_rupture_membranes': 'پاݨی دا وگݨ (جھلی پھٹݨ دی علامت)',
+  'danger_signs_seek_medical_care':
+      'جے تہاکوں کوئی خطرناک علامت محسوس تھیوے تے فوراً طبی مدد حاصل کرو۔ باقاعدہ حمل چیک اپ خطرے دے عامل دی نگرانی تے انتظام وچ مدد ݙیندا ہے۔',
+
+  'down_syndrome_risk_explanation_unknown':
+      'مہربانی کر کے اپݨی عمر سیٹنگز وچ درج کرو تاں جو ڈاؤن سنڈروم دے خطرے دا اندازہ لایا ونج سڳے۔ خطرہ ماں دی عمر دے لحاظ نال کافی مختلف تھیندا ہے۔',
+
+  'nipt_screening_option':
+      'نان اِنویسیو پری نیٹل ٹیسٹنگ (NIPT) - 10 ہفتے کنوں کیتی ونج سڳدی ہے',
+  'first_trimester_screening_option':
+      'پہلی تریماہی اسکریننگ (11-13 ہفتے) - خون دا ٹیسٹ + الٹراساؤنڈ',
+  'quadruple_screen_option': 'کواڈروپل اسکرین (15-20 ہفتے) - خون دا ٹیسٹ',
+  'cvs_diagnostic_option': 'کوریونک ویلس سیمپلنگ (CVS) - 10-13 ہفتے (انویسیو)',
+  'amniocentesis_diagnostic_option': 'ایمنیوسینٹیسس - 15-20 ہفتے (انویسیو)',
+
+  'down_syndrome_risk_explanation_base':
+      'ڈاؤن سنڈروم دا خطرہ بنیادی طور تے ماں دی عمر تے منحصر ہے۔ تہاݙی عمر',
+  'years_places_you_in': 'سال تہاکوں تلے ݙتے وچ رکھدی ہے',
+  'risk_category_explanation':
+      'خطرے دے زمرے وچ۔ اسکریننگ ٹیسٹ خطرے دا زیادہ صحیح اندازہ ݙیندے ہن، پر ایہ تشخیص فراہم نہیں کردے۔',
+
+  'risk_low': 'گھٹ خطرہ',
+  'risk_intermediate': 'درمیانہ خطرہ',
+  'risk_high': 'زیادہ خطرہ',
+
+  'obesity_bmi_30': 'موٹاپا (BMI ≥ 30)',
+  'overweight_bmi_25_29': 'زیادہ وزن (BMI 25-29.9)',
+  'advanced_maternal_age_35': 'زیادہ عمر دی حاملہ زنانی (≥35 سال)',
+  'previous_gestational_diabetes': 'پچھلے حمل وچ شوگر',
+  'high_risk_ethnicity': 'زیادہ خطرے آلی نسل',
+
+  'early_screening_recommended_16_20_weeks':
+      '16-20 ہفتیاں وچ ابتدائی اسکریننگ دی سفارش کیتی ویندی ہے کیوں جو زیادہ خطرے دے عامل موجود ہن۔ 24-28 ہفتیاں وچ معیاری اسکریننگ وی کرواوو۔',
+
+  'screening_recommended_24_28_weeks':
+      '24-28 ہفتیاں وچ گلوکوز ٹیسٹ دے نال اسکریننگ دی سفارش کیتی ویندی ہے۔ جے دوجے خطرے دے عامل پیدا تھیون تے ابتدائی اسکریننگ تے غور کرو۔',
+
+  'standard_screening_recommended_24_28_weeks':
+      '24-28 ہفتیاں وچ گلوکوز ٹیسٹ دے نال معیاری اسکریننگ دی سفارش کیتی ویندی ہے۔',
+
+  'no_major_risk_factors_identified': 'کوئی وݙا خطرے دا عنصر نہیں پایا ڳیا',
+  'no_major_risk_factors': 'کوئی وݙا خطرہ نہیں',
+  'underweight_poor_nutrition': 'گھٹ وزن (غذائیت دی کمی)',
+
+  'high_risk_factors_present_recommendation':
+      'زیادہ خطرے آلے عامل موجود ہن۔ باقاعدہ پیٹ دی پیمائش تے الٹراساؤنڈ دی نگرانی دی سفارش کیتی ویندی ہے۔ اپݨے معالج نال مشورہ کرو۔',
+
+  'moderate_risk_factors_present_recommendation':
+      'درمیانے خطرے آلے عامل موجود ہن۔ باقاعدہ پیٹ دی پیمائش تے نشوونما دی نگرانی دی سفارش کیتی ویندی ہے۔',
+
+  'low_risk_factors_recommendation':
+      'گھٹ خطرے آلے عامل۔ معمول دے مطابق قبل از پیدائش دیکھ بھال جاری رکھو۔',
+
+  'iugr_detected_recommendation':
+      'IUGR دا پتہ چلیا۔ باقاعدہ الٹراساؤنڈ، ڈوپلر اسٹڈیز، تے ترقی دی نگرانی دی ضرورت ہے۔',
+
+  'sga_detected_recommendation':
+      'SGA دا پتہ چلیا۔ بچہ نکا پر صحت مند تھی سڳدا ہے۔ باقاعدہ نگرانی دی سفارش کیتی ویندی ہے۔',
+
+  'moderate_risk_factors_growth_monitoring':
+      'درمیانے خطرے آلے عامل موجود ہن۔ باقاعدہ پیٹ دی پیمائش تے نشوونما دی نگرانی ضروری ہے۔',
+
+  'low_risk_standard_care':
+      'گھٹ خطرہ۔ معمول دے مطابق قبل از پیدائش دیکھ بھال جاری رکھو۔',
+
+  'preterm_birth_awareness': 'قبل از وقت پیدائش بارے آگاہی',
+  'birth_before_37_weeks': '37 ہفتیاں کنوں پہلاں بچے دی پیدائش',
+  'preterm_types_late_moderate_very_early':
+      'اقسام: دیر نال، درمیانی، بوہت جلدی پیدائش',
+  'higher_risks_babies_preterm':
+      'قبل از وقت پیدا تھیوݨ آلے بچیاں کیتے زیادہ خطرات',
+
+  'what_is_preterm_birth': 'قبل از وقت پیدائش کیا ہے؟',
+  'preterm_birth_definition':
+      'قبل از وقت پیدائش دا مطلب ہے 37 ہفتیاں کنوں پہلاں بچے دی پیدائش۔ جنّا جلدی بچہ پیدا تھیسے، اونّے زیادہ مسئلیاں دا امکان۔',
+
+  'types_of_preterm_birth': 'قبل از وقت پیدائش دیاں اقسام',
+  'late_preterm_34_36_weeks': 'دیر نال قبل از وقت: 34 توں 36 ہفتے',
+  'moderate_preterm_32_33_weeks': 'درمیانہ قبل از وقت: 32 توں 33 ہفتے',
+  'very_early_preterm_under_32_weeks': 'بوہت جلدی پیدائش: 32 ہفتے کنوں گھٹ',
+
+  'higher_risk_respiratory_issues': 'سانس دیاں تکلیفاں دا زیادہ خطرہ',
+  'feeding_difficulties': 'دُدھ پیوݨ وچ دشواری',
+  'temperature_instability': 'درجہ حرارت برقرار رکھݨ وچ مشکل',
+  'longer_hospital_stays': 'ہسپتال وچ زیادہ عرصہ قیام',
+
+  'maternal_infections_chronic_diseases': 'ماں دے انفیکشن یا دائمی امراض',
+  'history_prior_preterm_birth': 'پہلاں قبل از وقت پیدائش دی تاریخ',
+  'placenta_problems': 'پلاسنٹا دے مسئلے',
+  'obstetric_complications': 'حمل دیاں پیچیدگیاں',
+  'maternal_stress': 'ماں دا ذہنی دباؤ',
+
+  'prevention_management': 'روک تھام تے نگہداشت',
+  'progesterone_therapy_high_risk':
+      'زیادہ خطرے آلی حاملہ زنانیاں کیتے پروجیسٹرون تھراپی',
+  'treating_infections_promptly': 'انفیکشنز دا بروقت علاج',
+  'cervical_cerclage_selected_cases': 'منتخب کیسز وچ سرویکل سرکلاج',
+  'managing_anxiety_depression': 'ذہنی دباؤ تے ڈپریشن دا انتظام',
+  'ensuring_perinatal_neonatal_care':
+      'پیدائش کنوں پہلاں تے بعد دی نگہداشت کوں یقینی بݨاوو',
+  'regular_checkups_reduce_preterm_risk':
+      'باقاعدہ چیک اپ تے صحت مند عادتاں قبل از وقت پیدائش دے خطرے کوں گھٹ کردیاں ہن۔',
+
+  'delivery_planning_labor': 'زچگی دی منصوبہ بندی تے دردِ زہ',
+  'plan_birth_preferences_methods': 'اپݨی پیدائش دی ترجیحات تے طریقے طے کرو',
+  'know_signs_labor_when_to_go':
+      'دردِ زہ دیاں علامتاں تے ہسپتال ونجݨ دا ویلا جاݨو',
+  'recognize_red_flags_during_labor': 'دورانِ درد خطرناک علامتاں کوں پہچاݨو',
+
+  'delivery_planning_basics': 'زچگی دی منصوبہ بندی دیاں بنیادی ڳلاں',
+  'delivery_planning_basics_description':
+      'اپݨے پیدائش دے منصوبے، پسندیدہ طریقے، تے ہنگامی صورتاں (مثلاً ایمرجنسی سی سیکشن) بارے جاݨو۔',
+
+  'signs_of_labor': 'دردِ زہ دیاں علامتاں',
+  'regular_contractions': 'باقاعدہ درد',
+  'water_break_rupture_membranes': 'پاݨی دا پھٹݨ',
+  'backache': 'کمر درد',
+  'changes_baby_movement_patterns': 'بچے دی حرکت وچ تبدیلی',
+
+  'transportation_birth_plan': 'پیدائش کیتے سفر دا منصوبہ',
+  'know_when_go_hospital_birth_center':
+      'ہسپتال یا برتھ سینٹر کݙاں ونجݨا ہے، ایہ جاݨو',
+  'have_contact_information_ready': 'رابطہ معلومات تیار رکھو',
+  'plan_transportation_labor_onset': 'دردِ زہ شروع تھیوݨ تے سفر دا انتظام کرو',
+  'prepare_birth_plan_documents': 'پیدائش دا منصوبہ تے ضروری کاغذات تیار رکھو',
+
+  'delivery_methods': 'پیدائش دے طریقے',
+  'vaginal_delivery': 'نارمل ڈلیوری',
+  'cesarean_section': 'سی سیکشن',
+  'assisted_vaginal_delivery': 'مدد یافتہ نارمل ڈلیوری (فورسپس یا ویکیوم)',
+
+  'red_flags_during_labor': 'دورانِ درد خطرناک علامتاں',
+  'heavy_bleeding': 'زیادہ خون وگݨ',
+  'persistent_vomiting': 'مسلسل الٹی',
+  'signs_fetal_distress': 'بچے دی تکلیف دیاں علامتاں',
+
+  'risk_assessment_labor': 'دورانِ زچگی خطرے دی جانچ',
+  'previous_cesarean': 'پچھلا سی سیکشن',
+  'placenta_previa': 'پلاسنٹا پریویا',
+  'breech_presentation': 'بچہ الٹا ہووݨ',
+  'multiple_pregnancies': 'اک کنوں زیادہ حمل',
+  'maternal_chronic_conditions': 'ماں دیاں دائمی بیماریاں',
+
+  'intrapartum_complications': 'زچگی دے دوران پیچیدگیاں',
+  'shoulder_dystocia': 'بچے دا موڈھا پھنس ونجݨ',
+  'fetal_distress': 'بچے کوں تکلیف',
+  'non_reassuring_fetal_heart_rate': 'بچے دی غیر معمولی دل دی دھڑکن',
+
+  'emergency_preparedness': 'ایمرجنسی تیاری',
+  'emergency_preparedness_description':
+      'ایمرجنسی دی صورت وچ فوری مدد حاصل کرݨ دا طریقہ جاݨو۔ رابطہ نمبر تیار رکھو۔',
+  'discuss_birth_plan_emergency_contacts':
+      'اپݨے پیدائش دے منصوبے تے ایمرجنسی رابطہ معلومات ڈاکٹر نال ضرور شیئر کرو۔',
+
+  'breastfeeding_feeding': 'دُدھ پیوݨ تے بچے دی خوراک',
+  'optimal_nutrition_immunity_baby': 'بچے کیتے بہترین غذائیت تے قوتِ مدافعت',
+  'colostrum_first_milk_antibodies':
+      'کولسٹرم: پہلا دُدھ جیہڑا اینٹی باڈیز نال بھرپور تھیندا ہے',
+  'three_types_feeding_exclusive_mixed_formula':
+      'خوراک دیاں ترائے قسماں: مکمل، مخلوط، یا فارمولا',
+
+  'benefits_breastfeeding': 'دُدھ پیوݨ دے فائدے',
+  'benefits_breastfeeding_description':
+      'دُدھ پیوݨ ماں تے بچے دوہاں کیتے صحت، محبت تے قوتِ مدافعت دے لحاظ نال بہترین ہے۔',
+
+  'colostrum': 'کولسٹرم',
+  'colostrum_description':
+      'کولسٹرم پیدائش دے فوراً بعد آوݨ آلا پہلا دُدھ تھیندا ہے جیہڑا غذائیت تے اینٹی باڈیز نال بھرپور تھیندا ہے۔',
+
+  'types_of_feeding': 'خوراک دیاں قسماں',
+  'exclusive_breastfeeding_description':
+      'مکمل دُدھ پیوݨ: صرف ماں دا دُدھ (کوئی ہور خوراک یا مشروب نہیں، سوائے ڈاکٹر دی ہدایت دے مطابق دواواں دے)',
+  'mixed_feeding_description':
+      'مخلوط خوراک: ماں دا دُدھ + فارمولا یا دوجی خوراک',
+  'exclusive_formula_feeding_description':
+      'صرف فارمولا دُدھ: ماں دا دُدھ شامل نہیں',
+
+  'introducing_complementary_foods': 'اضافی خوراک دا آغاز',
+  'introducing_complementary_foods_description':
+      'زیادہ تر بچیاں کیتے 6 مہینے دی عمر وچ شروع کرو، نال وچ دُدھ پیوݨ جاری رکھو۔',
+
+  'common_challenges_solutions': 'عام مسئلے تے انہاں دے حل',
+  'latching_issues_solution': 'چوسݨ وچ مسئلہ: ماہرین کنوں مدد حاصل کرو',
+  'nipple_pain_solution': 'نپل وچ درد: بچے دی پوزیشن صحیح کرو',
+  'milk_supply_concerns_solution':
+      'دُدھ گھٹ آوݨ: بار بار دُدھ پیوݨ نال بہتری آندی ہے',
+  'pumping_expressing_guidelines': 'دُدھ کڈھݨ دے اصول: صفائی دا خیال رکھو',
+
+  'safety': 'حفاظت',
+  'maintain_good_hygiene': 'صفائی دا خاص خیال رکھو',
+  'safe_storage_expressed_milk': 'کڈھیا ڳیا دُدھ محفوظ طریقے نال رکھو',
+  'avoid_substances_pass_to_baby':
+      'اینجھیاں شیواں کنوں پرہیز کرو جیہڑیاں بچے تائیں منتقل تھی سڳدیاں ہن',
+  'consult_lactation_specialists_guidance':
+      'ماہرین نال مشورہ کرو تاں جو تہاکوں بہترین رہنمائی مل سڳے۔',
+
+// غذائیت کارڈ
+  'nutrition_guide': 'غذائیت رہنمائی',
+  'age_appropriate_feeding_guidelines': 'عمر دے لحاظ نال کھاوݨ دی رہنمائی',
+  'key_nutrients_iron_calcium_vitamin_d':
+      'ضروری غذائی اجزاء: آئرن، کیلشیم، وٹامن ڈی',
+  'healthy_feeding_habits_routines': 'صحت مند کھاوݨ دیاں عادتاں تے معمولات',
+
+  'what_how_much': 'کیا تے کنّا',
+  'infants_0_6_months': 'نوزائیدہ بچے (0-6 مہینے):',
+  'exclusive_breastfeeding_best_who':
+      'جتھاں ممکن ہووے صرف ماں دا دُدھ پیوݨ بہترین ہے۔ عالمی ادارۂ صحت (WHO) دے مطابق ہر بچے دا حق ہے کہ اوکوں اچھی غذائیت ملے۔',
+
+  'transition_complementary_foods_6_months':
+      'تکمیلی خوراک دی شروعات (تقریباً 6 مہینے):',
+  'meals_nutrient_dense_multiple_food_groups':
+      'کھاݨے غذائیت نال بھرپور، مختلف غذائی گروپاں تے مشتمل، صاف ستھرے طریقے نال تیار تے باقاعدگی نال ݙتے ونجن۔',
+
+  'toddlers_12_24_months': 'نکے بچے (تقریباً 12-24 مہینے):',
+  'offer_eat_drink_every_2_3_hours':
+      'ہر 2-3 گھنٹے بعد کجھ کھاوݨ یا پیوݨ کیتے ݙیوو (تقریباً 3 کھاݨے تے 2-3 ہلکے ناشتے)۔',
+
+  'older_children_3_8_years': 'وݙے بچے (3-8 سال):',
+  'balanced_diet_fruits_vegetables_whole_grains':
+      'متوازن غذا تے توجہ ݙیوو: پھل/سبزیاں، مکمل اناج، دبلے پروٹین، گھٹ چکنائی آلی ڈیری، تے شکر و نمک دی مقدار محدود کرو۔',
+
+  'key_nutrients_habits': 'ضروری غذائی اجزاء تے عادتاں',
+  'iron_critical_infancy_toddler_years':
+      'آئرن: بچپن تے ابتدائی سالاں وچ بوہت ضروری — آئرن نال بھرپور غذا جلدی شامل کرو۔',
+  'calcium_vitamin_d_bone_health':
+      'کیلشیم تے وٹامن ڈی: ہڈیاں دی صحت کیتے ضروری، خاص طور تے جݙݨ بچہ وݙا تے سرگرم ہووے۔',
+  'limit_added_sugars_ultra_processed_snacks':
+      'اضافی شکر تے پروسیسڈ سنیکس محدود کرو۔',
+
+  'fat_intake_children_2_3_years':
+      'چکنائی دی مقدار: 2-3 سال دے بچیاں کیتے کل کیلوریز دا تقریباً 30-35%، تے وݙے بچیاں کیتے 25-35% (اچھی چکنائی دے ذرائع کنوں)۔',
+
+  'routine_consistent_meal_snack_times':
+      'روزمرہ معمول: کھاوݨ دے مقررہ ویلے رکھو تاں جو بچہ کھاوݨ دے نظام نال واقف تھیوے۔',
+  'self_feeding_autonomy_toddlers_preschoolers':
+      'خود کھاوݨ دی عادت: نکے بچیاں کوں خود کھاوݨ دی کوشش کرݨ ݙیوو (نگرانی دے نال)۔',
+  'family_meals_children_learn_watching':
+      'خاندانی کھاݨے: بچے وݙیاں کوں ݙیکھ کے کھاوݨ دیاں عادتاں سکھدے ہن۔',
+
+  'variety_texture_progression_6_months':
+      'تنوع تے ساخت وچ ترقی: تقریباً 6 مہینے تے نرم پیوری → کچلی ہوئی → باریک کٹی ہوئی → خاندانی کھاݨے دی ساخت تائیں 2-3 سال وچ۔',
+
+  'responsive_feeding_watch_hunger_fullness_cues':
+      'ردعملی کھاوݨ: بھوک تے پیٹ بھرݨ دے اشارے پہچاݨو؛ زبردستی نہ کھلاوو۔',
+  'limit_screen_time_during_meals':
+      'کھاوݨ دے ویلے اسکرین دا استعمال محدود کرو تاں جو بچہ اپݨی بھوک تے توجہ ݙے سڳے۔',
+
+  'impact_development_school_readiness': 'ترقی تے اسکول دی تیاری تے اثرات',
+  'good_nutrition_supports_brain_growth':
+      'اچھی غذائیت دماغی نشوونما، توانائی دی بحالی، جسمانی صحت تے سکھݨ دی صلاحیت وچ مدد ݙیندی ہے — جیہڑی اسکول دی تیاری کیتے ضروری ہے۔',
+
+  'local_tips_pakistan': 'پاکستان کیتے مقامی تجویزاں',
+  'use_local_foods_lentils_chapati':
+      'مقامی غذاواں استعمال کرو: دالاں، کنک دی روٹی، موسمی پھل/سبزیاں، انڈے، مرغی، مچھی وغیرہ۔',
+  'water_hygiene_clean_water_safe_storage':
+      'پاݨی تے صفائی: صاف پاݨی استعمال کرو، کھاݨا محفوظ طریقے نال رکھو۔',
+  'snack_ideas_yogurt_fruit_roasted_chickpeas':
+      'ناشتے دیاں تجویزاں: میٹھے بسکٹ دی بجائے دہی وچ پھل، بھنے ہوئے چݨے یا تازہ پھل ݙیوو۔',
+  'cultural_family_context_extended_family':
+      'ثقافتی تے خاندانی پہلو: خاندان دے لوکاں کوں کھاوݨ وچ شامل کرو، سبھناں دے نال کھاݨا کھاوو۔',
+
+  'micronutrient_monitoring_iron_deficiency_anemia':
+      'خوردغذائی اجزاء دی نگرانی: چونکہ جنوبی ایشیا وچ آئرن دی کمی عام ہے، نکے بچیاں کیتے آئرن چیک کرواوݨ دی یاددہانی شامل کرو۔',
+  'growth_tracking_local_standards_who_charts':
+      'نشوونما دی نگرانی: مقامی یا عالمی ادارۂ صحت (WHO) دے چارٹس استعمال کرو۔',
+  'nutritious_foods_throughout_day':
+      'پورے ݙینہہ وچ غذائیت نال بھرپور کھاݨے ݙیوو تاں جو بچہ توانائی تے نشوونما کیتے مطلوب غذائیت حاصل کر سڳے۔',
+
+// اسکول کی تیاری کارڈ
+  'school_readiness': 'اسکول دی تیاری',
+  'more_than_letters_numbers_holistic': 'حروف تے اعداد کنوں ودھ کے — مکمل ترقی',
+  'social_emotional_cognitive_language_skills':
+      'سماجی، جذباتی، علمی، تے لسانی صلاحیتاں',
+  'age_appropriate_activities_milestones':
+      'عمر دے لحاظ نال سرگرمیاں تے سنگ میل',
+
+  'what_is_school_readiness': 'اسکول دی تیاری کیا ہے؟',
+  'school_readiness_definition':
+      'اسکول دی تیاری صرف حروف یا اعداد جاݨݨ دا ناں نہیں۔ ایہ مہارتاں، علم، رویاں تے عادتاں دا مجموعہ ہے جیہڑا بچے کوں اسکول شروع کرݨ تے کامیاب تھیوݨ وچ مدد ݙیندا ہے۔',
+
+  'key_domains': 'ضروری شعبے',
+  'social_emotional_development_domain':
+      'سماجی و جذباتی ترقی: خود تے قابو، تعلقات بݨاوݨ، احساسات پہچاݨݨ، دوجیاں نال تعاون کرݨ۔',
+  'cognitive_general_knowledge_domain':
+      'علمی/عمومی علم: مسئلے حل کرݨ، تجسس، ابتدائی ریاضی، سبب و اثر سمجھݨ۔',
+  'language_literacy_domain':
+      'زبان و خواندگی: الفاظ، کہاݨیاں، حروف پہچاݨݨ، سوال جواب کرݨ۔',
+  'physical_motor_development_domain':
+      'جسمانی و حرکی ترقی: باریک حرکتاں (پنسل پکڑݨ)، ݙوڑݨ، چھلانگ لاوݨ، بہݨ تے توجہ ݙیوݨ دی صلاحیت۔',
+  'approaches_learning_executive_function_domain':
+      'سکھݨ دے طریقے/خود نظم و ضبط: توجہ مرکوز رکھݨ، ہدایات تے عمل، جذبات تے قابو۔',
+
+  'age_wise_progression': 'عمر دے لحاظ نال ترقی',
+  'birth_to_3_years': 'پیدائش کنوں تقریباً 3 سال تائیں:',
+  'encourage_talking_reading_singing':
+      'گل بات، کہاݨیاں پڑھݨ تے گیت گاوݨ — بچے دے اشاریاں دا جواب ݙیوو۔',
+  'play_simple_cause_effect_toys':
+      'کھیڈ: سادہ کھڈونے، تجرباتی سرگرمیاں، محفوظ ماحول۔',
+  'social_snuggling_interacting_imitating':
+      'سماجی: پیار، میل جول، نقل کرݨ، باری گھنݨ۔',
+  'self_help_safe_exploration_picking_items':
+      'خود مدد: محفوظ ماحول وچ دریافت کرݨ تے چیزاں چکݨ ݙیوو۔',
+
+  '3_5_years_preschool_stage': '3–5 سال (پری اسکول مرحلہ):',
+  'fine_motor_drawing_crafts_scissors':
+      'باریک حرکتاں: تصویراں بݨاوݨ، ہنر مند سرگرمیاں، قینچی استعمال کرݨ (مدد دے نال)۔',
+  'language_literacy_tell_stories_letters':
+      'زبان و خواندگی: کہاݨیاں سݨاوݨ، سوال پچھݨ، کھیڈ دے ذریعے حروف/اعداد سکھاوݨ۔',
+  'social_emotional_cooperative_play_sharing':
+      'سماجی و جذباتی: اشتراکی کھیڈ، ونڈݨ، دوجیاں دے احساسات سمجھݨ۔',
+  'cognitive_sorting_games_puzzles_counting':
+      'علمی: پہیلیاں، گنتی، شیواں ترتیب ݙیوݨ، سادہ کھیڈ۔',
+  'routine_self_help_skills_dressing_toilet':
+      'روزمرہ عادتاں: کپڑے پہنݨ، واش روم استعمال کرݨ، کھڈونے سمیٹݨ، ہدایات تے عمل۔',
+  'transition_group_setting_play_groups':
+      'گروپ ماحول دی عادت: پلے گروپس یا پری اسکول وچ شمولیت۔',
+
+  '5_8_years_early_school_age': '5–8 سال (ابتدائی اسکول عمر):',
+  'reading_readiness_recognising_letters_words':
+      'پڑھݨ دی تیاری: حروف تے الفاظ پہچاݨݨ، تفریحاً پڑھݨ۔',
+  'numeracy_counting_addition_subtraction_shapes':
+      'ریاضی: گنتی، جمع و تفریق، اشکال و نموناں دی پہچان۔',
+  'attention_span_sit_story_follow_instructions':
+      'توجہ برقرار رکھݨ: کہاݨی سݨݨ، ہدایات تے عمل کرݨ۔',
+  'self_management_packing_bag_responsible_tasks':
+      'خود نظم و ضبط: اسکول بیگ تیار کرݨ، نکے کم خود کرݨ، قواعد تے عمل۔',
+  'social_skills_making_friends_resolving_conflicts':
+      'سماجی مہارتاں: یار بݨاوݨ، نکے اختلاف حل کرݨ، گروپ وچ تعاون۔',
+  'health_physical_sleep_meals_outdoor_play':
+      'صحت و جسمانی سرگرمیاں: اچھی نیند، باقاعدہ کھاݨا، باہر کھیڈݨ، خود مختاری۔',
+
+  'self_regulation_school_readiness_research':
+      'تحقیقات کنوں ثابت ہے کہ خود نظم و ضبط اسکول دی تیاری نال گہرا تعلق رکھدا ہے۔ کھیڈ، معمولات تے عمر دے مطابق سرگرمیاں نال بچے دی نشوونما وچ مدد کرو۔',
+
+  'go_to_homepage': 'ہوم پیج تے ونجو',
+  'your_profile': 'تہاݙی پروفائل',
+  'why': 'کیوں؟',
+  'get_pregnant_profile': 'حمل دی پروفائل',
+  'manage_fertility_journey': 'اپݨے زرخیزی دے سفر دا انتظام کرو',
+
+// Goal Selection Controller
+  'track_my_pregnancy_setup': 'میݙے حمل دی ترتیب',
+  'i_know_my_due_date': 'مکوں اپݨی متوقع تاریخ معلوم ہے',
+  'i_dont_know': 'مکوں نہیں معلوم',
+  'use_lmp_or_ultrasound_calculate_edd':
+      'EDD دا حساب لاوݨ کیتے LMP (آخری مدت) یا الٹراساؤنڈ استعمال کرو',
+
+  'select_lmp_date': 'LMP تاریخ منتخب کرو',
+  'cycle_length_days_default_28': 'سائیکل دی لمبائی (ݙین) — ڈیفالٹ 28',
+  'select_ultrasound_date_optional': 'الٹراساؤنڈ تاریخ منتخب کرو (اختیاری)',
+  'ga_weeks_on_scan': 'اسکین تے GA ہفتے',
+  'ga_days_on_scan': 'اسکین تے GA ݙین',
+  'height_weight_calculate_bmi': 'قد تے وزن',
+  'pre_pregnancy_weight': 'پری حمل تے وزن',
+  'feet': 'فٹ',
+  'inch': 'انچ',
+  'calculate_bmi': 'BMI دا حساب لاو',
+  'please_enter_height_and_weight': 'مہربانی کر کے اپݨی قد تے وزن درج کرو',
+  'bmi_saved_successfully': 'BMI کامیابی نال محفوظ تھی ڳیا',
+  'invalid_height_format': 'قد دی شکل غلط ہے',
+  'please_enter_valid_height_and_weight':
+      'مہربانی کر کے صحیح قد تے وزن درج کرو',
+  'failed_to_save_bmi':
+      'BMI محفوظ کرݨ وچ ناکامی۔ مہربانی کر کے دوبارہ کوشش کرو۔',
+  'oops': 'اوہ!',
+  'please_provide_due_date_or_info':
+      'مہربانی کر کے متوقع تاریخ یا اوندا حساب لاوݨ کیتے کافی معلومات فراہم کرو',
+
+  'cycle_details': 'سائیکل دی تفصیلات',
+  'select_last_period_date': 'آخری مدت دی تاریخ منتخب کرو',
+  'typical_cycle_length_21_35_days': 'عام سائیکل دی لمبائی 21-35 ݙین ہے',
+  'please_select_last_period_date':
+      'مہربانی کر کے اپݨی آخری مدت دی تاریخ منتخب کرو',
+  'please_enter_valid_cycle_length':
+      'مہربانی کر کے صحیح سائیکل دی لمبائی درج کرو (16-45 ݙین)',
+  'example_28': 'مثال دے طور تے، 28',
+  'last_period_date': 'آخری ماہواری دی تاریخ',
+
+// Good Touch & Bad Touch
+// Newborn Responsibilities
+  'why_is_it_important': 'ایہ کیوں ضروری ہے؟',
+  'establishes_child_legal_identity': 'ایہ بچے دی قانونی شناخت قائم کردا ہے',
+  'required_passport_school_health_insurance':
+      'پاسپورٹ، اسکول داخلے، تے ہیلتھ انشورنس کیتے ضروری ہے',
+
+  'how_to_register': 'اندراج کین٘ویں کریے؟',
+  'register_within_60_days_birth': 'پیدائش دے 60 ݙیناں دے اندر اندراج کرواوو',
+  'apply_local_union_council_nadra':
+      'اپݨی مقامی یونین کونسل یا نادرا آفس وچ درخواست ݙیوو',
+
+  'documents_needed': 'ضروری دستاویزات',
+  'hospital_birth_slip': 'ہسپتال دی پیدائش دی پرچی',
+  'cnic_both_parents': 'دوہاں والدین دے شناختی کارڈ (CNIC)',
+  'marriage_certificate': 'نکاح نامہ یا شادی دا سرٹیفکیٹ',
+  'application_form_signatures': 'درخواست فارم بمع دستخط',
+
+  'nadra_form_b_after_birth_certificate':
+      'نادرا فارم بی (پیدائش دے سرٹیفکیٹ دے بعد)',
+  'required_school_passport_government_records':
+      'اسکول داخلے، پاسپورٹ، تے سرکاری ریکارڈ کیتے ضروری ہے',
+  'bring_child_birth_certificate_parents_cnics':
+      'نال آݨو: بچے دا پیدائش سرٹیفکیٹ تے والدین دے شناختی کارڈ',
+  'one_parent_present_biometric_verification':
+      'بائیومیٹرک تصدیق کیتے اک والدین دا موجود ہووݨ لازمی ہے',
+
+  'hospital_documents_to_keep': 'محفوظ رکھݨ کیتے ہسپتال دیاں دستاویزات',
+  'discharge_summary_mother_child': 'والدہ تے بچے دی ڈسچارج سمری',
+  'vaccination_card_record_started_birth':
+      'پیدائش دے ویلے کنوں ویکسینیشن کارڈ/ریکارڈ شروع کیتا ویندا ہے',
+  'medical_test_results_blood_group':
+      'کہیں وی میڈیکل ٹیسٹ دے نتائج (بشمول بلڈ گروپ)',
+
+  'vaccination_schedule': 'ویکسینیشن شیڈول',
+  'starts_immediately_after_birth': 'پیدائش دے فوراً بعد شروع تھیندا ہے',
+  'record_epi_card': 'ای پی آئی کارڈ تے ریکارڈ کرو',
+  'keep_card_safe_updated': 'کارڈ کوں محفوظ تے تازہ رکھو',
+
+  'passport_application_if_needed':
+      'جے ضرورت ہووے تے پاسپورٹ کیتے درخواست ݙیوو',
+  'apply_after_form_b_registration': 'فارم بی دے اندراج دے بعد درخواست ݙیوو',
+  'submit_online_office_birth_certificate_form_b_parents_passports':
+      'آن لائن یا آفس وچ جمع کرواوو: پیدائش دا سرٹیفکیٹ، فارم بی، والدین دے پاسپورٹ',
+
+// Good Touch & Bad Touch
+  'tip_one_parent_present_biometric_form_b':
+      'مشورہ: فارم بی کیتے درخواست ݙیندے ویلے اک والدین دا بائیومیٹرک تصدیق کیتے موجود ہووݨ ضروری ہے۔',
+  'good_touch_bad_touch': 'اچھا چھووݨ تے برا چھووݨ',
+  'teach_child_safe_unsafe_touch_empower':
+      'اپݨے بچے کوں محفوظ تے غیر محفوظ چھووݨ بارے سکھاوو۔ انہاں کوں علم نال بااختیار بݨاوو۔',
+
+// Milestones
+  "milestone_100_1":
+      "زیادہ تر اضطراری حرکتاں (مُنہ ڈھونڈݨ، چوسݨ، چونکݨ)؛ اعضاء مڑے ہوئے رکھدا ہے",
+  "milestone_100_2":
+      "ضرورتاں دے اشارے کیتے روندا ہے؛ دیکھ بھال کرݨ آلے دی آواز نال پرسکون تھیندا ہے",
+  "milestone_100_3": "مُنہڑے جیہے نموناں تے مختصر نظر جماندا ہے",
+  "milestone_100_4": "ہر 2-4 گھنٹے بعد بار بار دُدھ پیندا ہے (چھاتی یا بوتل)",
+  "milestone_100_5": "لمبی نیند دی مدت پر دُدھ پیوݨ کیتے جاڳدا ہے",
+  "milestone_desc_100":
+      "پہلے مہینے وچ عام تبدیلیاں: اضطراری حرکتاں، بوہت زیادہ سوݨ، جذباتی تعلق، مہینے دے آخر وچ ابتدائی سماجی مسکراہٹ شروع تھیندی ہے۔",
+
+  "milestone_101_1":
+      "ہموار چوسݨ؛ پیٹ دے بل لیٹݨ تے سر مختصر ویلے کیتے چُک سڳدا ہے",
+  "milestone_101_2":
+      "مختصر، عارضی سماجی مسکراہٹ ݙکھاوݨ شروع کردا ہے (کجھ نوزائیدہ بعد وچ شروع کردے ہن)",
+  "milestone_101_3": "آہستہ حرکت کرݨ آلیاں چیزاں کوں تھوڑی دیر کیتے ݙیکھدا ہے",
+
+  "milestone_102_1": "مضبوط ہتھ، انگلاں زیادہ کھولدا ہے",
+  "milestone_102_2":
+      "گنگناہٹ دیاں آوازاں ظاہر تھی سڳدیاں ہن؛ گل کرݨ تے خاموش تھیندا ہے",
+  "milestone_102_3": "زیادہ منظم دُدھ پیوݨ تے تھوڑی لمبی جاڳݨ دی مدت",
+
+  "milestone_103_1":
+      "آواز دی طرف سر موڑدا ہے؛ پیٹ دے بل لیٹݨ تے مختصر ویلے کیتے سر چُک سڳدا ہے",
+  "milestone_103_2":
+      "سماجی مسکراہٹ ظاہر تھی سڳدی ہے (بوہت سارے بچے 4-6 ہفتیاں وچ سماجی طور تے مسکراندے ہن)",
+  "milestone_103_3": "چیزاں کوں درمیان کنوں آر پار ݙیکھدا ہے",
+
+  "milestone_104_1": "سیدھا رکھݨ تے بہتر سر کنٹرول؛ گھٹ لڑکھڑاوݨ دے لمحے",
+  "milestone_104_2": "گنگناہٹ تے گڑگڑاہٹ زیادہ بار بار",
+  "milestone_104_3":
+      "آمݨے سامݨے گل بات کنوں لطف اندوز تھیندا ہے؛ مُنہڑیاں کوں ݙیکھدا رہندا ہے",
+  "milestone_desc_104":
+      "اہم سنگ میل: زیادہ مقصدی حرکتاں، سماجی مسکراہٹ، گنگناہٹ/گڑگڑاہٹ، بہتر سر کنٹرول۔",
+
+  "milestone_105_1":
+      "پیٹ دے بل لیٹݨ دے دوران سر زیادہ مستحکم طریقے نال چکدا ہے",
+  "milestone_105_2":
+      "مُنہڑیاں دے جواب وچ قابل اعتماد طریقے نال مسکراندا ہے؛ سماجی مسکراہٹ واضح تر",
+  "milestone_105_3": "چیزاں کوں ودھیک دور تائیں ݙیکھدا ہے تے نظر بدلدا ہے",
+
+  "milestone_106_1":
+      "آوازاں دی طرف مڑدا ہے؛ دیکھ بھال کرݨ آلے دی آواز تے گنگناہٹ نال جواب ݙیندا ہے",
+  "milestone_106_2": "ہتھاں کوں اکٹھے کرݨ تے مُنہ تائیں آݨ شروع کردا ہے",
+
+  "milestone_107_1": "پیٹ دے بل لیٹݨ دے دوران بازواں تے دھکا لاندا ہے",
+  "milestone_107_2": "ہتھ کھولݨ تے جھنجھنا اضطراری طور تے پکڑݨ شروع کردا ہے",
+  "milestone_107_3": "حروف (او/آہ)، کھیڈ تے گڑگڑاہٹ نال جواب ݙیندا ہے",
+  "milestone_107_4": "کجھ آوازاں دی نقل کرݨ شروع کردا ہے",
+  "milestone_107_5":
+      "سماجی کھیڈاں کنوں لطف اندوز تھیندا ہے، دیکھ بھال کرݨ آلیاں کوں پہچاندا ہے",
+
+  "milestone_108_1":
+      "پیٹ دے بل لیٹݨ وچ سینہ زیادہ اونچا چکدا ہے؛ سیدھا پکڑݨ تے ٹنگاں تے وزن برداشت کرݨ شروع کردا ہے",
+  "milestone_108_2": "مختلف قسم دی گنگناہٹ؛ جلد زور نال ہنس سڳدا ہے",
+  "milestone_desc_108":
+      "ودھدے ہوئے کنٹرول دی توقع: بازواں تے سینہ چکݨ، ہنسݨ، مقصدی پکڑݨ۔",
+
+  "milestone_109_1":
+      "واقف لوکاں تے خوشی دے تاثرات نال جواب ݙیندا ہے؛ مُنہڑیاں کوں غور نال ݙیکھدا ہے",
+  "milestone_109_2": "زیادہ کنٹراسٹ آلے کھڈونیاں تائیں پہنچدا ہے",
+
+  "milestone_110_1":
+      "ہتھ زیادہ کھلݨ شروع تھیندے ہن؛ کھڈونیاں تائیں پہنچدا ہے تے ماردا ہے",
+  "milestone_110_2": "لمبے حروف استعمال کرݨ شروع کردا ہے تے کھلکھلا سڳدا ہے",
+
+  "milestone_111_1": "بغیر سہارے سر مستحکم رکھدا ہے؛ ہتھاں تے دھکا لاندا ہے",
+  "milestone_111_2": "کݙاہیں کݙاہیں اڳے کنوں پچھے لڑھک سڳدا ہے",
+  "milestone_111_3":
+      "ہنسدا ہے، چیختا ہے؛ آواز دی طرف مڑدا ہے تے خوشی ظاہر کردا ہے",
+  "milestone_111_4": "180 ڈگری تائیں ݙیکھدا ہے",
+
+  "milestone_112_1":
+      "مقصدی طور تے پہنچݨ شروع کردا ہے؛ چیزاں کوں مُنہ تائیں آݨ سڳدا ہے",
+  "milestone_112_2": "حروفِ صحیح ظاہر تھیندے ہن (ب، د، گ جیہے)",
+  "milestone_desc_112":
+      "ودھدی ہوئی باریک موٹر مہارت، مقصدی پہنچݨ، لڑھکݨ دے رجحانات، سماجی کھیڈ۔",
+
+  "milestone_113_1": "اڳے کنوں پچھے زیادہ بار لڑھکدا ہے؛ سہارے دے نال بہندا ہے",
+  "milestone_113_2": "آئینے/چھپن چھپائی دی گل بات کنوں لطف اندوز تھیندا ہے",
+
+  "milestone_114_1": "کھڈونے چکݨ کیتے ریکنگ گرفت (پورا ہتھ) شروع کردا ہے",
+  "milestone_114_2": "آواز دا کھیڈ، بڑبڑاندا ہے تے لہجے دے نال تجربہ کردا ہے",
+
+  "milestone_115_1": "دھڑ دے سہارے دے نال بہندا ہے؛ اچھا سر کنٹرول",
+  "milestone_115_2": "جلد دوہاں سمتاں وچ لڑھک سڳدا ہے",
+  "milestone_115_3":
+      "ہنسدا ہے، کݙاہیں کݙاہیں ناں تے جواب ݙیندا ہے؛ کجھ مُنہ دیاں حرکتاں نقل کردا ہے",
+
+  "milestone_116_1":
+      "تھوڑے ویلے کیتے ہتھاں تے ٹیک لا کے بہندا ہے؛ بہتر وسط وچ کھیڈ (ہتھ اکٹھے)",
+  "milestone_116_2":
+      "تکراری بڑبڑاہٹ (با-با، ما-ما آوازاں دے طور تے ابھر رہیاں ہن، ہݨ الفاظ نہیں)",
+  "milestone_desc_116":
+      "بہݨ دی پیش رفت، پہلیاں ٹھوس غذاواں اکثر 6 مہینے دے قریب شروع کیتیاں ویندیاں ہن پر کجھ خاندان مقامی رہنمائی دے مطابق پہلاں ذائقے شروع کردے ہن؛ بڑبڑاہٹ ودھدی ہے۔",
+
+  "milestone_117_1": "مُنہ تے ہتھاں نال چیزاں کوں جان بُجھ کے تلاش کردا ہے",
+  "milestone_117_2":
+      "واقف لوکاں کوں پہچاندا ہے؛ اجنبیاں کنوں ہچکچاہٹ ݙکھا سڳدا ہے",
+
+  "milestone_118_1":
+      "پیٹ تے گھومدا ہے، رینگݨ شروع کر سڳدا ہے؛ کھڈونے ہتھ کنوں ہتھ منتقل کردا ہے",
+  "milestone_118_2":
+      "6 مہینے دے قریب ٹھوس چیزاں کیتے تیاری ݙکھا سڳدا ہے؛ ماہرِ اطفال نال مشورہ کرو",
+
+  "milestone_119_1":
+      "ناں تے زیادہ قابل اعتماد طریقے نال جواب ݙیندا ہے؛ مختلف حروفِ صحیح تے حروفِ علت دے امتزاج استعمال کردا ہے",
+  "milestone_119_2":
+      "بغیر سہارے مختصر ویلے کیتے بہندا ہے دھڑ کنٹرول بہتر تھی رہیا ہے",
+
+  "milestone_120_1": "بغیر سہارے لمبی مدت کیتے بہندا ہے",
+  "milestone_120_2": "ریکنگ گرفت بہتر تھی رہی ہے؛ نکیاں چیزاں تائیں پہنچدا ہے",
+  "milestone_desc_120":
+      "اہم تبدیلیاں: مستحکم بہݨ، دوہاں طرف لڑھکݨ، رینگݨ دیاں کوششاں شروع، پہلے دند ممکنہ؛ ٹھوس چیزاں عام طور تے متعارف کرائیاں ویندیاں ہن۔",
+
+  "milestone_121_1":
+      "جے ماہر دی طرفوں مشورہ ݙتا ونجے تے میشڈ/پیوری تھئی ہوئی غذاواں قبول کر سڳدا ہے",
+  "milestone_121_2": "انگلاں نال خود کھاوݨ شروع کردا ہے (نرم غذاواں چکݨ)",
+  "milestone_121_3":
+      "چھپن چھپائی جیہیاں کھیڈاں کنوں لطف اندوز تھیندا ہے؛ ودھدی ہوئی سماجی تبادلہ ݙکھاندا ہے",
+
+  "milestone_122_1": "رینگݨ دی تیاری وچ ہتھاں/گوڈیاں تے جھولݨ شروع کر سڳدا ہے",
+  "milestone_122_2":
+      "بڑبڑاہٹ زیادہ پیچیدہ تھی ویندی ہے (مختلف بڑبڑاہٹ جیہے \"مابادا\")",
+
+  "milestone_123_1":
+      "بغیر سہارے اچھی طرح بہہ سڳدا ہے تے بہݨ کیتے کھینچݨ شروع کر سڳدا ہے",
+  "milestone_123_2": "رینگݨ/گھومݨ دی کوشش شروع کر سڳدا ہے",
+  "milestone_123_3":
+      "چیزاں کوں زیادہ پیچیدہ طریقیاں نال تلاش کردا ہے (ہلاوݨ، مارݨ)",
+
+  "milestone_124_1":
+      "رینگݨ یا فوجی رینگݨ ممکن؛ مستحکم طریقے نال بہندا ہے تے کھڈونیاں تائیں پہنچݨ کیتے گھومدا ہے",
+  "milestone_124_2":
+      "حروفِ صحیح دے سلسلے استعمال کردا ہے تے گل بات وچ آوازاں نال جواب ݙیندا ہے",
+  "milestone_desc_124":
+      "بہتر نقل و حرکت (رینگݨ شروع)، چیز دی مستقل موجودگی دیاں بنیاداں، مضبوط چٹکی دی نشوونما شروع۔",
+
+  "milestone_125_1":
+      "ریکنگ دی ترقی، رینج دے آخر وچ چٹکی (انڈیکس + انگوٹھا) دی مشق شروع",
+  "milestone_125_2":
+      "کجھ لوکاں/کھڈونیاں کیتے ترجیح ݙکھاندا ہے؛ اجنبیاں دے نال بے چینی ݙکھا سڳدا ہے",
+
+  "milestone_126_1":
+      "چیز دی مستقل موجودگی دے نال تجربہ کردا ہے (جزوی طور تے چھپے کھڈونے کوں ڈھونڈدا ہے)",
+  "milestone_126_2": "انگلاں نال کھاوݨ دیاں چیزاں چکدا ہے، مُنہ تائیں آندا ہے",
+
+  "milestone_127_1":
+      "سہارے دے نال کھڑے تھیوݨ کیتے کھینچ سڳدا ہے؛ چیزاں تائیں پہنچݨ کیتے فعال طور تے حرکت کردا ہے",
+  "milestone_127_2": "تقریر دیاں آوازاں تے لہجے دی نقل کردا ہے",
+
+  "milestone_128_1":
+      "فرنیچر استعمال کردے ہوئے کھڑے تھیوݨ کیتے کھینچدا ہے؛ سہارے دے نال کھڑا تھیندا ہے",
+  "milestone_128_2": "انگوٹھے-انڈیکس دی مخالفت دی مشق بہتر",
+  "milestone_desc_128":
+      "کھڑے تھیوݨ کیتے کھینچݨ، سہارے دے نال چلݨ شروع، واضح تر اشارے (اشارہ کرݨ)، زیادہ متنوع بڑبڑاہٹ۔",
+
+  "milestone_129_1":
+      "اشارے استعمال کردا ہے (پہنچݨ، اشارہ کرݨ)؛ کݙاہیں کݙاہیں \"نہیں\" تے جواب ݙیندا ہے",
+  "milestone_129_2":
+      "انٹرایکٹو کھیڈ کھیڈدا ہے تے کجھ کیتے علیحدگی دی بے چینی ظاہر کرݨ شروع کردا ہے",
+
+  "milestone_130_1":
+      "مکمل طور تے چھپیاں ہوئیاں چیزاں کوں تلاش کردا ہے (چیز دی مستقل موجودگی وچ بہتری)",
+  "milestone_130_2": "کروزنگ شروع کر سڳدا ہے (فرنیچر پکڑ کے گھومݨ)",
+
+  "milestone_131_1":
+      "سادہ الفاظ جیہے \"بچہ\"، \"بوتل\" سمجھدا ہے؛ تال دے نال بڑبڑاندا ہے",
+  "milestone_131_2": "خود کھاوݨ بہتر تھی رہیا ہے؛ مختلف ساخت آزماندا ہے",
+
+  "milestone_132_1":
+      "اچھی طرح کروز کردا ہے، بغیر سہارے مختصر ویلے کیتے کھڑا تھیوݨ ممکن",
+  "milestone_132_2": "چٹکی گرفت زیادہ بہتر (نکے ٹکڑے چکݨ دے قابل)",
+  "milestone_desc_132":
+      "کھڑے تھیوݨ/کروزنگ وچ اعتماد؛ جان بُجھ کے اشارہ کرݨ دے پہلے نشانات؛ غیر مخصوص طور تے \"ماما/دادا\" آکھ سڳدا ہے۔",
+
+  "milestone_133_1":
+      "بوہت سارے بچیاں کیتے اوں مدت دے آخر تائیں والدین کیتے خاص طور تے \"ماما/دادا\" آکھ سڳدا ہے",
+  "milestone_133_2":
+      "واضح ترجیحات ݙکھاندا ہے تے تلاش کردے ویلے دیکھ بھال کرݨ آلے دی طرف واپس ݙیکھݨ ݙکھا سڳدا ہے",
+
+  "milestone_134_1":
+      "سادہ عمل دی نقل کردا ہے؛ وجہ/اثر دی تلاش کردا ہے (چیزاں سُٹ کے ݙیکھدا ہے)",
+  "milestone_134_2": "کھڑے تھیوݨ کنوں فرش تے تھلے آندا ہے",
+
+  "milestone_135_1":
+      "اشاریاں دے نال سادہ احکام سمجھدا ہے؛ دلچسپی ونڈݨ کیتے اشارہ کردا ہے",
+  "milestone_135_2": "ہتھ پکڑ کے قدم چک سڳدا ہے",
+
+  "milestone_136_1":
+      "مختصر ویلے کیتے اکلے کھڑا تھی سڳدا ہے؛ کروزنگ دے دوران بہتر توازن",
+  "milestone_136_2":
+      "حروفِ صحیح دیاں ودھدیاں ہوئیاں آوازاں تے الفاظ دی جان بُجھ کے تقریب",
+  "milestone_desc_136":
+      "بہتر نقل و حرکت، زیادہ جان بُجھ کے الفاظ، کھیڈ زیادہ پیچیدہ تھی ویندی ہے (فرضی عمل)۔",
+
+  "milestone_137_1":
+      "سادہ اڳے پچھے کھیڈ کھیڈدا ہے؛ علیحدگی دی بے چینی دی چوٹی ݙکھا سڳدا ہے",
+  "milestone_137_2":
+      "کݙاہیں کݙاہیں چیزاں کوں صحیح طریقے نال استعمال کردا ہے (کپ کنوں پیندا ہے، گڈی کوں تھپکی ݙیندا ہے)",
+
+  "milestone_138_1": "زیادہ درست چٹکی؛ کھاوݨ دے نکے ٹکڑے چکدا ہے",
+  "milestone_138_2": "واقف لوکاں/چیزاں دے ناں پہچاندا ہے",
+
+  "milestone_139_1":
+      "آزاد قدم شروع کر سڳدا ہے (کجھ 9-15 مہینے دے درمیان شروع کردے ہن)",
+  "milestone_139_2":
+      "درخواست کرݨ یا دلچسپی ونڈݨ کیتے چیزاں دی طرف اشارہ کردا ہے",
+
+  "milestone_140_1": "مدد نال/بغیر مدد دے چلݨ دیاں کوششاں زیادہ بار بار",
+  "milestone_140_2": "1-3 بامعنی الفاظ آکھ سڳدا ہے (مختلف تھیندے ہن)",
+  "milestone_140_3": "معمولات دی نقل کردا ہے (بال برش کردا ہے، ہتھ ہلاندا ہے)",
+  "milestone_desc_140":
+      "الفاظ دی تقریب، کھڑا تھیندا ہے تے قدم چک سڳدا ہے؛ زیادہ زبان سمجھدا ہے۔",
+
+  "milestone_141_1": "کݙاہیں کݙاہیں بغیر اشاریاں دے سادہ ہدایات تے عمل کردا ہے",
+  "milestone_141_2": "گھٹ سُٹݨ دے نال کپ کنوں پیندا ہے",
+
+  "milestone_142_1":
+      "تھلے فرنیچر تے چڑھدا ہے؛ کھڈونے دھکیلݨ کنوں لطف اندوز تھیندا ہے",
+  "milestone_142_2": "اشارے + اک لفظ اکٹھے استعمال تھیندے ہن (اشارہ + آواز)",
+
+  "milestone_143_1":
+      "کجھ لوکاں تے کھڈونیاں کیتے ترجیح ݙکھاندا ہے؛ حداں جانچ سڳدا ہے",
+  "milestone_143_2":
+      "مسئلہ حل کرݨ دی تلاش کردا ہے (ڈبے کنوں کھڈونا کڈھݨ دا طریقہ ڈھونڈدا ہے)",
+
+  "milestone_144_1":
+      "بوہت سارے بچے کھینچدے ہن، کروز کردے ہن، تے آزاد قدم چکدے ہن",
+  "milestone_144_2": "جھکݨ تے بحال تھیوݨ بہتر تھیندا ہے",
+  "milestone_144_3":
+      "اچھی طرح نال تیار شدہ چٹکی گرفت؛ چیزاں کوں آسانی نال ہتھ کنوں ہتھ منتقل کر سڳدا ہے",
+  "milestone_144_4":
+      "خاص طور تے \"ماما\" تے \"دادا\" آکھدا ہے؛ 1-3 دوجے الفاظ آکھ سڳدا ہے",
+  "milestone_144_5": "سادہ ہدایات سمجھدا ہے",
+  "milestone_desc_144":
+      "12 مہینے تائیں بوہت سارے بچے کھڑے تھیوݨ کیتے کھینچدے ہن، کروز کردے ہن، پہلے آزاد قدم چکدے ہن، تے خاص طور تے \"ماما/دادا\" دے علاوہ 1-3 دوجے الفاظ آکھدے ہن؛ مضبوط سماجی/جذباتی تعلقات۔",
+
+  "milestone_145_1":
+      "بوہت سارے بچے کھینچدے ہن، کروز کردے ہن، تے آزاد قدم چکدے ہن",
+  "milestone_145_2": "جھکݨ تے بحال تھیوݨ بہتر تھیندا ہے",
+  "milestone_145_3":
+      "اچھی طرح نال تیار شدہ چٹکی گرفت؛ چیزاں کوں آسانی نال ہتھ کنوں ہتھ منتقل کر سڳدا ہے",
+  "milestone_145_4":
+      "خاص طور تے \"ماما\" تے \"دادا\" آکھدا ہے؛ 1-3 دوجے الفاظ آکھ سڳدا ہے",
+  "milestone_145_5": "سادہ ہدایات سمجھدا ہے",
+
+  "milestone_146_1":
+      "بوہت سارے بچے کھینچدے ہن، کروز کردے ہن، تے آزاد قدم چکدے ہن",
+  "milestone_146_2": "جھکݨ تے بحال تھیوݨ بہتر تھیندا ہے",
+  "milestone_146_3":
+      "اچھی طرح نال تیار شدہ چٹکی گرفت؛ چیزاں کوں آسانی نال ہتھ کنوں ہتھ منتقل کر سڳدا ہے",
+  "milestone_146_4":
+      "خاص طور تے \"ماما\" تے \"دادا\" آکھدا ہے؛ 1-3 دوجے الفاظ آکھ سڳدا ہے",
+  "milestone_146_5": "سادہ ہدایات سمجھدا ہے",
+
+  "milestone_147_1":
+      "بوہت سارے بچے کھینچدے ہن، کروز کردے ہن، تے آزاد قدم چکدے ہن",
+  "milestone_147_2": "جھکݨ تے بحال تھیوݨ بہتر تھیندا ہے",
+  "milestone_147_3":
+      "اچھی طرح نال تیار شدہ چٹکی گرفت؛ چیزاں کوں آسانی نال ہتھ کنوں ہتھ منتقل کر سڳدا ہے",
+  "milestone_147_4":
+      "خاص طور تے \"ماما\" تے \"دادا\" آکھدا ہے؛ 1-3 دوجے الفاظ آکھ سڳدا ہے",
+  "milestone_147_5": "سادہ ہدایات سمجھدا ہے",
+
+  "milestone_148_1":
+      "آزادانہ چلدا ہے (9-15 مہینے دی رینج عام)؛ تھلے فرنیچر تے چڑھدا ہے",
+  "milestone_148_2":
+      "اشارے استعمال کردا ہے، الفاظ دی نقل کردا ہے، سادہ اک قدم دی ہدایات تے عمل کر سڳدا ہے",
+  "milestone_148_3": "کئی واحد الفاظ آکھدا ہے",
+  "milestone_148_4":
+      "دیکھ بھال کرݨ آلیاں دے نال مضبوط تعلق ݙکھاندا ہے، سادہ انٹرایکٹو کھیڈ کھیڈدا ہے",
+  "milestone_148_5":
+      "ابتدائی مسئلہ حل دا مظاہرہ کردا ہے (کھڈونا حاصل کرݨ کیتے ڈبہ کھولدا ہے)",
+  "milestone_148_6":
+      "چمچ نال خود کھاوݨ دی کوشش کردا ہے؛ کپ کنوں پیندا ہے؛ زیادہ ساخت آزماندا ہے",
+  "milestone_desc_148": "12 مہینے تائیں پہنچݨ تے 12 مہینے تے۔",
+
+  "milestone_149_1":
+      "آزادانہ چلدا ہے (9-15 مہینے دی رینج عام)؛ تھلے فرنیچر تے چڑھدا ہے",
+  "milestone_149_2":
+      "اشارے استعمال کردا ہے، الفاظ دی نقل کردا ہے، سادہ اک قدم دی ہدایات تے عمل کر سڳدا ہے",
+  "milestone_149_3": "کئی واحد الفاظ آکھدا ہے",
+  "milestone_149_4":
+      "دیکھ بھال کرݨ آلیاں دے نال مضبوط تعلق ݙکھاندا ہے، سادہ انٹرایکٹو کھیڈ کھیڈدا ہے",
+  "milestone_149_5":
+      "ابتدائی مسئلہ حل دا مظاہرہ کردا ہے (کھڈونا حاصل کرݨ کیتے ڈبہ کھولدا ہے)",
+  "milestone_149_6":
+      "چمچ نال خود کھاوݨ دی کوشش کردا ہے؛ کپ کنوں پیندا ہے؛ زیادہ ساخت آزماندا ہے",
+
+  "milestone_150_1":
+      "آزادانہ چلدا ہے (9-15 مہینے دی رینج عام)؛ تھلے فرنیچر تے چڑھدا ہے",
+  "milestone_150_2":
+      "اشارے استعمال کردا ہے، الفاظ دی نقل کردا ہے، سادہ اک قدم دی ہدایات تے عمل کر سڳدا ہے",
+  "milestone_150_3": "کئی واحد الفاظ آکھدا ہے",
+  "milestone_150_4":
+      "دیکھ بھال کرݨ آلیاں دے نال مضبوط تعلق ݙکھاندا ہے، سادہ انٹرایکٹو کھیڈ کھیڈدا ہے",
+  "milestone_150_5":
+      "ابتدائی مسئلہ حل دا مظاہرہ کردا ہے (کھڈونا حاصل کرݨ کیتے ڈبہ کھولدا ہے)",
+  "milestone_150_6":
+      "چمچ نال خود کھاوݨ دی کوشش کردا ہے؛ کپ کنوں پیندا ہے؛ زیادہ ساخت آزماندا ہے",
+
+  "milestone_151_1":
+      "آزادانہ چلدا ہے (9-15 مہینے دی رینج عام)؛ تھلے فرنیچر تے چڑھدا ہے",
+  "milestone_151_2":
+      "اشارے استعمال کردا ہے، الفاظ دی نقل کردا ہے، سادہ اک قدم دی ہدایات تے عمل کر سڳدا ہے",
+  "milestone_151_3": "کئی واحد الفاظ آکھدا ہے",
+  "milestone_151_4":
+      "دیکھ بھال کرݨ آلیاں دے نال مضبوط تعلق ݙکھاندا ہے، سادہ انٹرایکٹو کھیڈ کھیڈدا ہے",
+  "milestone_151_5":
+      "ابتدائی مسئلہ حل دا مظاہرہ کردا ہے (کھڈونا حاصل کرݨ کیتے ڈبہ کھولدا ہے)",
+  "milestone_151_6":
+      "چمچ نال خود کھاوݨ دی کوشش کردا ہے؛ کپ کنوں پیندا ہے؛ زیادہ ساخت آزماندا ہے",
+
+  "milestone_13_1":
+      "آزادانہ طور تے کجھ قدم چلدا ہے؛ کھڈونے چکݨ کیتے جھک سڳدا ہے",
+  "milestone_13_2": "دو نکے بلاکس اسٹیک کردا ہے",
+  "milestone_13_3": "جے ݙتا ونجے تے کرینون نال لکیراں کھینچدا ہے",
+  "milestone_13_4":
+      "عام لوکاں تے چیزاں دے ناں سمجھدا ہے؛ واقف الفاظ دی نقل کرݨ دی کوشش کر سڳدا ہے",
+  "milestone_13_5": "کیا تھیندا ہے ݙیکھݨ کیتے چیزاں سُٹ کے تجربہ کردا ہے",
+  "milestone_13_6": "دوجے بچیاں وچ دلچسپی ݙکھاوݨ شروع کردا ہے",
+  "milestone_13_7": "کپڑے پہنݨ وچ مدد کرݨ دی کوشش کردا ہے (بازو باہر رکھدا ہے)",
+  "milestone_desc_13":
+      "دوہاں ہتھ پکڑ کے چلݨ دی حوصلہ افزائی کرو؛ روزانہ سادہ بورڈ کتاباں پڑھو۔",
+
+// MILESTONES (14-24 months) - Saraiki Translation
+
+  "milestone_14_1":
+      "بغیر مدد دے چنگی طراں ٹردا اے؛ کھڈونا چک کے لے ونڄݨ دی کوشش کر سڳدا اے",
+  "milestone_14_2": "نیویں فرنیچر تے چڑھدا اے",
+  "milestone_14_3": "کتاب وچ صفحے پلٹدا اے (اک واری وچ کئی)",
+  "milestone_14_4": "اشارہ کرݨ کیتے انڈیکس انگلی ورتدا اے",
+  "milestone_14_5":
+      "ودھ الفاظ سمجھدا اے؛ پچھݨ تے جاݨی چیزاں ول اشارہ کر سڳدا اے",
+  "milestone_14_6": "تصویراں وچ جاݨے لوکاں تے پالتو جانوراں کوں پچھاݨدا اے",
+  "milestone_14_7": "جذبات جیویں خوشی تے مایوسی صاف طور تے ڈسدے ݨیں",
+  "milestone_14_8": "ہتھ یا منہہ دھوݨ وچ تعاون کرݨا شروع کردا اے",
+  "milestone_desc_14":
+      "الفاظ دا ذخیرہ بݨاوݨ کیتے آپݨے ٻال دے ارد گرد ہر چیز دا ناں ݙسو۔",
+
+  "milestone_15_1":
+      "مستحکم طریقے نال ٹردا اے؛ سخت طریقے نال ݙوڑنا شروع کردا اے",
+  "milestone_15_2": "سہارے نال سیڑھیاں چڑھݨ دی کوشش کردا اے",
+  "milestone_15_3": "2-3 بلاک دا برج بݨاندا اے",
+  "milestone_15_4": "چمچ ورتدا اے، اگرچہ گندا",
+  "milestone_15_5": "الفاظ دا ذخیرہ: 3-10 الفاظ",
+  "milestone_15_6": "بغیر اشارےآں دے سادہ ہدایتاں سمجھدا اے",
+  "milestone_15_7": "فرضی کھیڈ شروع کردا اے (کھڈونا فون تے ڳالھ کردا اے)",
+  "milestone_15_8": "اشارہ کر کے یا تہاکوں کھچ کے ضرورتاں دا اظہار کردا اے",
+  "milestone_15_9": "اوزار ݙیوݨ تے وال یا ݙند صاف کرݨ دی کوشش کردا اے",
+
+  "milestone_16_1": "سہارے نال پچھاں ٹردا اے",
+  "milestone_16_2": "ہر چیز تے چڑھݨ دی کوشش کردا اے",
+  "milestone_16_3": "نوبز یا ڈھکن گھما سڳدا اے",
+  "milestone_16_4": "3-4 بلاکس سٹیک کرݨا شروع کردا اے",
+  "milestone_16_5": "نویں الفاظ ݙہراوݨ دی کوشش کردا اے",
+  "milestone_16_6": "\"نہیں\" تے سادہ درخواستیں سمجھدا اے",
+  "milestone_16_7": "وجہ تے اثر دی تلاش کردا اے (بٹن ݙٻاندا اے → آواز)",
+  "milestone_16_8": "وݙےآں دے عمل دی نقل کردا اے (میز صاف کرݨا، جھاڑو ݙیوݨا)",
+
+  "milestone_17_1": "ودھ اعتماد نال ݙوڑدا اے",
+  "milestone_17_2": "ٹردے ہوئے کھڈونے ݙھک/کھچ سڳدا اے",
+  "milestone_17_3": "سارٹر ڈبے وچ سادہ شکلاں گھت سڳدا اے",
+  "milestone_17_4": "چمچ ورت کے آپ کھاوݨ دی کوشش کردا اے",
+  "milestone_17_5": "10-20 الفاظ؛ ٻولݨ کنوں کتھے ودھ سمجھدا اے",
+  "milestone_17_6": "عام چیزاں دا استعمال سمجھدا اے (کپ، فون)",
+  "milestone_17_7": "آپ مہربانی ڈساندا اے",
+  "milestone_17_8": "کپڑے پاوݨ تے لاہݨ وچ مدد کرݨ دی کوشش کردا اے",
+
+  "milestone_18_1": "سخت طریقے نال ݙوڑدا اے؛ ہتھ پھڑ کے سیڑھیاں چڑھ سڳدا اے",
+  "milestone_18_2": "بغیر ڈڳݨ دے گیند سٹدا اے",
+  "milestone_18_3": "آزادانہ طور تے لکیراں کھچدا اے",
+  "milestone_18_4": "4-بلاک برج بݨاندا اے",
+  "milestone_18_5": "15-25 الفاظ ورتدا اے، 2-الفاظ دے فقرے ملا سڳدا اے",
+  "milestone_18_6": "پچھݨ تے جسم دے اعضاء ول اشارہ کردا اے",
+  "milestone_18_7": "فرضی کھیڈ شروع کردا اے (گڑیا کوں کھاݨا کھوائیندا اے)",
+  "milestone_18_8": "ٻئے ٻالاں نال کھیڈدا اے (متوازی کھیڈ)",
+  "milestone_18_9": "مایوس تھیوݨ تے غصہ ڈسا سڳدا اے",
+  "milestone_18_10": "تھوڑا ڈڳدے ہوئے کھلے کپ کنوں پیندا اے",
+
+  "milestone_19_1": "بغیر ڈڳݨ دے کھڈونا چکݨ کیتے جھک سڳدا اے",
+  "milestone_19_2": "تھاں تے کدݨا شروع کر سڳدا اے",
+  "milestone_19_3": "اک واری وچ اک صفحہ پلٹدا اے",
+  "milestone_19_4": "ݙوویں ہتھ اکٹھے ورتݨا شروع کردا اے",
+  "milestone_19_5":
+      "الفاظ دا ذخیرہ تیزی نال ودھ رہیا اے؛ جانوراں دیاں آوازاں دی نقل کردا اے",
+  "milestone_19_6":
+      "روزانہ دے معمولات تے سادہ ویلے دے اشارے سمجھدا اے (\"نہاوݨ دے پچھوں، اساں سوندے آں\")",
+  "milestone_19_7": "جݙݨ کوئی زخمی تھیوے تاں ہمدردی ڈساوݨا شروع کردا اے",
+
+  "milestone_20_1": "گیند اڳوں ول ماردا اے",
+  "milestone_20_2": "مختصر ویلے کیتے پنجےآں تے کھلوہ سڳدا اے",
+  "milestone_20_3": "اوچے برج بݨاندا اے (5-6 بلاکس)",
+  "milestone_20_4": "ودھ کنٹرول نال کرینون ورتݨا شروع کردا اے",
+  "milestone_20_5": "2-الفاظ دے جملے ورتدا اے (\"ہور دُدھ\")",
+  "milestone_20_6": "ݙو قدم دیاں ہدایتاں سمجھدا اے",
+  "milestone_20_7": "شکلاں/رنگاں دی چھانٹی شروع کردا اے",
+  "milestone_20_8": "وݙے ٻالاں یا وݙےآں دے عمل دی نقل کردا اے",
+
+  "milestone_21_1": "مدد نال سیڑھیاں چڑھدا اے، ہر قدم تے ݙوویں پیر",
+  "milestone_21_2": "ٹردے ہوئے نکا کھڈونا لے ون سڳدا اے",
+  "milestone_21_3": "6 بلاکس سٹیک کردا اے",
+  "milestone_21_4": "صاف طریقے نال چمچ ورتدا اے",
+  "milestone_21_5": "الفاظ دا ذخیرہ تقریباً 40-50 الفاظ",
+  "milestone_21_6": "سادہ سوال پچھݨا شروع کردا اے (\"ایہہ کیا اے؟\")",
+  "milestone_21_7": "شکل یا سائز دے حساب نال چیزاں دا میل کردا اے",
+  "milestone_21_8": "ٻئےآں نال کھیڈدا اے، ہݨ تعاون نال نہیں",
+
+  "milestone_22_1": "بہتر توازن نال ݙوڑدا اے",
+  "milestone_22_2": "اوور ہینڈ گیند سٹ سڳدا اے",
+  "milestone_22_3": "ڈھکن کھول سڳدا اے تے ڈبے کھول سڳدا اے",
+  "milestone_22_4": "سادہ \"کتھاں\" دے سوال سمجھدا اے",
+  "milestone_22_5": "ݙوہرا کے 2-3 الفاظ ملاندا اے",
+  "milestone_22_6": "عینے وچ آپ کوں پچھاݨݨا شروع کردا اے",
+  "milestone_22_7": "کامیابیاں تے فخر ڈساندا اے (\"میں کیتا!\")",
+
+  "milestone_23_1": "آسانی نال فرنیچر تے چڑھدا اے",
+  "milestone_23_2": "بغیر سہارے جھک کے ولدا کھلوہ سڳدا اے",
+  "milestone_23_3": "دروازے دے ہینڈل یا نوبز گھما سڳدا اے",
+  "milestone_23_4":
+      "اک ہتھ ودھ واری ورتݨا شروع کردا اے (ہتھ دی ترجیح بݨ رہی اے)",
+  "milestone_23_5": "آسانی نال ݙو قدم دے احکام تے عمل کردا اے",
+  "milestone_23_6": "جاݨے لوکاں تے چیزاں دے ناں ݙس سڳدا اے",
+  "milestone_23_7":
+      "فرضی کھیڈ کنوں لطف آندا اے (ٹیڈی کوں کھاݨا ݙیندا اے، کھڈونا گڑی چلاندا اے)",
+  "milestone_23_8": "ملکیت ڈسا سڳدا اے — ݙوہرا کے \"میݙا!\" آکھدا اے",
+
+  "milestone_24_1":
+      "چنگی طراں ݙوڑدا اے، گیند مار سڳدا اے، سیڑھیاں اوپر نیویں ون سڳدا اے",
+  "milestone_24_2": "ݙوویں پیراں نال کدݨا شروع کردا اے",
+  "milestone_24_3": "6-7 بلاکس دے برج بݨاندا اے",
+  "milestone_24_4":
+      "اک واری وچ اک صفحہ پلٹدا اے؛ گول لکیراں کھچݨا شروع کردا اے",
+  "milestone_24_5": "2-4 الفاظ دے فقرے ورتدا اے",
+  "milestone_24_6":
+      "50+ الفاظ دا ذخیرہ؛ ناں ݙس سڳدا اے تے جسم دے اعضاء دی شناخت کر سڳدا اے",
+  "milestone_24_7": "سادہ تصورات جیویں \"وݙا/نکا\" سمجھدا اے",
+  "milestone_24_8": "شکل یا رنگ دے حساب نال چیزاں دی چھانٹی شروع کردا اے",
+  "milestone_24_9": "ٻئے ٻالاں نال کھیڈدا اے، وݙےآں دی نقل کردا اے",
+  "milestone_24_10": "کھل کے پیار دا اظہار کردا اے",
+  "milestone_24_11": "کجھ کپڑے لاہ سڳدا اے",
+  "milestone_24_12": "پوٹی ٹریننگ وچ دلچسپی ڈساوݨا شروع کردا اے",
+  "milestone_desc_24":
+      "شروعاتی ٹوڈلر ورھیاں موٹر کنٹرول، زبان، تے سماجی آزادی وچ تیز رفتار فائدے گھن آندے ݨیں۔",
+
+// BIRTH PREPAREDNESS DETAIL VIEW
+
+// General
+  'birth_preparedness_title': 'پیدائش دی تیاری',
+  'birth_preparedness_desc': 'زچگی کیتے اناں ضروری اقداماں نال تیار رہو۔',
+
+// Section Headers and Points – Labor Signs
+  'labor_signs_early_signs_header': 'شروعاتی زچگی دیاں نشانیاں',
+  'labor_signs_regular_contractions':
+      'باقاعدہ درد جیڑھا ویلے نال ودھ مضبوط تے قریب تھیندا ونڄے',
+  'labor_signs_lower_back_pain': 'کمر دے نچلے حصے وچ درد یا کھچاؤ',
+  'labor_signs_water_breaking': 'پاݨی دا وہݨا (ایمنیٹک فلوئڈ)',
+  'labor_signs_bloody_show': 'خونی رطوبت (میکَس پلگ)',
+  'labor_signs_nesting_instinct': 'صفائی یا تیاری دی خواہش (توانائی وچ اضافہ)',
+
+  'labor_signs_call_doctor_header': 'ڈاکٹر کوں کݙݨ بلاوݨا چاہیدا اے',
+  'labor_signs_contractions_every_5min':
+      'جے ہر 5 منٹ پچھوں اک گھنٹہ تائیں درد تھیندا رہوے',
+  'labor_signs_water_breaks_even_without_contractions':
+      'جے پاݨی وہ ونڄے (چاہے درد نہ تھیوے)',
+  'labor_signs_heavy_bleeding': 'ودھ خون وہݨا',
+  'labor_signs_severe_headache_or_vision': 'شدید سر درد یا نظر دی خرابی',
+  'labor_signs_decreased_fetal_movement': 'ٻال دی حرکت وچ کمی',
+
+  'labor_signs_what_to_do_header': 'شروعاتی زچگی دے دوران کیا کرو',
+  'labor_signs_stay_calm': 'پُرسکون رہو تے درد دے وقفے نوٹ کرو',
+  'labor_signs_eat_light_snacks': 'ہلکیاں خوراکاں کھاؤ تے پاݨی ودھ پیو',
+  'labor_signs_take_shower': 'گرم پاݨی نال غسل کرو',
+  'labor_signs_practice_breathing': 'سانس گھنݨ دی مشق کرو',
+  'labor_signs_pack_hospital_bag': 'ہسپتال دا تھیلا تیار رکھو',
+
+// Section: Delivery Mode
+  'delivery_mode_vaginal_header': 'نارمل ڈیلیوری',
+  'delivery_mode_vaginal_common_natural': 'سبھ کنوں عام تے قدرتی طریقۂ زچگی',
+  'delivery_mode_faster_recovery': 'تیزی نال صحت یابی',
+  'delivery_mode_lower_risk_complications': 'پیچیدگیاں دا گھٹ خطرہ',
+  'delivery_mode_pain_management_options':
+      'درد دے انتظام دے اختیارات موجود تھیندے ݨیں',
+  'delivery_mode_vbac_possible':
+      'سی سیکشن دے پچھوں نارمل ڈیلیوری (VBAC) ممکن تھی سڳدی اے',
+
+  'delivery_mode_csection_header': 'سیزیرین سیکشن (C-Section)',
+  'delivery_mode_surgical_delivery': 'پیٹ دے آپریشن دے ذریعے زچگی',
+  'delivery_mode_may_be_planned_or_emergency':
+      'ایہہ طے شدہ یا ہنگامی طور تے تھی سڳدا اے',
+  'delivery_mode_longer_recovery': 'صحت یابی وچ ودھ ویلا لڳدا اے (6-8 ہفتے)',
+  'delivery_mode_higher_risk_complications': 'پیچیدگیاں دا ودھ خطرہ',
+  'delivery_mode_necessary_for_medical':
+      'کݙاہیں کݙاہیں طبی وجوہات دی بنا تے ضروری تھیندا اے',
+
+  'delivery_mode_pain_header': 'درد دے انتظام دے اختیارات',
+  'delivery_mode_epidural_anesthesia': 'ایپی ڈورل انستھیزیا',
+  'delivery_mode_natural_pain_relief': 'قدرتی درد وچ آرام دے طریقے',
+  'delivery_mode_nitrous_oxide': 'نائٹرس آکسائیڈ (ہنسی والی گیس)',
+  'delivery_mode_water_birth': 'پاݨی وچ ڈیلیوری',
+  'delivery_mode_breathing_relaxation': 'سانس تے ریلیکسیشن دیاں تکنیکاں',
+
+// Section: Hospital Bag
+  'hospital_bag_for_mom_header': 'ماں کیتے',
+  'hospital_bag_comfortable_nightgowns': 'آرام دہ نائٹ گاؤن یا پاجامے',
+  'hospital_bag_nursing_bras': 'نرسنگ برا تے بریسٹ پیڈز',
+  'hospital_bag_underwear_pads': 'انڈر ویئر تے میٹرنٹی پیڈز',
+  'hospital_bag_toiletries': 'ٹوالیٹریز تے ذاتی چیزاں',
+  'hospital_bag_going_home_outfit': 'گھر واپسی کیتے آرام دہ لباس',
+  'hospital_bag_charger_camera': 'فون چارجر تے کیمرہ',
+
+  'hospital_bag_for_baby_header': 'ٻال کیتے',
+  'hospital_bag_newborn_diapers_wipes': 'نویں پیدا تھئے دے ڈائپرز تے وائپس',
+  'hospital_bag_going_home_outfit_options': 'گھر واپسی دے کپڑے (2-3 آپشن)',
+  'hospital_bag_blanket_hat': 'ٻال دی چادر تے ٹوپی',
+  'hospital_bag_car_seat': 'کار سیٹ (چھٹی کیتے ضروری)',
+  'hospital_bag_nail_clippers': 'ٻال دے ناخن تراشݨ دے آلات',
+  'hospital_bag_pacifiers': 'پیسفائر (اختیاری)',
+
+  'hospital_bag_documents_header': 'اہم دستاویزات',
+  'hospital_bag_insurance_id': 'انشورنس کارڈز تے شناختی کارڈ',
+  'hospital_bag_birth_plan': 'زچگی دا منصوبہ تے میڈیکل ریکارڈ',
+  'hospital_bag_pre_registration': 'ہسپتال پری رجسٹریشن فارم',
+  'hospital_bag_emergency_contacts': 'ہنگامی رابطہ نمبر',
+  'hospital_bag_camera_phone': 'تصویراں کیتے فون یا کیمرہ',
+
+// Section: Transport Plan
+  'transport_plan_emergency_contacts_header': 'ہنگامی رابطے',
+  'transport_plan_ambulance_1034': 'ایمبولینس: 1034 (ایمرجنسی)',
+  'transport_plan_doctor_emergency_number': 'تہاݙے ڈاکٹر دا ایمرجنسی نمبر',
+  'transport_plan_labor_unit': 'ہسپتال دا لیبر وارڈ',
+  'transport_plan_partner_support': 'پارٹنر یا سپورٹ پرسن',
+  'transport_plan_backup_contact': 'متبادل رابطہ برائے ٹرانسپورٹ',
+
+  'transport_plan_options_header': 'سفر دے اختیارات',
+  'transport_plan_ambulance': 'ایمرجنسی کیتے ایمبولینس',
+  'transport_plan_family_friend_ride':
+      'گھر والےآں یا یاراں نال پہلوں کنوں طے شدہ سواری',
+  'transport_plan_ride_sharing': 'رائیڈ شیئرنگ سروس (اوبر/لیفٹ)',
+  'transport_plan_own_vehicle': 'آپݨی گڑی (جے درد ودھ نہ تھیوے)',
+  'transport_plan_public_transport': 'پبلک ٹرانسپورٹ (جے شروعاتی زچگی تھیوے)',
+
+  'transport_plan_emergency_do_header': 'ایمرجنسی وچ کیا کرو',
+  'transport_plan_call_1034': 'فوراً 1034 تے کال کرو',
+  'transport_plan_stay_calm_follow': 'پُرسکون رہو تے ہدایتاں تے عمل کرو',
+  'transport_plan_someone_with_you': 'کہیں کوں آپݨے نال رکھو',
+  'transport_plan_grab_bag': 'آپݨا ہسپتال تھیلا نال گھنو',
+  'transport_plan_time_contractions': 'درد دے وقفے نوٹ کرو (جے ممکن تھیوے)',
+
+// Section: Breastfeeding
+  'breastfeeding_benefits_header': 'دُدھ پیاوݨ دے فائدے',
+  'breastfeeding_perfect_nutrition': 'ٻال کیتے بہترین غذائیت',
+  'breastfeeding_immune_boost': 'مدافعتی نظام مضبوط کردا اے',
+  'breastfeeding_bonding': 'ماں تے ٻال دے تعلق کوں مضبوط بݨاندا اے',
+  'breastfeeding_postpartum_recovery':
+      'ولادت دے پچھوں صحت یابی وچ مدد ݙیندا اے',
+  'breastfeeding_cost_effective': 'سستا تے آسان ذریعۂ خوراک',
+
+  'breastfeeding_getting_started_header': 'دُدھ پیاوݨا کین٘ویں شروع کرو',
+  'breastfeeding_start_within_hour': 'پیدائش دے اک گھنٹے دے اندر شروع کرو',
+  'breastfeeding_skin_to_skin': 'فوراً کھل کنوں کھل دا رابطہ کرو',
+  'breastfeeding_feed_on_demand': 'جݙݨ ٻال چاہوے دُدھ پیاؤ (روزانہ 8-12 واری)',
+  'breastfeeding_proper_latch': 'صحیح طریقے نال لاوݨ دا طریقہ سکھو',
+  'breastfeeding_hydrated_nourished': 'پاݨی ودھ پیو تے متوازن خوراک گھنو',
+
+  'breastfeeding_challenges_header': 'عام مشکلات',
+  'breastfeeding_sore_nipples': 'نپل وچ درد یا زخم',
+  'breastfeeding_low_supply': 'دُدھ دی کمی دا مسئلہ',
+  'breastfeeding_not_latching': 'ٻال صحیح طراں نہیں لڳدا',
+  'breastfeeding_engorgement': 'سینے وچ سوجن یا دُدھ جم ونڄݨا',
+  'breastfeeding_getting_enough_sleep': 'نیند پوری نہ تھیوݨا',
+
+  'breastfeeding_support_header': 'مدد دے ذرائع',
+  'breastfeeding_lactation_consultant': 'لیکٹیشن کنسلٹنٹ',
+  'breastfeeding_support_groups': 'دُدھ پیاوݨ دے سپورٹ گروپ',
+  'breastfeeding_online_resources': 'آن لائن ذرائع تے ایپس',
+  'breastfeeding_family_support': 'خاندان تے خاوند دی حمایت',
+  'breastfeeding_healthcare_provider': 'ہیلتھ کیئر فراہم کنندہ دی رہنمائی',
+
+// Default Content
+  'birth_info_important_header': 'اہم معلومات',
+  'birth_info_consult_provider': 'اپنے ہیلتھ کیئر والے نال گل کرو',
+  'birth_info_follow_birth_plan': 'اپنے جنم دے پلان تے عمل کرو',
+  'birth_info_stay_informed': 'باخبر تے تیار رہو',
+  'birth_info_trust_instincts': 'اپنے دل دا یقین کرو',
+  'birth_info_ask_questions': 'جے شک ہووے تاں پچھو',
+
+// Button
+  'call_ambulance_1034': 'ایمبولینس نوں کال کرو (1034)',
+
+// LIFESTYLE ADVICE DETAIL VIEW
+
+// Nutrition
+  'lifestyle_nutrition_essential_nutrients': 'حمل وچ ضروری غذائی اجزاء',
+  'lifestyle_nutrition_folic_acid':
+      'فولک ایسڈ: روزانہ 400-800 مائیکروگرام (بچے دیاں نقائص توں بچاؤ لئی)',
+  'lifestyle_nutrition_iron': 'آئرن: روزانہ 27 ملی گرام (خون دی مقدار لئی)',
+  'lifestyle_nutrition_calcium': 'کیلشیم: روزانہ 1000 ملی گرام (ہڈیاں لئی)',
+  'lifestyle_nutrition_protein':
+      'پروٹین: روزانہ 75-100 گرام (بچے دی نشوونما لئی)',
+  'lifestyle_nutrition_omega3_dha':
+      'اومیگا 3 ڈی ایچ اے: روزانہ 200-300 ملی گرام (دماغ دی ترقی لئی)',
+  'lifestyle_nutrition_vitamin_d':
+      'وٹامن ڈی: روزانہ 600 IU (ہڈیاں دی مضبوطی لئی)',
+  'lifestyle_nutrition_include_header': 'کھان پین وچ ایہ چیزاں شامل کرو',
+  'lifestyle_nutrition_leafy_greens': 'سبز سبزیاں (پالک، بند گوبھی، بروکلی)',
+  'lifestyle_nutrition_lean_proteins':
+      'کم چکنائی والا گوشت (چکن، مچھلی، دالاں)',
+  'lifestyle_nutrition_whole_grains': 'پُورے اناج (براؤن چاول، جئی)',
+  'lifestyle_nutrition_dairy': 'دودھ دیاں چیزاں (دودھ، دہی، پنیر)',
+  'lifestyle_nutrition_fruits_vegetables': 'تازہ پھل تے سبزیاں',
+  'lifestyle_nutrition_nuts_seeds': 'میوے تے بیج (بادام، اخروٹ، چیا)',
+  'lifestyle_nutrition_avoid_header': 'ایہ چیزاں توں پرہیز کرو',
+  'lifestyle_nutrition_raw_meat_fish': 'کچا یا نیم پکا گوشت یا مچھلی',
+  'lifestyle_nutrition_unpasteurized_dairy': 'غیر پیسچرائزڈ دودھ دیاں چیزاں',
+  'lifestyle_nutrition_high_mercury_fish':
+      'زیادہ مرکری والی مچھلی (شارک، کنگ میکریل)',
+  'lifestyle_nutrition_excessive_caffeine': 'زیادہ کیفین (روزانہ 200mg تک)',
+  'lifestyle_nutrition_alcohol_tobacco': 'شراب تے تمباکو',
+  'lifestyle_nutrition_raw_eggs_deli_meat': 'کچے انڈے یا پراسیس گوشت',
+  'lifestyle_nutrition_hydration_header': 'پانی پین دے مشورے',
+  'lifestyle_nutrition_drink_water': 'روزانہ 8-10 گلاس پانی پیو',
+  'lifestyle_nutrition_carry_bottle': 'ہمیشہ پانی دی بوتل نال رکھو',
+  'lifestyle_nutrition_lemon_cucumber': 'ذائقے لئی لیموں یا کھیرا پاؤ',
+  'lifestyle_nutrition_monitor_urine':
+      'پیشاب دا رنگ دیکھو (ہلکا پیلا ہونا چاہیدا اے)',
+  'lifestyle_nutrition_increase_intake': 'گرمی یا ورزش وچ پانی ودھ پیو',
+  'lifestyle_nutrition_limit_sugary_sodas': 'میٹھیاں بوتلاں یا سوڈا گھٹ پیو',
+
+// حفاظتی ٹیکیاں دا شیڈول
+  "vaccination_schedule_table_title": "حفاظتی ٹیکیاں دا شیڈول",
+  "vaccination_table_header_stage": "مرحلہ",
+  "vaccination_table_header_age": "عمر",
+  "vaccination_table_header_vaccines": "حفاظتی ٹیکے",
+  "vaccination_table_stage_1": "پہلا ویزٹ (دورہ)",
+  "vaccination_table_age_1": "پیدائش دے ویلے",
+  "vaccination_table_vaccines_1": "OPV-0, BCG, ہیپاٹائٹس-B",
+  "vaccination_table_stage_2": "دوجا ویزٹ (دورہ)",
+  "vaccination_table_age_2": "6 ہفتے",
+  "vaccination_table_vaccines_2":
+      "OPV-1, روٹا وائرس-1, پینٹاویلنٹ-1, نیوموکوکل-1",
+  "vaccination_table_stage_3": "تریجھا ویزٹ (دورہ)",
+  "vaccination_table_age_3": "10 ہفتے",
+  "vaccination_table_vaccines_3":
+      "OPV-2, روٹا وائرس-2, پینٹاویلنٹ-2, نیوموکوکل-2",
+  "vaccination_table_stage_4": "چوتھا ویزٹ (دورہ)",
+  "vaccination_table_age_4": "14 ہفتے",
+  "vaccination_table_vaccines_4": "OPV-3, IPV-1, پینٹاویلنٹ-3, نیوموکوکل-3",
+  "vaccination_table_stage_5": "پنجواں ویزٹ (دورہ)",
+  "vaccination_table_age_5": "9 مہینے",
+  "vaccination_table_vaccines_5": "MR-1, IPV-2, TCV",
+  "vaccination_table_stage_6": "چھٹا ویزٹ (دورہ)",
+  "vaccination_table_age_6": "15 مہینے",
+  "vaccination_table_vaccines_6": "MR-2",
+  "vaccination_table_stage_7": "ستواں ویزٹ (دورہ)",
+  "vaccination_table_age_7": "18 مہینے",
+  "vaccination_table_vaccines_7": "ڈی ٹی پی بوسٹر",
+
+  'change': 'تبدیل کرو',
+  'current_interval': 'موجودہ وقت',
+  'next_feeding': 'آتے وقت',
+  'log_now': 'لاگ نوں کرو',
+  'history': 'تاریخ',
+
+  // Labor Signs Section
+  "labor_signs_early_signs_header": "جَنّن دی شروعاتی نشانیاں",
+  "labor_signs_regular_contractions": "باقاعدہ درد جیہڑا ودھدا ویندا",
+  "labor_signs_lower_back_pain": "کمر دے تھلویں حصے وچ لگاتار درد",
+  "labor_signs_water_breaking": "پانی دا ٹُٹنا",
+  "labor_signs_bloody_show": "خون آلود رطوبت دا نکلنا",
+  "labor_signs_nesting_instinct": "اچانک طاقت یا گھر سنوارن دی خواہش",
+
+  "labor_signs_when_to_call_header": "ڈاکٹر کوں کدوں فون کرو",
+  "labor_signs_every_5_minutes": "ہر 5 منٹ وچ درد 1 گھنٹے تائیں",
+  "labor_signs_water_breaks": "پانی ٹُٹے، خاص کر جے سبز یا بھورا ہووے",
+  "labor_signs_heavy_bleeding": "ٻہوں خون ونڄن یا چمکدار ݙاڈ ڙنگ دا خون",
+  "labor_signs_severe_headache": "سخت سر درد یا اکھاں وچ تبدیلی",
+  "labor_signs_decreased_fetal_movement": "نکے دی حرکت وچ کمی",
+
+  "labor_signs_what_to_do_header": "جنّن شروع تھیوݨ تے کیا کرو",
+  "labor_signs_stay_calm_time_contractions":
+      "پرسکون ریوو تے درد دا ویلا نوٹ کرو",
+  "labor_signs_eat_light_snacks_stay_hydrated":
+      "ہلکی پھلکی خوراک کھاؤ تے پانی پیو",
+  "labor_signs_take_warm_shower_bath": "گرم پانی نال نہاؤ",
+  "labor_signs_practice_breathing_techniques": "ساہ لین دی مشقاں کرو",
+  "labor_signs_pack_hospital_bag_if_not_done":
+      "جے نئیں کیتا تاں ہسپتال دا بیگ تیار کرو",
+
+// Delivery Mode Section
+  "delivery_mode_vaginal_header": "نارمل ڈلیوری",
+  "delivery_mode_vaginal_most_common": "سب توں عام قسم دی ڈلیوری",
+  "delivery_mode_vaginal_faster_recovery": "جلدی صحت یاب تھیونا",
+  "delivery_mode_vaginal_lower_risk": "پیچیدگیاں دا گھٹ خطرہ",
+  "delivery_mode_vaginal_can_use_pain_management":
+      "مختلف درد گھٹ کرن دے طریقے ورت سڳدے او",
+  "delivery_mode_vaginal_vbac_may_be_possible":
+      "اڳلے حمل وچ نارمل ڈلیوری ممکن تھی سڳدی اے",
+
+  "delivery_mode_cesarean_header": "سیزیرین آپریشن",
+  "delivery_mode_cesarean_surgical_delivery": "پیٹ دے چیرے نال جراحی ڈلیوری",
+  "delivery_mode_cesarean_may_be_planned_or_emergency":
+      "پہلے توں طے شدہ یا ہنگامی تھی سڳدی اے",
+  "delivery_mode_cesarean_longer_recovery_time":
+      "صحت یابی وچ ٻہوں ویلا (4-6 ہفتے)",
+  "delivery_mode_cesarean_higher_risk": "انفیکشن تے پیچیدگیاں دا ٻہوں خطرہ",
+  "delivery_mode_cesarean_may_be_necessary_for_medical_reasons":
+      "طبی وجوہات دی وجہ نال ضروری تھی سڳدی اے",
+
+  "delivery_mode_pain_management_header": "درد گھٹ کرن دے طریقے",
+  "delivery_mode_epidural_anesthesia": "ایپیڈورل انجکشن درد دور کرن واسطے",
+  "delivery_mode_natural_pain_relief": "قدرتی طریقے (مالش، پوزیشن بدلنا)",
+  "delivery_mode_nitrous_oxide": "نائٹرس آکسائیڈ گیس ہلکے درد واسطے",
+  "delivery_mode_water_birth": "پانی وچ ڈلیوری آرام واسطے",
+  "delivery_mode_breathing_relaxation": "ساہ لین تے آرام دی تکنیک",
+
+// Hospital Bag Section
+  "hospital_bag_for_mom_header": "ماں واسطے",
+  "hospital_bag_for_mom_comfortable_nightgowns":
+      "آرام دہ نائٹ گاؤن یا ڈھیلے کپڑے",
+  "hospital_bag_for_mom_nursing_bras_breast_pads": "نرسنگ براز تے بریسٹ پیڈز",
+  "hospital_bag_for_mom_underwear_maternity_pads":
+      "آرام دہ زیر جامہ تے میٹرنٹی پیڈز",
+  "hospital_bag_for_mom_toiletries_personal_items": "ٹوائلٹریز تے ذاتی چیزاں",
+  "hospital_bag_for_mom_comfortable_going_home_outfit":
+      "گھر ونڄݨ واسطے آرام دہ لباس",
+  "hospital_bag_for_mom_phone_charger_camera": "فون چارجر تے کیمرہ",
+
+  "hospital_bag_for_baby_header": "نکے واسطے",
+  "hospital_bag_for_baby_newborn_diapers_wipes":
+      "نویں جنمے دے ڈائپرز تے وائپس (ہسپتال ݙیندا اے)",
+  "hospital_bag_for_baby_going_home_outfit":
+      "گھر ونڄݨ واسطے کپڑے نویں جنمے تے 0-3 مہینے سائز",
+  "hospital_bag_for_baby_baby_blanket_hat": "نکے دا کمبل تے ٹوپی",
+  "hospital_bag_for_baby_car_seat_required_for_discharge":
+      "کار سیٹ (چھڈن واسطے ضروری)",
+  "hospital_bag_for_baby_baby_nail_clippers": "نکے دے نہوں کٹݨ دی قینچی",
+  "hospital_bag_for_baby_pacifiers_optional": "پیسیفائر (اختیاری)",
+
+  "hospital_bag_important_documents_header": "اہم دستاویزات",
+  "hospital_bag_insurance_cards_id": "انشورنس کارڈ تے شناختی کارڈ",
+  "hospital_bag_birth_plan_medical_records": "جنّن دا منصوبہ تے طبی ریکارڈ",
+  "hospital_bag_hospital_pre_registration_forms":
+      "ہسپتال دے پہلے توں رجسٹریشن فارم",
+  "hospital_bag_emergency_contact_list": "ہنگامی رابطے دی فہرست",
+  "hospital_bag_camera_or_phone_for_photos":
+      "تصویراں تے ویڈیوز واسطے کیمرہ یا فون",
+
+// Transport Plan Section
+  "transport_plan_emergency_contacts_header": "ہنگامی رابطے",
+  "transport_plan_ambulance_1034": "ایمبولینس: 1034 (ہنگامی)",
+  "transport_plan_your_doctors_emergency_number": "تہاݙے ڈاکٹر دا ہنگامی نمبر",
+  "transport_plan_hospital_labor_delivery_unit":
+      "ہسپتال دے لیبر تے ڈلیوری یونٹ دا نمبر",
+  "transport_plan_partner_or_support_person":
+      "شریک حیات یا مددگار بندے دا رابطہ",
+  "transport_plan_backup_transportation_contact": "متبادل نقل و حمل دا رابطہ",
+
+  "transport_plan_transportation_options_header": "نقل و حمل دے اختیارات",
+  "transport_plan_ambulance_for_emergencies": "ہنگامی صورتحال واسطے ایمبولینس",
+  "transport_plan_pre_arranged_ride_with_family_friend":
+      "خاندان یا یار دے نال پہلے توں طے شدہ سواری",
+  "transport_plan_ride_sharing_service":
+      "رائیڈ شیئرنگ سروس (اوبر، کریم، وغیرہ)",
+  "transport_plan_your_own_vehicle_if_not_in_labor":
+      "اپنی گڈی (جے سخت درد نئیں)",
+  "transport_plan_public_transportation_if_early_labor":
+      "عوامی نقل و حمل (صرف شروعاتی درد وچ)",
+
+  "transport_plan_what_to_do_in_emergency_header": "ہنگامی صورتحال وچ کیا کرو",
+  "transport_plan_call_1034_immediately": "فوری طور تے 1034 تے فون کرو",
+  "transport_plan_stay_calm_and_follow_instructions":
+      "پرسکون ریوو تے ہدایتاں تے عمل کرو",
+  "transport_plan_have_someone_stay_with_you":
+      "کوئی تہاݙے نال ریوے جدوں تائیں مدد نہ آ ویندی",
+  "transport_plan_grab_your_hospital_bag": "اپݨا تیار شدہ ہسپتال بیگ چُک گھنو",
+  "transport_plan_time_contractions_if_possible":
+      "ممکن ہووے تاں درد دا ویلا نوٹ کرو",
+
+// Breastfeeding Section
+  "breastfeeding_benefits_header": "کِیر پیاون دے فائدے",
+  "breastfeeding_perfect_nutrition_for_your_baby":
+      "تہاݙے نکے واسطے بہترین خوراک فراہم کریندا اے",
+  "breastfeeding_boosts_immune_system":
+      "نکے دے مدافعتی نظام کوں مضبوط بنیندا اے",
+  "breastfeeding_bonds_with_your_baby":
+      "ماں تے نکے دے درمیان رشتہ مضبوط کریندا اے",
+  "breastfeeding_helps_with_postpartum_recovery":
+      "جنّن دے بعد صحت یابی وچ مدد کریندا اے",
+  "breastfeeding_cost_effective_and_convenient": "سستا تے سوکھا",
+
+  "breastfeeding_getting_started_header": "شروعات کین٘ویں کرو",
+  "breastfeeding_start_within_first_hour_after_birth":
+      "جنّم دے پہلے گھنٹے وچ کِیر پیاونا شروع کرو",
+  "breastfeeding_skin_to_skin_contact_immediately":
+      "ڈلیوری دے فوری بعد جلد نال جلد دا رابطہ",
+  "breastfeeding_feed_on_demand_8_12_times_per_day":
+      "ضرورت دے مطابق کِیر پیاؤ، ݙین٘ہ وچ 8-12 واری",
+  "breastfeeding_learn_proper_latch_technique":
+      "صحیح طریقے نال کِیر پیاونا سِکھو",
+  "breastfeeding_stay_hydrated_well_nourished": "پانی پیو تے چنگی خوراک کھاؤ",
+
+  "breastfeeding_common_challenges_header": "عام مشکلات",
+  "breastfeeding_sore_or_cracked_nipples": "نِپلز وچ درد یا پھٹنا",
+  "breastfeeding_low_milk_supply_concerns": "کِیر دی کمی دی فکر",
+  "breastfeeding_baby_not_latching_properly":
+      "نکے دا صحیح طریقے نال کِیر نہ پیوݨ",
+  "breastfeeding_engorgement_and_blocked_ducts": "چھاتی وچ سوج تے بند نالیاں",
+  "breastfeeding_getting_enough_sleep": "کافی آرام تے نیند نہ ملنا",
+
+  "breastfeeding_support_resources_header": "مدد دے وسائل",
+  "breastfeeding_lactation_consultant": "ہسپتال وچ کِیر پیاون دی ماہر",
+  "breastfeeding_breastfeeding_support_groups":
+      "کِیر پیاون والیاں ماواں دے گروپ",
+  "breastfeeding_online_resources_and_apps": "آن لائن وسائل تے ایپس",
+  "breastfeeding_family_and_partner_support": "خاندان تے شریک حیات دی مدد",
+  "breastfeeding_healthcare_provider_guidance":
+      "صحت دی دیکھ بھال فراہم کنندہ دی رہنمائی",
+
+// Default Section
+  "default_important_information_header": "اہم معلومات",
+  "default_consult_with_your_healthcare_provider":
+      "باقاعدگی نال اپݨے ڈاکٹر نال مشورہ کرو",
+  "default_follow_your_birth_plan":
+      "اپݨے جنّن دے منصوبے تے عمل کرو پر لچکدار ریوو",
+  "default_stay_informed_and_prepared":
+      "معلومات رکھو تے ڈلیوری واسطے تیار ریوو",
+  "default_trust_your_instincts":
+      "اپݨی سمجھ تے بھروسہ کرو تے ضرورت تے مدد منگو",
+  "default_ask_questions_when_in_doubt": "شک تھیوݨ تے سوال پُچھو",
+  // Sleep Section - نیند دا سیکشن
+  "lifestyle_sleep_sleep_position_recommendations":
+      "نیند دی پوزیشن دیاں سفارشاں",
+  "lifestyle_sleep_sleep_on_left_side_detail":
+      "بہترین خون دے بہاؤ لئی اپنے کھبے پاسے سوو",
+  "lifestyle_sleep_use_pregnancy_pillows_detail":
+      "سہارے تے آرام لئی حمل دے تکیے ورتو",
+  "lifestyle_sleep_avoid_sleeping_on_back_after_20_weeks_detail":
+      "20 ہفتیاں توں بعد پٹھ دے بل سوݨ توں پرہیز کرو",
+  "lifestyle_sleep_place_pillow_between_knees_detail":
+      "کولہیاں دے سہارے لئی گوڈیاں دے وچکار تکیہ رکھو",
+  "lifestyle_sleep_elevate_upper_body_if_heartburn_detail":
+      "سینے دی جلن ہووے تے اُتلے جسم کوں اُچا رکھو",
+  "lifestyle_sleep_find_comfortable_positions_detail":
+      "آرام دہ پوزیشناں لبھو جیہڑیاں تہاݙے لئی موزوں ہون",
+
+  "lifestyle_sleep_creating_sleep_friendly_environment":
+      "نیند لئی موزوں ماحول بݨاوݨا",
+  "lifestyle_sleep_keep_bedroom_cool_dark_quiet_detail":
+      "کمرے کوں ٹھنڈا، اݨہیرا تے شانت رکھو",
+  "lifestyle_sleep_use_blackout_curtains_eye_mask_detail":
+      "بلیک آؤٹ پردے یا اکھاں دا ماسک ورتو",
+  "lifestyle_sleep_invest_in_comfortable_mattress_pillows_detail":
+      "آرام دہ گدے تے تکیاں وچ سرمایہ کاری کرو",
+  "lifestyle_sleep_remove_electronic_devices_from_bedroom_detail":
+      "کمرے توں الیکٹرانک آلات ہٹا ݙیوو",
+  "lifestyle_sleep_use_white_noise_machine_if_needed_detail":
+      "ضرورت ہووے تے وائٹ نوائز مشین ورتو",
+  "lifestyle_sleep_keep_room_well_ventilated_detail":
+      "کمرے کوں چنگی طرح ہوادار رکھو",
+
+  "lifestyle_sleep_sleep_hygiene_tips": "نیند دی صفائی دے مشورے",
+  "lifestyle_sleep_maintain_consistent_sleep_schedule_detail":
+      "مستقل نیند دا شیڈول برقرار رکھو",
+  "lifestyle_sleep_avoid_large_meals_caffeine_before_bed_detail":
+      "سوݨ توں پہلے بھارے کھاݨے تے کیفین توں پرہیز کرو",
+  "lifestyle_sleep_limit_screen_time_1_hour_before_sleep_detail":
+      "سوݨ توں 1 گھنٹہ پہلے اسکرین ٹائم محدود کرو",
+  "lifestyle_sleep_practice_relaxation_techniques_detail":
+      "آرام دی تکنیک دی مشق کرو",
+  "lifestyle_sleep_take_warm_bath_shower_before_bed_detail":
+      "سوݨ توں پہلے گرم پاݨی نال نہاؤ",
+  "lifestyle_sleep_create_bedtime_routine_to_signal_sleep_time_detail":
+      "سوݨ دے ویلے دا اشارہ ݙیوݨ لئی معمول بݨاؤ",
+
+  "lifestyle_sleep_managing_sleep_disruptions": "نیند وچ خلل دا انتظام",
+  "lifestyle_sleep_frequent_urination_limit_fluids_before_bed_detail":
+      "بار بار پیشاب: سوݨ توں پہلے مائع محدود کرو",
+  "lifestyle_sleep_heartburn_eat_smaller_meals_avoid_spicy_foods_detail":
+      "سینے دی جلن: چھوٹے کھاݨے کھاؤ، مصالحے دار کھاݨیاں توں پرہیز کرو",
+  "lifestyle_sleep_leg_cramps_stretch_before_bed_stay_hydrated_detail":
+      "لتاں وچ درد: سوݨ توں پہلے کھچو، ہائیڈریٹ رہوو",
+  "lifestyle_sleep_anxiety_practice_meditation_deep_breathing_detail":
+      "بے چینی: مراقبہ یا ڳوہا ساہ لیوݨ دی مشق کرو",
+  "lifestyle_sleep_restless_legs_gentle_massage_warm_bath_detail":
+      "بے چین لتاں: ہولی مالش تے گرم پاݨی نال نہاؤ",
+  "lifestyle_sleep_snoring_use_nasal_strips_humidifier_detail":
+      "خراٹے: نک دیاں پٹیاں یا ہیومیڈیفائر ورتو",
+
+  "lifestyle_sleep_when_to_seek_help": "مدد کݙاں طلب کرو",
+  "lifestyle_sleep_persistent_insomnia_affecting_daily_function_detail":
+      "مسلسل بے خوابی جیہڑی روزمرہ دیاں سرگرمیاں کوں متاثر کرے",
+  "lifestyle_sleep_severe_sleep_apnea_breathing_problems_detail":
+      "شدید سلیپ اپنیا یا ساہ لیوݨ دیاں مشکلاں",
+  "lifestyle_sleep_excessive_daytime_sleepiness_detail":
+      "ݙینہہ وچ ودھ نیند آوݨا",
+  "lifestyle_sleep_sleep_disturbances_due_to_anxiety_depression_detail":
+      "بے چینی یا ڈپریشن دی وجہ نال نیند وچ خلل",
+  "lifestyle_sleep_physical_pain_preventing_sleep_detail":
+      "جسمانی درد جیہڑا نیند وچ رکاوٹ پاوے",
+  "lifestyle_sleep_any_concerns_about_sleep_quality_detail":
+      "نیند دے معیار بارے کوئی تشویش",
+
+// Hygiene Section - صفائی دا سیکشن
+  "lifestyle_hygiene_daily_hygiene_routine": "روزانہ صفائی دا معمول",
+  "lifestyle_hygiene_shower_bathe_detail":
+      "ہولے، خوشبو توں پاک صابن نال روزانہ نہاؤ",
+  "lifestyle_hygiene_wash_hands_detail":
+      "بار بار ہتھ دھوؤ، خاص طور تے کھاݨ توں پہلے",
+  "lifestyle_hygiene_brush_teeth_detail":
+      "فلورائیڈ ٹوتھ پیسٹ نال ݙینہہ وچ دو واری ݙند صاف کرو",
+  "lifestyle_hygiene_floss_detail":
+      "مسوڑھیاں دی بیماری توں بچݨ لئی روزانہ فلاس کرو",
+  "lifestyle_hygiene_keep_nails_detail": "نگ صاف تے کٹے ہوئے رکھو",
+  "lifestyle_hygiene_change_underwear_detail": "روزانہ زیر جامہ تے کپڑے بدلو",
+
+  "lifestyle_hygiene_skin_care_during_pregnancy":
+      "حمل دے دوران چمڑی دی ݙیکھ بھال",
+  "lifestyle_hygiene_gentle_skincare_detail":
+      "نرم، حمل لئی محفوظ چمڑی دی ݙیکھ بھال دیاں شیواں ورتو",
+  "lifestyle_hygiene_apply_sunscreen_detail":
+      "میلاسما توں بچݨ لئی روزانہ سن اسکرین لاؤ",
+  "lifestyle_hygiene_moisturize_detail":
+      "کھچاؤ دے نشاناں توں بچݨ لئی باقاعدگی نال موئسچرائز کرو",
+  "lifestyle_hygiene_avoid_harsh_chemicals_detail":
+      "سخت کیمیکلز تے ریٹینوائڈز توں پرہیز کرو",
+  "lifestyle_hygiene_keep_skin_clean_dry_detail":
+      "انفیکشن توں بچݨ لئی چمڑی کوں صاف تے خشک رکھو",
+  "lifestyle_hygiene_consult_dermatologist_detail":
+      "چمڑی دے مسئلیاں لئی ڈرمیٹالوجسٹ نال مشورہ کرو",
+
+  "lifestyle_hygiene_oral_health": "منہ دی صحت",
+  "lifestyle_hygiene_schedule_dental_checkups_detail":
+      "باقاعدہ ݙنداں دا چیک اپ کرواؤ",
+  "lifestyle_hygiene_inform_dentist_detail":
+      "ݙنداں دے ڈاکٹر کوں اپݨے حمل بارے ݙسو",
+  "lifestyle_hygiene_use_soft_bristled_toothbrush_detail":
+      "نرم برسلز آلا ٹوتھ برش ورتو",
+  "lifestyle_hygiene_rinse_fluoride_mouthwash_detail":
+      "فلورائیڈ ماؤتھ واش نال کُلی کرو",
+  "lifestyle_hygiene_eat_calcium_rich_foods_detail":
+      "مضبوط ݙنداں لئی کیلشیم نال بھرپور خوراک کھاؤ",
+  "lifestyle_hygiene_avoid_sugary_snacks_detail":
+      "مٹھے ناشتے تے مشروبات توں پرہیز کرو",
+
+  "lifestyle_hygiene_personal_care_products": "ذاتی نگہداشت دیاں شیواں",
+  "lifestyle_hygiene_choose_fragrance_free_detail":
+      "خوشبو توں پاک تے ہائپوالرجینک شیواں منتخب کرو",
+  "lifestyle_hygiene_avoid_harsh_chemicals_detail":
+      "سخت کیمیکلز آلیاں شیواں توں پرہیز کرو",
+  "lifestyle_hygiene_use_pregnancy_safe_deodorants_detail":
+      "حمل لئی محفوظ ڈیوڈورنٹس تے اینٹی پرسپیرنٹس ورتو",
+  "lifestyle_hygiene_select_gentle_sulfate_free_shampoo_detail":
+      "نرم، سلفیٹ فری شیمپو منتخب کرو",
+  "lifestyle_hygiene_read_labels_avoid_harmful_ingredients_detail":
+      "لیبل پڑھو تے نقصان دہ اجزاء توں پرہیز کرو",
+  "lifestyle_hygiene_consider_natural_organic_alternatives_detail":
+      "قدرتی تے نامیاتی متبادل تے غور کرو",
+
+// Exercise Section - ورزش دا سیکشن
+  "lifestyle_exercise_safe_exercises": "حمل دے دوران محفوظ ورزشاں",
+  "lifestyle_exercise_walking_detail":
+      "چہل قدمی: روزانہ 30 منٹ معتدل رفتار نال",
+  "lifestyle_exercise_swimming_detail": "تیراکی: گھٹ اثر، مکمل جسم دی ورزش",
+  "lifestyle_exercise_prenatal_yoga_detail":
+      "قبل از پیدائش یوگا: لچک تے آرام وچ بہتری",
+  "lifestyle_exercise_stationary_cycling_detail":
+      "اسٹیشنری سائیکلنگ: محفوظ قلبی ورزش",
+  "lifestyle_exercise_pilates_detail":
+      "پلاٹیس: بنیادی پٹھیاں کوں مضبوط بݨاندا ہے تے کرنسی بہتر کرندا ہے",
+  "lifestyle_exercise_light_strength_training_detail":
+      "صحیح طریقے نال ہلکی طاقت دی تربیت",
+
+  "lifestyle_exercise_benefits": "ورزش دے فائدے",
+  "lifestyle_exercise_back_pain_detail":
+      "کمر دا درد گھٹ کرندا ہے تے کرنسی بہتر بݨاندا ہے",
+  "lifestyle_exercise_sleep_mood_detail": "نیند تے موڈ کوں بہتر بݨاندا ہے",
+  "lifestyle_exercise_labor_delivery_detail":
+      "جسم کوں زچگی تے ولادت لئی تیار کرندا ہے",
+  "lifestyle_exercise_gestational_diabetes_detail":
+      "حملاتی ذیابیطس دا خطرہ گھٹ کرندا ہے",
+  "lifestyle_exercise_healthy_weight_gain_detail":
+      "صحت مند وزن وچ اضافہ برقرار رکھدا ہے",
+  "lifestyle_exercise_energy_levels_detail": "توانائی دی سطح ودھاندا ہے",
+
+  "lifestyle_exercise_safety_guidelines": "ورزش دیاں حفاظتی ہدایتاں",
+  "lifestyle_exercise_consult_healthcare_detail":
+      "ہمیشہ پہلے اپݨے صحت دی ݙیکھ بھال فراہم کنندہ نال مشورہ کرو",
+  "lifestyle_exercise_stop_if_dizzy_detail":
+      "چکر، ساہ پھُلݨا، یا درد محسوس ہووے تے رُک ون٘ڄو",
+  "lifestyle_exercise_avoid_lying_back_after_16_weeks_detail":
+      "16 ہفتیاں توں بعد پٹھ دے بل لیٹݨ آلیاں ورزشاں توں پرہیز کرو",
+  "lifestyle_exercise_stay_hydrated_avoid_overheating_detail":
+      "ہائیڈریٹ رہوو تے ودھ گرمی توں بچو",
+  "lifestyle_exercise_wear_supportive_detail": "معاون، آرام دہ کپڑے پاؤ",
+  "lifestyle_exercise_listen_body_rest_detail":
+      "اپݨے جسم دی سݨو تے ضرورت پوݨ تے آرام کرو",
+
+  "lifestyle_exercise_exercises_to_avoid": "انہاں ورزشاں توں پرہیز کرو",
+  "lifestyle_exercise_high_impact_detail":
+      "ودھ اثر آلیاں سرگرمیاں (ݙوڑݨا، کُدݨا)",
+  "lifestyle_exercise_contact_sports_detail":
+      "رابطے آلیاں کھیݙاں تے ڈِگݨ دے خطرے آلیاں سرگرمیاں",
+  "lifestyle_exercise_exercises_lying_back_detail":
+      "او ورزشاں جنہاں وچ پٹھ دے بل لیٹݨا پوے",
+  "lifestyle_exercise_hot_yoga_detail": "گرم یوگا یا شدید گرمی وچ ورزش",
+  "lifestyle_exercise_heavy_lifting_detail": "بھاری وزن چُکݨا یا دباؤ پاوݨا",
+  "lifestyle_exercise_activities_sudden_direction_detail":
+      "اچانک سمت بدلݨ آلیاں سرگرمیاں",
+
+// General Lifestyle - عمومی طرز زندگی
+  "lifestyle_general_lifestyle_tips": "عمومی طرز زندگی دے مشورے",
+  "lifestyle_general_maintain_regular_prenatal_care_appointments_detail":
+      "باقاعدہ قبل از پیدائش دی ݙیکھ بھال دیاں ملاقاتاں برقرار رکھو",
+  "lifestyle_general_follow_healthcare_provider_recommendations_detail":
+      "صحت دی ݙیکھ بھال فراہم کنندہ دیاں سفارشاں تے عمل کرو",
+  "lifestyle_general_listen_body_rest_when_needed_detail":
+      "اپݨے جسم دی سݨو تے ضرورت ہووے تے آرام کرو",
+  "lifestyle_general_stay_informed_about_pregnancy_changes_detail":
+      "حمل دیاں تبدیلیاں بارے باخبر رہوو",
+  "lifestyle_general_connect_with_other_expectant_mothers_detail":
+      "ٻیاں حاملہ ماواں نال رابطہ رکھو",
+  "lifestyle_general_prepare_for_baby_arrival_detail":
+      "ٻال دی آمد لئی تیاری کرو",
 };

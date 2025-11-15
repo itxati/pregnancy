@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BreastfeedingCard extends StatefulWidget {
   const BreastfeedingCard({Key? key}) : super(key: key);
@@ -98,10 +99,10 @@ class _BreastfeedingCardState extends State<BreastfeedingCard>
                       ),
                     ),
                     const SizedBox(width: 16),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Breastfeeding & Feeding',
-                        style: TextStyle(
+                        'breastfeeding_feeding'.tr,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color(0xFFB87300),
@@ -130,17 +131,17 @@ class _BreastfeedingCardState extends State<BreastfeedingCard>
                 // Main Points (Always Visible)
                 _buildMainPoint(
                   Icons.favorite_rounded,
-                  'Optimal nutrition & immunity for baby',
+                  'optimal_nutrition_immunity_baby'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.auto_awesome_rounded,
-                  'Colostrum: first milk rich in antibodies',
+                  'colostrum_first_milk_antibodies'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.restaurant_rounded,
-                  'Three types: exclusive, mixed, or formula',
+                  'three_types_feeding_exclusive_mixed_formula'.tr,
                 ),
                 // Expandable Details
                 AnimatedCrossFade(
@@ -163,12 +164,12 @@ class _BreastfeedingCardState extends State<BreastfeedingCard>
                           color: const Color(0xFFFFB84D).withOpacity(0.10),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Tap to learn more',
-                              style: TextStyle(
+                              'tap_to_learn_more'.tr,
+                              style: const TextStyle(
                                 fontSize: 13,
                                 color: Color(0xFFB87300),
                                 fontWeight: FontWeight.w500,
@@ -242,47 +243,47 @@ class _BreastfeedingCardState extends State<BreastfeedingCard>
           ),
         ),
         const SizedBox(height: 24),
-        _sectionTitle('Benefits of Breastfeeding'),
+        _sectionTitle('benefits_breastfeeding'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'Breastfeeding provides optimal nutrition, immunity, bonding support, and health benefits for both mother and baby.',
+          'benefits_breastfeeding_description'.tr,
         ),
         const SizedBox(height: 20),
-        _sectionTitle('Colostrum'),
+        _sectionTitle('colostrum'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'Colostrum is the first milk, rich in antibodies and nutrients. It starts immediately after birth and gradually transitions to mature milk.',
+          'colostrum_description'.tr,
         ),
         const SizedBox(height: 20),
-        _sectionTitle('Types of Feeding'),
+        _sectionTitle('types_of_feeding'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Exclusive breastfeeding: only breast milk (no other liquids or solids except vitamins or medications as advised)',
-          'Mixed feeding: breast milk plus formula or other feeds',
-          'Exclusive formula feeding: no breast milk',
+          'exclusive_breastfeeding_description'.tr,
+          'mixed_feeding_description'.tr,
+          'exclusive_formula_feeding_description'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Introducing Complementary Foods'),
+        _sectionTitle('introducing_complementary_foods'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'Start around 6 months of age for most babies, with continued breastfeeding or formula feeding.',
+          'introducing_complementary_foods_description'.tr,
         ),
         const SizedBox(height: 20),
-        _sectionTitle('Common Challenges & Solutions'),
+        _sectionTitle('common_challenges_solutions'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Latching issues: seek help from lactation consultants',
-          'Nipple pain: check positioning and latch',
-          'Milk supply concerns: frequent feeding helps',
-          'Pumping/expressing guidelines: follow safe practices',
+          'latching_issues_solution'.tr,
+          'nipple_pain_solution'.tr,
+          'milk_supply_concerns_solution'.tr,
+          'pumping_expressing_guidelines'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Safety'),
+        _sectionTitle('safety'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Maintain good hygiene practices',
-          'Safe storage of expressed milk',
-          'Avoid certain substances that can pass to baby',
+          'maintain_good_hygiene'.tr,
+          'safe_storage_expressed_milk'.tr,
+          'avoid_substances_pass_to_baby'.tr,
         ]),
         const SizedBox(height: 24),
         Container(
@@ -317,10 +318,10 @@ class _BreastfeedingCardState extends State<BreastfeedingCard>
                 ),
               ),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Consult with lactation specialists or healthcare providers for personalized feeding guidance.',
-                  style: TextStyle(
+                  'consult_lactation_specialists_guidance'.tr,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Color(0xFFB87300),
                     fontSize: 14,

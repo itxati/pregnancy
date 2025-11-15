@@ -19,37 +19,38 @@ class BirthPreparednessItem {
 }
 
 List<BirthPreparednessItem> get birthPreparednessItems => [
-  BirthPreparednessItem(
-    icon: Icons.warning_amber_rounded,
-    title: "labor_signs".tr,
-    description: "learn_recognize_labor".tr,
-    accentColor: NeoSafeColors.warning,
-  ),
-  BirthPreparednessItem(
-    icon: Icons.local_hospital_rounded,
-    title: "delivery_mode".tr,
-    description: "discuss_delivery_options".tr,
-    accentColor: NeoSafeColors.info,
-  ),
-  BirthPreparednessItem(
-    icon: Icons.luggage_rounded,
-    title: "hospital_bag".tr,
-    description: "complete_checklist_hospital".tr,
-    accentColor: Colors.orange, // Using orange instead of pink for this item
-  ),
-  BirthPreparednessItem(
-    icon: Icons.emergency_rounded,
-    title: "transport_plan".tr,
-    description: "emergency_contact_route".tr,
-    accentColor: NeoSafeColors.error,
-  ),
-  BirthPreparednessItem(
-    icon: Icons.child_care_rounded,
-    title: "breastfeeding".tr,
-    description: "essential_counselling_mothers".tr,
-    accentColor: NeoSafeColors.success,
-  ),
-];
+      BirthPreparednessItem(
+        icon: Icons.warning_amber_rounded,
+        title: "labor_signs".tr,
+        description: "learn_recognize_labor".tr,
+        accentColor: NeoSafeColors.warning,
+      ),
+      BirthPreparednessItem(
+        icon: Icons.local_hospital_rounded,
+        title: "delivery_mode".tr,
+        description: "discuss_delivery_options".tr,
+        accentColor: NeoSafeColors.info,
+      ),
+      BirthPreparednessItem(
+        icon: Icons.luggage_rounded,
+        title: "hospital_bag".tr,
+        description: "complete_checklist_hospital".tr,
+        accentColor:
+            Colors.orange, // Using orange instead of pink for this item
+      ),
+      BirthPreparednessItem(
+        icon: Icons.emergency_rounded,
+        title: "transport_plan".tr,
+        description: "emergency_contact_route".tr,
+        accentColor: NeoSafeColors.error,
+      ),
+      BirthPreparednessItem(
+        icon: Icons.child_care_rounded,
+        title: "breastfeeding".tr,
+        description: "essential_counselling_mothers".tr,
+        accentColor: NeoSafeColors.success,
+      ),
+    ];
 
 class BirthPreparednessCard extends StatefulWidget {
   final int currentWeek;
@@ -327,7 +328,7 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Start Your Birth Plan",
+                                    'start_birth_plan'.tr,
                                     style:
                                         theme.textTheme.titleMedium?.copyWith(
                                       fontWeight: FontWeight.w700,
@@ -336,7 +337,7 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
                                   ),
                                   const SizedBox(height: 2),
                                   Text(
-                                    "Begin comprehensive preparation",
+                                    'start_birth_plan_title'.tr,
                                     style: theme.textTheme.bodySmall?.copyWith(
                                       color: NeoSafeColors.secondaryText,
                                       fontWeight: FontWeight.w500,
@@ -376,11 +377,11 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
     return GestureDetector(
       onTap: () {
         Get.to(() => BirthPreparednessDetailView(
-          title: title,
-          description: description,
-          icon: icon,
-          accentColor: accentColor,
-        ));
+              title: title,
+              description: description,
+              icon: icon,
+              accentColor: accentColor,
+            ));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: isLast ? 0 : 12),

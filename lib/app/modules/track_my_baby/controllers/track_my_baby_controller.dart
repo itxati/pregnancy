@@ -31,6 +31,8 @@ class TrackMyBabyController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    // Ensure authService is available
+    authService = Get.find<AuthService>();
     // First: try onboarding gender from SharedPreferences
     final prefs = await SharedPreferences.getInstance();
     final onboardingGender = prefs.getString('onboarding_born_baby_gender');
@@ -45,8 +47,30 @@ class TrackMyBabyController extends GetxController {
     }
     if (authService.user?.babyBirthDate != null) {
       birthDate.value = authService.user!.babyBirthDate!;
+    } else {
+      // Fallback: use onboarding saved birth date if available
+      final userId = authService.currentUser.value?.id;
+      if (userId != null) {
+        final birthStr = await authService.getOnboardingData(
+            'onboarding_baby_birth_date', userId);
+        if (birthStr != null && birthStr.isNotEmpty) {
+          try {
+            birthDate.value = DateTime.parse(birthStr);
+          } catch (_) {
+            // ignore parse errors, keep default
+          }
+        }
+      }
     }
     _calculateBabyAge();
+
+    // React to user updates (e.g., birth date changed from Profile page)
+    ever(authService.currentUser, (user) {
+      if (user != null && user.babyBirthDate != null) {
+        birthDate.value = user.babyBirthDate!;
+        _calculateBabyAge();
+      }
+    });
   }
 
   void _calculateBabyAge() {

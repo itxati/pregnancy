@@ -394,65 +394,65 @@ class _GoalSelectionViewState extends State<GoalSelectionView> {
                             ),
                             SizedBox(height: responsiveHeight(2.5)),
 
-                            // // Goal cards
-                            // GoalCard(
-                            //   gradient: const LinearGradient(
-                            //     colors: [
-                            //       NeoSafeColors.palePink,
-                            //       NeoSafeColors.lightPink
-                            //     ],
-                            //     begin: Alignment.topLeft,
-                            //     end: Alignment.bottomRight,
-                            //   ),
-                            //   icon: Icons.favorite,
-                            //   iconColor: NeoSafeColors.primaryPink,
-                            //   title: "get_pregnant".tr,
-                            //   subtitle: "get_pregnant_subtitle".tr,
-                            //   onTap: () =>
-                            //       controller.onGoalCardTap('get_pregnant'),
-                            // ),
-                            // SizedBox(height: responsiveHeight(2)),
-                            // GoalCard(
-                            //   gradient: const LinearGradient(
-                            //     colors: [
-                            //       NeoSafeColors.babyPink,
-                            //       NeoSafeColors.coralPink
-                            //     ],
-                            //     begin: Alignment.topLeft,
-                            //     end: Alignment.bottomRight,
-                            //   ),
-                            //   icon: Icons.pregnant_woman,
-                            //   iconColor: NeoSafeColors.roseAccent,
-                            //   title: "track_my_pregnancy".tr,
-                            //   subtitle: "track_my_pregnancy_subtitle".tr,
-                            //   onTap: () =>
-                            //       controller.onGoalCardTap('track_pregnance'),
-                            // ),
-                            // SizedBox(height: responsiveHeight(2)),
+                            // Goal cards
+                            GoalCard(
+                              gradient: const LinearGradient(
+                                colors: [
+                                  NeoSafeColors.palePink,
+                                  NeoSafeColors.lightPink
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              icon: Icons.favorite,
+                              iconColor: NeoSafeColors.primaryPink,
+                              title: "get_pregnant".tr,
+                              subtitle: "get_pregnant_subtitle".tr,
+                              onTap: () =>
+                                  controller.onGoalCardTap('get_pregnant'),
+                            ),
+                            SizedBox(height: responsiveHeight(2)),
+                            GoalCard(
+                              gradient: const LinearGradient(
+                                colors: [
+                                  NeoSafeColors.babyPink,
+                                  NeoSafeColors.coralPink
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              icon: Icons.pregnant_woman,
+                              iconColor: NeoSafeColors.roseAccent,
+                              title: "track_my_pregnancy".tr,
+                              subtitle: "track_my_pregnancy_subtitle".tr,
+                              onTap: () =>
+                                  controller.onGoalCardTap('track_pregnance'),
+                            ),
+                            SizedBox(height: responsiveHeight(2)),
 
                             // Postpartum Care - Only show within 2 weeks of birth
-                            if (_showPostpartumCare)
-                              Column(
-                                children: [
-                                  GoalCard(
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        NeoSafeColors.softLavender,
-                                        NeoSafeColors.palePink
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                    icon: Icons.local_hospital,
-                                    iconColor: NeoSafeColors.roseAccent,
-                                    title: "postpartum_care".tr,
-                                    subtitle: "postpartum_care_subtitle".tr,
-                                    onTap: () => controller
-                                        .onGoalCardTap('postpartum_care'),
-                                  ),
-                                  SizedBox(height: responsiveHeight(2)),
-                                ],
-                              ),
+                            // if (_showPostpartumCare)
+                            //   Column(
+                            //     children: [
+                            //       GoalCard(
+                            //         gradient: const LinearGradient(
+                            //           colors: [
+                            //             NeoSafeColors.softLavender,
+                            //             NeoSafeColors.palePink
+                            //           ],
+                            //           begin: Alignment.topLeft,
+                            //           end: Alignment.bottomRight,
+                            //         ),
+                            //         icon: Icons.local_hospital,
+                            //         iconColor: NeoSafeColors.roseAccent,
+                            //         title: "postpartum_care".tr,
+                            //         subtitle: "postpartum_care_subtitle".tr,
+                            //         onTap: () => controller
+                            //             .onGoalCardTap('postpartum_care'),
+                            //       ),
+                            //       SizedBox(height: responsiveHeight(2)),
+                            //     ],
+                            //   ),
                             GoalCard(
                               gradient: const LinearGradient(
                                 colors: [
@@ -469,7 +469,25 @@ class _GoalSelectionViewState extends State<GoalSelectionView> {
                               onTap: () =>
                                   controller.onGoalCardTap('child_development'),
                             ),
-                            // SizedBox(height: responsiveHeight(2)),
+                            SizedBox(height: responsiveHeight(2)),
+
+                            GoalCard(
+                              gradient: const LinearGradient(
+                                colors: [
+                                  NeoSafeColors.softLavender,
+                                  NeoSafeColors.palePink
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              icon: Icons.local_hospital,
+                              iconColor: NeoSafeColors.roseAccent,
+                              title: "postpartum_care".tr,
+                              subtitle: "postpartum_care_subtitle".tr,
+                              onTap: () =>
+                                  controller.onGoalCardTap('postpartum_care'),
+                            ),
+                            SizedBox(height: responsiveHeight(2)),
 
                             // GoalCard(
                             //   gradient: const LinearGradient(

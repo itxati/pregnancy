@@ -1,3 +1,4 @@
+import 'package:babysafe/app/modules/get_pregnant_requirements/widgets/go_to_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
@@ -15,21 +16,18 @@ import '../widgets/weekly_update_card.dart';
 import '../widgets/timeline_card.dart';
 import '../widgets/baby_size_card.dart';
 import '../widgets/essential_reads_section.dart';
-import '../../../widgets/sync_indicator.dart';
-import '../../../widgets/offline_indicator.dart';
-import '../../../routes/app_pages.dart';
-import '../../../services/auth_service.dart';
-import '../../profile/views/profile_view.dart';
-import '../../profile/controllers/profile_controller.dart';
-import '../../weight_tracking/widgets/weight_tracking_card.dart';
+import 'package:babysafe/app/services/auth_service.dart';
 import '../../weight_tracking/controllers/weight_tracking_controller.dart';
-import '../../risk_assessment/widgets/risk_assessment_card.dart';
+import '../../weight_tracking/widgets/weight_tracking_card.dart';
 import '../../risk_assessment/controllers/risk_assessment_controller.dart';
+import '../../risk_assessment/widgets/risk_assessment_card.dart';
 import '../widgets/miscarriage_awareness_card.dart';
 import '../widgets/preterm_birth_card.dart';
 import '../widgets/breastfeeding_card.dart';
 import '../widgets/delivery_planning_card.dart';
 import '../widgets/pregnancy_risk_factors_card.dart';
+import '../views/track_my_pregnancy_profile_view.dart';
+import '../../../utils/neo_safe_theme.dart';
 
 class TrackMyPregnancyView extends StatelessWidget {
   const TrackMyPregnancyView({Key? key}) : super(key: key);
@@ -41,9 +39,8 @@ class TrackMyPregnancyView extends StatelessWidget {
     final themeService = Get.find<ThemeService>();
 
     final theme = Theme.of(context);
-    final screenHeight = MediaQuery.of(context).size.height;
     final currentWeek = controller.pregnancyWeekNumber.value;
-    final alerts = pregnancyWeeks[currentWeek]?.alerts;
+    final alerts = pregnancyWeeks[currentWeek].alerts;
 
     return Scaffold(
       body: Container(
@@ -69,6 +66,53 @@ class TrackMyPregnancyView extends StatelessWidget {
 
               leading: const SizedBox.shrink(), // Remove back button
               actions: [
+                // BMI Button
+                // IconButton(
+                //   icon: Icon(
+                //     Icons.monitor_weight_outlined,
+                //     color: themeService.getPrimaryColor(),
+                //   ),
+                //   onPressed: () {
+                //     controller.showBMIDialog(context);
+                //   },
+                //   tooltip: 'calculate_bmi'.tr,
+                // ),
+                GestureDetector(
+                  onTap: () => controller.showBMIDialog(context),
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: themeService.getPrimaryColor(),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.monitor_weight_outlined,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          'bmi'.tr,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                const GoToHomeIconButton(
+                  circleColor: NeoSafeColors.primaryPink,
+                  iconColor: Colors.white,
+                  top: 0,
+                ),
                 GetX<AuthService>(
                   builder: (authService) {
                     final user = authService.currentUser.value;
@@ -94,8 +138,7 @@ class TrackMyPregnancyView extends StatelessWidget {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          Get.put(ProfileController());
-                          Get.to(() => const ProfileView());
+                          Get.to(() => const TrackMyPregnancyProfileView());
                         },
                         child: CircleAvatar(
                           radius: 22,
@@ -157,25 +200,6 @@ class TrackMyPregnancyView extends StatelessWidget {
                   MainPregnancyCard(controller: controller),
                   const SizedBox(height: 24),
 
-                  // Miscarriage Awareness Card
-                  const MiscarriageAwarenessCard(),
-                  const SizedBox(height: 24),
-                  // Preterm Birth Card
-                  const PretermBirthCard(),
-                  const SizedBox(height: 24),
-
-                  // Breastfeeding Card
-                  const BreastfeedingCard(),
-                  const SizedBox(height: 24),
-
-                  // Delivery Planning Card
-                  const DeliveryPlanningCard(),
-                  const SizedBox(height: 24),
-
-                  // Pregnancy Risk Factors Card
-                  const PregnancyRiskFactorsCard(),
-                  const SizedBox(height: 24),
-
                   // // Pregnancy Status Card
                   PregnancyStatusCard(controller: controller),
 
@@ -186,7 +210,16 @@ class TrackMyPregnancyView extends StatelessWidget {
 
                   const SizedBox(height: 24),
 
-                  // Weight Tracking Card
+                  // Timeline Card
+                  TimelineCard(controller: controller),
+
+                  const SizedBox(height: 24),
+
+                  // Baby Size Discovery Card
+                  BabySizeCard(controller: controller),
+                  const SizedBox(height: 24),
+
+                  // Weight Tracking Card (only show if BMI is calculated)
                   Obx(() {
                     WeightTrackingController weightController;
                     if (Get.isRegistered<WeightTrackingController>()) {
@@ -195,8 +228,16 @@ class TrackMyPregnancyView extends StatelessWidget {
                       weightController = Get.put(WeightTrackingController());
                     }
                     // Sync gestational week and trimester
-                    weightController.setCurrentGestationalWeek(controller.pregnancyWeekNumber.value);
-                    return WeightTrackingCard(controller: weightController);
+                    weightController.setCurrentGestationalWeek(
+                        controller.pregnancyWeekNumber.value);
+
+                    // Only show card if BMI is calculated (height and weight are set)
+                    if (weightController.prePregnancyWeight.value > 0 &&
+                        weightController.height.value > 0) {
+                      return WeightTrackingCard(controller: weightController);
+                    } else {
+                      return const SizedBox.shrink();
+                    }
                   }),
 
                   const SizedBox(height: 24),
@@ -210,16 +251,13 @@ class TrackMyPregnancyView extends StatelessWidget {
                       riskController = Get.put(RiskAssessmentController());
                     }
                     // Sync gestational week
-                    riskController.setCurrentGestationalWeek(controller.pregnancyWeekNumber.value);
+                    riskController.setCurrentGestationalWeek(
+                        controller.pregnancyWeekNumber.value);
                     return RiskAssessmentCard(controller: riskController);
                   }),
 
                   const SizedBox(height: 24),
 
-                  // Timeline Card
-                  TimelineCard(controller: controller),
-
-                  const SizedBox(height: 24),
                   if (alerts != null)
                     Column(
                       children: [
@@ -228,8 +266,31 @@ class TrackMyPregnancyView extends StatelessWidget {
                       ],
                     ),
 
-                  // Baby Size Discovery Card
-                  BabySizeCard(controller: controller),
+                  // Risk Factor Card
+                  RiskFactorCard(),
+                  const SizedBox(height: 8),
+
+                  // Pregnancy Risk Factors Card
+                  const PregnancyRiskFactorsCard(),
+                  const SizedBox(height: 24),
+
+                  // Miscarriage Awareness Card
+                  const MiscarriageAwarenessCard(),
+                  const SizedBox(height: 24),
+
+                  // Preterm Birth Card
+                  const PretermBirthCard(),
+                  const SizedBox(height: 24),
+
+                  LifeStyleAdviceCard(),
+
+                  const SizedBox(height: 24),
+
+                  DangerSignsCard(),
+                  const SizedBox(height: 8),
+
+                  // Delivery Planning Card
+                  const DeliveryPlanningCard(),
                   const SizedBox(height: 24),
 
                   BirthPreparednessCard(
@@ -237,14 +298,9 @@ class TrackMyPregnancyView extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 8),
-                  // Risk Factor Card
-                  RiskFactorCard(),
-                  const SizedBox(height: 8),
-                  DangerSignsCard(),
-                  const SizedBox(height: 8),
 
-                  LifeStyleAdviceCard(),
-
+                  // Breastfeeding Card
+                  const BreastfeedingCard(),
                   const SizedBox(height: 24),
 
                   // Essential Reads Section

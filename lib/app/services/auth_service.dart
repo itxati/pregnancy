@@ -130,57 +130,33 @@ class AuthService extends GetxService {
   Future<void> navigateAfterLogin() async {
     try {
       if (currentUser.value == null) {
-        Get.offAllNamed('/goal_onboarding');
+        Get.offAllNamed('/google_login');
         return;
       }
 
       final userId = currentUser.value!.id;
-      final hasCompletedOnboarding = await isOnboardingComplete(userId);
 
-      if (hasCompletedOnboarding) {
-        // Get the user's onboarding purpose to route to the correct screen
-        final onboardingPurpose = await getOnboardingPurpose(userId);
-        
-        if (onboardingPurpose == 'get_pregnant') {
-          Get.offAllNamed('/get_pregnant_requirements');
-        } else if (onboardingPurpose == 'pregnant') {
-          // Load due date if available
-          final dueDateStr = await getOnboardingData('onboarding_due_date', userId);
-          if (dueDateStr != null) {
-            final dueDate = DateTime.parse(dueDateStr);
-            Get.offAllNamed('/track_my_pregnancy', arguments: {'dueDate': dueDate});
-          } else {
-            Get.offAllNamed('/track_my_pregnancy');
-          }
-        } else if (onboardingPurpose == 'have_baby') {
-          // Check baby birth date to determine route
-          final babyBirthDateStr = await getOnboardingData('onboarding_baby_birth_date', userId);
-          if (babyBirthDateStr != null) {
-            final babyBirthDate = DateTime.parse(babyBirthDateStr);
-            final now = DateTime.now();
-            final daysSinceBirth = now.difference(babyBirthDate).inDays;
-            
-            // If more than 2 weeks (14 days), go to track_my_baby
-            if (daysSinceBirth > 14) {
-              Get.offAllNamed('/track_my_baby');
-            } else {
-              Get.offAllNamed('/goal_selection');
-            }
-          } else {
-            // Fallback to goal selection if no birth date
-            Get.offAllNamed('/goal_selection');
-          }
-        } else {
-          // Fallback to goal selection if purpose is unknown
-          Get.offAllNamed('/goal_selection');
-        }
+      // Check minimal onboarding (name, gender, age)
+      final hasMinimal = await _hasMinimalOnboarding(userId);
+      if (hasMinimal) {
+        Get.offAllNamed('/goal_selection');
       } else {
-        // Onboarding not complete, show onboarding questions
         Get.offAllNamed('/goal_onboarding');
       }
     } catch (e) {
       print('Error navigating after login: $e');
       Get.offAllNamed('/goal_onboarding');
+    }
+  }
+
+  Future<bool> _hasMinimalOnboarding(String userId) async {
+    try {
+      final name = await getOnboardingData('onboarding_name', userId) ?? '';
+      final gender = await getOnboardingData('onboarding_gender', userId) ?? '';
+      final age = await getOnboardingData('onboarding_age', userId) ?? '';
+      return name.trim().isNotEmpty && gender.trim().isNotEmpty && age.trim().isNotEmpty;
+    } catch (e) {
+      return false;
     }
   }
 

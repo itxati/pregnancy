@@ -192,7 +192,7 @@ class BirthPreparednessDetailView extends StatelessWidget {
                           icon: const Icon(Icons.phone,
                               color: Colors.white, size: 24),
                           label: Text(
-                            "Call Ambulance (1034)",
+                            "call_ambulance_1034".tr,
                             style: theme.textTheme.titleMedium?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
@@ -220,52 +220,53 @@ class BirthPreparednessDetailView extends StatelessWidget {
   }
 
   List<Widget> _getDetailedContent(String title) {
-    switch (title) {
-      case "labor_signs":
-        return _getLaborSignsContent();
-      case "delivery_mode":
-        return _getDeliveryModeContent();
-      case "hospital_bag":
-        return _getHospitalBagContent();
-      case "transport_plan":
-        return _getTransportPlanContent();
-      case "breastfeeding":
-        return _getBreastfeedingContent();
-      default:
-        return _getDefaultContent();
+    print(title);
+
+    if (title == "labor_signs".tr) {
+      return _getLaborSignsContent();
+    } else if (title == "delivery_mode".tr) {
+      return _getDeliveryModeContent();
+    } else if (title == "hospital_bag".tr) {
+      return _getHospitalBagContent();
+    } else if (title == "transport_plan".tr) {
+      return _getTransportPlanContent();
+    } else if (title == "breastfeeding".tr) {
+      return _getBreastfeedingContent();
+    } else {
+      return _getDefaultContent();
     }
   }
 
   List<Widget> _getLaborSignsContent() {
     return [
       _buildSectionCard(
-        "Early Labor Signs",
+        "labor_signs_early_signs_header".tr,
         [
-          "Regular contractions that get stronger and closer together",
-          "Lower back pain or cramping",
-          "Water breaking (amniotic fluid)",
-          "Bloody show (mucus plug)",
-          "Nesting instinct or energy burst",
+          "labor_signs_regular_contractions".tr,
+          "labor_signs_lower_back_pain".tr,
+          "labor_signs_water_breaking".tr,
+          "labor_signs_bloody_show".tr,
+          "labor_signs_nesting_instinct".tr,
         ],
       ),
       _buildSectionCard(
-        "When to Call Your Doctor",
+        "labor_signs_when_to_call_header".tr,
         [
-          "Contractions every 5 minutes for 1 hour",
-          "Water breaks (even without contractions)",
-          "Heavy bleeding",
-          "Severe headache or vision changes",
-          "Decreased fetal movement",
+          "labor_signs_every_5_minutes".tr,
+          "labor_signs_water_breaks".tr,
+          "labor_signs_heavy_bleeding".tr,
+          "labor_signs_severe_headache".tr,
+          "labor_signs_decreased_fetal_movement".tr,
         ],
       ),
       _buildSectionCard(
-        "What to Do During Early Labor",
+        "labor_signs_what_to_do_header".tr,
         [
-          "Stay calm and time contractions",
-          "Eat light snacks and stay hydrated",
-          "Take a warm shower or bath",
-          "Practice breathing techniques",
-          "Pack your hospital bag if not done",
+          "labor_signs_stay_calm_time_contractions".tr,
+          "labor_signs_eat_light_snacks_stay_hydrated".tr,
+          "labor_signs_take_warm_shower_bath".tr,
+          "labor_signs_practice_breathing_techniques".tr,
+          "labor_signs_pack_hospital_bag_if_not_done".tr,
         ],
       ),
     ];
@@ -274,33 +275,34 @@ class BirthPreparednessDetailView extends StatelessWidget {
   List<Widget> _getDeliveryModeContent() {
     return [
       _buildSectionCard(
-        "Vaginal Delivery",
+        "delivery_mode_vaginal_header".tr,
         [
-          "Most common and natural delivery method",
-          "Faster recovery time",
-          "Lower risk of complications",
-          "Can use pain management options",
-          "Vaginal birth after cesarean (VBAC) may be possible",
+          "delivery_mode_vaginal_most_common".tr,
+          "delivery_mode_vaginal_faster_recovery".tr,
+          "delivery_mode_vaginal_lower_risk".tr,
+          "delivery_mode_vaginal_can_use_pain_management".tr,
+          "delivery_mode_vaginal_vbac_may_be_possible".tr,
         ],
       ),
       _buildSectionCard(
-        "Cesarean Section (C-Section)",
+        "delivery_mode_cesarean_header".tr,
         [
-          "Surgical delivery through abdominal incision",
-          "May be planned or emergency procedure",
-          "Longer recovery time (6-8 weeks)",
-          "Higher risk of complications",
-          "May be necessary for medical reasons",
+          "delivery_mode_cesarean_surgical_delivery".tr,
+          "delivery_mode_cesarean_may_be_planned_or_emergency".tr,
+          "delivery_mode_cesarean_longer_recovery_time".tr,
+          "delivery_mode_cesarean_higher_risk".tr,
+          "delivery_mode_cesarean_may_be_necessary_for_medical_reasons".tr,
         ],
       ),
       _buildSectionCard(
-        "Pain Management Options",
+       
+        "delivery_mode_pain_management_header".tr,
         [
-          "Epidural anesthesia",
-          "Natural pain relief techniques",
-          "Nitrous oxide (laughing gas)",
-          "Water birth",
-          "Breathing and relaxation techniques",
+          "delivery_mode_epidural_anesthesia".tr,
+          "delivery_mode_natural_pain_relief".tr,
+          "delivery_mode_nitrous_oxide".tr,
+          "delivery_mode_water_birth".tr,
+          "delivery_mode_breathing_relaxation".tr,
         ],
       ),
     ];
@@ -309,35 +311,35 @@ class BirthPreparednessDetailView extends StatelessWidget {
   List<Widget> _getHospitalBagContent() {
     return [
       _buildSectionCard(
-        "For Mom",
+        "hospital_bag_for_mom_header".tr,
         [
-          "Comfortable nightgowns or pajamas",
-          "Nursing bras and breast pads",
-          "Underwear and maternity pads",
-          "Toiletries and personal items",
-          "Comfortable going-home outfit",
-          "Phone charger and camera",
+          "hospital_bag_for_mom_comfortable_nightgowns".tr,
+          "hospital_bag_for_mom_nursing_bras_breast_pads".tr,
+          "hospital_bag_for_mom_underwear_maternity_pads".tr,
+          "hospital_bag_for_mom_toiletries_personal_items".tr,
+          "hospital_bag_for_mom_comfortable_going_home_outfit".tr,
+          "hospital_bag_for_mom_phone_charger_camera".tr,
         ],
       ),
       _buildSectionCard(
-        "For Baby",
+        "hospital_bag_for_baby_header".tr,
         [
-          "Newborn diapers and wipes",
-          "Going-home outfit (2-3 options)",
-          "Baby blanket and hat",
-          "Car seat (required for discharge)",
-          "Baby nail clippers",
-          "Pacifiers (optional)",
+          "hospital_bag_for_baby_newborn_diapers_wipes".tr,
+          "hospital_bag_for_baby_going_home_outfit".tr,
+          "hospital_bag_for_baby_baby_blanket_hat".tr,
+          "hospital_bag_for_baby_car_seat_required_for_discharge".tr,
+          "hospital_bag_for_baby_baby_nail_clippers".tr,
+          "hospital_bag_for_baby_pacifiers_optional".tr,
         ],
       ),
       _buildSectionCard(
-        "Important Documents",
+        "hospital_bag_important_documents_header".tr,
         [
-          "Insurance cards and ID",
-          "Birth plan and medical records",
-          "Hospital pre-registration forms",
-          "Emergency contact list",
-          "Camera or phone for photos",
+          "hospital_bag_insurance_cards_id".tr,
+          "hospital_bag_birth_plan_medical_records".tr,
+          "hospital_bag_hospital_pre_registration_forms".tr,
+          "hospital_bag_emergency_contact_list".tr,
+          "hospital_bag_camera_or_phone_for_photos".tr,
         ],
       ),
     ];
@@ -346,33 +348,33 @@ class BirthPreparednessDetailView extends StatelessWidget {
   List<Widget> _getTransportPlanContent() {
     return [
       _buildSectionCard(
-        "Emergency Contacts",
+        "transport_plan_emergency_contacts_header".tr,
         [
-          "Ambulance: 1034 (Emergency)",
-          "Your doctor's emergency number",
-          "Hospital labor and delivery unit",
-          "Partner or support person",
-          "Backup transportation contact",
+          "transport_plan_ambulance_1034".tr,
+          "transport_plan_your_doctors_emergency_number".tr,
+          "transport_plan_hospital_labor_delivery_unit".tr,
+          "transport_plan_partner_or_support_person".tr,
+          "transport_plan_backup_transportation_contact".tr,
         ],
       ),
       _buildSectionCard(
-        "Transportation Options",
+        "transport_plan_transportation_options_header".tr,
         [
-          "Ambulance for emergencies",
-          "Pre-arranged ride with family/friend",
-          "Ride-sharing service (Uber/Lyft)",
-          "Your own vehicle (if not in labor)",
-          "Public transportation (if early labor)",
+          "transport_plan_ambulance_for_emergencies".tr,
+          "transport_plan_pre_arranged_ride_with_family_friend".tr,
+          "transport_plan_ride_sharing_service".tr,
+          "transport_plan_your_own_vehicle_if_not_in_labor".tr,
+          "transport_plan_public_transportation_if_early_labor".tr,
         ],
       ),
       _buildSectionCard(
-        "What to Do in Emergency",
+        "transport_plan_what_to_do_in_emergency_header".tr,
         [
-          "Call 1034 immediately",
-          "Stay calm and follow instructions",
-          "Have someone stay with you",
-          "Grab your hospital bag",
-          "Time contractions if possible",
+          "transport_plan_call_1034_immediately".tr,
+          "transport_plan_stay_calm_and_follow_instructions".tr,
+          "transport_plan_have_someone_stay_with_you".tr,
+          "transport_plan_grab_your_hospital_bag".tr,
+          "transport_plan_time_contractions_if_possible".tr,
         ],
       ),
     ];
@@ -381,43 +383,43 @@ class BirthPreparednessDetailView extends StatelessWidget {
   List<Widget> _getBreastfeedingContent() {
     return [
       _buildSectionCard(
-        "Benefits of Breastfeeding",
+        "breastfeeding_benefits_header".tr,
         [
-          "Perfect nutrition for your baby",
-          "Boosts immune system",
-          "Bonds with your baby",
-          "Helps with postpartum recovery",
-          "Cost-effective and convenient",
+          "breastfeeding_perfect_nutrition_for_your_baby".tr,
+          "breastfeeding_boosts_immune_system".tr,
+          "breastfeeding_bonds_with_your_baby".tr,
+          "breastfeeding_helps_with_postpartum_recovery".tr,
+          "breastfeeding_cost_effective_and_convenient".tr,
         ],
       ),
       _buildSectionCard(
-        "Getting Started",
+        "breastfeeding_getting_started_header".tr,
         [
-          "Start within first hour after birth",
-          "Skin-to-skin contact immediately",
-          "Feed on demand (8-12 times per day)",
-          "Learn proper latch technique",
-          "Stay hydrated and well-nourished",
+          "breastfeeding_start_within_first_hour_after_birth".tr,
+          "breastfeeding_skin_to_skin_contact_immediately".tr,
+          "breastfeeding_feed_on_demand_8_12_times_per_day".tr,
+          "breastfeeding_learn_proper_latch_technique".tr,
+          "breastfeeding_stay_hydrated_well_nourished".tr,
         ],
       ),
       _buildSectionCard(
-        "Common Challenges",
+        "breastfeeding_common_challenges_header".tr,
         [
-          "Sore or cracked nipples",
-          "Low milk supply concerns",
-          "Baby not latching properly",
-          "Engorgement and blocked ducts",
-          "Getting enough sleep",
+          "breastfeeding_sore_or_cracked_nipples".tr,
+          "breastfeeding_low_milk_supply_concerns".tr,
+          "breastfeeding_baby_not_latching_properly".tr,
+          "breastfeeding_engorgement_and_blocked_ducts".tr,
+          "breastfeeding_getting_enough_sleep".tr,
         ],
       ),
       _buildSectionCard(
-        "Support Resources",
+        "breastfeeding_support_resources_header".tr,
         [
-          "Lactation consultant",
-          "Breastfeeding support groups",
-          "Online resources and apps",
-          "Family and partner support",
-          "Healthcare provider guidance",
+          "breastfeeding_lactation_consultant".tr,
+          "breastfeeding_breastfeeding_support_groups".tr,
+          "breastfeeding_online_resources_and_apps".tr,
+          "breastfeeding_family_and_partner_support".tr,
+          "breastfeeding_healthcare_provider_guidance".tr,
         ],
       ),
     ];
@@ -426,13 +428,13 @@ class BirthPreparednessDetailView extends StatelessWidget {
   List<Widget> _getDefaultContent() {
     return [
       _buildSectionCard(
-        "Important Information",
+        "default_important_information_header".tr,
         [
-          "Consult with your healthcare provider",
-          "Follow your birth plan",
-          "Stay informed and prepared",
-          "Trust your instincts",
-          "Ask questions when in doubt",
+          "default_consult_with_your_healthcare_provider".tr,
+          "default_follow_your_birth_plan".tr,
+          "default_stay_informed_and_prepared".tr,
+          "default_trust_your_instincts".tr,
+          "default_ask_questions_when_in_doubt".tr,
         ],
       ),
     ];

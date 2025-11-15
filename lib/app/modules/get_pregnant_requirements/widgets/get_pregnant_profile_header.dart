@@ -20,106 +20,106 @@ class GetPregnantProfileHeader extends StatelessWidget {
         future: _getHeaderData(),
         builder: (context, snapshot) {
           final data = snapshot.data ?? {};
-          final userName = data['name'] ?? 'User';
+          final userName = data['name'] ?? 'user'.tr;
           final purpose = data['purpose'] ?? '';
           final statusText = _mapPurposeToTitle(purpose);
           return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Profile Avatar
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    colors: [
-                      NeoSafeColors.primaryPink,
-                      NeoSafeColors.primaryPink.withOpacity(0.7),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Profile Avatar
+                Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      colors: [
+                        NeoSafeColors.primaryPink,
+                        NeoSafeColors.primaryPink.withOpacity(0.7),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: NeoSafeColors.primaryPink.withOpacity(0.3),
+                        blurRadius: 20,
+                        offset: const Offset(0, 10),
+                      ),
                     ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: NeoSafeColors.primaryPink.withOpacity(0.3),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
-                ),
-                child: const Icon(
-                  Icons.person,
-                  size: 40,
-                  color: Colors.white,
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              // User Name (Editable)
-              GestureDetector(
-                onTap: () => _showEditNameDialog(context, userName),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      userName,
-                      style:
-                          Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                color: NeoSafeColors.primaryText,
-                                fontWeight: FontWeight.w700,
-                              ),
-                    ),
-                    const SizedBox(width: 8),
-                    Icon(
-                      Icons.edit,
-                      size: 16,
-                      color: NeoSafeColors.primaryPink.withOpacity(0.7),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 8),
-
-              // Status
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  color: NeoSafeColors.success.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: NeoSafeColors.success.withOpacity(0.3),
-                    width: 1,
+                  child: const Icon(
+                    Icons.person,
+                    size: 40,
+                    color: Colors.white,
                   ),
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.favorite,
-                      size: 16,
-                      color: NeoSafeColors.success,
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      statusText,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: NeoSafeColors.success,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                  ],
+
+                const SizedBox(height: 16),
+
+                // User Name (Editable)
+                GestureDetector(
+                  onTap: () => _showEditNameDialog(context, userName),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        userName,
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  color: NeoSafeColors.primaryText,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                      ),
+                      const SizedBox(width: 8),
+                      Icon(
+                        Icons.edit,
+                        size: 16,
+                        color: NeoSafeColors.primaryPink.withOpacity(0.7),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
+
+                const SizedBox(height: 8),
+
+                // Status
+                // Container(
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                //   decoration: BoxDecoration(
+                //     color: NeoSafeColors.success.withOpacity(0.1),
+                //     borderRadius: BorderRadius.circular(20),
+                //     border: Border.all(
+                //       color: NeoSafeColors.success.withOpacity(0.3),
+                //       width: 1,
+                //     ),
+                //   ),
+                //   child: Row(
+                //     mainAxisSize: MainAxisSize.min,
+                //     children: [
+                //       Icon(
+                //         Icons.favorite,
+                //         size: 16,
+                //         color: NeoSafeColors.success,
+                //       ),
+                //       const SizedBox(width: 6),
+                //       Text(
+                //         statusText,
+                //         style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                //               color: NeoSafeColors.success,
+                //               fontWeight: FontWeight.w600,
+                //             ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+              ],
+            ),
+          );
         },
       ),
     );
@@ -129,31 +129,41 @@ class GetPregnantProfileHeader extends StatelessWidget {
     final auth = Get.find<AuthService>();
     final userId = auth.currentUser.value?.id;
     final prefs = await SharedPreferences.getInstance();
-    String? getKey(String key) => prefs.getString(key);
 
     String? name;
     String? purpose;
 
+    // Priority 1: Try from AuthService onboarding data (user-scoped)
     if (userId != null && userId.isNotEmpty) {
       name = await auth.getOnboardingData('onboarding_name', userId);
       purpose = await auth.getOnboardingData('onboarding_purpose', userId);
     }
-    name ??= getKey('onboarding_name');
-    purpose ??= getKey('onboarding_purpose');
 
-    return {'name': name, 'purpose': purpose};
+    // Priority 2: Fallback to SharedPreferences directly
+    name ??= prefs.getString('onboarding_name');
+    purpose ??= prefs.getString('onboarding_purpose');
+
+    // Priority 3: Final fallback - use user model fullName if available
+    if ((name == null || name.isEmpty) && auth.currentUser.value != null) {
+      final userFullName = auth.currentUser.value!.fullName;
+      if (userFullName.isNotEmpty && userFullName != 'User') {
+        name = userFullName;
+      }
+    }
+
+    return {'name': name ?? 'user'.tr, 'purpose': purpose ?? ''};
   }
 
   String _mapPurposeToTitle(String purpose) {
     switch (purpose) {
       case 'get_pregnant':
-        return 'Get Pregnant';
+        return 'trying_to_conceive'.tr;
       case 'pregnant':
-        return 'Pregnant';
+        return 'pregnant'.tr;
       case 'have_baby':
-        return 'Have Baby';
+        return 'have_baby'.tr;
       default:
-        return 'Get Pregnant';
+        return 'trying_to_conceive'.tr;
     }
   }
 
@@ -185,7 +195,8 @@ class GetPregnantProfileHeader extends StatelessWidget {
                 final auth = Get.find<AuthService>();
                 final userId = auth.currentUser.value?.id;
                 if (userId != null && userId.isNotEmpty) {
-                  await auth.setOnboardingData('onboarding_name', userId, newName);
+                  await auth.setOnboardingData(
+                      'onboarding_name', userId, newName);
                 } else {
                   final prefs = await SharedPreferences.getInstance();
                   await prefs.setString('onboarding_name', newName);

@@ -107,11 +107,19 @@ class ActionButtonsWidget extends StatelessWidget {
 
   void _showPeriodDatePicker(BuildContext context) async {
     final controller = this.controller;
+    final now = DateTime.now();
+    final firstDayOfPreviousMonth = DateTime(now.year, now.month - 1, 1);
+    final lastDayOfPreviousMonth = DateTime(now.year, now.month, 0);
+
     final selectedDate = await showDatePicker(
       context: context,
       firstDate: DateTime.now().subtract(const Duration(days: 60)),
       lastDate: DateTime.now(),
       initialDate: controller.periodStart.value ?? DateTime.now(),
+      // initialDate: lastDayOfPreviousMonth,
+      // firstDate: firstDayOfPreviousMonth,
+      // lastDate: lastDayOfPreviousMonth,
+
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(

@@ -68,7 +68,6 @@ class AppOptionsSection extends StatelessWidget {
             onTap: () async {
               final authService = Get.find<AuthService>();
               await authService.logout();
-              Get.offAllNamed('/login');
             },
           ),
 

@@ -6,13 +6,20 @@ import '../controllers/weight_tracking_controller.dart';
 import '../../../data/models/weight_entry.dart';
 import 'package:intl/intl.dart';
 
-class WeightTrackingCard extends StatelessWidget {
+class WeightTrackingCard extends StatefulWidget {
   final WeightTrackingController controller;
 
   const WeightTrackingCard({
     Key? key,
     required this.controller,
   }) : super(key: key);
+
+  @override
+  State<WeightTrackingCard> createState() => _WeightTrackingCardState();
+}
+
+class _WeightTrackingCardState extends State<WeightTrackingCard> {
+  bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,384 +40,429 @@ class WeightTrackingCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      NeoSafeColors.primaryPink.withOpacity(0.1),
-                      NeoSafeColors.primaryPink.withOpacity(0.05),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.monitor_weight,
-                      color: NeoSafeColors.primaryPink,
-                      size: 28,
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    _isExpanded = !_isExpanded;
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        NeoSafeColors.primaryPink.withOpacity(0.1),
+                        NeoSafeColors.primaryPink.withOpacity(0.05),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Weight & BMI Tracking',
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black87,
-                            ),
-                          ),
-                          if (controller.bmiCategory.value.isNotEmpty)
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.monitor_weight,
+                        color: NeoSafeColors.primaryPink,
+                        size: 28,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             Text(
-                              'BMI: ${controller.prePregnancyBMI.value.toStringAsFixed(1)} (${controller.bmiCategory.value})',
-                              style: GoogleFonts.inter(
-                                fontSize: 13,
-                                color: Colors.grey[600],
+                              'weight_bmi_tracking'.tr,
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black87,
                               ),
                             ),
+                            if (widget.controller.bmiCategory.value.isNotEmpty)
+                              Text(
+                                '${'bmi_colon'.tr}${widget.controller.prePregnancyBMI.value.toStringAsFixed(1)} (${widget.controller.bmiCategory.value})',
+                                style: GoogleFonts.inter(
+                                  fontSize: 13,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Obx(() => IconButton(
+                                icon: Icon(
+                                  widget.controller.reminderEnabled.value
+                                      ? Icons.notifications_active
+                                      : Icons.notifications_off,
+                                  color: widget.controller.reminderEnabled.value
+                                      ? NeoSafeColors.primaryPink
+                                      : Colors.grey,
+                                ),
+                                onPressed: () =>
+                                    _showReminderSettingsDialog(context),
+                                tooltip: 'weight_reminder_settings'.tr,
+                              )),
+                          IconButton(
+                            icon: Icon(Icons.add_circle_outline,
+                                color: NeoSafeColors.primaryPink),
+                            onPressed: () => _showAddWeightDialog(context),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              _isExpanded
+                                  ? Icons.keyboard_arrow_up
+                                  : Icons.keyboard_arrow_down,
+                              color: NeoSafeColors.primaryPink,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isExpanded = !_isExpanded;
+                              });
+                            },
+                          ),
                         ],
                       ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Obx(() => IconButton(
-                              icon: Icon(
-                                controller.reminderEnabled.value
-                                    ? Icons.notifications_active
-                                    : Icons.notifications_off,
-                                color: controller.reminderEnabled.value
-                                    ? NeoSafeColors.primaryPink
-                                    : Colors.grey,
-                              ),
-                              onPressed: () =>
-                                  _showReminderSettingsDialog(context),
-                              tooltip: 'Weight Reminder Settings',
-                            )),
-                        IconButton(
-                          icon: Icon(Icons.add_circle_outline,
-                              color: NeoSafeColors.primaryPink),
-                          onPressed: () => _showAddWeightDialog(context),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
 
-              // Current Weight & Gain
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _buildStatItem(
-                          'Current Weight',
-                          '${controller.currentWeight.value.toStringAsFixed(1)} kg',
-                          Icons.fitness_center,
-                          NeoSafeColors.primaryPink,
-                        ),
-                        _buildStatItem(
-                          'Total Gain',
-                          '${controller.totalGain.value >= 0 ? '+' : ''}${controller.totalGain.value.toStringAsFixed(1)} kg',
-                          Icons.trending_up,
-                          controller.totalGain.value >= 0
-                              ? Colors.green
-                              : Colors.orange,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Target Range
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[50],
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+              // Expandable Content
+              if (_isExpanded) ...[
+                // Current Weight & Gain
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
-                            'Recommended Weight Gain',
-                            style: GoogleFonts.inter(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey[700],
-                            ),
+                          _buildStatItem(
+                            widget.controller.weightEntries.isEmpty
+                                ? 'pre_pregnancy_weight'.tr
+                                : 'current_weight'.tr,
+                            '${widget.controller.currentWeight.value.toStringAsFixed(1)} ${'kg_unit'.tr}',
+                            Icons.fitness_center,
+                            NeoSafeColors.primaryPink,
                           ),
-                          const SizedBox(height: 8),
-                          Text(
-                            '${controller.minTargetGain.value.toStringAsFixed(1)} - ${controller.maxTargetGain.value.toStringAsFixed(1)} kg',
-                            style: GoogleFonts.poppins(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: NeoSafeColors.primaryPink,
-                            ),
+                          _buildStatItem(
+                            'total_gain'.tr,
+                            '${widget.controller.totalGain.value >= 0 ? '+' : ''}${widget.controller.totalGain.value.toStringAsFixed(1)} ${'kg_unit'.tr}',
+                            Icons.trending_up,
+                            widget.controller.totalGain.value >= 0
+                                ? Colors.green
+                                : Colors.orange,
                           ),
-                          const SizedBox(height: 12),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
 
-                          // Progress Bar
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: LinearProgressIndicator(
-                              value: (controller.totalGain.value /
-                                      controller.maxTargetGain.value)
-                                  .clamp(0.0, 1.0),
-                              minHeight: 12,
-                              backgroundColor: Colors.grey[200],
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                controller.totalGain.value <
-                                        controller.minTargetGain.value
-                                    ? Colors.orange
-                                    : controller.totalGain.value >
-                                            controller.maxTargetGain.value
-                                        ? Colors.red
-                                        : Colors.green,
+                      // Target Range
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'recommended_weight_gain'.tr,
+                              style: GoogleFonts.inter(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey[700],
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            const SizedBox(height: 8),
+                            if (widget.controller.maxTargetGain.value <= 0)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'set_height_prepregnancy_weight_message'.tr,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 12,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                ],
+                              )
+                            else ...[
                               Text(
-                                'Min: ${controller.minTargetGain.value.toStringAsFixed(1)} kg',
-                                style: GoogleFonts.inter(
-                                    fontSize: 11, color: Colors.grey[600]),
-                              ),
-                              Text(
-                                'Current: ${controller.totalGain.value.toStringAsFixed(1)} kg',
-                                style: GoogleFonts.inter(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.grey[800],
+                                '${widget.controller.minTargetGain.value.toStringAsFixed(1)} - ${widget.controller.maxTargetGain.value.toStringAsFixed(1)} ${'kg_unit'.tr}',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: NeoSafeColors.primaryPink,
                                 ),
                               ),
+                              const SizedBox(height: 12),
+
+                              // Progress Bar (safe against zero/NaN)
+                              Builder(builder: (context) {
+                                final max =
+                                    widget.controller.maxTargetGain.value;
+                                final gain = widget.controller.totalGain.value;
+                                final value = max > 0
+                                    ? (gain / max).clamp(0.0, 1.0)
+                                    : 0.0;
+                                final color =
+                                    gain < widget.controller.minTargetGain.value
+                                        ? Colors.orange
+                                        : gain >
+                                                widget.controller.maxTargetGain
+                                                    .value
+                                            ? Colors.red
+                                            : Colors.green;
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: LinearProgressIndicator(
+                                    value: value,
+                                    minHeight: 12,
+                                    backgroundColor: Colors.grey[200],
+                                    valueColor:
+                                        AlwaysStoppedAnimation<Color>(color),
+                                  ),
+                                );
+                              }),
+                              const SizedBox(height: 8),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '${'min_colon'.tr}${widget.controller.minTargetGain.value.toStringAsFixed(1)} ${'kg_unit'.tr}',
+                                    style: GoogleFonts.inter(
+                                        fontSize: 8, color: Colors.grey[600]),
+                                  ),
+                                  Text(
+                                    '${'current_colon'.tr}${widget.controller.totalGain.value.toStringAsFixed(1)} ${'kg_unit'.tr}',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.grey[800],
+                                    ),
+                                  ),
+                                  Text(
+                                    '${'max_colon'.tr}${widget.controller.maxTargetGain.value.toStringAsFixed(1)} ${'kg_unit'.tr}',
+                                    style: GoogleFonts.inter(
+                                        fontSize: 8, color: Colors.grey[600]),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Clinical Risk Alerts
+                if (widget.controller.shouldScreenForGDM())
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.blue[50],
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.blue[200]!),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(Icons.medical_services,
+                            color: Colors.blue[700], size: 24),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                               Text(
-                                'Max: ${controller.maxTargetGain.value.toStringAsFixed(1)} kg',
+                                'gdm_screening_recommended'.tr,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.blue[900],
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                widget.controller.prePregnancyBMI.value >= 30
+                                    ? 'gdm_screening_high_bmi_message'.tr
+                                    : 'gdm_screening_standard_message'.tr,
                                 style: GoogleFonts.inter(
-                                    fontSize: 11, color: Colors.grey[600]),
+                                  fontSize: 12,
+                                  color: Colors.blue[800],
+                                ),
                               ),
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-
-              // Clinical Risk Alerts
-              if (controller.shouldScreenForGDM())
-                Container(
-                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 12),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.blue[50],
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.blue[200]!),
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(Icons.medical_services,
-                          color: Colors.blue[700], size: 24),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'GDM Screening Recommended',
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.blue[900],
+
+                if (widget.controller.isAtRiskForAnemia())
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.red[50],
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.red[200]!),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(Icons.bloodtype, color: Colors.red[700], size: 24),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'anemia_risk'.tr,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.red[900],
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              controller.prePregnancyBMI.value >= 30
-                                  ? 'Due to your higher BMI, consider early GDM screening (16-20 weeks). Standard screening is recommended at 24-28 weeks.'
-                                  : 'Standard GDM screening is recommended at 24-28 weeks. Consult your healthcare provider.',
-                              style: GoogleFonts.inter(
-                                fontSize: 12,
-                                color: Colors.blue[800],
+                              const SizedBox(height: 4),
+                              Text(
+                                'anemia_risk_message'.tr,
+                                style: GoogleFonts.inter(
+                                  fontSize: 12,
+                                  color: Colors.red[800],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
 
-              if (controller.isAtRiskForAnemia())
-                Container(
-                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 12),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.red[50],
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.red[200]!),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(Icons.bloodtype, color: Colors.red[700], size: 24),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Anemia Risk',
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.red[900],
+                // Weight Gain Alerts
+                if (widget.controller.showInsufficientGainAlert.value ||
+                    widget.controller.showExcessiveGainAlert.value ||
+                    widget.controller.showRapidGainAlert.value)
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.orange[50],
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.orange[200]!),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(Icons.warning_amber_rounded,
+                            color: Colors.orange[700], size: 24),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'weight_gain_alert'.tr,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.orange[900],
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              'Your underweight BMI may increase the risk of anemia. Ensure adequate nutrition and iron intake. Consult your healthcare provider for screening and dietary counseling.',
-                              style: GoogleFonts.inter(
-                                fontSize: 12,
-                                color: Colors.red[800],
+                              const SizedBox(height: 4),
+                              Text(
+                                widget.controller.alertMessage.value,
+                                style: GoogleFonts.inter(
+                                  fontSize: 12,
+                                  color: Colors.orange[800],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
 
-              // Weight Gain Alerts
-              if (controller.showInsufficientGainAlert.value ||
-                  controller.showExcessiveGainAlert.value ||
-                  controller.showRapidGainAlert.value)
+                // Educational Info Section
                 Container(
                   margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.orange[50],
+                    color: NeoSafeColors.primaryPink.withOpacity(0.05),
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.orange[200]!),
+                    border: Border.all(
+                        color: NeoSafeColors.primaryPink.withOpacity(0.2)),
                   ),
-                  child: Row(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.warning_amber_rounded,
-                          color: Colors.orange[700], size: 24),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Weight Gain Alert',
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.orange[900],
-                              ),
+                      Row(
+                        children: [
+                          Icon(Icons.info_outline,
+                              color: NeoSafeColors.primaryPink, size: 20),
+                          const SizedBox(width: 8),
+                          Text(
+                            'why_weight_matters'.tr,
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: NeoSafeColors.primaryPink,
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              controller.alertMessage.value,
-                              style: GoogleFonts.inter(
-                                fontSize: 12,
-                                color: Colors.orange[800],
-                              ),
-                            ),
-                          ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'why_weight_matters_description'.tr,
+                        style: GoogleFonts.inter(
+                          fontSize: 12,
+                          color: Colors.grey[700],
+                          height: 1.4,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'weight_gain_risks'.tr,
+                        style: GoogleFonts.inter(
+                          fontSize: 11,
+                          color: Colors.grey[600],
+                          height: 1.5,
                         ),
                       ),
                     ],
                   ),
                 ),
 
-              // Educational Info Section
-              Container(
-                margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: NeoSafeColors.primaryPink.withOpacity(0.05),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                      color: NeoSafeColors.primaryPink.withOpacity(0.2)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.info_outline,
-                            color: NeoSafeColors.primaryPink, size: 20),
-                        const SizedBox(width: 8),
-                        Text(
-                          'Why Weight Matters',
-                          style: GoogleFonts.poppins(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: NeoSafeColors.primaryPink,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Your pre-pregnancy weight and weight gain during pregnancy affect both your health and your baby\'s growth. Tracking helps ensure you stay within healthy ranges.',
-                      style: GoogleFonts.inter(
-                        fontSize: 12,
-                        color: Colors.grey[700],
-                        height: 1.4,
+                // Recent Entries
+                if (widget.controller.weightEntries.isNotEmpty) ...[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                    child: Text(
+                      'recent_entries'.tr,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '• Insufficient gain: May increase risk of IUGR and preterm birth\n• Excessive gain: May increase risk of gestational diabetes, hypertension, and cesarean delivery',
-                      style: GoogleFonts.inter(
-                        fontSize: 11,
-                        color: Colors.grey[600],
-                        height: 1.5,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Recent Entries
-              if (controller.weightEntries.isNotEmpty) ...[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
-                  child: Text(
-                    'Recent Entries',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
                     ),
                   ),
-                ),
-                ...controller.weightEntries.reversed
-                    .take(3)
-                    .map((entry) => _buildEntryItem(entry)),
-                const SizedBox(height: 8),
+                  ...widget.controller.weightEntries.reversed
+                      .take(3)
+                      .map((entry) => _buildEntryItem(entry)),
+                  const SizedBox(height: 8),
+                ],
               ],
             ],
           )),
@@ -468,7 +520,7 @@ class WeightTrackingCard extends StatelessWidget {
               ),
               if (entry.gestationalWeek != null)
                 Text(
-                  'Week ${entry.gestationalWeek}',
+                  '${'week_space'.tr}${entry.gestationalWeek}',
                   style: GoogleFonts.inter(
                     fontSize: 11,
                     color: Colors.grey[600],
@@ -477,7 +529,7 @@ class WeightTrackingCard extends StatelessWidget {
             ],
           ),
           Text(
-            '${entry.weight.toStringAsFixed(1)} kg',
+            '${entry.weight.toStringAsFixed(1)} ${'kg_unit'.tr}',
             style: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -503,7 +555,7 @@ class WeightTrackingCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Add Weight Entry',
+                'add_weight_entry'.tr,
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -515,7 +567,7 @@ class WeightTrackingCard extends StatelessWidget {
                 controller: weightController,
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecoration(
-                  labelText: 'Weight (kg)',
+                  labelText: 'weight_kg'.tr,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -529,7 +581,7 @@ class WeightTrackingCard extends StatelessWidget {
               const SizedBox(height: 16),
               Obx(() => ListTile(
                     title: Text(
-                        'Date: ${DateFormat('MMM dd, yyyy').format(selectedDate.value)}'),
+                        '${'date_colon'.tr}${DateFormat('MMM dd, yyyy').format(selectedDate.value)}'),
                     trailing: Icon(Icons.calendar_today),
                     onTap: () async {
                       final date = await showDatePicker(
@@ -549,35 +601,37 @@ class WeightTrackingCard extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () => Get.back(),
-                    child: Text('Cancel'),
+                    child: Text('cancel'.tr),
                   ),
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: () {
                       final weight = double.tryParse(weightController.text);
                       if (weight != null && weight > 0) {
-                        controller.saveWeightEntry(
+                        widget.controller.saveWeightEntry(
                           weight,
                           selectedDate.value,
                           gestationalWeek:
-                              controller.currentGestationalWeek.value > 0
-                                  ? controller.currentGestationalWeek.value
+                              widget.controller.currentGestationalWeek.value > 0
+                                  ? widget
+                                      .controller.currentGestationalWeek.value
                                   : null,
-                          trimester:
-                              controller.currentTrimester.value.isNotEmpty
-                                  ? controller.currentTrimester.value
-                                  : null,
+                          trimester: widget
+                                  .controller.currentTrimester.value.isNotEmpty
+                              ? widget.controller.currentTrimester.value
+                              : null,
                         );
                         Get.back();
                       } else {
-                        Get.snackbar('Error', 'Please enter a valid weight');
+                        Get.snackbar(
+                            'error'.tr, 'please_enter_valid_weight'.tr);
                       }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: NeoSafeColors.primaryPink,
                       foregroundColor: Colors.white,
                     ),
-                    child: Text('Save'),
+                    child: Text('save'.tr),
                   ),
                 ],
               ),
@@ -590,9 +644,10 @@ class WeightTrackingCard extends StatelessWidget {
 
   void _showReminderSettingsDialog(BuildContext context) {
     final hourController = TextEditingController(
-        text: controller.reminderHour.value.toString().padLeft(2, '0'));
+        text: widget.controller.reminderHour.value.toString().padLeft(2, '0'));
     final minuteController = TextEditingController(
-        text: controller.reminderMinute.value.toString().padLeft(2, '0'));
+        text:
+            widget.controller.reminderMinute.value.toString().padLeft(2, '0'));
 
     Get.dialog(
       Dialog(
@@ -604,7 +659,7 @@ class WeightTrackingCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Weight Tracking Reminder',
+                'weight_tracking_reminder'.tr,
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -614,39 +669,39 @@ class WeightTrackingCard extends StatelessWidget {
               const SizedBox(height: 20),
               Obx(() => SwitchListTile(
                     title: Text(
-                      'Enable Daily Reminder',
+                      'enable_daily_reminder'.tr,
                       style: GoogleFonts.inter(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     subtitle: Text(
-                      'Get a daily notification to log your weight',
+                      'get_daily_notification_log_weight'.tr,
                       style: GoogleFonts.inter(
                         fontSize: 12,
                         color: Colors.grey[600],
                       ),
                     ),
-                    value: controller.reminderEnabled.value,
+                    value: widget.controller.reminderEnabled.value,
                     onChanged: (value) async {
                       try {
                         if (value) {
-                          await controller.enableReminder(
-                            controller.reminderHour.value,
-                            controller.reminderMinute.value,
+                          await widget.controller.enableReminder(
+                            widget.controller.reminderHour.value,
+                            widget.controller.reminderMinute.value,
                           );
                           Get.snackbar(
-                            'Reminder Enabled',
-                            'You\'ll receive daily reminders at ${controller.reminderHour.value.toString().padLeft(2, '0')}:${controller.reminderMinute.value.toString().padLeft(2, '0')}',
+                            'reminder_enabled'.tr,
+                            '${'youll_receive_daily_reminders_at'.tr} ${widget.controller.reminderHour.value.toString().padLeft(2, '0')}:${widget.controller.reminderMinute.value.toString().padLeft(2, '0')}',
                             snackPosition: SnackPosition.BOTTOM,
                             backgroundColor: Colors.green[100],
                             colorText: Colors.green[900],
                           );
                         } else {
-                          await controller.disableReminder();
+                          await widget.controller.disableReminder();
                           Get.snackbar(
-                            'Reminder Disabled',
-                            'Daily reminders have been turned off',
+                            'reminder_disabled'.tr,
+                            'daily_reminders_turned_off'.tr,
                             snackPosition: SnackPosition.BOTTOM,
                             backgroundColor: Colors.orange[100],
                             colorText: Colors.orange[900],
@@ -654,8 +709,8 @@ class WeightTrackingCard extends StatelessWidget {
                         }
                       } catch (e) {
                         Get.snackbar(
-                          'Error',
-                          'Failed to ${value ? "enable" : "disable"} reminder: $e',
+                          'error'.tr,
+                          '${value ? 'failed_to_enable'.tr : 'failed_to_disable'.tr} ${'reminder_colon'.tr} $e',
                           snackPosition: SnackPosition.BOTTOM,
                           backgroundColor: Colors.red[100],
                           colorText: Colors.red[900],
@@ -665,13 +720,13 @@ class WeightTrackingCard extends StatelessWidget {
                     activeColor: NeoSafeColors.primaryPink,
                   )),
               Obx(() {
-                if (controller.reminderEnabled.value) {
+                if (widget.controller.reminderEnabled.value) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 16),
                       Text(
-                        'Reminder Time',
+                        'reminder_time'.tr,
                         style: GoogleFonts.inter(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -686,7 +741,7 @@ class WeightTrackingCard extends StatelessWidget {
                               controller: hourController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                labelText: 'Hour (0-23)',
+                                labelText: 'hour_0_23'.tr,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
@@ -699,7 +754,7 @@ class WeightTrackingCard extends StatelessWidget {
                               controller: minuteController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                labelText: 'Minute (0-59)',
+                                labelText: 'minute_0_59'.tr,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
@@ -720,9 +775,9 @@ class WeightTrackingCard extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () => Get.back(),
-                        child: Text('Close'),
+                        child: Text('close'.tr),
                       ),
-                      if (controller.reminderEnabled.value) ...[
+                      if (widget.controller.reminderEnabled.value) ...[
                         const SizedBox(width: 12),
                         ElevatedButton(
                           onPressed: () async {
@@ -735,17 +790,18 @@ class WeightTrackingCard extends StatelessWidget {
                                 minute != null &&
                                 minute >= 0 &&
                                 minute <= 59) {
-                              await controller.enableReminder(hour, minute);
+                              await widget.controller
+                                  .enableReminder(hour, minute);
                               Get.back();
                               Get.snackbar(
-                                'Reminder Updated',
-                                'Reminder time set to ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}',
+                                'reminder_updated'.tr,
+                                '${'reminder_time_set_to'.tr} ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}',
                                 snackPosition: SnackPosition.BOTTOM,
                               );
                             } else {
                               Get.snackbar(
-                                'Error',
-                                'Please enter valid time (Hour: 0-23, Minute: 0-59)',
+                                'error'.tr,
+                                'please_enter_valid_time'.tr,
                                 snackPosition: SnackPosition.BOTTOM,
                               );
                             }
@@ -754,7 +810,7 @@ class WeightTrackingCard extends StatelessWidget {
                             backgroundColor: NeoSafeColors.primaryPink,
                             foregroundColor: Colors.white,
                           ),
-                          child: Text('Update Time'),
+                          child: Text('update_time'.tr),
                         ),
                       ],
                     ],

@@ -45,6 +45,51 @@ class GoalOnboardingController extends GetxController {
   void nextStep() => currentStep.value++;
   void previousStep() => currentStep.value--;
 
+  @override
+  void onInit() async {
+    super.onInit();
+    final authService = Get.find<AuthService>();
+    final userId = authService.currentUser.value?.id;
+
+    // Priority 1: Check Get.arguments for purpose (passed from profile page)
+    final args = Get.arguments;
+    String? purposeFromArgs;
+    if (args != null && args is Map && args.containsKey('purpose')) {
+      purposeFromArgs = args['purpose'] as String?;
+      if (purposeFromArgs != null && purposeFromArgs.isNotEmpty) {
+        purpose.value = purposeFromArgs;
+        // Save it immediately to onboarding
+        if (userId != null) {
+          await authService.setOnboardingData(
+              'onboarding_purpose', userId, purposeFromArgs);
+        }
+      }
+    }
+
+    // Priority 2: Load from onboarding shared preferences if not in arguments
+    if (purpose.value.isEmpty && userId != null) {
+      final purposeStr = await authService.getOnboardingPurpose(userId);
+      if (purposeStr.isNotEmpty) {
+        purpose.value = purposeStr;
+      }
+    }
+
+    // Determine which step to start at based on purpose
+    if (purpose.value.isNotEmpty) {
+      if (purpose.value == 'pregnant') {
+        currentStep.value = 5; // Start at pregnancy-specific questions
+      } else if (purpose.value == 'get_pregnant') {
+        currentStep.value = 5; // Start at trying to conceive questions
+      } else if (purpose.value == 'have_baby') {
+        currentStep.value = 5; // Start at baby-specific questions
+      } else {
+        currentStep.value = 0; // Start from beginning
+      }
+    } else {
+      currentStep.value = 0; // Default: start from beginning
+    }
+  }
+
   Future<void> saveToPrefs() async {
     final authService = Get.find<AuthService>();
     final userId = authService.currentUser.value?.id;
@@ -83,7 +128,7 @@ class GoalOnboardingController extends GetxController {
       await authService.setOnboardingData(
           'onboarding_born_baby_gender', userId, bornBabyGender.value);
     }
-    
+
     // Save height and weight for weight tracking
     if (height.value.isNotEmpty) {
       final prefs = await SharedPreferences.getInstance();
@@ -91,15 +136,15 @@ class GoalOnboardingController extends GetxController {
     }
     if (prePregnancyWeight.value.isNotEmpty) {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('onboarding_pre_pregnancy_weight_$userId', prePregnancyWeight.value);
+      await prefs.setString(
+          'onboarding_pre_pregnancy_weight_$userId', prePregnancyWeight.value);
     }
-    
-    // Save age for risk assessment
+
+    // Save age consistently via AuthService per-user key
     if (age.value.isNotEmpty) {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('onboarding_age_$userId', age.value);
+      await authService.setOnboardingData('onboarding_age', userId, age.value);
     }
-    
+
     // Save onboarding complete flag for this user
     await authService.setOnboardingBool('onboarding_complete', userId, true);
   }

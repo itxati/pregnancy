@@ -160,6 +160,7 @@ class LifestyleAdviceDetailView extends StatelessWidget {
   }
 
   List<Widget> _getDetailedContent(String title) {
+    print(title);
     switch (title) {
       case "Nutrition":
         return _getNutritionContent();
@@ -177,47 +178,47 @@ class LifestyleAdviceDetailView extends StatelessWidget {
   List<Widget> _getNutritionContent() {
     return [
       _buildSectionCard(
-        "Essential Nutrients During Pregnancy",
+        "lifestyle_nutrition_essential_nutrients".tr,
         [
-          "Folic Acid: 400-800 mcg daily to prevent birth defects",
-          "Iron: 27 mg daily to support increased blood volume",
-          "Calcium: 1000 mg daily for baby's bone development",
-          "Protein: 75-100g daily for fetal growth",
-          "Omega-3 DHA: 200-300 mg daily for brain development",
-          "Vitamin D: 600 IU daily for bone health",
+          "lifestyle_nutrition_folic_acid".tr,
+          "lifestyle_nutrition_iron".tr,
+          "lifestyle_nutrition_calcium".tr,
+          "lifestyle_nutrition_protein".tr,
+          "lifestyle_nutrition_omega3_dha".tr,
+          "lifestyle_nutrition_vitamin_d".tr,
         ],
       ),
       _buildSectionCard(
-        "Foods to Include",
+        "lifestyle_nutrition_include_header".tr,
         [
-          "Leafy green vegetables (spinach, kale, broccoli)",
-          "Lean proteins (chicken, fish, beans, lentils)",
-          "Whole grains (brown rice, quinoa, oats)",
-          "Dairy products (milk, yogurt, cheese)",
-          "Fresh fruits and vegetables",
-          "Nuts and seeds (almonds, walnuts, chia seeds)",
+          "lifestyle_nutrition_leafy_greens".tr,
+          "lifestyle_nutrition_lean_proteins".tr,
+          "lifestyle_nutrition_whole_grains".tr,
+          "lifestyle_nutrition_dairy_products".tr,
+          "lifestyle_nutrition_fresh_fruits".tr,
+          "lifestyle_nutrition_nuts_seeds".tr,
         ],
       ),
       _buildSectionCard(
-        "Foods to Avoid",
+        "lifestyle_nutrition_avoid_header".tr,
         [
-          "Raw or undercooked meat and fish",
-          "Unpasteurized dairy products",
-          "High-mercury fish (shark, swordfish, king mackerel)",
-          "Excessive caffeine (limit to 200mg daily)",
-          "Alcohol and tobacco",
-          "Raw eggs and deli meats",
+          "lifestyle_nutrition_raw_meat_fish".tr,
+          "lifestyle_nutrition_unpasteurized_dairy".tr,
+          "lifestyle_nutrition_high_mercury_fish".tr,
+          "lifestyle_nutrition_excessive_caffeine".tr,
+          "lifestyle_nutrition_alcohol_tobacco".tr,
+          "lifestyle_nutrition_raw_eggs_deli_meat".tr,
         ],
       ),
       _buildSectionCard(
-        "Hydration Tips",
+        "lifestyle_nutrition_hydration_header".tr,
         [
-          "Drink 8-10 glasses of water daily",
-          "Carry a water bottle with you",
-          "Add lemon or cucumber for flavor",
-          "Monitor urine color (should be pale yellow)",
-          "Increase intake during hot weather or exercise",
-          "Limit sugary drinks and sodas",
+          "lifestyle_nutrition_drink_water".tr,
+          "lifestyle_nutrition_carry_bottle".tr,
+          "lifestyle_nutrition_lemon_cucumber".tr,
+          "lifestyle_nutrition_monitor_urine".tr,
+          "lifestyle_nutrition_increase_intake".tr,
+          "lifestyle_nutrition_limit_sugary_sodas".tr,
         ],
       ),
     ];
@@ -226,47 +227,47 @@ class LifestyleAdviceDetailView extends StatelessWidget {
   List<Widget> _getExerciseContent() {
     return [
       _buildSectionCard(
-        "Safe Exercises During Pregnancy",
+        "lifestyle_exercise_safe_exercises".tr,
         [
-          "Walking: 30 minutes daily at moderate pace",
-          "Swimming: Low-impact, full-body workout",
-          "Prenatal yoga: Improves flexibility and relaxation",
-          "Stationary cycling: Safe cardiovascular exercise",
-          "Pilates: Strengthens core and improves posture",
-          "Light strength training with proper form",
+          "lifestyle_exercise_walking_detail".tr,
+          "lifestyle_exercise_swimming_detail".tr,
+          "lifestyle_exercise_prenatal_yoga_detail".tr,
+          "lifestyle_exercise_stationary_cycling_detail".tr,
+          "lifestyle_exercise_pilates_detail".tr,
+          "lifestyle_exercise_light_strength_training_detail".tr,
         ],
       ),
       _buildSectionCard(
-        "Benefits of Exercise",
+        "lifestyle_exercise_benefits".tr,
         [
-          "Reduces back pain and improves posture",
-          "Helps with sleep and mood regulation",
-          "Prepares body for labor and delivery",
-          "Reduces risk of gestational diabetes",
-          "Maintains healthy weight gain",
-          "Increases energy levels",
+          "lifestyle_exercise_back_pain_detail".tr,
+          "lifestyle_exercise_sleep_mood_detail".tr,
+          "lifestyle_exercise_labor_delivery_detail".tr,
+          "lifestyle_exercise_gestational_diabetes_detail".tr,
+          "lifestyle_exercise_healthy_weight_gain_detail".tr,
+          "lifestyle_exercise_energy_levels_detail".tr,
         ],
       ),
       _buildSectionCard(
-        "Exercise Safety Guidelines",
+        "lifestyle_exercise_safety_guidelines".tr,
         [
-          "Always consult your healthcare provider first",
-          "Stop if you feel dizzy, short of breath, or pain",
-          "Avoid exercises lying flat on your back after 16 weeks",
-          "Stay hydrated and avoid overheating",
-          "Wear supportive, comfortable clothing",
-          "Listen to your body and rest when needed",
+          "lifestyle_exercise_consult_healthcare_detail".tr,
+          "lifestyle_exercise_stop_if_dizzy_detail".tr,
+          "lifestyle_exercise_avoid_lying_back_after_16_weeks_detail".tr,
+          "lifestyle_exercise_stay_hydrated_avoid_overheating_detail".tr,
+          "lifestyle_exercise_wear_supportive_detail".tr,
+          "lifestyle_exercise_listen_body_rest_detail".tr,
         ],
       ),
       _buildSectionCard(
-        "Exercises to Avoid",
+        "lifestyle_exercise_exercises_to_avoid".tr,
         [
-          "High-impact activities (running, jumping)",
-          "Contact sports and activities with fall risk",
-          "Exercises that require lying on your back",
-          "Hot yoga or exercise in extreme heat",
-          "Heavy lifting or straining",
-          "Activities with sudden direction changes",
+          "lifestyle_exercise_high_impact_detail".tr,
+          "lifestyle_exercise_contact_sports_detail".tr,
+          "lifestyle_exercise_exercises_lying_back_detail".tr,
+          "lifestyle_exercise_hot_yoga_detail".tr,
+          "lifestyle_exercise_heavy_lifting_detail".tr,
+          "lifestyle_exercise_activities_sudden_direction_detail".tr,
         ],
       ),
     ];
@@ -275,47 +276,47 @@ class LifestyleAdviceDetailView extends StatelessWidget {
   List<Widget> _getHygieneContent() {
     return [
       _buildSectionCard(
-        "Daily Hygiene Routine",
+        "lifestyle_hygiene_daily_hygiene_routine".tr,
         [
-          "Shower or bathe daily with mild, fragrance-free soap",
-          "Wash hands frequently, especially before eating",
-          "Brush teeth twice daily with fluoride toothpaste",
-          "Floss daily to prevent gum disease",
-          "Keep nails clean and trimmed",
-          "Change underwear and clothes daily",
+          "lifestyle_hygiene_shower_bathe_detail".tr,
+          "lifestyle_hygiene_wash_hands_detail".tr,
+          "lifestyle_hygiene_brush_teeth_detail".tr,
+          "lifestyle_hygiene_floss_detail".tr,
+          "lifestyle_hygiene_keep_nails_detail".tr,
+          "lifestyle_hygiene_change_underwear_detail".tr,
         ],
       ),
       _buildSectionCard(
-        "Skin Care During Pregnancy",
+        "lifestyle_hygiene_skin_care_during_pregnancy".tr,
         [
-          "Use gentle, pregnancy-safe skincare products",
-          "Apply sunscreen daily to prevent melasma",
-          "Moisturize regularly to prevent stretch marks",
-          "Avoid harsh chemicals and retinoids",
-          "Keep skin clean and dry to prevent infections",
-          "Consult dermatologist for skin concerns",
+          "lifestyle_hygiene_gentle_skincare_detail".tr,
+          "lifestyle_hygiene_apply_sunscreen_detail".tr,
+          "lifestyle_hygiene_moisturize_detail".tr,
+          "lifestyle_hygiene_avoid_harsh_chemicals_detail".tr,
+          "lifestyle_hygiene_keep_skin_clean_dry_detail".tr,
+          "lifestyle_hygiene_consult_dermatologist_detail".tr,
         ],
       ),
       _buildSectionCard(
-        "Oral Health",
+        "lifestyle_hygiene_oral_health".tr,
         [
-          "Schedule regular dental checkups",
-          "Inform dentist about your pregnancy",
-          "Use soft-bristled toothbrush",
-          "Rinse with fluoride mouthwash",
-          "Eat calcium-rich foods for strong teeth",
-          "Avoid sugary snacks and drinks",
+          "lifestyle_hygiene_schedule_dental_checkups_detail".tr,
+          "lifestyle_hygiene_inform_dentist_detail".tr,
+          "lifestyle_hygiene_use_soft_bristled_toothbrush_detail".tr,
+          "lifestyle_hygiene_rinse_fluoride_mouthwash_detail".tr,
+          "lifestyle_hygiene_eat_calcium_rich_foods_detail".tr,
+          "lifestyle_hygiene_avoid_sugary_snacks_detail".tr,
         ],
       ),
       _buildSectionCard(
-        "Personal Care Products",
+        "lifestyle_hygiene_personal_care_products".tr,
         [
-          "Choose fragrance-free and hypoallergenic products",
-          "Avoid products with harsh chemicals",
-          "Use pregnancy-safe deodorants and antiperspirants",
-          "Select gentle, sulfate-free shampoos",
-          "Read labels and avoid harmful ingredients",
-          "Consider natural and organic alternatives",
+          "lifestyle_hygiene_choose_fragrance_free_detail".tr,
+          "lifestyle_hygiene_avoid_harsh_chemicals_detail".tr,
+          "lifestyle_hygiene_use_pregnancy_safe_deodorants_detail".tr,
+          "lifestyle_hygiene_select_gentle_sulfate_free_shampoo_detail".tr,
+          "lifestyle_hygiene_read_labels_avoid_harmful_ingredients_detail".tr,
+          "lifestyle_hygiene_consider_natural_organic_alternatives_detail".tr,
         ],
       ),
     ];
@@ -324,58 +325,65 @@ class LifestyleAdviceDetailView extends StatelessWidget {
   List<Widget> _getSleepContent() {
     return [
       _buildSectionCard(
-        "Sleep Position Recommendations",
+        "lifestyle_sleep_sleep_position_recommendations".tr,
         [
-          "Sleep on your left side for optimal blood flow",
-          "Use pregnancy pillows for support and comfort",
-          "Avoid sleeping on your back after 20 weeks",
-          "Place pillow between knees for hip support",
-          "Elevate upper body if experiencing heartburn",
-          "Find comfortable positions that work for you",
+          "lifestyle_sleep_sleep_on_left_side_detail".tr,
+          "lifestyle_sleep_use_pregnancy_pillows_detail".tr,
+          "lifestyle_sleep_avoid_sleeping_on_back_after_20_weeks_detail".tr,
+          "lifestyle_sleep_place_pillow_between_knees_detail".tr,
+          "lifestyle_sleep_elevate_upper_body_if_heartburn_detail".tr,
+          "lifestyle_sleep_find_comfortable_positions_detail".tr,
         ],
       ),
       _buildSectionCard(
-        "Creating a Sleep-Friendly Environment",
+        "lifestyle_sleep_creating_sleep_friendly_environment".tr,
         [
-          "Keep bedroom cool, dark, and quiet",
-          "Use blackout curtains or eye mask",
-          "Invest in comfortable mattress and pillows",
-          "Remove electronic devices from bedroom",
-          "Use white noise machine if needed",
-          "Keep room well-ventilated",
+          "lifestyle_sleep_keep_bedroom_cool_dark_quiet_detail".tr,
+          "lifestyle_sleep_use_blackout_curtains_eye_mask_detail".tr,
+          "lifestyle_sleep_invest_in_comfortable_mattress_pillows_detail".tr,
+          "lifestyle_sleep_remove_electronic_devices_from_bedroom_detail".tr,
+          "lifestyle_sleep_use_white_noise_machine_if_needed_detail".tr,
+          "lifestyle_sleep_keep_room_well_ventilated_detail".tr,
         ],
       ),
       _buildSectionCard(
-        "Sleep Hygiene Tips",
+        "lifestyle_sleep_sleep_hygiene_tips".tr,
         [
-          "Maintain consistent sleep schedule",
-          "Avoid large meals and caffeine before bed",
-          "Limit screen time 1 hour before sleep",
-          "Practice relaxation techniques",
-          "Take warm bath or shower before bed",
-          "Create bedtime routine to signal sleep time",
+          "lifestyle_sleep_maintain_consistent_sleep_schedule_detail".tr,
+          "lifestyle_sleep_avoid_large_meals_caffeine_before_bed_detail".tr,
+          "lifestyle_sleep_limit_screen_time_1_hour_before_sleep_detail".tr,
+          "lifestyle_sleep_practice_relaxation_techniques_detail".tr,
+          "lifestyle_sleep_take_warm_bath_shower_before_bed_detail".tr,
+          "lifestyle_sleep_create_bedtime_routine_to_signal_sleep_time_detail"
+              .tr,
         ],
       ),
       _buildSectionCard(
-        "Managing Sleep Disruptions",
+        "lifestyle_sleep_managing_sleep_disruptions".tr,
         [
-          "Frequent urination: Limit fluids before bed",
-          "Heartburn: Eat smaller meals, avoid spicy foods",
-          "Leg cramps: Stretch before bed, stay hydrated",
-          "Anxiety: Practice meditation or deep breathing",
-          "Restless legs: Gentle massage and warm bath",
-          "Snoring: Use nasal strips or humidifier",
+          "lifestyle_sleep_frequent_urination_limit_fluids_before_bed_detail"
+              .tr,
+          "lifestyle_sleep_heartburn_eat_smaller_meals_avoid_spicy_foods_detail"
+              .tr,
+          "lifestyle_sleep_leg_cramps_stretch_before_bed_stay_hydrated_detail"
+              .tr,
+          "lifestyle_sleep_anxiety_practice_meditation_deep_breathing_detail"
+              .tr,
+          "lifestyle_sleep_restless_legs_gentle_massage_warm_bath_detail".tr,
+          "lifestyle_sleep_snoring_use_nasal_strips_humidifier_detail".tr,
         ],
       ),
       _buildSectionCard(
-        "When to Seek Help",
+        "lifestyle_sleep_when_to_seek_help".tr,
         [
-          "Persistent insomnia affecting daily function",
-          "Severe sleep apnea or breathing problems",
-          "Excessive daytime sleepiness",
-          "Sleep disturbances due to anxiety or depression",
-          "Physical pain preventing sleep",
-          "Any concerns about sleep quality",
+          "lifestyle_sleep_persistent_insomnia_affecting_daily_function_detail"
+              .tr,
+          "lifestyle_sleep_severe_sleep_apnea_breathing_problems_detail".tr,
+          "lifestyle_sleep_excessive_daytime_sleepiness_detail".tr,
+          "lifestyle_sleep_sleep_disturbances_due_to_anxiety_depression_detail"
+              .tr,
+          "lifestyle_sleep_physical_pain_preventing_sleep_detail".tr,
+          "lifestyle_sleep_any_concerns_about_sleep_quality_detail".tr,
         ],
       ),
     ];
@@ -384,14 +392,16 @@ class LifestyleAdviceDetailView extends StatelessWidget {
   List<Widget> _getDefaultContent() {
     return [
       _buildSectionCard(
-        "General Lifestyle Tips",
+        "lifestyle_general_lifestyle_tips".tr,
         [
-          "Maintain regular prenatal care appointments",
-          "Follow your healthcare provider's recommendations",
-          "Listen to your body and rest when needed",
-          "Stay informed about pregnancy changes",
-          "Connect with other expectant mothers",
-          "Prepare for your baby's arrival",
+          "lifestyle_general_maintain_regular_prenatal_care_appointments_detail"
+              .tr,
+          "lifestyle_general_follow_healthcare_provider_recommendations_detail"
+              .tr,
+          "lifestyle_general_listen_body_rest_when_needed_detail".tr,
+          "lifestyle_general_stay_informed_about_pregnancy_changes_detail".tr,
+          "lifestyle_general_connect_with_other_expectant_mothers_detail".tr,
+          "lifestyle_general_prepare_for_baby_arrival_detail".tr,
         ],
       ),
     ];

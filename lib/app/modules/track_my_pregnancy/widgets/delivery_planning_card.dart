@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DeliveryPlanningCard extends StatefulWidget {
   const DeliveryPlanningCard({Key? key}) : super(key: key);
@@ -98,10 +99,10 @@ class _DeliveryPlanningCardState extends State<DeliveryPlanningCard>
                       ),
                     ),
                     const SizedBox(width: 16),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Delivery Planning & Labor',
-                        style: TextStyle(
+                        'delivery_planning_labor'.tr,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Color(0xFF2E7D32),
@@ -130,17 +131,17 @@ class _DeliveryPlanningCardState extends State<DeliveryPlanningCard>
                 // Main Points (Always Visible)
                 _buildMainPoint(
                   Icons.edit_note_rounded,
-                  'Plan your birth preferences and methods',
+                  'plan_birth_preferences_methods'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.warning_amber_rounded,
-                  'Know signs of labor and when to go',
+                  'know_signs_labor_when_to_go'.tr,
                 ),
                 const SizedBox(height: 12),
                 _buildMainPoint(
                   Icons.emergency_rounded,
-                  'Recognize red flags during labor',
+                  'recognize_red_flags_during_labor'.tr,
                 ),
                 // Expandable Details
                 AnimatedCrossFade(
@@ -163,12 +164,12 @@ class _DeliveryPlanningCardState extends State<DeliveryPlanningCard>
                           color: const Color(0xFF66BB6A).withOpacity(0.10),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'Tap to learn more',
-                              style: TextStyle(
+                              'tap_to_learn_more'.tr,
+                              style: const TextStyle(
                                 fontSize: 13,
                                 color: Color(0xFF2E7D32),
                                 fontWeight: FontWeight.w500,
@@ -242,69 +243,69 @@ class _DeliveryPlanningCardState extends State<DeliveryPlanningCard>
           ),
         ),
         const SizedBox(height: 24),
-        _sectionTitle('Delivery Planning Basics'),
+        _sectionTitle('delivery_planning_basics'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'Know your birth plan, preferred delivery methods, and potential contingencies (emergency cesarean, vaginal birth after cesarean (VBAC) if appropriate).',
+          'delivery_planning_basics_description'.tr,
         ),
         const SizedBox(height: 20),
-        _sectionTitle('Signs of Labor'),
+        _sectionTitle('signs_of_labor'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Regular contractions',
-          'Water break (rupture of membranes)',
-          'Backache',
-          'Changes in baby movement patterns',
+          'regular_contractions'.tr,
+          'water_break_rupture_membranes'.tr,
+          'backache'.tr,
+          'changes_baby_movement_patterns'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Transportation & Birth Plan'),
+        _sectionTitle('transportation_birth_plan'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Know when to go to the hospital or birth center',
-          'Have contact information ready',
-          'Plan transportation in case of labor onset',
-          'Prepare your birth plan documents',
+          'know_when_go_hospital_birth_center'.tr,
+          'have_contact_information_ready'.tr,
+          'plan_transportation_labor_onset'.tr,
+          'prepare_birth_plan_documents'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Delivery Methods'),
+        _sectionTitle('delivery_methods'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Vaginal delivery',
-          'Cesarean section',
-          'Assisted vaginal delivery (forceps/vacuum) if needed',
+          'vaginal_delivery'.tr,
+          'cesarean_section'.tr,
+          'assisted_vaginal_delivery'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Red Flags During Labor'),
+        _sectionTitle('red_flags_during_labor'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Heavy bleeding',
-          'Severe abdominal pain',
-          'Persistent vomiting',
-          'Signs of fetal distress',
+          'heavy_bleeding'.tr,
+          'severe_abdominal_pain'.tr,
+          'persistent_vomiting'.tr,
+          'signs_fetal_distress'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Risk Assessment for Labor'),
+        _sectionTitle('risk_assessment_labor'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Previous cesarean',
-          'Placenta previa',
-          'Breech presentation',
-          'Multiple pregnancies',
-          'Maternal chronic conditions',
+          'previous_cesarean'.tr,
+          'placenta_previa'.tr,
+          'breech_presentation'.tr,
+          'multiple_pregnancies'.tr,
+          'maternal_chronic_conditions'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Intrapartum Complications'),
+        _sectionTitle('intrapartum_complications'.tr),
         const SizedBox(height: 12),
         _bulletList([
-          'Shoulder dystocia',
-          'Fetal distress',
-          'Non-reassuring fetal heart rate patterns',
+          'shoulder_dystocia'.tr,
+          'fetal_distress'.tr,
+          'non_reassuring_fetal_heart_rate'.tr,
         ]),
         const SizedBox(height: 20),
-        _sectionTitle('Emergency Preparedness'),
+        _sectionTitle('emergency_preparedness'.tr),
         const SizedBox(height: 12),
         _descriptionText(
-          'Know when to seek urgent care and what to expect. Have emergency contacts ready and understand your healthcare facility\'s protocols.',
+          'emergency_preparedness_description'.tr,
         ),
         const SizedBox(height: 24),
         Container(
@@ -339,10 +340,10 @@ class _DeliveryPlanningCardState extends State<DeliveryPlanningCard>
                 ),
               ),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Always discuss your birth plan with your healthcare provider and have emergency contacts ready.',
-                  style: TextStyle(
+                  'discuss_birth_plan_emergency_contacts'.tr,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF2E7D32),
                     fontSize: 14,
