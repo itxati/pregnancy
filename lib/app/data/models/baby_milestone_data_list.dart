@@ -1,24 +1,24 @@
 import 'baby_milestone_data.dart';
 
 const List<BabyMilestone> babyMilestones = [
-  // BabyMilestone(
-  //   imageUrl: 'assets/afterbirth/4.jpg',
-  //   month: 0,
-  //   title: 'Newborn',
-  //   milestones: [
-  //     "Lifts head briefly when on tummy",
-  //     "Makes eye contact",
-  //     "Responds to sounds",
-  //     "Grasps your finger",
-  //     "Roots for feeding",
-  //     "Moves limbs symmetrically",
-  //     "Blinks to bright light",
-  //     "Startles or alerts to loud sounds",
-  //     "Gives response to faces and voice",
-  //   ],
-  //   description:
-  //       'Your baby has just entered the world! This is a time of rapid adjustment and bonding.',
-  // ),
+  BabyMilestone(
+    imageUrl: 'assets/afterbirth/4.jpg',
+    month: 0,
+    title: 'Newborn',
+    milestones: [
+      "Lifts head briefly when on tummy",
+      "Makes eye contact",
+      "Responds to sounds",
+      "Grasps your finger",
+      "Roots for feeding",
+      "Moves limbs symmetrically",
+      "Blinks to bright light",
+      "Startles or alerts to loud sounds",
+      "Gives response to faces and voice",
+    ],
+    description:
+        'Your baby has just entered the world! This is a time of rapid adjustment and bonding.',
+  ),
   // 2–8 years extension
   BabyMilestone(
     imageUrl: 'assets/afterbirth/3.jpg',
@@ -74,6 +74,17 @@ const List<BabyMilestone> babyMilestones = [
     imageUrl: 'assets/afterbirth/2.jpg',
     month: 72,
     title: '6–8 Years',
+    milestones: [
+      'Skill refinement continues (handwriting, sports, coordination)',
+      'Shifts toward concrete operational thinking (logical operations on real objects)',
+      'Deeper peer relationships; stronger rule-following and moral sense; self-esteem linked to success',
+      'Complex drawings; neater handwriting; more intricate crafts',
+    ],
+  ),
+  BabyMilestone(
+    imageUrl: 'assets/afterbirth/2.jpg',
+    month: 84,
+    title: '7–8 Years',
     milestones: [
       'Skill refinement continues (handwriting, sports, coordination)',
       'Shifts toward concrete operational thinking (logical operations on real objects)',

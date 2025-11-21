@@ -145,7 +145,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     twinsInfo:
         "Think you might be carrying twins? At week 4 of your pregnancy, it is unlikely you know anything more than your intuition tells you, unless you conceived by IVF. Statistics show that 1.5% of all pregnancies result in a twin pregnancy. On average, 1 in 4 with IVF and 1 in 80 with natural conception. Even so, at this point your 'twinners' are little more than two itsy bitsy gestational sacs that even ultrasound may not pick up.",
     size: "1.5mm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Blastocyst: By now, the morula has become a blastocyst, but quickly changes again as it attaches to your uterine lining",
       "Cell Division: The cells within the blastocyst separate to become the embryo or the placenta",
@@ -190,7 +190,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     twinsInfo:
         "These days, twins are more common than they used to be. This is because women are having children later (which increases the chance of twins because of the greater likelihood of multiple eggs being released during ovulation), and an increase in fertility treatments, which also raises the potential for multiple births. Your chances of having identical (one egg that splits in half) twins? Better than playing the lottery - about one out of every 250 twin births results in identical twins. The odds of non-identical twins, resulting from two eggs fertilised by two sperm, is often a matter of genetics and luck.",
     size: "1.5mm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Embryonic Disc: Following implantation, embryonic cells start to differentiate and separate into an embryonic disc, establishing three primary germ layers",
       "1st Layer: The 1st layer will form the digestive system, liver and lungs of your baby",
@@ -235,7 +235,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     twinsInfo:
         "You might not be showing yet, but if you are carrying twins, your body is definitely working twice as hard. Early pregnancy symptoms such as fatigue and nausea can be more pronounced with twin pregnancies, and are often the first clue to the pending double arrival. Not only do twin pregnancies experience higher hormone levels during the first trimester, but you also have two babies rapidly developing in this critical phase of pregnancy. It's important to listen to your body - rest when you are tired, and take care of yourself.",
     size: "2.0mm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Heart: Your little one now has a two-chambered heart, shaped like a twisted tube",
       "Heartbeat: Your baby's heart starts beating on or around day 36 of pregnancy",
@@ -274,7 +274,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     twinsInfo:
         "Do you ever wonder why you were chosen to have twins? Women aged 30 and over are more likely to conceive twins because of the increased risk of releasing multiple eggs during ovulation. Body size can play a part too. Women in the top 25th percentile for height, or who have a BMI of 30 or more, are more likely to carry multiples. Often, it just comes down to DNA, as fraternal twins most often run in the family (on the mother's side). And sometimes, it's just luck. Regardless, consider yourself twice blessed.",
     size: "5.0mm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Brain Development: Your baby's brain is developing fast, making their head much larger than their body",
       "Eyes and ears: Your baby's eyes and inner ears are starting to form",
@@ -313,7 +313,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     twinsInfo:
         "If you’re carrying twins, symptoms like fatigue and nausea may be more pronounced. Make sure to attend all prenatal appointments for early monitoring.",
     size: "9.5mm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Hands and feet: Tiny paddles and forming, which will become your baby's hands and feet",
       "Eye Development: Your baby's irises are beginning to form, which will determine their eye color, and their eyelids are beginning to take shape",
@@ -352,7 +352,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     twinsInfo:
         "You may be showing earlier if you’re carrying twins. Discuss your nutritional needs with your healthcare provider.",
     size: "1.6cm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Reproductive Organs: This week your baby's reproductive organs will develop into a tiny genital bud, ready to become testes or ovaries from around week 12",
       "Heart Development: Your baby's heart has now developed into a tiny replica of a fully-grown adult heart with four chambers",
@@ -391,7 +391,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
     twinsInfo:
         "You may need extra calories and nutrients. Ask your provider about appropriate weight gain for twins.",
     size: "2.3cm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Finger and Toes: The fingers and toes are starting to lose their webbing and are separating",
       "Eyes: Your baby's eyes are moving from the side of the head to the front",
@@ -431,7 +431,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may have more frequent checkups. Monitor your symptoms and communicate any concerns to your provider.",
     weight: "35g",
     size: "3.1cm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Vital Organs: The risk of congenital defects reduces as the vital organs are mostly formed",
       "Placenta: Blood circulation between your uterus and the fetus has developed to form a complex systems to interchange nutrients",
@@ -470,7 +470,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may have more pronounced symptoms and may start to show earlier. Make sure to attend all prenatal appointments for close monitoring.",
     weight: "45g",
     size: "4.1cm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Organ Development: Your baby's liver and spleen are now producing blood cells, and the pancreas is beginning to produce digestive enzymes",
       "Movement: Your baby is now able to bend, stretch, and kick, although you won't feel this movement until later in second trimester",
@@ -509,7 +509,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be gaining weight more quickly if you’re carrying twins. Discuss your nutritional needs with your healthcare provider.",
     weight: "58g",
     size: "5.4cm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Amniotic Fluid: Amniotic fluid is swallowed by your baby to help development of the digestive and respiratory systems",
       "Organ Development: All of your baby's organs are developing into their final shapes, including the stomach, liver, pancreas, and intestines",
@@ -544,7 +544,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may need extra calories and nutrients. Ask your provider about appropriate weight gain.",
     weight: "73g",
     size: "6.7cm",
-    length: "Length(crown to rump)",
+    length: 'pregnancy_baby_length_1',
     details: [
       "Skin: Your baby's skin is translucent at this point, and all the tiny veins in their blood are visible",
       "Sucking Reflex: Some babies begin to suck their thumbs whilst in utero. This can help to develop their sucking reflex, which they'll need for feeding",
@@ -587,7 +587,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be showing more if you’re carrying twins. Make sure to attend all prenatal appointments.",
     weight: "93g",
     size: "14.7cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Yawing: Whilst mostly sleeping, your little one is learning how to yawn and rub their eyes",
       "Hair Growth: Even though lots of it won't be visible at this stage, hair is starting to grow on your baby's head, as well as eyebrows and eyelashes",
@@ -630,7 +630,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
     weight: "117g",
     size: "16.7cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Movement: Your baby is busy moving around, but you might not feel them another few weeks",
       "Bone Development: The bones inside your baby's body are hardening , and the tiny legs and arms are now completely formed",
@@ -673,7 +673,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may feel movement earlier if you’re carrying twins. Discuss any concerns with your provider.",
     weight: "146g",
     size: "18.6cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Fat Formation: The veins that have been showing through your baby's skin are becoming less obvious as fat formation begins",
       "Heart: Your baby's heart is working hard pumping 50 pints of blood a day",
@@ -716,7 +716,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may need extra calories and nutrients if you’re carrying twins. Discuss your needs with your provider.",
     weight: "181g",
     size: "20.4cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Diaphragm: The diaphragm-the muscle that divides your baby's chest from their tummy-is almost completely formed",
       "Fingerprints: By now, your baby has their own individual fingerprints",
@@ -755,7 +755,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may feel more movement if you’re carrying twins. Monitor your symptoms and discuss any concerns with your provider.",
     weight: "223g",
     size: "22.2cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Vernix: Vernix, a white coating that protects your baby's skin from damage in the womb, is starting to form",
       "Facial Features: Your baby is looking more like a baby now, with proportionate arms and legs, fat layers under the skin, and clearly defined facial features",
@@ -794,7 +794,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may need extra rest if you’re carrying twins. Discuss your needs with your provider.",
     weight: "273g",
     size: "24.0cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Sleep Patterns: Your baby will be developing more regular sleep patterns by now and you may become aware of them",
       "Testes: If your baby is a boy, his testes will start descending into the scrotum",
@@ -833,7 +833,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may have more frequent checkups. Monitor your symptoms and communicate any concerns to your provider.",
     weight: "331g",
     size: "25.7cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Reproductive Organs: Your baby's sex can now be identified on an ultrasound",
       "Movements: Your baby may be busy sucking its thumb, yawning and kicking in your uterus",
@@ -876,7 +876,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
     weight: "399g",
     size: "27.4cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Skin: Your baby's skin is wrinkled and still translucent",
       "Bone Marrow: Your baby's bone marrow is making blood cells, a job previously done only by the liver and spleen",
@@ -915,7 +915,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be gaining weight more quickly if you’re carrying twins. Discuss your nutritional needs with your provider.",
     weight: "478g",
     size: "29.0cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Skin: Your baby's skin has changes from translucent to more opaque in appearance",
       "Taste: Tastebuds are now developing on your baby's tongue",
@@ -954,7 +954,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may need extra rest if you’re carrying twins. Discuss your needs with your provider.",
     weight: "568g",
     size: "30.6cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Hair: Initially white, your baby's hair color will become defined as your pregnancy progresses",
       "Lungs: The lungs are starting to produce a substance called surfactant, which prevents from sticking together",
@@ -993,7 +993,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be gaining weight more quickly if you’re carrying twins. Discuss your nutritional needs with your provider.",
     weight: "670g",
     size: "32.2cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Spine: Your baby's spine has 1,000 ligaments, 150 joints, and 33 vertebrae",
       "Blood Vessels: Blood vessels are busy developing inside the lungs",
@@ -1032,7 +1032,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may need extra rest if you’re carrying twins. Discuss your needs with your provider.",
     weight: "785g",
     size: "23.7cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Breathing: The lungs are still developing and preparing for their first breath",
       "Hiccups: Babies can experience hiccups inside the womb, which you may feel as jerky movements",
@@ -1071,7 +1071,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be gaining weight more quickly if you’re carrying twins. Discuss your nutritional needs with your provider.",
     weight: "913g",
     size: "35.1cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Brain Development: Your baby's neurons and brain tissues are developing rapidly",
       "Skelton: Your baby's skeleton is completely developed, and the joints are mineralizing",
@@ -1114,7 +1114,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be gaining weight more quickly if you’re carrying twins. Discuss your nutritional needs with your provider.",
     weight: "1.06kg",
     size: "36.6cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Blinking: Whilst mostly sleeping, your baby's eyes can now partially open and those tiny eyelids are able to blink",
       "Eye Development: Your baby's eyes can now squint in response to light",
@@ -1153,7 +1153,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be gaining weight more quickly if you’re carrying twins. Discuss your nutritional needs with your provider.",
     weight: "1.21kg",
     size: "37.9cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Heartbeat: The baby's heartbeat has slowed down to around 140 bpm, and will slow further to 130 bpm by the time they're due",
       "Organ Development: All of your baby's internal organs are maturing and preparing to function and their own at birth",
@@ -1192,7 +1192,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be gaining weight more quickly if you’re carrying twins. Discuss your nutritional needs with your provider.",
     weight: "1.37kg",
     size: "39.2cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Memory: The primitive memory is beginning to develop, so music and voices will leave an impression in your baby's brain",
       "Bone Marrow: Red blood cells are now forming in your baby's bone marrow",
@@ -1228,7 +1228,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be gaining weight more quickly if you’re carrying twins. Discuss your nutritional needs with your provider.",
     weight: "1.55kg",
     size: "40.5cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Lanugo: The lanugo is continuing to shed, although up to a third of babies may still have some at birth",
       "Lung Development: The lungs are the last of all the organs to develop fully, and your baby is now practicing breathing most of the time",
@@ -1267,7 +1267,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
     weight: "1.75kg",
     size: "41.8cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Senses: Your baby is developing their five senses-grabbing whatever is in reach, tasting amniotic fluid, and listening to sounds",
       "Average Weight: Babies weight on average about 3.9 lb (1.75kg) at this point, but all babies are different",
@@ -1303,7 +1303,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
     weight: "1.95kg",
     size: "43.0cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Skull Development: Your baby's skull is still not solid and the bones are not fused together, to make the journey through the birth canal easier",
       "Brain Development: Your baby's brain is capable of controlling breathing and digestive functions",
@@ -1339,7 +1339,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "You may be gaining weight more quickly if you’re carrying twins. Discuss your nutritional needs with your provider.",
     weight: "2.16kg",
     size: "44.0cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Lanugo: By this time, most of the lanugo(body hair) is gone",
       "Immune System: Your baby's immune system is continuing to develop with antibodies passing through the placenta",
@@ -1375,7 +1375,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
     weight: "2.37kg",
     size: "45.2cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Growth: It may be starting to feel a bit tight, but your baby still has plenty of room inside your womb",
       "Weight Gain: From now until birth, your baby will gain approximately 0.5 lb (250g) per week",
@@ -1415,7 +1415,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
     weight: "2.59kg",
     size: "46.3cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Protective Fat: A protective fat layer will make up about 15 percent of your baby's weight at birth",
       "Tooth buds: Your baby's gums have ridges(tooth buds) ready for their teeth to grow from",
@@ -1451,7 +1451,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
     weight: "2.81kg",
     size: "47.3cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Weight Gain: On average, your baby will weight between 4.5-6.5lb (2.15-1.85kg) this week",
       "Lungs: The lungs are fully developed, which means your baby would be able to breathe on their own if born now",
@@ -1491,7 +1491,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
         "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
     weight: "3.02kg",
     size: "48.3cm",
-    length: "Length(crown to heel)",
+    length: 'pregnancy_baby_length_2',
     details: [
       "Bone Development: Your baby has 300 bones in their tiny body, whilst you have only 206!",
       "Bone Development: Some of the tiny bones in your baby's body won't fuse together until after birth",
@@ -1527,7 +1527,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
           "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
       weight: "3.23kg",
       size: "49.2cm",
-      length: "Length(crown to heel)",
+      length: 'pregnancy_baby_length_2',
       details: [
         "Weight Gain: Your baby weights about 7.1 lb (3.23kg) this week, and is continuing to build up fat",
         "Digestive System: The digestive system is now capable of digesting liquid foods, and your baby is urinating at regular intervals",
@@ -1565,7 +1565,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
           "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
       weight: "3.49kg",
       size: "50.1cm",
-      length: "Length(crown to heel)",
+      length: 'pregnancy_baby_length_2',
       dos: [
         "Monitor fetal well-being moments (kick ≥ 10 movements in 2 hours. Count from Week 28)",
         "Prepare Birth Plan",
@@ -1598,7 +1598,7 @@ const List<PregnancyWeekData> pregnancyWeeks = [
           "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
       weight: "3.61kg",
       size: "51.0cm",
-      length: "Length(crown to heel)",
+      length: 'pregnancy_baby_length_2',
       dos: [
         "Monitor fetal well-being moments (kick ≥ 10 movements in 2 hours. Count from Week 28)",
         "Prepare Birth Plan",

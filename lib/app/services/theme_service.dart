@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../utils/neo_safe_theme.dart';
 import 'auth_service.dart';
+import '../modules/track_my_baby/controllers/track_my_baby_controller.dart';
 
 class ThemeService extends GetxService {
   static ThemeService get to => Get.find();
-
-  // Observable for baby gender
-  final RxString babyGender = 'female'.obs;
 
   // Blue theme colors for male babies
   static const Color primaryBlue = Color(0xFF4A90E2);
@@ -27,13 +25,13 @@ class ThemeService extends GetxService {
   void onInit() {
     super.onInit();
     // Initialize with default gender
-    babyGender.value = 'female';
+    // babyGender.value = 'female'; // Removed as per edit hint
 
     // Try to load gender from auth service if available
     try {
       final authService = Get.find<AuthService>();
       if (authService.user?.babyGender != null) {
-        babyGender.value = authService.user!.babyGender!;
+        // babyGender.value = authService.user!.babyGender!; // Removed as per edit hint
         _updateTheme();
       }
     } catch (e) {
@@ -44,13 +42,14 @@ class ThemeService extends GetxService {
 
   // Set baby gender and update theme
   void setBabyGender(String gender) {
-    babyGender.value = gender;
+    // babyGender.value = gender; // Removed as per edit hint
     _updateTheme();
   }
 
   // Update theme based on baby gender
   void _updateTheme() {
-    if (babyGender.value == 'male' || babyGender.value == 'boy') {
+    final gender = _getGender();
+    if (gender == 'male' || gender == 'boy') {
       Get.changeTheme(_getBlueTheme());
     } else {
       Get.changeTheme(NeoSafeTheme.lightTheme);
@@ -183,37 +182,49 @@ class ThemeService extends GetxService {
     );
   }
 
-  // Get current primary color based on gender
+  // Always obtains gender from TrackMyBabyController if available;
+  // falls back to 'female' otherwise.
+  String _getGender() {
+    try {
+      final TrackMyBabyController controller =
+          Get.find<TrackMyBabyController>();
+      return controller.selectedChild?.gender.toLowerCase() ?? 'female';
+    } catch (e) {
+      return 'female'; // fallback if controller not ready
+    }
+  }
+
   Color getPrimaryColor() {
-    return (babyGender.value == 'male' || babyGender.value == 'boy')
+    final gender = _getGender();
+    return (gender == 'male' || gender == 'boy')
         ? primaryBlue
         : NeoSafeColors.primaryPink;
   }
 
-  // Get current light color based on gender
   Color getLightColor() {
-    return (babyGender.value == 'male' || babyGender.value == 'boy')
+    final gender = _getGender();
+    return (gender == 'male' || gender == 'boy')
         ? lightBlue
         : NeoSafeColors.lightPink;
   }
 
-  // Get current pale color based on gender
   Color getPaleColor() {
-    return (babyGender.value == 'male' || babyGender.value == 'boy')
+    final gender = _getGender();
+    return (gender == 'male' || gender == 'boy')
         ? paleBlue
         : NeoSafeColors.palePink;
   }
 
-  // Get current accent color based on gender
   Color getAccentColor() {
-    return (babyGender.value == 'male' || babyGender.value == 'boy')
+    final gender = _getGender();
+    return (gender == 'male' || gender == 'boy')
         ? blueAccent
         : NeoSafeColors.roseAccent;
   }
 
-  // Get current baby color based on gender
   Color getBabyColor() {
-    return (babyGender.value == 'male' || babyGender.value == 'boy')
+    final gender = _getGender();
+    return (gender == 'male' || gender == 'boy')
         ? skyBlue
         : NeoSafeColors.babyPink;
   }

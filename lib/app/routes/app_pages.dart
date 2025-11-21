@@ -129,7 +129,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.trackMyBaby,
-      page: () => const TrackMyBabyView(),
+      page: () => TrackMyBabyView(),
       binding: TrackMyBabyBinding(),
       // middlewares: [AuthMiddleware()],
     ),

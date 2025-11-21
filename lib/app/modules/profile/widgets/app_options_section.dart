@@ -19,36 +19,6 @@ class AppOptionsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // const SizedBox(height: 24),
-
-          // Settings Section Title
-          // Text(
-          //   "Settings",
-          //   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-          //         color: NeoSafeColors.primaryText,
-          //         fontWeight: FontWeight.w800,
-          //         letterSpacing: 0.3,
-          //       ),
-          // ),
-          // const SizedBox(height: 16),
-
-          // // Settings Items
-          // _buildToggleItem(
-          //   context,
-          //   icon: Icons.notifications,
-          //   iconColor: NeoSafeColors.primaryPink,
-          //   title: "Notifications",
-          //   value: controller.notificationsEnabled.value,
-          //   onChanged: (value) => controller.toggleNotifications(),
-          // ),
-
-          // // Simplified: removed Dark Mode toggle
-
-          // const SizedBox(height: 24),
-
-          // App Options Items
-          // Simplified: remove coming-soon options
-
           const SizedBox(height: 24),
 
           // Divider

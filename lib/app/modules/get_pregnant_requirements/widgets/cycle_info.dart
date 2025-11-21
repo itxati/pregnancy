@@ -129,10 +129,12 @@ class CycleInfoWidget extends StatelessWidget {
                   child: _CycleInfoItem(
                     title: "next_period".tr,
                     value: daysToNext > 0
-                        ? "in ${daysToNext.toString()} days"
+                        ? 'cycle_in_days'
+                            .trParams({'days': daysToNext.toString()})
                         : daysToNext == 0
-                            ? "today".tr
-                            : "overdue by ${(-daysToNext).toString()} days",
+                            ? 'cycle_today'.tr
+                            : 'cycle_overdue_by_days'
+                                .trParams({'days': (-daysToNext).toString()}),
                     icon: Icons.schedule,
                     color: NeoSafeColors.roseAccent,
                   ),

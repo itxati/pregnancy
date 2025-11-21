@@ -238,12 +238,14 @@ class GenderSelector extends StatelessWidget {
     return GestureDetector(
       onTap: () => onChanged(gender),
       child: AnimatedContainer(
+        width: 70,
+        height: 70,
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeOutCubic,
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 32),
+        // padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 32),
         decoration: BoxDecoration(
           color: isSelected ? palePink : creamWhite,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected ? primaryPink : Colors.transparent,
             width: 1.5,
@@ -266,6 +268,7 @@ class GenderSelector extends StatelessWidget {
                 ],
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             AnimatedScale(
@@ -274,15 +277,15 @@ class GenderSelector extends StatelessWidget {
               curve: Curves.easeOutCubic,
               child: Icon(
                 icon,
-                size: 32,
+                size: 26,
                 color: isSelected ? primaryPink : mediumGray,
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 2),
             Text(
               label,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                 color: isSelected ? primaryText : mediumGray,
                 letterSpacing: 0.2,

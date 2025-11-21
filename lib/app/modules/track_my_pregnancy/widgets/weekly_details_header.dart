@@ -64,10 +64,10 @@ class WeeklyDetailsHeader extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Row(
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
+                  // IconButton(
+                  //   icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  //   onPressed: () => Navigator.of(context).pop(),
+                  // ),
                   const Spacer(),
                   // Container(
                   //   decoration: BoxDecoration(

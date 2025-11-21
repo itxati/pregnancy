@@ -6,7 +6,7 @@ import 'package:babysafe/app/data/models/pregnancy_weeks.dart';
 class WeeklyDetailsController extends GetxController {
   final RxInt currentWeek = 6.obs;
   final ScrollController weekScrollController = ScrollController();
-  
+
   // Get current week data
   PregnancyWeekData get currentWeekData {
     return pregnancyWeeks.firstWhere(
@@ -19,8 +19,9 @@ class WeeklyDetailsController extends GetxController {
   void scrollToCurrentWeek({bool animated = true}) {
     const double itemWidth = 72;
     final double screenWidth = Get.width;
-    final double offset = (currentWeek.value - 1) * itemWidth - (screenWidth - itemWidth) / 2;
-    
+    final double offset =
+        (currentWeek.value - 1) * itemWidth - (screenWidth - itemWidth) / 2;
+
     if (animated) {
       weekScrollController.animateTo(
         offset.clamp(0, weekScrollController.position.maxScrollExtent),
@@ -55,4 +56,4 @@ class WeeklyDetailsController extends GetxController {
     weekScrollController.dispose();
     super.onClose();
   }
-} 
+}

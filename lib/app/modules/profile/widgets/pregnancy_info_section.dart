@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utils/neo_safe_theme.dart';
 import '../../../services/auth_service.dart';
 import '../controllers/profile_controller.dart';
+import '../../../services/theme_service.dart';
 
 class PregnancyInfoSection extends StatelessWidget {
   final ProfileController controller;
@@ -15,82 +16,62 @@ class PregnancyInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     return Obx(() => Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Section Title
-              // Text(
-              //   "pregnancy".tr,
-              //   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              //         color: NeoSafeColors.primaryText,
-              //         fontWeight: FontWeight.w800,
-              //         letterSpacing: 0.3,
-              //       ),
-              // ),
               const SizedBox(height: 12),
 
-              // Pregnancy Info Items
-              // _buildInfoItem(
-              //   context,
-              //   icon: Icons.calendar_today,
-              //   iconColor: NeoSafeColors.primaryPink,
-              //   title: "due_date".tr,
-              //   value: controller.dueDate.value,
-              //   onTap: () => _showDatePicker(context),
-              // ),
-
-              // Simplified: removed Baby's sex, Baby's name, and First Child options
-
-              // Simplify: remove less-used toggles
-
-              // Additional pregnancy information
               _buildInfoItem(
                 context,
-                icon: Icons.bloodtype,
-                iconColor: NeoSafeColors.primaryPink,
-                title: "baby_blood_group".tr,
-                value: controller.babyBloodGroup.value,
-                onTap: () => _showBloodGroupSelector(context, true),
+                icon: Icons.transgender,
+                iconColor: themeService.getAccentColor(),
+                title: 'gender'.tr,
+                value: controller.userGender.value.isNotEmpty
+                    ? controller.userGender.value.tr
+                    : 'Not set',
+                onTap: () => _showEditGenderDialog(context),
               ),
-
-              _buildInfoItem(
-                context,
-                icon: Icons.bloodtype,
-                iconColor: NeoSafeColors.roseAccent,
-                title: "mother_blood_group".tr,
-                value: controller.motherBloodGroup.value,
-                onTap: () => _showBloodGroupSelector(context, false),
-              ),
-
-              _buildInfoItem(
-                context,
-                icon: Icons.family_restroom,
-                iconColor: NeoSafeColors.lavenderPink,
-                title: "relation".tr,
-                value: controller.relation.value,
-                onTap: () => _showRelationSelector(context),
-              ),
-
               _buildInfoItem(
                 context,
                 icon: Icons.cake,
-                iconColor: NeoSafeColors.coralPink,
-                title: "baby_birth_date".tr,
-                value: controller.babyBirthDate.value,
-                onTap: () => _showBirthDatePicker(context),
+                iconColor: themeService.getAccentColor(),
+                title: 'age'.tr,
+                value: controller.userAge.value.isNotEmpty
+                    ? controller.userAge.value
+                    : 'Not set',
+                onTap: () => _showEditAgeDialog(context),
               ),
+              const SizedBox(height: 12),
 
-              const SizedBox(height: 8),
+              // Additional pregnancy information
+              // _buildInfoItem(
+              //   context,
+              //   icon: Icons.bloodtype,
+              //   iconColor: NeoSafeColors.primaryPink,
+              //   title: "baby_blood_group".tr,
+              //   value: controller.babyBloodGroup.value,
+              //   onTap: () => _showBloodGroupSelector(context, true),
+              // ),
 
               // _buildInfoItem(
               //   context,
-              //   icon: Icons.flag_circle,
-              //   iconColor: NeoSafeColors.primaryPink,
-              //   title: 'Purpose',
-              //   value: controller.purpose.value, // (or calculate from data if needed)
-              //   onTap: () => _showEditPurposeDialog(context, controller.purpose.value),
+              //   icon: Icons.bloodtype,
+              //   iconColor: NeoSafeColors.roseAccent,
+              //   title: "mother_blood_group".tr,
+              //   value: controller.motherBloodGroup.value,
+              //   onTap: () => _showBloodGroupSelector(context, false),
+              // ),
+
+              // _buildInfoItem(
+              //   context,
+              //   icon: Icons.family_restroom,
+              //   iconColor: NeoSafeColors.lavenderPink,
+              //   title: "relation".tr,
+              //   value: controller.relation.value,
+              //   onTap: () => _showRelationSelector(context),
               // ),
             ],
           ),
@@ -176,6 +157,7 @@ class PregnancyInfoSection extends StatelessWidget {
     required bool value,
     required Function(bool) onChanged,
   }) {
+    final themeService = Get.find<ThemeService>();
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
       margin: const EdgeInsets.only(bottom: 10),
@@ -221,8 +203,8 @@ class PregnancyInfoSection extends StatelessWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: NeoSafeColors.primaryPink,
-            activeTrackColor: NeoSafeColors.primaryPink.withOpacity(0.3),
+            activeColor: themeService.getPrimaryColor(),
+            activeTrackColor: themeService.getPrimaryColor().withOpacity(0.3),
             inactiveThumbColor: NeoSafeColors.secondaryText,
             inactiveTrackColor: NeoSafeColors.softGray,
           ),
@@ -238,10 +220,11 @@ class PregnancyInfoSection extends StatelessWidget {
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
       builder: (context, child) {
+        final themeService = Get.find<ThemeService>();
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: NeoSafeColors.primaryPink,
+              primary: themeService.getPrimaryColor(),
               onPrimary: Colors.white,
               surface: Colors.white,
               onSurface: NeoSafeColors.primaryText,
@@ -499,10 +482,11 @@ class PregnancyInfoSection extends StatelessWidget {
       firstDate: DateTime(2000), // Example first date
       lastDate: DateTime.now(),
       builder: (context, child) {
+        final themeService = Get.find<ThemeService>();
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: NeoSafeColors.coralPink,
+              primary: themeService.getPrimaryColor(),
               onPrimary: Colors.white,
               surface: Colors.white,
               onSurface: NeoSafeColors.primaryText,
@@ -607,6 +591,101 @@ class PregnancyInfoSection extends StatelessWidget {
           TextButton(
             onPressed: () => Get.back(),
             child: Text('Cancel'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditGenderDialog(BuildContext context) {
+    Get.dialog(
+      AlertDialog(
+        title: Text('edit_gender'.tr),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: Text('male'.tr),
+              leading: Radio<String>(
+                value: 'male',
+                groupValue: controller.userGender.value,
+                onChanged: (value) {
+                  Get.back();
+                  controller.updateUserGender(value!);
+                  (context as Element).markNeedsBuild();
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('female'.tr),
+              leading: Radio<String>(
+                value: 'female',
+                groupValue: controller.userGender.value,
+                onChanged: (value) {
+                  Get.back();
+                  controller.updateUserGender(value!);
+                  (context as Element).markNeedsBuild();
+                },
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('cancel'.tr),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditAgeDialog(BuildContext context) {
+    final TextEditingController ageController =
+        TextEditingController(text: controller.userAge.value);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('edit_age'.tr),
+        content: TextField(
+          controller: ageController,
+          decoration: InputDecoration(
+            labelText: 'age'.tr,
+            border: const OutlineInputBorder(),
+          ),
+          keyboardType: TextInputType.number,
+          autofocus: true,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('cancel'.tr),
+          ),
+          TextButton(
+            onPressed: () async {
+              final newAge = ageController.text.trim();
+              final parsedAge = int.tryParse(newAge);
+              if (parsedAge == null || parsedAge < 18 || parsedAge > 100) {
+                Get.snackbar(
+                  'Error',
+                  'Age must be between 18 and 100.',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: NeoSafeColors.error.withOpacity(0.1),
+                  colorText: NeoSafeColors.error,
+                );
+                return;
+              }
+              await controller.updateUserAge(newAge);
+              Navigator.pop(context);
+              Get.snackbar(
+                'Success',
+                'Age updated.',
+                snackPosition: SnackPosition.BOTTOM,
+                backgroundColor: NeoSafeColors.success.withOpacity(0.1),
+                colorText: NeoSafeColors.success,
+              );
+            },
+            child: Text('save'.tr),
           ),
         ],
       ),

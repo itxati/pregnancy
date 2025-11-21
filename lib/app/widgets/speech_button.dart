@@ -21,11 +21,30 @@ class SpeechButton extends StatelessWidget {
     final speechService = Get.find<SpeechService>();
     return Obx(() {
       final isPlaying = speechService.isCurrentTextPlaying(text);
+      final isPaused = speechService.isPaused() &&
+          speechService.currentText.trim().toLowerCase() ==
+              text.trim().toLowerCase();
+
+      // final isPaused = speechService.isTextPaused(text);
       print(
-          'SpeechButton: isPlaying= [32m$isPlaying [0m, currentText="${speechService.currentText}", buttonText="$text"');
+          'SpeechButton: isPlaying= [32m$isPlaying [0m, isPaused=$isPaused, currentText="${speechService.currentText}", buttonText="$text"');
       return GestureDetector(
         onTap: () {
-          speechService.speak(text);
+          // // The speak method handles the toggle logic:
+          // // - If playing same text -> pauses
+          // // - If paused same text -> resumes
+          // // - If not playing -> starts
+          // speechService.speak(text);
+          if (isPlaying) {
+            // If currently playing, pause it
+            speechService.pause();
+          } else if (isPaused) {
+            // If paused, resume it (will restart from beginning)
+            speechService.resume();
+          } else {
+            // If not playing, start speaking
+            speechService.speak(text);
+          }
         },
         child: Container(
           padding: padding ?? const EdgeInsets.all(8.0),
@@ -34,7 +53,9 @@ class SpeechButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Icon(
-            isPlaying ? Icons.pause : Icons.volume_up,
+            isPlaying
+                ? Icons.pause
+                : (isPaused ? Icons.play_arrow : Icons.volume_up),
             size: size,
             color: color ?? Colors.blue,
           ),

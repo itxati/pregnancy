@@ -221,24 +221,19 @@ class _BabyDevelopmentPageState extends State<BabyDevelopmentPage>
                     ),
                   ),
                 ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 if (weekData.size.trim().isNotEmpty)
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 10),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.25),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.3),
-                        width: 1.5,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
+                      color: Colors.white.withOpacity(0.15),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -254,19 +249,14 @@ class _BabyDevelopmentPageState extends State<BabyDevelopmentPage>
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: 14,
+                            fontSize: 10,
                             letterSpacing: 0.5,
                           ),
                         ),
                       ],
                     ),
                   ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+                const SizedBox(width: 16),
                 if (weekData.length.trim().isNotEmpty)
                   Flexible(
                     child: Container(
@@ -277,7 +267,7 @@ class _BabyDevelopmentPageState extends State<BabyDevelopmentPage>
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Text(
-                        weekData.length ?? '',
+                        weekData.length.tr ?? '',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: Colors.white.withOpacity(0.9),
                           fontSize: 12,

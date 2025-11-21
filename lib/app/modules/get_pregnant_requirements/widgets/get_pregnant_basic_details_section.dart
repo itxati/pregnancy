@@ -20,101 +20,120 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
         future: _getOnboardingData(),
         builder: (context, snapshot) {
           final data = snapshot.data ?? {};
-          return Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 10,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: NeoSafeColors.primaryPink.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8),
+          return Obx(() {
+            final genderValue = controller.userGender.value.isNotEmpty
+                ? controller.userGender.value
+                : (data['gender'] ?? '');
+            final ageValue = controller.userAge.value.isNotEmpty
+                ? controller.userAge.value
+                : (data['age'] ?? '');
+            return Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Icon(
+                          Icons.quiz_outlined,
+                          color: NeoSafeColors.primaryPink,
+                          size: 20,
+                        ),
                       ),
-                      child: Icon(
-                        Icons.quiz_outlined,
-                        color: NeoSafeColors.primaryPink,
-                        size: 20,
+                      const SizedBox(width: 12),
+                      Text(
+                        'your_profile'.tr,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              color: NeoSafeColors.primaryText,
+                              fontWeight: FontWeight.w700,
+                            ),
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    Text(
-                      'your_profile'.tr,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: NeoSafeColors.primaryText,
-                            fontWeight: FontWeight.w700,
-                          ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
 
-                const SizedBox(height: 20),
+                  const SizedBox(height: 20),
 
-                // Gender
-                _EditableDetailRow(
-                  icon: Icons.person_outline,
-                  label: 'gender'.tr,
-                  value: _mapGenderFull(data['gender']),
-                  color: NeoSafeColors.info,
-                  onEdit: () => _showEditGenderDialog(context, data['gender']),
-                ),
+                  // Gender
+                  _EditableDetailRow(
+                    icon: Icons.person_outline,
+                    label: 'gender'.tr,
+                    value: _mapGenderFull(genderValue),
+                    color: NeoSafeColors.info,
+                    onEdit: () => _showEditGenderDialog(context, genderValue),
+                  ),
 
-                const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                // Purpose
-                // _EditableDetailRow(
-                //   icon: Icons.flag_outlined,
-                //   label: 'Purpose',
-                //   value: _mapPurposeFriendly(data['purpose']),
-                //   color: NeoSafeColors.success,
-                //   onEdit: () =>
-                //       _showEditPurposeDialog(context, data['purpose']),
-                // ),
+                  _EditableDetailRow(
+                    icon: Icons.cake,
+                    label: 'age'.tr,
+                    value: ageValue.isNotEmpty ? ageValue : 'not_provided'.tr,
+                    color: NeoSafeColors.roseAccent,
+                    onEdit: () =>
+                        _showEditAgeDialog(context, controller.userAge.value),
+                  ),
 
-                // const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                // Last Period Date
-                _EditableDetailRow(
-                  icon: Icons.calendar_today_outlined,
-                  label: 'last_period_date'.tr,
-                  value: data['last_period'] != null
-                      ? _formatDate(DateTime.parse(data['last_period']!))
-                      : 'not_provided'.tr,
-                  color: NeoSafeColors.warning,
-                  onEdit: () =>
-                      _showEditLastPeriodDialog(context, data['last_period']),
-                ),
+                  // Purpose
+                  // _EditableDetailRow(
+                  //   icon: Icons.flag_outlined,
+                  //   label: 'Purpose',
+                  //   value: _mapPurposeFriendly(data['purpose']),
+                  //   color: NeoSafeColors.success,
+                  //   onEdit: () =>
+                  //       _showEditPurposeDialog(context, data['purpose']),
+                  // ),
 
-                const SizedBox(height: 16),
+                  // const SizedBox(height: 16),
 
-                // Cycle Length
-                _EditableDetailRow(
-                  icon: Icons.schedule_outlined,
-                  label: 'cycle_length'.tr,
-                  value: data['cycle_length'] != null
-                      ? '${data['cycle_length']} ${'days'.tr}'
-                      : 'not_provided'.tr,
-                  color: NeoSafeColors.error,
-                  onEdit: () =>
-                      _showEditCycleLengthDialog(context, data['cycle_length']),
-                ),
-                // Removed GA/Ultrasound/EDD/Trimester per request
-              ],
-            ),
-          );
+                  // Last Period Date
+                  _EditableDetailRow(
+                    icon: Icons.calendar_today_outlined,
+                    label: 'last_period_date'.tr,
+                    value: data['last_period'] != null
+                        ? _formatDate(DateTime.parse(data['last_period']!))
+                        : 'not_provided'.tr,
+                    color: NeoSafeColors.warning,
+                    onEdit: () =>
+                        _showEditLastPeriodDialog(context, data['last_period']),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // Cycle Length
+                  _EditableDetailRow(
+                    icon: Icons.schedule_outlined,
+                    label: 'cycle_length'.tr,
+                    value: data['cycle_length'] != null
+                        ? '${data['cycle_length']} ${'days'.tr}'
+                        : 'not_provided'.tr,
+                    color: NeoSafeColors.error,
+                    onEdit: () => _showEditCycleLengthDialog(
+                        context, data['cycle_length']),
+                  ),
+                  // Removed GA/Ultrasound/EDD/Trimester per request
+                ],
+              ),
+            );
+          });
         },
       ),
     );
@@ -158,6 +177,7 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
     String? purpose = await getStringKey('onboarding_purpose');
     String? lastPeriod = await getStringKey('onboarding_last_period');
     String? cycleLength = await getIntKey('onboarding_cycle_length');
+    String? age = await getStringKey('onboarding_age');
 
     // Final fallback for name - use user model fullName
     if ((name == null || name.isEmpty) && auth.currentUser.value != null) {
@@ -171,6 +191,7 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
     return {
       'name': name ?? 'user'.tr,
       'gender': gender ?? '',
+      'age': age ?? '',
       'purpose': purpose ?? '',
       'last_period': lastPeriod,
       'cycle_length': cycleLength,
@@ -196,6 +217,9 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
   }
 
   void _showEditGenderDialog(BuildContext context, String? currentGender) {
+    final selectedValue = currentGender?.isNotEmpty == true
+        ? currentGender
+        : controller.userGender.value;
     Get.dialog(
       AlertDialog(
         title: Text('edit_gender'.tr),
@@ -206,10 +230,10 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
               title: Text('male'.tr),
               leading: Radio<String>(
                 value: 'male',
-                groupValue: currentGender,
-                onChanged: (value) {
+                groupValue: selectedValue,
+                onChanged: (value) async {
                   Get.back();
-                  _updateGender(value!);
+                  await _updateGender(value!);
                   (context as Element).markNeedsBuild();
                   try {
                     controller.update();
@@ -221,10 +245,10 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
               title: Text('female'.tr),
               leading: Radio<String>(
                 value: 'female',
-                groupValue: currentGender,
-                onChanged: (value) {
+                groupValue: selectedValue,
+                onChanged: (value) async {
                   Get.back();
-                  _updateGender(value!);
+                  await _updateGender(value!);
                   (context as Element).markNeedsBuild();
                   try {
                     controller.update();
@@ -238,6 +262,58 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
           TextButton(
             onPressed: () => Get.back(),
             child: Text('cancel'.tr),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditAgeDialog(BuildContext context, String currentAge) {
+    final TextEditingController ageController =
+        TextEditingController(text: currentAge);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('edit_age'.tr),
+        content: TextField(
+          controller: ageController,
+          decoration: InputDecoration(
+            labelText: 'age'.tr,
+            border: const OutlineInputBorder(),
+          ),
+          keyboardType: TextInputType.number,
+          autofocus: true,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('cancel'.tr),
+          ),
+          TextButton(
+            onPressed: () async {
+              final newAge = ageController.text.trim();
+              final parsedAge = int.tryParse(newAge);
+              if (parsedAge == null || parsedAge < 18 || parsedAge > 100) {
+                Get.snackbar(
+                  'Error',
+                  'Age must be between 18 and 100.',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: NeoSafeColors.error.withOpacity(0.1),
+                  colorText: NeoSafeColors.error,
+                );
+                return;
+              }
+              await controller.updateUserAge(newAge);
+              Navigator.pop(context);
+              Get.snackbar(
+                'Success',
+                'Age updated.',
+                snackPosition: SnackPosition.BOTTOM,
+                backgroundColor: NeoSafeColors.success.withOpacity(0.1),
+                colorText: NeoSafeColors.success,
+              );
+            },
+            child: Text('save'.tr),
           ),
         ],
       ),
@@ -406,14 +482,7 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
   }
 
   Future<void> _updateGender(String gender) async {
-    final auth = Get.find<AuthService>();
-    final userId = auth.currentUser.value?.id;
-    if (userId != null && userId.isNotEmpty) {
-      await auth.setOnboardingData('onboarding_gender', userId, gender);
-    } else {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('onboarding_gender', gender);
-    }
+    await controller.updateUserGender(gender);
     Get.snackbar(
       'success'.tr,
       'gender_updated_success'.tr,
@@ -511,7 +580,7 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
     // Update controller data
     controller.periodStart.value = date;
     controller.periodEnd.value =
-        date.add(Duration(days: controller.periodLength - 1));
+        date.add(Duration(days: controller.periodLength.value - 1));
     controller.update();
 
     Get.snackbar(
@@ -534,7 +603,7 @@ class GetPregnantBasicDetailsSection extends StatelessWidget {
     }
 
     // Update controller data
-    controller.cycleLength = length;
+    controller.cycleLength.value = length;
     controller.update();
 
     Get.snackbar(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/neo_safe_theme.dart';
 import '../controllers/profile_controller.dart';
+import '../../../services/theme_service.dart';
 
 class BreastfeedingSection extends StatelessWidget {
   final ProfileController controller;
@@ -13,6 +14,7 @@ class BreastfeedingSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: const EdgeInsets.all(20),
@@ -36,12 +38,12 @@ class BreastfeedingSection extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                  color: themeService.getPrimaryColor().withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
                   Icons.child_friendly,
-                  color: NeoSafeColors.primaryPink,
+                  color: themeService.getPrimaryColor(),
                   size: 24,
                 ),
               ),
@@ -72,9 +74,9 @@ class BreastfeedingSection extends StatelessWidget {
                     value: controller.breastfeedingNotificationsEnabled.value,
                     onChanged: (value) =>
                         controller.toggleBreastfeedingNotifications(),
-                    activeColor: NeoSafeColors.primaryPink,
+                    activeColor: themeService.getPrimaryColor(),
                     activeTrackColor:
-                        NeoSafeColors.primaryPink.withOpacity(0.3),
+                        themeService.getPrimaryColor().withOpacity(0.3),
                   )),
             ],
           ),
@@ -105,7 +107,7 @@ class BreastfeedingSection extends StatelessWidget {
                             Obx(() => Text(
                                   '${controller.breastfeedingIntervalHours.value}h ${controller.breastfeedingIntervalMinutes.value}m',
                                   style: Get.textTheme.titleMedium?.copyWith(
-                                    color: NeoSafeColors.primaryPink,
+                                    color: themeService.getPrimaryColor(),
                                     fontWeight: FontWeight.w600,
                                   ),
                                 )),
@@ -117,8 +119,8 @@ class BreastfeedingSection extends StatelessWidget {
                           label: Text('change'.tr),
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                NeoSafeColors.primaryPink.withOpacity(0.1),
-                            foregroundColor: NeoSafeColors.primaryPink,
+                                themeService.getPrimaryColor().withOpacity(0.1),
+                            foregroundColor: themeService.getPrimaryColor(),
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -132,51 +134,51 @@ class BreastfeedingSection extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: 16),
+                    // const SizedBox(height: 16),
 
-                    // Next Feeding Time
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: NeoSafeColors.primaryPink.withOpacity(0.05),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: NeoSafeColors.primaryPink.withOpacity(0.2),
-                          width: 1,
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.schedule,
-                            color: NeoSafeColors.primaryPink,
-                            size: 24,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'next_feeding'.tr,
-                            style: Get.textTheme.bodyMedium?.copyWith(
-                              color: NeoSafeColors.secondaryText,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Obx(() => Text(
-                                controller.nextBreastfeedingTime.value.isEmpty
-                                    ? 'Not scheduled'
-                                    : controller.nextBreastfeedingTime.value,
-                                style: Get.textTheme.titleMedium?.copyWith(
-                                  color:
-                                      controller.nextBreastfeedingTime.value ==
-                                              'Overdue'
-                                          ? NeoSafeColors.error
-                                          : NeoSafeColors.primaryPink,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              )),
-                        ],
-                      ),
-                    ),
+                    // // Next Feeding Time
+                    // Container(
+                    //   width: double.infinity,
+                    //   padding: const EdgeInsets.all(16),
+                    //   decoration: BoxDecoration(
+                    //     color: NeoSafeColors.primaryPink.withOpacity(0.05),
+                    //     borderRadius: BorderRadius.circular(12),
+                    //     border: Border.all(
+                    //       color: NeoSafeColors.primaryPink.withOpacity(0.2),
+                    //       width: 1,
+                    //     ),
+                    //   ),
+                    //   child: Column(
+                    //     children: [
+                    //       Icon(
+                    //         Icons.schedule,
+                    //         color: NeoSafeColors.primaryPink,
+                    //         size: 24,
+                    //       ),
+                    //       const SizedBox(height: 8),
+                    //       Text(
+                    //         'next_feeding'.tr,
+                    //         style: Get.textTheme.bodyMedium?.copyWith(
+                    //           color: NeoSafeColors.secondaryText,
+                    //         ),
+                    //       ),
+                    //       const SizedBox(height: 4),
+                    //       Obx(() => Text(
+                    //             controller.nextBreastfeedingTime.value.isEmpty
+                    //                 ? 'Not scheduled'
+                    //                 : controller.nextBreastfeedingTime.value,
+                    //             style: Get.textTheme.titleMedium?.copyWith(
+                    //               color:
+                    //                   controller.nextBreastfeedingTime.value ==
+                    //                           'Overdue'
+                    //                       ? NeoSafeColors.error
+                    //                       : NeoSafeColors.primaryPink,
+                    //               fontWeight: FontWeight.w600,
+                    //             ),
+                    //           )),
+                    //     ],
+                    //   ),
+                    // ),
 
                     const SizedBox(height: 16),
 
@@ -190,9 +192,9 @@ class BreastfeedingSection extends StatelessWidget {
                                 const Icon(Icons.add_circle_outline, size: 18),
                             label: Text('log_now'.tr),
                             style: OutlinedButton.styleFrom(
-                              foregroundColor: NeoSafeColors.primaryPink,
-                              side:
-                                  BorderSide(color: NeoSafeColors.primaryPink),
+                              foregroundColor: themeService.getPrimaryColor(),
+                              side: BorderSide(
+                                  color: themeService.getPrimaryColor()),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -207,7 +209,7 @@ class BreastfeedingSection extends StatelessWidget {
                             icon: const Icon(Icons.history, size: 18),
                             label: Text('history'.tr),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: NeoSafeColors.primaryPink,
+                              backgroundColor: themeService.getPrimaryColor(),
                               foregroundColor: Colors.white,
                               elevation: 0,
                               shape: RoundedRectangleBorder(
@@ -334,6 +336,7 @@ class BreastfeedingSection extends StatelessWidget {
 
     final lastTime = controller.lastBreastfeedingTime.value!;
     final timeSince = DateTime.now().difference(lastTime);
+    final themeService = Get.find<ThemeService>();
 
     Get.dialog(
       Dialog(
@@ -345,7 +348,7 @@ class BreastfeedingSection extends StatelessWidget {
             children: [
               Icon(
                 Icons.history,
-                color: NeoSafeColors.primaryPink,
+                color: themeService.getPrimaryColor(),
                 size: 48,
               ),
               const SizedBox(height: 16),
@@ -360,7 +363,7 @@ class BreastfeedingSection extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: NeoSafeColors.primaryPink.withOpacity(0.1),
+                  color: themeService.getPrimaryColor().withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Column(
@@ -376,7 +379,7 @@ class BreastfeedingSection extends StatelessWidget {
                       _formatDateTime(lastTime),
                       style: Get.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: NeoSafeColors.primaryPink,
+                        color: themeService.getPrimaryColor(),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -395,7 +398,7 @@ class BreastfeedingSection extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () => Get.back(),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: NeoSafeColors.primaryPink,
+                    backgroundColor: themeService.getPrimaryColor(),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),

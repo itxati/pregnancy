@@ -12,7 +12,7 @@ final Map<String, String> enUS = {
   'pregnancy_companion': 'Your Motherhood Journey',
   'pregnancy_journey': 'Pregnancy Journey',
   'weeks': 'weeks',
-  'weeks_pregnant': 'weeks pregnant',
+  // 'weeks_pregnant': 'weeks pregnant',
   'length': 'Length',
   'weight': 'Weight',
   'fertilization': 'Fertilization',
@@ -1838,7 +1838,7 @@ final Map<String, String> enUS = {
   "multiple_pregnancy": "Multiple Pregnancy",
 
   //pregnancy status
-  // "weeks_pregnant": "%{weeks} weeks pregnant",
+  "weeks_pregnant": "@week weeks pregnant",
   // "due_date": "Due %{date}",
   "edit": "Edit",
   "where_you_are": "Where you are",
@@ -1905,16 +1905,16 @@ final Map<String, String> enUS = {
   "milestone_desc_96":
       "By ~8 years, children show more stable cognitive, social, and motor patterns; experiences remain impactful.",
 
-// // Month 0 milestones
-//   "milestone_0_1": "Lifts head briefly when on tummy",
-//   "milestone_0_2": "Makes eye contact",
-//   "milestone_0_3": "Responds to sounds",
-//   "milestone_0_4": "Grasps your finger",
-//   "milestone_0_5": "Roots for feeding",
-//   "milestone_0_6": "Moves limbs symmetrically",
-//   "milestone_0_7": "Blinks to bright light",
-//   "milestone_0_8": "Startles or alerts to loud sounds",
-//   "milestone_0_9": "Gives response to faces and voice",
+// Month 0 milestones
+  "milestone_0_1": "Lifts head briefly when on tummy",
+  "milestone_0_2": "Makes eye contact",
+  "milestone_0_3": "Responds to sounds",
+  "milestone_0_4": "Grasps your finger",
+  "milestone_0_5": "Roots for feeding",
+  "milestone_0_6": "Moves limbs symmetrically",
+  "milestone_0_7": "Blinks to bright light",
+  "milestone_0_8": "Startles or alerts to loud sounds",
+  "milestone_0_9": "Gives response to faces and voice",
 
 // // Month 1 milestones
 //   "milestone_1_1": "Holds head up for longer periods",
@@ -1974,6 +1974,16 @@ final Map<String, String> enUS = {
   "milestone_72_3":
       "Deeper peer relationships; stronger rule-following and moral sense; self-esteem linked to success",
   "milestone_72_4":
+      "Complex drawings; neater handwriting; more intricate crafts",
+
+  // Month 84 (7–8 years)
+  "milestone_84_1":
+      "Skill refinement continues (handwriting, sports, coordination)",
+  "milestone_84_2":
+      "Shifts toward concrete operational thinking (logical operations on real objects)",
+  "milestone_84_3":
+      "Deeper peer relationships; stronger rule-following and moral sense; self-esteem linked to success",
+  "milestone_84_4":
       "Complex drawings; neater handwriting; more intricate crafts",
 
   // Month 96 (8 years overview)
@@ -2694,6 +2704,7 @@ final Map<String, String> enUS = {
   "vaccination_table_header_stage": "Stage",
   "vaccination_table_header_age": "Age",
   "vaccination_table_header_vaccines": "Vaccines",
+  "vaccination_table_header_status": "Done",
   "vaccination_table_stage_1": "1st Visit",
   "vaccination_table_age_1": "At birth",
   "vaccination_table_vaccines_1": "OPV-0, BCG, Hepatitis-B",
@@ -2717,6 +2728,10 @@ final Map<String, String> enUS = {
   "vaccination_table_stage_7": "7th Visit",
   "vaccination_table_age_7": "18 months",
   "vaccination_table_vaccines_7": "DTP Booster",
+  // Vaccination notification translations
+  "vaccination_reminder_title": "Vaccination Reminder",
+  "vaccination_reminder_body":
+      "Time for {stage}! Your baby needs {vaccines} at {age}. Please schedule a visit with your healthcare provider.",
 
   // Health 4: School Readiness and Early Education
   "health_4_title": "School Readiness and Early Education",
@@ -4141,4 +4156,182 @@ final Map<String, String> enUS = {
   "default_trust_your_instincts":
       "Trust your instincts and ask for help when needed",
   "default_ask_questions_when_in_doubt": "Ask questions when in doubt",
+
+  // Goal selection bottom sheet (children info)
+  "goal_children_saved_title": "All children information saved!",
+  "goal_children_showing_details": "Showing details for: @name",
+  "goal_children_error_title": "Error",
+  "goal_children_error_message": "Please complete all children information",
+  "goal_children_saved_message": "Children information saved successfully",
+  "goal_children_boy_details_title": "Boy @index Details",
+  "goal_children_boy_name_label": "Boy @index Name",
+  "goal_children_select_dob": "Select Date of Birth",
+  "goal_children_next_boy": "Next Boy",
+  "goal_children_finish": "Finish",
+  "goal_children_girl_details_title": "Girl @index Details",
+  "goal_children_girl_name_label": "Girl @index Name",
+  "goal_children_next_girl": "Next Girl",
+  "goal_children_next_sons": "Next: Sons",
+  "goal_children_have_question": "Do you have children?",
+  "goal_children_yes": "Yes",
+  "goal_children_no": "No",
+  "goal_children_how_many": "How many children do you have?",
+  "goal_children_number_label": "Number of children",
+  "goal_children_enter_daughters": "Enter number of daughters (girls)",
+  "goal_children_daughters_label": "Number of daughters",
+  "goal_children_sons_auto_label": "Number of sons (auto-calculated)",
+  "goal_children_next": "Next",
+  "back": "Back",
+  "next_girl": "Next Girl",
+  "next_sons": "Next: Sons",
+  "finish": "Finish",
+  "newborn": "Newborn", // English
+
+  "age_year": "Year",
+  "age_years": "Years",
+
+  "age_month": "Month",
+  "age_months": "Months",
+
+  "age_week": "Week",
+  "age_weeks": "Weeks",
+
+  "milestone_newborn": "Newborn",
+
+  "milestone_week": "Week",
+  "milestone_weeks": "Weeks",
+
+  "milestone_month": "Month",
+  "milestone_months": "Months",
+
+  "milestone_year": "Year",
+  "milestone_years": "Years",
+
+  "milestone_title_0": "Newborn",
+  "milestone_title_36": "3–4 Years",
+  "milestone_title_48": "4–5 Years",
+  "milestone_title_60": "5–6 Years",
+  "milestone_title_72": "6–8 Years",
+  "milestone_title_84": "7–8 Years",
+  "milestone_title_96": "8 Years Overview",
+  // Weeks 1–52
+  "milestone_title_100": "Week 1",
+  "milestone_title_101": "Week 2",
+  "milestone_title_102": "Week 3",
+  "milestone_title_103": "Week 4",
+  "milestone_title_104": "Week 5",
+  "milestone_title_105": "Week 6",
+  "milestone_title_106": "Week 7",
+  "milestone_title_107": "Week 8",
+  "milestone_title_108": "Week 9",
+  "milestone_title_109": "Week 10",
+  "milestone_title_110": "Week 11",
+  "milestone_title_111": "Week 12",
+  "milestone_title_112": "Week 13",
+  "milestone_title_113": "Week 14",
+  "milestone_title_114": "Week 15",
+  "milestone_title_115": "Week 16",
+  "milestone_title_116": "Week 17",
+  "milestone_title_117": "Week 18",
+  "milestone_title_118": "Week 19",
+  "milestone_title_119": "Week 20",
+  "milestone_title_120": "Week 21",
+  "milestone_title_121": "Week 22",
+  "milestone_title_122": "Week 23",
+  "milestone_title_123": "Week 24",
+  "milestone_title_124": "Week 25",
+  "milestone_title_125": "Week 26",
+  "milestone_title_126": "Week 27",
+  "milestone_title_127": "Week 28",
+  "milestone_title_128": "Week 29",
+  "milestone_title_129": "Week 30",
+  "milestone_title_130": "Week 31",
+  "milestone_title_131": "Week 32",
+  "milestone_title_132": "Week 33",
+  "milestone_title_133": "Week 34",
+  "milestone_title_134": "Week 35",
+  "milestone_title_135": "Week 36",
+  "milestone_title_136": "Week 37",
+  "milestone_title_137": "Week 38",
+  "milestone_title_138": "Week 39",
+  "milestone_title_139": "Week 40",
+  "milestone_title_140": "Week 41",
+  "milestone_title_141": "Week 42",
+  "milestone_title_142": "Week 43",
+  "milestone_title_143": "Week 44",
+  "milestone_title_144": "Week 45",
+  "milestone_title_145": "Week 46",
+  "milestone_title_146": "Week 47",
+  "milestone_title_147": "Week 48",
+  "milestone_title_148": "Week 49",
+  "milestone_title_149": "Week 50",
+  "milestone_title_150": "Week 51",
+  "milestone_title_151": "Week 52",
+
+// Months 13–20
+  "milestone_title_13": "13 Months",
+  "milestone_title_14": "14 Months",
+  "milestone_title_15": "15 Months",
+  "milestone_title_16": "16 Months",
+  "milestone_title_17": "17 Months",
+  "milestone_title_18": "18 Months",
+  "milestone_title_19": "19 Months",
+  "milestone_title_20": "20 Months",
+  "explain_in_detail": "Explain in detail",
+
+  // Children management section
+  "children_section_title": "My Children",
+  "children_add_button": "Add Child",
+  "children_empty_state":
+      "No children added yet. Tap “Add Child” to get started.",
+  "children_dob_label": "DOB: @date",
+  "children_age_label": "Age: @age",
+  "children_currently_selected": "Currently Selected",
+  "children_snackbar_selected_title": "Selected",
+  "children_snackbar_selected_message": "Switched to @name",
+  "children_edit_child_title": "Edit Child",
+  "children_add_child_title": "Add New Child",
+  "children_name_label": "Child Name",
+  "children_select_dob_button": "Select Date of Birth",
+  "children_cancel_button": "Cancel",
+  "children_update_button": "Update",
+  "children_add_success_title": "Success",
+  "children_add_success_message": "Child added successfully",
+  "children_update_success_title": "Success",
+  "children_update_success_message": "Child updated successfully",
+  "children_delete_title": "Delete Child",
+  "children_delete_message":
+      "Are you sure you want to delete @name? This action cannot be undone.",
+  "children_delete_confirm": "Delete",
+  "children_delete_success_title": "Deleted",
+  "children_delete_success_message": "Child removed successfully",
+  "age": "Age",
+  "edit_gender": "Edit Gender",
+  "edit_age": "Edit Age",
+  'baby_tip_1': 'Feed your baby on demand.',
+  'baby_tip_2': 'Keep baby warm and monitor feeding.',
+  'baby_tip_3': 'Attend regular checkups.',
+  'baby_tips_title': 'Daily BabyCare Tips',
+  // Date-specific notifications
+  'october_15_cold_danger_title': 'Cold Danger Alert',
+  'october_15_cold_danger_body':
+      'Namunia: Cold weather alert! Keep your baby warm and protected from cold weather. Dress them in layers and avoid exposure to cold temperatures.',
+  'march_15_heat_diarrhea_title': 'Heat & Diarrhea Alert',
+  'march_15_heat_diarrhea_body':
+      'Diaria: Hot weather can cause dehydration and diarrhea in babies. Ensure your baby stays hydrated, keep them cool, and watch for signs of dehydration.',
+
+  'pregnancy_chance_peak': 'Peak',
+  'pregnancy_chance_high': 'High',
+  'pregnancy_chance_medium': 'Medium',
+  'pregnancy_chance_low': 'Low',
+
+  'cycle_in_days': 'in @days days',
+  'cycle_today': 'today',
+  'cycle_overdue_by_days': 'overdue by @days days',
+  'pregnancy_baby_length_1': 'Length(crown to rump)',
+  'pregnancy_baby_length_2': 'Length(crown to heel)',
+  'gestational_age_format': '@weeks weeks @days days',
+  'due_date_format': '@day @month @year',
+  'pregnancy_countdown_notification':
+      '@days days left until your due date. Stay healthy!',
 };

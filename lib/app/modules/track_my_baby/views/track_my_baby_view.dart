@@ -22,6 +22,59 @@ import 'package:babysafe/app/services/theme_service.dart';
 import '../../good_bad_touch/views/good_bad_touch_view.dart';
 import '../widgets/nutrition_card.dart';
 import '../widgets/school_readiness_card.dart';
+import '../../login/widgets/goal_card.dart';
+
+// Helper function to get milestone chip label
+String _getMilestoneChipLabel(int month) {
+  if (month >= 100 && month < 152) {
+    final w = month - 99;
+    return "$w ${w == 1 ? 'milestone_week'.tr : 'milestone_weeks'.tr}";
+  } else if (month > 0 && month < 24) {
+    return "$month ${month == 1 ? 'milestone_month'.tr : 'milestone_months'.tr}";
+  } else if (month >= 24) {
+    final years = month ~/ 12;
+    return "$years ${years == 1 ? 'milestone_year'.tr : 'milestone_years'.tr}";
+  } else {
+    return 'milestone_newborn'.tr;
+  }
+}
+
+// Helper function to get current milestone chip label based on baby age
+String _getCurrentMilestoneChipLabel(TrackMyBabyController controller) {
+  final weeks = controller.babyAgeInWeeks.value;
+  final months = controller.babyAgeInMonths.value;
+  BabyMilestone milestone;
+
+  // Check for week-based milestones first (weeks 1-52, stored as month 100-151)
+  // Week 1 = month 100, Week 2 = month 101, ..., Week 52 = month 151
+  // Formula: month = 100 + (weeks - 1) = 99 + weeks
+  if (weeks >= 1 && weeks <= 52) {
+    try {
+      milestone = babyMilestones.firstWhere((m) => m.month == (99 + weeks));
+      return _getMilestoneChipLabel(milestone.month);
+    } catch (e) {
+      // If week milestone not found, fall through to month-based
+    }
+  }
+
+  // If no week milestone found or weeks > 52, check for month-based milestones
+  try {
+    milestone = babyMilestones.firstWhere((m) => m.month == months);
+    return _getMilestoneChipLabel(milestone.month);
+  } catch (e) {
+    // If no exact match, find the closest milestone
+    int closestIdx = 0;
+    int minDiff = (babyMilestones[0].month - months).abs();
+    for (int i = 1; i < babyMilestones.length; i++) {
+      final diff = (babyMilestones[i].month - months).abs();
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIdx = i;
+      }
+    }
+    return _getMilestoneChipLabel(babyMilestones[closestIdx].month);
+  }
+}
 
 // TODO: Replace image placeholders with actual baby images from assets:
 // - Baby profile image in overview card
@@ -34,9 +87,7 @@ class TrackMyBabyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(TrackMyBabyController());
     final themeService = Get.find<ThemeService>();
-    final theme = Theme.of(context);
 
     return Scaffold(
       body: Container(
@@ -51,15 +102,15 @@ class TrackMyBabyView extends StatelessWidget {
           slivers: [
             // Custom App Bar with Profile Button
             SliverAppBar(
-              automaticallyImplyLeading: false,
-              expandedHeight: 120.0,
+              automaticallyImplyLeading: true,
+              // expandedHeight: 120.0,
               floating: false,
               pinned: true,
               elevation: 0,
               backgroundColor: Colors.transparent,
               actions: [
-                const GoToHomeIconButton(
-                  circleColor: NeoSafeColors.primaryPink,
+                GoToHomeIconButton(
+                  circleColor: themeService.getPrimaryColor(),
                   iconColor: Colors.white,
                   top: 0,
                 ),
@@ -68,8 +119,14 @@ class TrackMyBabyView extends StatelessWidget {
                   builder: (authService) {
                     final user = authService.currentUser.value;
                     final profileImagePath = user?.profileImagePath;
+                    final isEnglish =
+                        (Get.locale?.languageCode ?? 'en').startsWith('en');
+                    final horizontalMargin = EdgeInsets.only(
+                      left: isEnglish ? 0 : 16,
+                      right: isEnglish ? 16 : 0,
+                    );
                     return Container(
-                      margin: const EdgeInsets.only(right: 16, left: 16),
+                      margin: horizontalMargin,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -112,44 +169,88 @@ class TrackMyBabyView extends StatelessWidget {
                   },
                 ),
               ],
-              flexibleSpace: FlexibleSpaceBar(
-                background: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "track_my_baby".tr,
-                                  style: theme.textTheme.displaySmall?.copyWith(
-                                    color: NeoSafeColors.primaryText,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  controller.getGreeting(),
-                                  style: theme.textTheme.bodyMedium?.copyWith(
-                                    color: NeoSafeColors.secondaryText,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            // const SyncIndicator(),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // flexibleSpace: FlexibleSpaceBar(
+              //   background: SafeArea(
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(20),
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         mainAxisAlignment: MainAxisAlignment.end,
+              //         children: [
+              //           Row(
+              //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //             children: [
+              //               Expanded(
+              //                 child: Column(
+              //                   crossAxisAlignment: CrossAxisAlignment.start,
+              //                   children: [
+              //                     Text(
+              //                       "track_my_baby".tr,
+              //                       style:
+              //                           theme.textTheme.displaySmall?.copyWith(
+              //                         color: NeoSafeColors.primaryText,
+              //                         fontWeight: FontWeight.w700,
+              //                       ),
+              //                     ),
+              //                     const SizedBox(height: 8),
+              //                     Text(
+              //                       controller.getGreeting(),
+              //                       style: theme.textTheme.bodyMedium?.copyWith(
+              //                         color: NeoSafeColors.secondaryText,
+              //                       ),
+              //                     ),
+              //                   ],
+              //                 ),
+              //               ),
+              //               // Child selector dropdown
+              //               Obx(() {
+              //                 if (controller.allChildren.length > 1) {
+              //                   return Container(
+              //                     padding: const EdgeInsets.symmetric(
+              //                         horizontal: 12, vertical: 4),
+              //                     decoration: BoxDecoration(
+              //                       color: Colors.white.withOpacity(0.9),
+              //                       borderRadius: BorderRadius.circular(20),
+              //                       border: Border.all(
+              //                           color: NeoSafeColors.primaryPink
+              //                               .withOpacity(0.3)),
+              //                     ),
+              //                     child: DropdownButton<int>(
+              //                       value: controller.selectedChildIndex.value,
+              //                       underline: SizedBox(),
+              //                       icon: Icon(Icons.arrow_drop_down,
+              //                           color: NeoSafeColors.primaryPink),
+              //                       items: List.generate(
+              //                           controller.allChildren.length, (index) {
+              //                         return DropdownMenuItem<int>(
+              //                           value: index,
+              //                           child: Text(
+              //                             controller.allChildren[index].name,
+              //                             style: TextStyle(
+              //                               color: NeoSafeColors.primaryText,
+              //                               fontSize: 14,
+              //                               fontWeight: FontWeight.w500,
+              //                             ),
+              //                           ),
+              //                         );
+              //                       }),
+              //                       onChanged: (int? newIndex) {
+              //                         if (newIndex != null) {
+              //                           controller.selectChild(newIndex);
+              //                         }
+              //                       },
+              //                     ),
+              //                   );
+              //                 }
+              //                 return SizedBox.shrink();
+              //               }),
+              //             ],
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ),
             SliverPadding(
               padding: const EdgeInsets.all(20),
@@ -159,11 +260,11 @@ class TrackMyBabyView extends StatelessWidget {
                   // const OfflineIndicator(),
 
                   // Baby Overview Card
-                  _BabyOverviewCard(controller: controller),
-                  const SizedBox(height: 24),
+                  // _BabyOverviewCard(controller: controller),
+                  // const SizedBox(height: 24),
                   // Milestones Card
-                  _MilestonesSummaryCard(),
-                  const SizedBox(height: 24),
+                  // _MilestonesSummaryCard(),
+                  // const SizedBox(height: 24),
                   // Health Info Card
                   _HealthInfoSummaryCard(),
                   const SizedBox(height: 24),
@@ -171,7 +272,14 @@ class TrackMyBabyView extends StatelessWidget {
                   const NutritionCard(),
                   const SizedBox(height: 24),
                   // School Readiness Card
-                  const SchoolReadinessCard(),
+                  Obx(() {
+                    final controller = Get.find<TrackMyBabyController>();
+                    if (controller.babyAgeInMonths.value >= 36) {
+                      return const SchoolReadinessCard();
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  }),
                   const SizedBox(height: 24),
                   // Newborn Responsibilities Card
                   _NewbornResponsibilitiesCard(),
@@ -253,22 +361,34 @@ class _BabyOverviewCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Text(
+                  //   controller.babyName.value,
+                  //   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  //         color: NeoSafeColors.primaryText,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  // ),
                   Text(
-                    controller.babyName.value,
+                    controller.babyName.value.isNotEmpty
+                        ? controller.babyName.value[0].toUpperCase() +
+                            controller.babyName.value.substring(1)
+                        : '',
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           color: NeoSafeColors.primaryText,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
+
                   const SizedBox(height: 4),
-                  Obx(() => Text(
-                        controller.getBabyAgeText(),
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: NeoSafeColors.secondaryText,
-                                ),
-                      )),
-                  const SizedBox(height: 8),
+                  // Obx(() => Text(
+                  //       _getCurrentMilestoneChipLabel(controller),
+                  //       style:
+                  //           Theme.of(context).textTheme.titleMedium?.copyWith(
+                  //                 fontSize: 12,
+                  //                 color: NeoSafeColors.secondaryText,
+                  //               ),
+                  //     )),
+                  // const SizedBox(height: 8),
                   Text(
                     controller.getTimelineSubtitle(),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -293,7 +413,7 @@ class _MilestonesSummaryCard extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () => Get.to(() => _MilestonesDetailPage()),
+        onTap: () => Get.to(() => MilestonesDetailPage()),
         borderRadius: BorderRadius.circular(16),
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: 8),
@@ -396,124 +516,416 @@ class _MilestonesSummaryCard extends StatelessWidget {
   }
 }
 
-class _MilestonesDetailPage extends StatefulWidget {
+class MilestonesDetailPage extends StatefulWidget {
   @override
-  State<_MilestonesDetailPage> createState() => _MilestonesDetailPageState();
+  State<MilestonesDetailPage> createState() => _MilestonesDetailPageState();
 }
 
-class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
-  int _selectedIndex = 0;
+class _MilestonesDetailPageState extends State<MilestonesDetailPage> {
+  final RxInt _selectedIndex = 0.obs;
+  final ScrollController _chipScrollController = ScrollController();
+  late final TrackMyBabyController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.find<TrackMyBabyController>();
+    // Wait for controller to load children data
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _pickDefaultMilestone();
+    });
+    // Listen to changes in weeks/months/profile and update chip accordingly
+    everAll([
+      controller.babyAgeInWeeks,
+      controller.babyAgeInMonths,
+      controller.selectedChildIndex
+    ], (_) => _pickDefaultMilestone());
+  }
+
+  void _pickDefaultMilestone() {
+    int idx = -1;
+    final weeks = controller.babyAgeInWeeks.value;
+    final months = controller.babyAgeInMonths.value;
+
+    // Check for week-based milestones first (weeks 1-52, stored as month 100-151)
+    // Week 1 = month 100, Week 2 = month 101, ..., Week 52 = month 151
+    // Formula: month = 100 + (weeks - 1) = 99 + weeks
+    if (weeks >= 1 && weeks <= 52) {
+      idx = babyMilestones.indexWhere((m) => m.month == (99 + weeks));
+    }
+
+    // If no week milestone found or weeks > 52, check for month-based milestones
+    if (idx == -1) {
+      idx = babyMilestones.indexWhere((m) => m.month == months);
+    }
+
+    // If still not found, find the closest milestone
+    if (idx == -1) {
+      // Find the milestone with the closest month value
+      int closestIdx = 0;
+      int minDiff = (babyMilestones[0].month - months).abs();
+      for (int i = 1; i < babyMilestones.length; i++) {
+        final diff = (babyMilestones[i].month - months).abs();
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIdx = i;
+        }
+      }
+      idx = closestIdx;
+    }
+
+    if (idx != -1) {
+      _selectedIndex.value = idx;
+      _scrollToSelected();
+    }
+  }
+
+  void _scrollToSelected() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_chipScrollController.hasClients) return;
+      final sorted = _getSortedMilestoneIndexes();
+      final selected = _selectedIndex.value;
+      final displayedIdx = sorted.indexOf(selected);
+      if (displayedIdx == -1) return;
+
+      // Approximate chip width including padding + spacing
+      const double itemExtent = 105.0;
+      final targetOffset = displayedIdx * itemExtent;
+
+      _chipScrollController.animateTo(
+        targetOffset.clamp(
+          _chipScrollController.position.minScrollExtent,
+          _chipScrollController.position.maxScrollExtent,
+        ),
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final selected = babyMilestones[_selectedIndex];
+    final theme = Theme.of(context);
+    final themeService = Get.find<ThemeService>();
     return Scaffold(
-      appBar: AppBar(title: Text('all_milestones'.tr)),
-      body: Column(
-        children: [
-          const SizedBox(height: 8),
-          _buildMonthChips(context),
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+      body: CustomScrollView(
+        slivers: [
+          // Custom App Bar with Profile Button (copied from TrackMyBabyView)
+          SliverAppBar(
+            automaticallyImplyLeading: false,
+            expandedHeight: 120.0,
+            floating: false,
+            pinned: true,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            actions: [
+              GoToHomeIconButton(
+                circleColor: themeService.getPrimaryColor(),
+                iconColor: Colors.white,
+                top: 0,
+              ),
+              SizedBox(width: 12),
+              GetX<AuthService>(
+                builder: (authService) {
+                  final user = authService.currentUser.value;
+                  final profileImagePath = user?.profileImagePath;
+                  final isEnglish =
+                      (Get.locale?.languageCode ?? 'en').startsWith('en');
+                  final horizontalMargin = EdgeInsets.only(
+                    left: isEnglish ? 0 : 16,
+                    right: isEnglish ? 16 : 0,
+                  );
+                  return Container(
+                    margin: horizontalMargin,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          themeService.getLightColor(),
+                          themeService.getPrimaryColor(),
+                        ],
+                      ),
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color:
+                              themeService.getPrimaryColor().withOpacity(0.3),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.put(ProfileController());
+                        Get.to(() => const ProfileView());
+                      },
+                      child: CircleAvatar(
+                        radius: 22,
+                        backgroundColor: Colors.transparent,
+                        backgroundImage: (profileImagePath != null &&
+                                profileImagePath.isNotEmpty)
+                            ? Image.file(
+                                File(profileImagePath),
+                              ).image
+                            : null,
+                        child: (profileImagePath == null ||
+                                profileImagePath.isEmpty)
+                            ? const Icon(Icons.person,
+                                color: Colors.white, size: 28)
+                            : null,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+            flexibleSpace: FlexibleSpaceBar(
+              background: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "track_my_baby".tr,
+                                  style: theme.textTheme.displaySmall?.copyWith(
+                                    color: NeoSafeColors.primaryText,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  controller.getGreeting(),
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    color: NeoSafeColors.secondaryText,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Child selector dropdown
+                          Obx(() {
+                            if (controller.allChildren.length > 1) {
+                              return Container(
+                                height: 40,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 0),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.9),
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                      color: themeService
+                                          .getPrimaryColor()
+                                          .withOpacity(0.3)),
+                                ),
+                                child: DropdownButton<int>(
+                                  borderRadius: BorderRadius.circular(8),
+                                  value: controller.selectedChildIndex.value,
+                                  underline: SizedBox(),
+                                  icon: Icon(Icons.arrow_drop_down,
+                                      color: themeService.getPrimaryColor()),
+                                  items: List.generate(
+                                      controller.allChildren.length, (index) {
+                                    return DropdownMenuItem<int>(
+                                      value: index,
+                                      child: Text(
+                                        controller.allChildren[index].name,
+                                        style: TextStyle(
+                                          color: NeoSafeColors.primaryText,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                                  onChanged: (int? newIndex) {
+                                    if (newIndex != null) {
+                                      controller.selectChild(newIndex);
+                                    }
+                                  },
+                                ),
+                              );
+                            }
+                            return SizedBox.shrink();
+                          }),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(20),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                _BabyOverviewCard(controller: controller),
+                const SizedBox(height: 24),
+              ]),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildMilestoneCard(context, selected),
+                // Beautified Chips
+                const SizedBox(height: 8),
+                SizedBox(
+                  height: 42,
+                  child: ListView.separated(
+                    controller: _chipScrollController,
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    itemCount: _getSortedMilestoneIndexes().length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 8),
+                    itemBuilder: (ctx, displayedIdx) {
+                      final i = _getSortedMilestoneIndexes()[displayedIdx];
+                      return Obx(() {
+                        final isSelected = _selectedIndex.value == i;
+                        final ms = babyMilestones[i];
+                        final chipLabel = _getMilestoneChipLabel(ms.month);
+                        return GestureDetector(
+                          onTap: () {
+                            _selectedIndex.value = i;
+                            _scrollToSelected();
+                          },
+                          child: AnimatedContainer(
+                            width: 100,
+                            duration: const Duration(milliseconds: 200),
+                            height: 36,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 6),
+                            decoration: BoxDecoration(
+                              gradient: isSelected
+                                  ? LinearGradient(colors: [
+                                      themeService.getPrimaryColor(),
+                                      NeoSafeColors.secondaryText
+                                          .withOpacity(0.6)
+                                    ])
+                                  : LinearGradient(colors: [
+                                      Colors.grey.shade100,
+                                      Colors.white
+                                    ]),
+                              borderRadius: BorderRadius.circular(28),
+                              boxShadow: isSelected
+                                  ? [
+                                      BoxShadow(
+                                        color: themeService
+                                            .getPrimaryColor()
+                                            .withOpacity(0.13),
+                                        blurRadius: 5,
+                                        offset: Offset(0, 2),
+                                      )
+                                    ]
+                                  : [],
+                              border: Border.all(
+                                color: isSelected
+                                    ? themeService.getPrimaryColor()
+                                    : Colors.grey.shade300,
+                                width: isSelected ? 1.6 : 1,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                chipLabel,
+                                style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          color: isSelected
+                                              ? Colors.white
+                                              : themeService.getPrimaryColor(),
+                                          fontWeight: isSelected
+                                              ? FontWeight.w600
+                                              : FontWeight.w400,
+                                          letterSpacing: 0.1,
+                                          fontSize: 12,
+                                        ) ??
+                                    TextStyle(),
+                              ),
+                            ),
+                          ),
+                        );
+                      });
+                    },
+                  ),
+                ),
+
+                // Details card using selected chip
+                Obx(() {
+                  final selected = babyMilestones[_selectedIndex.value];
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                    child: _buildMilestoneCard(context, selected),
+                  );
+                }),
+
+                // Postpartum Care Card - Show only if baby is 2 weeks or less
+                Obx(() {
+                  final controller = Get.find<TrackMyBabyController>();
+                  if (controller.babyAgeInWeeks.value <= 2) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                      child: GoalCard(
+                        gradient: LinearGradient(
+                          colors: [
+                            themeService.getLightColor(),
+                            themeService.getAccentColor()
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        icon: Icons.local_hospital,
+                        iconColor: NeoSafeColors.roseAccent,
+                        title: "postpartum_care".tr,
+                        subtitle: "postpartum_care_subtitle".tr,
+                        onTap: () => Get.toNamed('/postpartum_care'),
+                      ),
+                    );
+                  }
+                  return SizedBox.shrink();
+                }),
+
+                // More Details button
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  child: Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: StadiumBorder(),
+                        backgroundColor: themeService.getPrimaryColor(),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                        elevation: 3,
+                      ),
+                      onPressed: () {
+                        Get.to(() => TrackMyBabyView());
+                      },
+                      child: Text('explain_in_detail'.tr,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17,
+                              color: Colors.white)),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ],
       ),
     );
-  }
-
-  Widget _buildMonthChips(BuildContext context) {
-    final themeService = Get.find<ThemeService>();
-    // Build a derived list with proper sorting: weeks (< 24 months), months, then years
-    final indexed = babyMilestones
-        .asMap()
-        .entries
-        .map((e) => MapEntry(e.key, e.value))
-        .toList();
-    indexed.sort((a, b) {
-      final am = a.value.month;
-      final bm = b.value.month;
-
-      // Weeks are stored as month values starting from 100 (100-151)
-      final aIsWeek = am >= 100 && am <= 151;
-      final bIsWeek = bm >= 100 && bm <= 151;
-      final aIsYear = am >= 24 && am < 100;
-      final bIsYear = bm >= 24 && bm < 100;
-
-      // Sort order: weeks (< 24 months equivalent), months (< 24), then years (>= 24)
-      if (aIsWeek && bIsWeek) {
-        return am.compareTo(bm); // Sort weeks in order
-      }
-      if (aIsWeek && !bIsWeek) {
-        if (bIsYear) return -1; // weeks before years
-        if (bm < 24) return -1; // weeks before months
-        return -1; // weeks first
-      }
-      if (!aIsWeek && bIsWeek) {
-        if (aIsYear) return 1; // years after weeks
-        if (am < 24) return 1; // months after weeks
-        return 1; // weeks first
-      }
-
-      if (aIsYear != bIsYear)
-        return aIsYear ? 1 : -1; // months first, then years
-      return am.compareTo(bm);
-    });
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: indexed.map((entry) {
-          final index = entry.key; // original index in babyMilestones
-          final m = entry.value;
-          final selected = _selectedIndex == index;
-          return Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: ChoiceChip(
-              label: Text(_labelForAge(m.month)),
-              // label: Text('${m.month} ${'mo'.tr}'
-              //     .replaceFirst('0 ${'mo'.tr}', 'newborn'.tr)),
-              selected: selected,
-              onSelected: (_) {
-                setState(() => _selectedIndex = index);
-              },
-              selectedColor: themeService.getPrimaryColor().withOpacity(0.15),
-              labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: selected
-                        ? themeService.getPrimaryColor()
-                        : NeoSafeColors.primaryText,
-                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                  ),
-              backgroundColor: Colors.white,
-              shape: StadiumBorder(
-                side: BorderSide(
-                  color: selected
-                      ? themeService.getPrimaryColor().withOpacity(0.4)
-                      : NeoSafeColors.softGray.withOpacity(0.4),
-                ),
-              ),
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-
-  String _labelForAge(int month) {
-    // Weeks are stored as month values starting from 100
-    if (month >= 100 && month <= 151) {
-      final week = month -
-          99; // Convert back to week number (100 -> week 1, 101 -> week 2, etc.)
-      return 'Week $week';
-    }
-    if (month == 0) return 'newborn'.tr;
-    if (month < 24) return '${month} ${'mo'.tr}';
-    final years = (month / 12).toStringAsFixed(month % 12 == 0 ? 0 : 1);
-    return '$years ${'yr'.tr}';
   }
 
   Widget _buildMilestoneCard(BuildContext context, BabyMilestone m) {
@@ -563,13 +975,12 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
                       ],
                     ),
                   ),
-                  child: const Icon(Icons.trending_up,
-                      color: Colors.white, size: 20),
+                  child: Icon(Icons.trending_up, color: Colors.white, size: 20),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    m.title,
+                    'milestone_title_${m.month}'.tr,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: NeoSafeColors.primaryText,
                           fontWeight: FontWeight.w700,
@@ -681,6 +1092,43 @@ class _MilestonesDetailPageState extends State<_MilestonesDetailPage> {
       ),
     );
   }
+
+  List<int> _getSortedMilestoneIndexes() {
+    final weeks = <int>[];
+    final months = <int>[];
+    final years = <int>[];
+    for (int i = 0; i < babyMilestones.length; ++i) {
+      final m = babyMilestones[i];
+      if (m.month >= 100 && m.month < 152) {
+        weeks.add(i);
+      } else if (m.month > 0 && m.month < 24) {
+        months.add(i);
+      } else if (m.month >= 24) {
+        years.add(i);
+      }
+    }
+    weeks.sort(
+        (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
+    months.sort(
+        (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
+    years.sort(
+        (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
+    return [...weeks, ...months, ...years];
+  }
+
+//   String _getMilestoneChipLabel(int month) {
+//     if (month >= 100 && month < 152) {
+//       return "${month - 99} week${month - 99 > 1 ? 's' : ''}";
+//     } else if (month > 0 && month < 24) {
+//       return "$month month${month > 1 ? 's' : ''}";
+//     } else if (month >= 24) {
+//       final years = month ~/ 12;
+//       return "$years year${years > 1 ? 's' : ''}";
+//     } else {
+//       return "Newborn";
+//     }
+//   }
+// }
 }
 
 class _HealthInfoSummaryCard extends StatelessWidget {
@@ -785,32 +1233,32 @@ class _HealthInfoSummaryCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
-                                  NeoSafeColors.primaryPink.withOpacity(0.2),
-                                  NeoSafeColors.lightPink.withOpacity(0.1),
+                                  themeService
+                                      .getPrimaryColor()
+                                      .withOpacity(0.2),
+                                  themeService.getLightColor().withOpacity(0.1),
                                 ],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
                             ),
-                            child: const Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.image_outlined,
-                                    size: 40,
-                                    color: NeoSafeColors.primaryPink,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.image_outlined,
+                                  size: 40,
+                                  color: themeService.getPrimaryColor(),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  'jaundice_image',
+                                  style: TextStyle(
+                                    color: themeService.getPrimaryColor(),
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  SizedBox(height: 8),
-                                  Text(
-                                    'jaundice_image',
-                                    style: TextStyle(
-                                      color: NeoSafeColors.primaryPink,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -950,7 +1398,9 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
   }
 
   Widget _buildTableCell(String text,
-      {required bool isHeader, required ThemeData theme}) {
+      {required bool isHeader,
+      required ThemeData theme,
+      bool isCompleted = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Text(
@@ -959,11 +1409,21 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
             ? theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w700,
                 color: NeoSafeColors.primaryPink,
+                fontSize: 13,
               )
             : theme.textTheme.bodySmall?.copyWith(
-                color: NeoSafeColors.primaryText,
+                color: isCompleted
+                    ? NeoSafeColors.success
+                    : NeoSafeColors.primaryText,
                 height: 1.4,
+                fontSize: 12,
+                decoration: isCompleted
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
               ),
+        maxLines: isHeader ? 1 : 3,
+        overflow: TextOverflow.ellipsis,
+        softWrap: true,
       ),
     );
   }
@@ -1090,7 +1550,7 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
     final theme = Theme.of(context);
     final visiblePoints = expanded ? item.points : item.points.take(3).toList();
     final showToggle = item.points.length > 3;
-
+    final themeService = Get.find<ThemeService>();
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
@@ -1134,7 +1594,7 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(_iconForHealthIndex(index + 1),
-                      color: Colors.white, size: 20),
+                      color: themeService.getPrimaryColor(), size: 20),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -1225,92 +1685,189 @@ class _HealthInfoDetailPageState extends State<_HealthInfoDetailPage> {
                             ),
                           ),
                           const SizedBox(height: 16),
-                          // Table Header
-                          Container(
-                            decoration: BoxDecoration(
-                              color: NeoSafeColors.primaryPink.withOpacity(0.1),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(8),
-                                topRight: Radius.circular(8),
-                              ),
-                            ),
-                            child: Table(
-                              columnWidths: const {
-                                0: FlexColumnWidth(1.2),
-                                1: FlexColumnWidth(1),
-                                2: FlexColumnWidth(2.5),
-                              },
+                          // Horizontally scrollable table
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                TableRow(
+                                // Table Header
+                                Container(
                                   decoration: BoxDecoration(
                                     color: NeoSafeColors.primaryPink
                                         .withOpacity(0.1),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                    ),
                                   ),
-                                  children: [
-                                    _buildTableCell(
-                                      'vaccination_table_header_stage'.tr,
-                                      isHeader: true,
-                                      theme: theme,
-                                    ),
-                                    _buildTableCell(
-                                      'vaccination_table_header_age'.tr,
-                                      isHeader: true,
-                                      theme: theme,
-                                    ),
-                                    _buildTableCell(
-                                      'vaccination_table_header_vaccines'.tr,
-                                      isHeader: true,
-                                      theme: theme,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          // Table Rows
-                          ...List.generate(7, (index) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color:
-                                        NeoSafeColors.softGray.withOpacity(0.3),
-                                    width: 1,
-                                  ),
-                                ),
-                              ),
-                              child: Table(
-                                columnWidths: const {
-                                  0: FlexColumnWidth(1.2),
-                                  1: FlexColumnWidth(1),
-                                  2: FlexColumnWidth(2.5),
-                                },
-                                children: [
-                                  TableRow(
+                                  child: Table(
+                                    columnWidths: const {
+                                      0: FixedColumnWidth(120),
+                                      1: FixedColumnWidth(100),
+                                      2: FixedColumnWidth(280),
+                                      3: FixedColumnWidth(80),
+                                    },
                                     children: [
-                                      _buildTableCell(
-                                        'vaccination_table_stage_${index + 1}'
-                                            .tr,
-                                        isHeader: false,
-                                        theme: theme,
-                                      ),
-                                      _buildTableCell(
-                                        'vaccination_table_age_${index + 1}'.tr,
-                                        isHeader: false,
-                                        theme: theme,
-                                      ),
-                                      _buildTableCell(
-                                        'vaccination_table_vaccines_${index + 1}'
-                                            .tr,
-                                        isHeader: false,
-                                        theme: theme,
+                                      TableRow(
+                                        decoration: BoxDecoration(
+                                          color: NeoSafeColors.primaryPink
+                                              .withOpacity(0.1),
+                                        ),
+                                        children: [
+                                          _buildTableCell(
+                                            'vaccination_table_header_stage'.tr,
+                                            isHeader: true,
+                                            theme: theme,
+                                          ),
+                                          _buildTableCell(
+                                            'vaccination_table_header_age'.tr,
+                                            isHeader: true,
+                                            theme: theme,
+                                          ),
+                                          _buildTableCell(
+                                            'vaccination_table_header_vaccines'
+                                                .tr,
+                                            isHeader: true,
+                                            theme: theme,
+                                          ),
+                                          _buildTableCell(
+                                            'vaccination_table_header_status'
+                                                .tr,
+                                            isHeader: true,
+                                            theme: theme,
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            );
-                          }),
+                                ),
+                                // Table Rows
+                                ...List.generate(7, (index) {
+                                  final stage = index + 1;
+                                  return GetBuilder<TrackMyBabyController>(
+                                    builder: (controller) {
+                                      // Use Obx for reactive updates
+                                      return Obx(() {
+                                        // Get from cache, fallback to false
+                                        final isCompleted = controller
+                                                    .vaccinationCompletionStatus[
+                                                stage] ??
+                                            false;
+                                        final datePassed = controller
+                                            .hasVaccinationDatePassed(stage);
+                                        // Can toggle if: date hasn't passed yet OR already completed
+                                        // This allows checking on the vaccination date itself
+                                        final canToggle =
+                                            !datePassed || isCompleted;
+
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                color: NeoSafeColors.softGray
+                                                    .withOpacity(0.3),
+                                                width: 1,
+                                              ),
+                                            ),
+                                            color: isCompleted
+                                                ? NeoSafeColors.success
+                                                    .withOpacity(0.05)
+                                                : null,
+                                          ),
+                                          child: Table(
+                                            columnWidths: const {
+                                              0: FixedColumnWidth(120),
+                                              1: FixedColumnWidth(100),
+                                              2: FixedColumnWidth(280),
+                                              3: FixedColumnWidth(80),
+                                            },
+                                            children: [
+                                              TableRow(
+                                                children: [
+                                                  _buildTableCell(
+                                                    'vaccination_table_stage_$stage'
+                                                        .tr,
+                                                    isHeader: false,
+                                                    theme: theme,
+                                                    isCompleted: isCompleted,
+                                                  ),
+                                                  _buildTableCell(
+                                                    'vaccination_table_age_$stage'
+                                                        .tr,
+                                                    isHeader: false,
+                                                    theme: theme,
+                                                    isCompleted: isCompleted,
+                                                  ),
+                                                  _buildTableCell(
+                                                    'vaccination_table_vaccines_$stage'
+                                                        .tr,
+                                                    isHeader: false,
+                                                    theme: theme,
+                                                    isCompleted: isCompleted,
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 12,
+                                                        vertical: 12),
+                                                    child: Opacity(
+                                                      opacity:
+                                                          canToggle ? 1.0 : 0.4,
+                                                      child: InkWell(
+                                                        onTap: canToggle
+                                                            ? () {
+                                                                // Don't await - let it update cache immediately
+                                                                controller
+                                                                    .toggleVaccinationCompleted(
+                                                                        stage);
+                                                              }
+                                                            : null,
+                                                        child: Container(
+                                                          width: 32,
+                                                          height: 32,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            border: Border.all(
+                                                              color: isCompleted
+                                                                  ? NeoSafeColors
+                                                                      .success
+                                                                  : NeoSafeColors
+                                                                      .softGray,
+                                                              width: 2.5,
+                                                            ),
+                                                            color: isCompleted
+                                                                ? NeoSafeColors
+                                                                    .success
+                                                                : Colors
+                                                                    .transparent,
+                                                          ),
+                                                          child: isCompleted
+                                                              ? const Icon(
+                                                                  Icons.check,
+                                                                  size: 20,
+                                                                  color: Colors
+                                                                      .white,
+                                                                )
+                                                              : null,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                    },
+                                  );
+                                }),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -1790,8 +2347,8 @@ class _GoodBadTouchCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
-                              NeoSafeColors.primaryPink.withOpacity(0.2),
-                              NeoSafeColors.lightPink.withOpacity(0.1),
+                              themeService.getPrimaryColor().withOpacity(0.2),
+                              themeService.getLightColor().withOpacity(0.1),
                             ],
                           ),
                         ),
@@ -1799,16 +2356,16 @@ class _GoodBadTouchCard extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(
+                              Icon(
                                 Icons.touch_app,
                                 size: 48,
-                                color: NeoSafeColors.primaryPink,
+                                color: themeService.getPrimaryColor(),
                               ),
                               const SizedBox(height: 8),
                               Text(
                                 'good_touch_bad_touch'.tr,
-                                style: const TextStyle(
-                                  color: NeoSafeColors.primaryPink,
+                                style: TextStyle(
+                                  color: themeService.getPrimaryColor(),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),

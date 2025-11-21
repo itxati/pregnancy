@@ -2,16 +2,18 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utils/neo_safe_theme.dart';
 import '../../../services/auth_service.dart';
-import '../../../services/notification_service.dart';
+import '../../../services/breastfeeding_notification_service.dart';
 import 'package:flutter/material.dart';
 
 class ProfileController extends GetxController {
   late AuthService authService;
-  late NotificationService notificationService;
+  late BreastfeedingNotificationService breastfeedingNotificationService;
 
   // User information
   RxString userName = "".obs;
   RxString profileImagePath = "".obs;
+  RxString userGender = "".obs;
+  RxString userAge = "".obs;
 
   // Pregnancy information
   RxString dueDate = "19 Mar 2026".obs;
@@ -61,7 +63,8 @@ class ProfileController extends GetxController {
   void onInit() {
     super.onInit();
     authService = Get.find<AuthService>();
-    notificationService = NotificationService.instance;
+    breastfeedingNotificationService =
+        BreastfeedingNotificationService.instance;
 
     // Auto-sync when authService.currentUser changes
     ever(authService.currentUser, (_) {
@@ -140,6 +143,22 @@ class ProfileController extends GetxController {
           }
         } else {
           babyBirthDate.value = "select_placeholder".tr;
+        }
+      }
+
+      // Load gender and age from onboarding prefs
+      final userId = user.id;
+      if (userId.isNotEmpty) {
+        try {
+          final gender = await authService.getOnboardingData('onboarding_gender', userId);
+          final age = await authService.getOnboardingData('onboarding_age', userId);
+          if (gender != null && gender.isNotEmpty) userGender.value = gender;
+          else userGender.value = "select_placeholder".tr;
+          if (age != null && age.isNotEmpty) userAge.value = age;
+          else userAge.value = "select_placeholder".tr;
+        } catch (e) {
+          userGender.value = "select_placeholder".tr;
+          userAge.value = "select_placeholder".tr;
         }
       }
     }
@@ -237,16 +256,18 @@ class ProfileController extends GetxController {
   // Load breastfeeding data
   Future<void> _loadBreastfeedingData() async {
     try {
-      final isEnabled =
-          await notificationService.areBreastfeedingNotificationsEnabled();
+      final isEnabled = await breastfeedingNotificationService
+          .areBreastfeedingNotificationsEnabled();
       breastfeedingNotificationsEnabled.value = isEnabled;
 
       if (isEnabled) {
-        final interval = await notificationService.getBreastfeedingInterval();
+        final interval =
+            await breastfeedingNotificationService.getBreastfeedingInterval();
         breastfeedingIntervalHours.value = interval['hours'] ?? 2;
         breastfeedingIntervalMinutes.value = interval['minutes'] ?? 0;
 
-        final lastTime = await notificationService.getLastBreastfeedingTime();
+        final lastTime =
+            await breastfeedingNotificationService.getLastBreastfeedingTime();
         lastBreastfeedingTime.value = lastTime;
 
         _updateNextBreastfeedingTime();
@@ -506,6 +527,22 @@ class ProfileController extends GetxController {
     }
   }
 
+  Future<void> updateUserGender(String gender) async {
+    userGender.value = gender;
+    if (authService.currentUser.value != null) {
+      final userId = authService.currentUser.value!.id;
+      await authService.setOnboardingData('onboarding_gender', userId, gender);
+    }
+  }
+
+  Future<void> updateUserAge(String age) async {
+    userAge.value = age;
+    if (authService.currentUser.value != null) {
+      final userId = authService.currentUser.value!.id;
+      await authService.setOnboardingData('onboarding_age', userId, age);
+    }
+  }
+
   Future<void> toggleNotifications() async {
     notificationsEnabled.value = !notificationsEnabled.value;
     await _saveProfileData();
@@ -525,7 +562,8 @@ class ProfileController extends GetxController {
     try {
       if (breastfeedingNotificationsEnabled.value) {
         // Disable notifications
-        await notificationService.disableBreastfeedingNotifications();
+        await breastfeedingNotificationService
+            .disableBreastfeedingNotifications();
         breastfeedingNotificationsEnabled.value = false;
         lastBreastfeedingTime.value = null;
         nextBreastfeedingTime.value = "";
@@ -539,7 +577,7 @@ class ProfileController extends GetxController {
         );
       } else {
         // Enable notifications with current interval
-        await notificationService.enableBreastfeedingNotifications(
+        await breastfeedingNotificationService.enableBreastfeedingNotifications(
           hours: breastfeedingIntervalHours.value,
           minutes: breastfeedingIntervalMinutes.value,
         );
@@ -590,7 +628,7 @@ class ProfileController extends GetxController {
       breastfeedingIntervalMinutes.value = minutes;
 
       if (breastfeedingNotificationsEnabled.value) {
-        await notificationService.updateBreastfeedingInterval(
+        await breastfeedingNotificationService.updateBreastfeedingInterval(
           hours: hours,
           minutes: minutes,
         );
@@ -621,7 +659,7 @@ class ProfileController extends GetxController {
   /// Log a breastfeeding session manually
   Future<void> logBreastfeedingSession() async {
     try {
-      await notificationService.logBreastfeedingSession();
+      await breastfeedingNotificationService.logBreastfeedingSession();
       lastBreastfeedingTime.value = DateTime.now();
       _updateNextBreastfeedingTime();
 
@@ -647,7 +685,7 @@ class ProfileController extends GetxController {
   /// Test breastfeeding notification
   Future<void> testBreastfeedingNotification() async {
     try {
-      await notificationService.testBreastfeedingNotification();
+      await breastfeedingNotificationService.testBreastfeedingNotification();
 
       Get.snackbar(
         'Test Sent',
@@ -671,7 +709,7 @@ class ProfileController extends GetxController {
   /// Check pending notifications
   Future<void> checkPendingNotifications() async {
     try {
-      await notificationService.checkPendingNotifications();
+      await breastfeedingNotificationService.checkPendingNotifications();
     } catch (e) {
       print('Error checking pending notifications: $e');
     }
@@ -680,7 +718,8 @@ class ProfileController extends GetxController {
   /// Force reschedule breastfeeding notification
   Future<void> forceRescheduleBreastfeedingNotification() async {
     try {
-      await notificationService.forceRescheduleBreastfeedingNotification();
+      await breastfeedingNotificationService
+          .forceRescheduleBreastfeedingNotification();
 
       Get.snackbar(
         'Rescheduled',
@@ -944,7 +983,8 @@ class ProfileController extends GetxController {
 
       // Disable breastfeeding notifications
       if (breastfeedingNotificationsEnabled.value) {
-        await notificationService.disableBreastfeedingNotifications();
+        await breastfeedingNotificationService
+            .disableBreastfeedingNotifications();
       }
 
       // Reset to default values

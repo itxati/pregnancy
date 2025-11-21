@@ -27,136 +27,141 @@ class CalendarWidget extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),
-        child: TableCalendar(
-          firstDay: DateTime.utc(2020, 1, 1),
-          lastDay: DateTime.utc(2030, 12, 31),
-          focusedDay: controller.focusedDay.value,
-          selectedDayPredicate: (day) =>
-              controller.selectedDay.value != null &&
-              controller.isSameDay(controller.selectedDay.value!, day),
-          // enabledDayPredicate: (day) {
-          //   DateTime now = DateTime.now();
-          //   DateTime firstDayOfPreviousMonth =
-          //       DateTime(now.year, now.month - 1, 1);
-          //   DateTime lastDayOfPreviousMonth = DateTime(now.year, now.month, 0);
-          //   return day.isAfter(
-          //           firstDayOfPreviousMonth.subtract(Duration(days: 1))) &&
-          //       day.isBefore(lastDayOfPreviousMonth.add(Duration(days: 1)));
-          // },
-          onDaySelected: (selected, focused) {
-            controller.setSelectedDay(selected);
-          },
-          calendarStyle: CalendarStyle(
-            outsideDaysVisible: false,
-            weekendTextStyle: TextStyle(
-              color: NeoSafeColors.secondaryText,
-              fontWeight: FontWeight.w500,
-            ),
-            defaultTextStyle: TextStyle(
-              color: NeoSafeColors.primaryText,
-              fontWeight: FontWeight.w500,
-            ),
-            todayDecoration: BoxDecoration(
-              color: NeoSafeColors.coralPink.withOpacity(0.7),
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: NeoSafeColors.coralPink.withOpacity(0.3),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            selectedDecoration: BoxDecoration(
-              color: NeoSafeColors.primaryPink,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: NeoSafeColors.primaryPink.withOpacity(0.4),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            markerDecoration: const BoxDecoration(
-              color: NeoSafeColors.roseAccent,
-              shape: BoxShape.circle,
-            ),
-          ),
-          headerStyle: HeaderStyle(
-            formatButtonVisible: false,
-            titleCentered: true,
-            titleTextStyle: theme.textTheme.headlineSmall!.copyWith(
-              fontWeight: FontWeight.w700,
-              color: NeoSafeColors.primaryText,
-            ),
-            titleTextFormatter: (date, locale) {
-              final monthNames = [
-                '',
-                'jan'.tr,
-                'feb'.tr,
-                'mar'.tr,
-                'apr'.tr,
-                'may'.tr,
-                'jun'.tr,
-                'jul'.tr,
-                'aug'.tr,
-                'sep'.tr,
-                'oct'.tr,
-                'nov'.tr,
-                'dec'.tr
-              ];
-              return '${monthNames[date.month]} ${date.year}';
+        child: Obx(() {
+          // Access reactive values to trigger rebuild when cycle/period length changes
+          final _ = controller.cycleLength.value;
+          final __ = controller.periodLength.value;
+          return TableCalendar(
+            firstDay: DateTime.utc(2020, 1, 1),
+            lastDay: DateTime.utc(2030, 12, 31),
+            focusedDay: controller.focusedDay.value,
+            selectedDayPredicate: (day) =>
+                controller.selectedDay.value != null &&
+                controller.isSameDay(controller.selectedDay.value!, day),
+            // enabledDayPredicate: (day) {
+            //   DateTime now = DateTime.now();
+            //   DateTime firstDayOfPreviousMonth =
+            //       DateTime(now.year, now.month - 1, 1);
+            //   DateTime lastDayOfPreviousMonth = DateTime(now.year, now.month, 0);
+            //   return day.isAfter(
+            //           firstDayOfPreviousMonth.subtract(Duration(days: 1))) &&
+            //       day.isBefore(lastDayOfPreviousMonth.add(Duration(days: 1)));
+            // },
+            onDaySelected: (selected, focused) {
+              controller.setSelectedDay(selected);
             },
-            leftChevronIcon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: NeoSafeColors.lightPink.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(12),
+            calendarStyle: CalendarStyle(
+              outsideDaysVisible: false,
+              weekendTextStyle: TextStyle(
+                color: NeoSafeColors.secondaryText,
+                fontWeight: FontWeight.w500,
               ),
-              child: const Icon(
-                Icons.chevron_left,
-                color: NeoSafeColors.primaryPink,
+              defaultTextStyle: TextStyle(
+                color: NeoSafeColors.primaryText,
+                fontWeight: FontWeight.w500,
               ),
-            ),
-            rightChevronIcon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: NeoSafeColors.lightPink.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Icon(
-                Icons.chevron_right,
-                color: NeoSafeColors.primaryPink,
-              ),
-            ),
-          ),
-          calendarBuilders: CalendarBuilders(
-            defaultBuilder: (context, date, _) =>
-                _buildCalendarDay(context, date, controller),
-            dowBuilder: (context, day) {
-              final dayNames = [
-                'sun'.tr,
-                'mon'.tr,
-                'tue'.tr,
-                'wed'.tr,
-                'thu'.tr,
-                'fri'.tr,
-                'sat'.tr
-              ];
-              return Center(
-                child: Text(
-                  dayNames[day.weekday % 7],
-                  style: TextStyle(
-                    color: NeoSafeColors.secondaryText,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12,
+              todayDecoration: BoxDecoration(
+                color: NeoSafeColors.coralPink.withOpacity(0.7),
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: NeoSafeColors.coralPink.withOpacity(0.3),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
                   ),
+                ],
+              ),
+              selectedDecoration: BoxDecoration(
+                color: NeoSafeColors.primaryPink,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: NeoSafeColors.primaryPink.withOpacity(0.4),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              markerDecoration: const BoxDecoration(
+                color: NeoSafeColors.roseAccent,
+                shape: BoxShape.circle,
+              ),
+            ),
+            headerStyle: HeaderStyle(
+              formatButtonVisible: false,
+              titleCentered: true,
+              titleTextStyle: theme.textTheme.headlineSmall!.copyWith(
+                fontWeight: FontWeight.w700,
+                color: NeoSafeColors.primaryText,
+              ),
+              titleTextFormatter: (date, locale) {
+                final monthNames = [
+                  '',
+                  'jan'.tr,
+                  'feb'.tr,
+                  'mar'.tr,
+                  'apr'.tr,
+                  'may'.tr,
+                  'jun'.tr,
+                  'jul'.tr,
+                  'aug'.tr,
+                  'sep'.tr,
+                  'oct'.tr,
+                  'nov'.tr,
+                  'dec'.tr
+                ];
+                return '${monthNames[date.month]} ${date.year}';
+              },
+              leftChevronIcon: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: NeoSafeColors.lightPink.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-              );
-            },
-          ),
-        ),
+                child: const Icon(
+                  Icons.chevron_left,
+                  color: NeoSafeColors.primaryPink,
+                ),
+              ),
+              rightChevronIcon: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: NeoSafeColors.lightPink.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.chevron_right,
+                  color: NeoSafeColors.primaryPink,
+                ),
+              ),
+            ),
+            calendarBuilders: CalendarBuilders(
+              defaultBuilder: (context, date, _) =>
+                  _buildCalendarDay(context, date, controller),
+              dowBuilder: (context, day) {
+                final dayNames = [
+                  'sun'.tr,
+                  'mon'.tr,
+                  'tue'.tr,
+                  'wed'.tr,
+                  'thu'.tr,
+                  'fri'.tr,
+                  'sat'.tr
+                ];
+                return Center(
+                  child: Text(
+                    dayNames[day.weekday % 7],
+                    style: TextStyle(
+                      color: NeoSafeColors.secondaryText,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        }),
       ),
     );
   }

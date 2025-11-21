@@ -1,4 +1,5 @@
 import 'package:babysafe/app/modules/get_pregnant_requirements/widgets/go_to_home.dart';
+import 'package:babysafe/app/services/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
@@ -67,6 +68,7 @@ class _GetPregnantRequirementsViewState
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Get.find<ThemeService>();
     final theme = Theme.of(context);
     return GetBuilder<GetPregnantRequirementsController>(
       builder: (controller) {
@@ -91,16 +93,26 @@ class _GetPregnantRequirementsViewState
                   backgroundColor: Colors.transparent,
                   leading: const SizedBox.shrink(), // Remove back button
                   actions: [
-                    GoToHomeIconButton(),
+                    const GoToHomeIconButton(
+                      circleColor: Colors.white,
+                      iconColor: NeoSafeColors.primaryPink,
+                      top: 0,
+                    ),
+                    SizedBox(width: 12),
                     GetX<AuthService>(
                       builder: (authService) {
                         final user = authService.currentUser.value;
                         final profileImagePath = user?.profileImagePath;
-                        return Padding(
-                          padding: const EdgeInsets.only(
-                            right: 16,
-                            top: 12,
-                            left: 16,
+                        final isEnglish =
+                            (Get.locale?.languageCode ?? 'en').startsWith('en');
+                        final horizontalMargin = EdgeInsets.only(
+                          left: isEnglish ? 0 : 16,
+                          right: isEnglish ? 16 : 0,
+                        );
+                        return Container(
+                          margin: horizontalMargin,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
                           ),
                           child: GestureDetector(
                             onTap: () => Get.toNamed('/get_pregnant_profile'),
@@ -115,7 +127,7 @@ class _GetPregnantRequirementsViewState
                                   : null,
                               child: (profileImagePath == null ||
                                       profileImagePath.isEmpty)
-                                  ? Icon(Icons.person,
+                                  ? const Icon(Icons.person,
                                       color: NeoSafeColors.primaryPink,
                                       size: 28)
                                   : null,
@@ -180,12 +192,13 @@ class _GetPregnantRequirementsViewState
                   padding: const EdgeInsets.all(20),
                   sliver: SliverList(
                     delegate: SliverChildListDelegate([
+                      CycleSettingsWidget(controller: controller),
+                      const SizedBox(height: 24),
                       LegendWidget(controller: controller),
                       const SizedBox(height: 24),
                       // PregnancyStatusWidget(controller: controller),
                       // const SizedBox(height: 24),
-                      CycleSettingsWidget(controller: controller),
-                      const SizedBox(height: 24),
+
                       CalendarWidget(controller: controller, theme: theme),
                       const SizedBox(height: 24),
 
@@ -199,6 +212,7 @@ class _GetPregnantRequirementsViewState
                             ? 'speack_button_title'.tr
                             : 'speack_button_title'.tr),
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: NeoSafeColors.coralPink,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 24, vertical: 12),
                           textStyle: const TextStyle(fontSize: 18),

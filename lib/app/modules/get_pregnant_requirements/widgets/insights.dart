@@ -140,7 +140,7 @@ class _InsightCard extends StatelessWidget {
           Text(
             value,
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 12,
               fontWeight: FontWeight.w700,
               color: Colors.white,
             ),

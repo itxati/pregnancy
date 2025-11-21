@@ -226,6 +226,7 @@ import 'dart:ui';
 import '../controllers/goal_selection_controller.dart';
 import '../widgets/goal_card.dart';
 import '../../pregnancy_splash/widgets/language_switcher.dart';
+import 'package:babysafe/app/modules/profile/controllers/profile_controller.dart';
 
 class GoalSelectionView extends StatefulWidget {
   const GoalSelectionView({Key? key}) : super(key: key);
@@ -266,6 +267,10 @@ class _GoalSelectionViewState extends State<GoalSelectionView> {
   @override
   void initState() {
     super.initState();
+    // Make ProfileController permanent so it persists and updates reactively
+    if (!Get.isRegistered<ProfileController>()) {
+      Get.put(ProfileController(), permanent: true);
+    }
     Get.put(GoalSelectionController());
     _initializePostpartumCare();
   }
@@ -395,22 +400,31 @@ class _GoalSelectionViewState extends State<GoalSelectionView> {
                             SizedBox(height: responsiveHeight(2.5)),
 
                             // Goal cards
-                            GoalCard(
-                              gradient: const LinearGradient(
-                                colors: [
-                                  NeoSafeColors.palePink,
-                                  NeoSafeColors.lightPink
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              icon: Icons.favorite,
-                              iconColor: NeoSafeColors.primaryPink,
-                              title: "get_pregnant".tr,
-                              subtitle: "get_pregnant_subtitle".tr,
-                              onTap: () =>
-                                  controller.onGoalCardTap('get_pregnant'),
-                            ),
+                            Obx(() {
+                              final gender = Get.find<ProfileController>()
+                                  .userGender
+                                  .value;
+                              if (gender.toLowerCase() == 'male') {
+                                // Don't show the get_pregnant card for males
+                                return SizedBox();
+                              }
+                              return GoalCard(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    NeoSafeColors.palePink,
+                                    NeoSafeColors.lightPink
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                icon: Icons.favorite,
+                                iconColor: NeoSafeColors.primaryPink,
+                                title: "get_pregnant".tr,
+                                subtitle: "get_pregnant_subtitle".tr,
+                                onTap: () =>
+                                    controller.onGoalCardTap('get_pregnant'),
+                              );
+                            }),
                             SizedBox(height: responsiveHeight(2)),
                             GoalCard(
                               gradient: const LinearGradient(
@@ -471,23 +485,23 @@ class _GoalSelectionViewState extends State<GoalSelectionView> {
                             ),
                             SizedBox(height: responsiveHeight(2)),
 
-                            GoalCard(
-                              gradient: const LinearGradient(
-                                colors: [
-                                  NeoSafeColors.softLavender,
-                                  NeoSafeColors.palePink
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              icon: Icons.local_hospital,
-                              iconColor: NeoSafeColors.roseAccent,
-                              title: "postpartum_care".tr,
-                              subtitle: "postpartum_care_subtitle".tr,
-                              onTap: () =>
-                                  controller.onGoalCardTap('postpartum_care'),
-                            ),
-                            SizedBox(height: responsiveHeight(2)),
+                            // GoalCard(
+                            //   gradient: const LinearGradient(
+                            //     colors: [
+                            //       NeoSafeColors.softLavender,
+                            //       NeoSafeColors.palePink
+                            //     ],
+                            //     begin: Alignment.topLeft,
+                            //     end: Alignment.bottomRight,
+                            //   ),
+                            //   icon: Icons.local_hospital,
+                            //   iconColor: NeoSafeColors.roseAccent,
+                            //   title: "postpartum_care".tr,
+                            //   subtitle: "postpartum_care_subtitle".tr,
+                            //   onTap: () =>
+                            //       controller.onGoalCardTap('postpartum_care'),
+                            // ),
+                            // SizedBox(height: responsiveHeight(2)),
 
                             // GoalCard(
                             //   gradient: const LinearGradient(

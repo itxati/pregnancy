@@ -9,6 +9,7 @@ import '../../../services/notification_service.dart';
 import '../../../services/auth_service.dart';
 import '../../../services/theme_service.dart';
 import '../../weight_tracking/controllers/weight_tracking_controller.dart';
+import '../../profile/controllers/profile_controller.dart';
 
 class TrackMyPregnancyController extends GetxController
     with GetTickerProviderStateMixin {
@@ -25,6 +26,8 @@ class TrackMyPregnancyController extends GetxController
   RxString dueDate = "".obs;
   RxString babySize = "Blueberry".obs;
   RxString userName = "".obs;
+  RxString userAge = "".obs;
+  RxString userGender = "".obs;
 
   // Current week data
   Rx<PregnancyWeekData?> currentWeekData = Rx<PregnancyWeekData?>(null);
@@ -102,6 +105,7 @@ class TrackMyPregnancyController extends GetxController
   Future<void> _loadUserData() async {
     final user = authService.currentUser.value;
     String? loadedName;
+    String? loadedAge;
 
     // Load due date if available
     if (user != null && user.dueDate != null) {
@@ -114,17 +118,29 @@ class TrackMyPregnancyController extends GetxController
       // Try from AuthService onboarding data first
       final onboardingName =
           await authService.getOnboardingData('onboarding_name', userId);
+      final onboardingAge =
+          await authService.getOnboardingData('onboarding_age', userId);
       if (onboardingName != null && onboardingName.isNotEmpty) {
         loadedName = onboardingName;
       }
+      if (onboardingAge != null && onboardingAge.isNotEmpty) {
+        loadedAge = onboardingAge;
+      }
     }
 
-    // Fallback to SharedPreferences directly if still no name
+    // Fallback to SharedPreferences directly if still no name/age
     if (loadedName == null || loadedName.isEmpty) {
       final prefs = await SharedPreferences.getInstance();
       final prefsName = prefs.getString('onboarding_name');
       if (prefsName != null && prefsName.isNotEmpty) {
         loadedName = prefsName;
+      }
+    }
+    if (loadedAge == null || loadedAge.isEmpty) {
+      final prefs = await SharedPreferences.getInstance();
+      final prefsAge = prefs.getString('onboarding_age');
+      if (prefsAge != null && prefsAge.isNotEmpty) {
+        loadedAge = prefsAge;
       }
     }
 
@@ -134,9 +150,9 @@ class TrackMyPregnancyController extends GetxController
         loadedName = user.fullName;
       }
     }
-
-    // Set the username (with final fallback)
+    // If we want a fallback value for age, could add here
     userName.value = loadedName?.isNotEmpty == true ? loadedName! : 'User';
+    userAge.value = loadedAge?.isNotEmpty == true ? loadedAge! : '';
   }
 
   // Calculate pregnancy progress based on due date
@@ -159,11 +175,11 @@ class TrackMyPregnancyController extends GetxController
 
       // Determine trimester
       if (pregnancyWeek <= 12) {
-        trimester.value = "First trimester";
+        trimester.value = "first_trimester".tr;
       } else if (pregnancyWeek <= 26) {
-        trimester.value = "Second trimester";
+        trimester.value = "second_trimester".tr;
       } else {
-        trimester.value = "Third trimester";
+        trimester.value = "third_trimester".tr;
       }
     }
   }
@@ -921,8 +937,10 @@ class TrackMyPregnancyController extends GetxController
                                 children: [
                                   Text(
                                     bmi > 0
-                                        ? 'BMI: ${bmi.toStringAsFixed(1)}'
-                                        : 'BMI: --',
+                                        // ? 'BMI: ${bmi.toStringAsFixed(1)}'
+                                        // : 'BMI: --',
+                                        ? '${'bmi'.tr}: ${bmi.toStringAsFixed(1)}'
+                                        : '${'bmi'.tr}: --',
                                     style: Get.textTheme.bodyMedium?.copyWith(
                                       color: NeoSafeColors.primaryText,
                                       fontWeight: FontWeight.w700,
@@ -1227,5 +1245,36 @@ class TrackMyPregnancyController extends GetxController
         }
       });
     });
+  }
+
+  Future<void> updateUserAge(String age) async {
+    userAge.value = age;
+    if (authService.currentUser.value != null) {
+      final userId = authService.currentUser.value!.id;
+      await authService.setOnboardingData('onboarding_age', userId, age);
+    } else {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('onboarding_age', age);
+    }
+  }
+
+  Future<void> updateUserGender(String gender) async {
+    userGender.value = gender;
+    if (authService.currentUser.value != null) {
+      final userId = authService.currentUser.value!.id;
+      await authService.setOnboardingData('onboarding_gender', userId, gender);
+    } else {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('onboarding_gender', gender);
+    }
+    // Also update ProfileController if it exists
+    try {
+      if (Get.isRegistered<ProfileController>()) {
+        final profileController = Get.find<ProfileController>();
+        profileController.userGender.value = gender;
+      }
+    } catch (e) {
+      print('ProfileController not available: $e');
+    }
   }
 }

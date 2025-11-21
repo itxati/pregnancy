@@ -100,8 +100,11 @@
 //       getPages: AppPages.routes,
 //     );
 //   }
-// }
+// }s
 
+import 'package:babysafe/app/services/baby_dos_notification.dart';
+import 'package:babysafe/app/services/vaccination_notification_service.dart';
+import 'package:babysafe/app/services/breastfeeding_notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -120,9 +123,22 @@ import 'app/services/connectivity_service.dart';
 import 'app/services/image_download_service.dart';
 import 'app/services/speech_service.dart';
 import 'app/services/theme_service.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Initialize notifications
+  await TrackMyBabyDos.instance.initialize();
+  await VaccinationNotificationService.instance.initialize();
+
+  await BreastfeedingNotificationService.instance.initialize();
+  BreastfeedingNotificationService.instance.markAppReady();
+
+  await NotificationService.instance.initialize();
+  NotificationService.instance.markAppReady();
+  tz.initializeTimeZones();
+  tz.setLocalLocation(tz.getLocation('Asia/Karachi'));
 
   // Initialize Firebase
   await Firebase.initializeApp(
@@ -140,11 +156,23 @@ void main() async {
   await GetStorage.init();
 
   // Request notification permission on Android 13+
+  // final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  // await flutterLocalNotificationsPlugin
+  //     .resolvePlatformSpecificImplementation<
+  //         AndroidFlutterLocalNotificationsPlugin>()
+  //     ?.requestNotificationsPermission();
+
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.requestNotificationsPermission();
+
+  final android =
+      flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>();
+
+// 1. Notification Permission (Android 13+)
+  await android?.requestNotificationsPermission();
+
+// 2. Exact Alarm Permission (Android 12/13/14/15+)
+  await android?.requestExactAlarmsPermission();
 
   await NotificationService.instance.initialize();
 
@@ -172,6 +200,28 @@ void main() async {
     initialLocale = const Locale('en', 'US');
   }
 
+  final appTranslations = AppTranslations();
+  final localeKey =
+      '${initialLocale.languageCode}_${initialLocale.countryCode}';
+  final translations =
+      appTranslations.keys[localeKey] ?? appTranslations.keys['en_US'] ?? {};
+
+  // Schedule daily notifications using translation keys based on locale
+  await TrackMyBabyDos.instance.scheduleDaily830Notifications(
+    tipKeys: const [
+      'baby_tip_1',
+      'baby_tip_2',
+      'baby_tip_3',
+    ],
+    translations: translations,
+    titleKey: 'baby_tips_title',
+  );
+
+  // Schedule annual date-specific notifications (October 15 - Cold, March 15 - Heat/Diarrhea)
+  await TrackMyBabyDos.instance.scheduleAnnualDateNotifications(
+    translations: translations,
+  );
+
   runApp(MyApp(initialLocale: initialLocale));
 }
 
@@ -182,6 +232,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Sardar Trust',
       theme: NeoSafeTheme.lightTheme,
       translations: AppTranslations(),

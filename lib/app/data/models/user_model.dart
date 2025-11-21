@@ -39,7 +39,7 @@ class UserModel {
     this.babyBirthDate,
     this.lastPeriodStart,
     this.cycleLength = 28,
-    this.periodLength = 5,
+    this.periodLength = 7,
     this.intercourseLog = const [],
     this.dueDate,
     this.babyGender,
@@ -93,7 +93,7 @@ class UserModel {
           ? DateTime.fromMillisecondsSinceEpoch(json['lastPeriodStart'])
           : null,
       cycleLength: json['cycleLength'] ?? 28,
-      periodLength: json['periodLength'] ?? 5,
+      periodLength: json['periodLength'] ?? 7,
       intercourseLog: json['intercourseLog'] != null
           ? (json['intercourseLog'] as List)
               .map(

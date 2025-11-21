@@ -58,28 +58,19 @@ class TrackMyPregnancyView extends StatelessWidget {
           slivers: [
             // Custom App Bar
             SliverAppBar(
-              expandedHeight: 100.0,
+              expandedHeight: 0.0,
               floating: false,
               pinned: true,
               elevation: 0,
               backgroundColor: Colors.transparent,
+              toolbarHeight: 60.0,
 
               leading: const SizedBox.shrink(), // Remove back button
               actions: [
-                // BMI Button
-                // IconButton(
-                //   icon: Icon(
-                //     Icons.monitor_weight_outlined,
-                //     color: themeService.getPrimaryColor(),
-                //   ),
-                //   onPressed: () {
-                //     controller.showBMIDialog(context);
-                //   },
-                //   tooltip: 'calculate_bmi'.tr,
-                // ),
                 GestureDetector(
                   onTap: () => controller.showBMIDialog(context),
                   child: Container(
+                    height: 42,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
@@ -107,18 +98,25 @@ class TrackMyPregnancyView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 20),
+                // const SizedBox(width: 20),
                 const GoToHomeIconButton(
                   circleColor: NeoSafeColors.primaryPink,
                   iconColor: Colors.white,
                   top: 0,
                 ),
+                const SizedBox(width: 12),
                 GetX<AuthService>(
                   builder: (authService) {
                     final user = authService.currentUser.value;
                     final profileImagePath = user?.profileImagePath;
+                    final isEnglish =
+                        (Get.locale?.languageCode ?? 'en').startsWith('en');
+                    final horizontalMargin = EdgeInsets.only(
+                      left: isEnglish ? 0 : 16,
+                      right: isEnglish ? 16 : 0,
+                    );
                     return Container(
-                      margin: const EdgeInsets.only(right: 16, left: 16),
+                      margin: horizontalMargin,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -160,33 +158,33 @@ class TrackMyPregnancyView extends StatelessWidget {
                   },
                 ),
               ],
-              flexibleSpace: FlexibleSpaceBar(
-                background: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "today".tr,
-                              style: theme.textTheme.displaySmall?.copyWith(
-                                color: const Color(
-                                    0xFF3D2929), // NeoSafeColors.primaryText
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            // const SyncIndicator(),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // flexibleSpace: FlexibleSpaceBar(
+              //   background: SafeArea(
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(20),
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         mainAxisAlignment: MainAxisAlignment.end,
+              //         children: [
+              //           Row(
+              //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //             children: [
+              //               Text(
+              //                 "today".tr,
+              //                 style: theme.textTheme.displaySmall?.copyWith(
+              //                   color: const Color(
+              //                       0xFF3D2929), // NeoSafeColors.primaryText
+              //                   fontWeight: FontWeight.w700,
+              //                 ),
+              //               ),
+              //               // const SyncIndicator(),
+              //             ],
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ),
 
             SliverPadding(
@@ -197,8 +195,8 @@ class TrackMyPregnancyView extends StatelessWidget {
                   // const OfflineIndicator(),
 
                   // Main Pregnancy Card
-                  MainPregnancyCard(controller: controller),
-                  const SizedBox(height: 24),
+                  // MainPregnancyCard(controller: controller),
+                  // const SizedBox(height: 24),
 
                   // // Pregnancy Status Card
                   PregnancyStatusCard(controller: controller),
@@ -206,9 +204,9 @@ class TrackMyPregnancyView extends StatelessWidget {
                   const SizedBox(height: 24),
 
                   // Weekly Update Card
-                  WeeklyUpdateCard(controller: controller),
+                  // WeeklyUpdateCard(controller: controller),
 
-                  const SizedBox(height: 24),
+                  // const SizedBox(height: 24),
 
                   // Timeline Card
                   TimelineCard(controller: controller),
@@ -220,28 +218,35 @@ class TrackMyPregnancyView extends StatelessWidget {
                   const SizedBox(height: 24),
 
                   // Weight Tracking Card (only show if BMI is calculated)
-                  Obx(() {
-                    WeightTrackingController weightController;
-                    if (Get.isRegistered<WeightTrackingController>()) {
-                      weightController = Get.find<WeightTrackingController>();
-                    } else {
-                      weightController = Get.put(WeightTrackingController());
-                    }
-                    // Sync gestational week and trimester
-                    weightController.setCurrentGestationalWeek(
-                        controller.pregnancyWeekNumber.value);
+                  Builder(
+                    builder: (context) {
+                      WeightTrackingController weightController;
+                      if (Get.isRegistered<WeightTrackingController>()) {
+                        weightController = Get.find<WeightTrackingController>();
+                      } else {
+                        weightController = Get.put(WeightTrackingController());
+                      }
+                      // Sync gestational week and trimester
+                      weightController.setCurrentGestationalWeek(
+                          controller.pregnancyWeekNumber.value);
 
-                    // Only show card if BMI is calculated (height and weight are set)
-                    if (weightController.prePregnancyWeight.value > 0 &&
-                        weightController.height.value > 0) {
-                      return WeightTrackingCard(controller: weightController);
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  }),
+                      return Obx(() {
+                        // Observe the reactive values directly to ensure rebuild
+                        final weight =
+                            weightController.prePregnancyWeight.value;
+                        final height = weightController.height.value;
 
+                        // Only show card if BMI is calculated (height and weight are set)
+                        if (weight > 0 && height > 0) {
+                          return WeightTrackingCard(
+                              controller: weightController);
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      });
+                    },
+                  ),
                   const SizedBox(height: 24),
-
                   // Risk Assessment Card
                   Obx(() {
                     RiskAssessmentController riskController;

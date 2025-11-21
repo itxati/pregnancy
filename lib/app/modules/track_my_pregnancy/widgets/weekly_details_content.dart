@@ -49,7 +49,7 @@ class WeeklyDetailsContent extends StatelessWidget {
                                 color: NeoSafeColors.primaryPink, size: 22),
                             const SizedBox(height: 4),
                             Text(
-                              weekData.length,
+                              weekData.length.tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall

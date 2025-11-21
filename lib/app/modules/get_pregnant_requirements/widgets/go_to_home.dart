@@ -16,11 +16,13 @@ class GoToHomeIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isEnglish = (Get.locale?.languageCode ?? 'en').startsWith('en');
+    final horizontalMargin = EdgeInsets.only(
+      left: isEnglish ? 16 : 0,
+      right: isEnglish ? 0 : 16,
+    );
     return Padding(
-      padding: EdgeInsets.only(
-        top: top,
-        left: 16,
-      ),
+      padding: horizontalMargin,
       child: GestureDetector(
         onTap: () => Get.toNamed('/goal_selection'),
         child: CircleAvatar(

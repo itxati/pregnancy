@@ -10,6 +10,7 @@ class SpeechService extends GetxController {
   final RxBool _isPlaying = false.obs;
   final RxString _currentText = ''.obs;
   final RxBool _isInitialized = false.obs;
+  final RxBool _isPaused = false.obs;
 
   bool get isPlaying => _isPlaying.value;
   String get currentText => _currentText.value;
@@ -60,24 +61,29 @@ class SpeechService extends GetxController {
     flutterTts.setStartHandler(() {
       print('[TTS] setStartHandler called');
       _isPlaying.value = true;
+      _isPaused.value = false;
     });
     flutterTts.setCompletionHandler(() {
       print('[TTS] setCompletionHandler called');
       _isPlaying.value = false;
+      _isPaused.value = false;
       _currentText.value = '';
     });
     flutterTts.setCancelHandler(() {
       print('[TTS] setCancelHandler called');
       _isPlaying.value = false;
+      _isPaused.value = false;
       _currentText.value = '';
     });
     flutterTts.setPauseHandler(() {
       print('[TTS] setPauseHandler called');
       _isPlaying.value = false;
+      _isPaused.value = true;
     });
     flutterTts.setContinueHandler(() {
       print('[TTS] setContinueHandler called');
       _isPlaying.value = true;
+      _isPaused.value = false;
     });
     flutterTts.setErrorHandler((msg) {
       print('[TTS] setErrorHandler called: $msg');
@@ -96,9 +102,14 @@ class SpeechService extends GetxController {
         initTts();
         await Future.delayed(const Duration(milliseconds: 500));
       }
-      // If already playing this text, stop
+      // If paused and same text, resume instead of restarting
+      if (_isPaused.value && _currentText.value == text) {
+        await resume();
+        return;
+      }
+      // If already playing this text, pause it
       if (_isPlaying.value && _currentText.value == text) {
-        await stop();
+        await pause();
         return;
       }
       // If playing something else, stop and play new text
@@ -106,6 +117,7 @@ class SpeechService extends GetxController {
         await stop();
       }
       _currentText.value = text;
+      _isPaused.value = false;
       await flutterTts.speak(text);
     } catch (e) {
       print("Error in speak method: $e");
@@ -121,14 +133,42 @@ class SpeechService extends GetxController {
     }
   }
 
+  Future<void> resume() async {
+    try {
+      // FlutterTts doesn't have a direct resume method, so we restart from the beginning
+      // This is a common limitation - we'll restart the speech
+      if (_currentText.value.isNotEmpty && _isPaused.value) {
+        final textToResume = _currentText.value;
+        await flutterTts.stop();
+        await Future.delayed(const Duration(milliseconds: 100));
+        _isPaused.value = false;
+        await flutterTts.speak(textToResume);
+      }
+    } catch (e) {
+      print("Error in resume: $e");
+    }
+  }
+
   Future<void> stop() async {
     try {
       await flutterTts.stop();
       _isPlaying.value = false;
+      _isPaused.value = false;
       _currentText.value = '';
     } catch (e) {
       print("Error in stop: $e");
     }
+  }
+
+  // Check if speech is paused (not playing but has current text)
+  bool isPaused() {
+    return _isPaused.value && _currentText.value.isNotEmpty;
+  }
+
+  // Check if specific text is paused
+  bool isTextPaused(String text) {
+    return _isPaused.value &&
+        _currentText.value.trim().toLowerCase() == text.trim().toLowerCase();
   }
 
   bool isCurrentTextPlaying(String text) {
