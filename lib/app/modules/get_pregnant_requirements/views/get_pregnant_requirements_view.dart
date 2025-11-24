@@ -14,6 +14,7 @@ import '../widgets/cycle_settings.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import 'package:babysafe/app/services/auth_service.dart';
 import 'dart:io';
+import '../../../services/goal_service.dart';
 
 class GetPregnantRequirementsView extends StatefulWidget {
   const GetPregnantRequirementsView({super.key});
@@ -68,6 +69,7 @@ class _GetPregnantRequirementsViewState
 
   @override
   Widget build(BuildContext context) {
+    GlobalGoal().goal = "get_pregnant";
     final themeService = Get.find<ThemeService>();
     final theme = Theme.of(context);
     return GetBuilder<GetPregnantRequirementsController>(

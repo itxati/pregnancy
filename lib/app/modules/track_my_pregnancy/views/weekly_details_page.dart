@@ -6,6 +6,7 @@ import 'package:babysafe/app/modules/track_my_pregnancy/views/track_my_pregnancy
 import 'package:babysafe/app/modules/track_my_pregnancy/views/track_my_pregnancy_view.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/widgets/main_pregnancy_card.dart';
 import 'package:babysafe/app/services/auth_service.dart';
+import 'package:babysafe/app/services/goal_service.dart';
 import 'package:babysafe/app/services/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,7 @@ class WeeklyDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalGoal().goal = "track_pregnancy";
     // Initialize binding
     WeeklyDetailsBinding().dependencies();
     final controller = Get.find<WeeklyDetailsController>();

@@ -227,6 +227,7 @@ import '../controllers/goal_selection_controller.dart';
 import '../widgets/goal_card.dart';
 import '../../pregnancy_splash/widgets/language_switcher.dart';
 import 'package:babysafe/app/modules/profile/controllers/profile_controller.dart';
+import '../../../services/goal_service.dart';
 
 class GoalSelectionView extends StatefulWidget {
   const GoalSelectionView({Key? key}) : super(key: key);
@@ -284,6 +285,7 @@ class _GoalSelectionViewState extends State<GoalSelectionView> {
 
   @override
   Widget build(BuildContext context) {
+    
     // Get screen dimensions
     final size = MediaQuery.of(context).size;
     final width = size.width;

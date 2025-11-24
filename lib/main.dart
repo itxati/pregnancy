@@ -122,12 +122,15 @@ import 'app/services/article_service.dart';
 import 'app/services/connectivity_service.dart';
 import 'app/services/image_download_service.dart';
 import 'app/services/speech_service.dart';
+import 'app/services/goal_service.dart';
 import 'app/services/theme_service.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await GlobalGoal().init();
   // Initialize notifications
   await TrackMyBabyDos.instance.initialize();
   await VaccinationNotificationService.instance.initialize();
