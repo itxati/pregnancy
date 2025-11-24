@@ -1,8 +1,7 @@
+import 'package:babysafe/app/modules/track_my_pregnancy/views/birth_preparedness_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/utils/neo_safe_theme.dart';
-import 'package:babysafe/app/services/theme_service.dart';
-import '../views/birth_preparedness_detail_view.dart';
 
 class BirthPreparednessItem {
   final IconData icon;
@@ -72,7 +71,6 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final themeService = Get.find<ThemeService>();
     return AnimatedContainer(
       duration: const Duration(milliseconds: 350),
       curve: Curves.easeInOut,
@@ -80,28 +78,28 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            themeService.getPaleColor().withOpacity(0.3),
-            themeService.getPaleColor().withOpacity(0.8),
-            themeService.getBabyColor().withOpacity(0.6),
-            themeService.getLightColor().withOpacity(0.4),
+            NeoSafeColors.palePink.withOpacity(0.3),
+            NeoSafeColors.palePink.withOpacity(0.8),
+            NeoSafeColors.babyPink.withOpacity(0.6),
+            NeoSafeColors.lightPink.withOpacity(0.4),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(28),
         border: Border.all(
-          color: themeService.getPaleColor().withOpacity(0.3),
+          color: NeoSafeColors.palePink.withOpacity(0.3),
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: themeService.getPaleColor().withOpacity(0.2),
+            color: NeoSafeColors.palePink.withOpacity(0.2),
             blurRadius: 20,
             offset: const Offset(0, 10),
             spreadRadius: 3,
           ),
           BoxShadow(
-            color: themeService.getPrimaryColor().withOpacity(0.1),
+            color: NeoSafeColors.primaryPink.withOpacity(0.1),
             blurRadius: 40,
             offset: const Offset(0, 20),
             spreadRadius: 5,
@@ -144,14 +142,14 @@ class _BirthPreparednessCardState extends State<BirthPreparednessCard> {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
-                            themeService.getPaleColor().withOpacity(0.9),
-                            themeService.getPrimaryColor().withOpacity(0.8),
+                            NeoSafeColors.palePink.withOpacity(0.9),
+                            NeoSafeColors.primaryPink.withOpacity(0.8),
                           ],
                         ),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: themeService.getPaleColor().withOpacity(0.4),
+                            color: NeoSafeColors.palePink.withOpacity(0.4),
                             blurRadius: 12,
                             offset: const Offset(0, 6),
                           ),

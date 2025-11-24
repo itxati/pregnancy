@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/services/article_service.dart';
-import 'package:babysafe/app/services/theme_service.dart';
+import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/views/article_page.dart';
 // Removed SmartImage usage for article cards
 import '../controllers/track_my_pregnancy_controller.dart';
@@ -109,7 +109,6 @@ class EssentialReadsSection extends StatelessWidget {
     double aspectRatio = 1.5,
     VoidCallback? onTap,
   }) {
-    final themeService = Get.find<ThemeService>();
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -117,12 +116,12 @@ class EssentialReadsSection extends StatelessWidget {
           color: const Color(0xFFFFFAFA),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: themeService.getPrimaryColor().withOpacity(0.1),
+            color: NeoSafeColors.primaryPink.withOpacity(0.1),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: themeService.getPrimaryColor().withOpacity(0.1),
+              color: NeoSafeColors.primaryPink.withOpacity(0.1),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -137,8 +136,8 @@ class EssentialReadsSection extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      themeService.getPaleColor().withOpacity(0.8),
-                      themeService.getBabyColor().withOpacity(0.6),
+                      NeoSafeColors.lightPink.withOpacity(0.8),
+                      NeoSafeColors.palePink.withOpacity(0.6),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -239,20 +238,19 @@ class _ArticleTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Get.find<ThemeService>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            themeService.getPrimaryColor().withOpacity(0.9),
-            themeService.getAccentColor().withOpacity(0.9),
+            NeoSafeColors.primaryPink.withOpacity(0.9),
+            NeoSafeColors.lightPink.withOpacity(0.9),
           ],
         ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: themeService.getPrimaryColor().withOpacity(0.3),
+            color: NeoSafeColors.primaryPink.withOpacity(0.3),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),

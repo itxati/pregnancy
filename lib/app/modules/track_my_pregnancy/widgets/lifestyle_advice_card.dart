@@ -26,27 +26,27 @@ class _LifeStyleAdviceCardState extends State<LifeStyleAdviceCard> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            themeService.getPaleColor().withOpacity(0.9),
-            themeService.getLightColor().withOpacity(0.8),
-            themeService.getBabyColor().withOpacity(0.7),
+            NeoSafeColors.palePink.withOpacity(0.9),
+            NeoSafeColors.lightPink.withOpacity(0.8),
+            NeoSafeColors.babyPink.withOpacity(0.7),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: themeService.getLightColor().withOpacity(0.2),
+          color: NeoSafeColors.lightPink.withOpacity(0.2),
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: themeService.getLightColor().withOpacity(0.15),
+            color: NeoSafeColors.lightPink.withOpacity(0.15),
             blurRadius: 20,
             offset: const Offset(0, 8),
             spreadRadius: 2,
           ),
           BoxShadow(
-            color: themeService.getLightColor().withOpacity(0.05),
+            color: NeoSafeColors.lightPink.withOpacity(0.05),
             blurRadius: 40,
             offset: const Offset(0, 16),
             spreadRadius: 4,

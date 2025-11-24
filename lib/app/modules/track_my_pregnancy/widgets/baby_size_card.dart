@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:babysafe/app/services/theme_service.dart';
+import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import '../controllers/track_my_pregnancy_controller.dart';
 
 class BabySizeCard extends StatelessWidget {
@@ -13,7 +13,6 @@ class BabySizeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Get.find<ThemeService>();
     final weekData = controller.currentWeekData.value;
     final String? comparison = weekData?.comparison;
 
@@ -48,9 +47,9 @@ class BabySizeCard extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              themeService.getPaleColor().withOpacity(0.8),
-              themeService.getLightColor(),
-              themeService.getBabyColor(),
+              NeoSafeColors.palePink.withOpacity(0.8),
+              NeoSafeColors.lightPink,
+              NeoSafeColors.babyPink,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -58,7 +57,7 @@ class BabySizeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: themeService.getLightColor().withOpacity(0.3),
+              color: NeoSafeColors.lightPink.withOpacity(0.3),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -77,9 +76,9 @@ class BabySizeCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          themeService.getPaleColor().withOpacity(0.8),
-                          themeService.getLightColor(),
-                          themeService.getBabyColor(),
+                          NeoSafeColors.palePink.withOpacity(0.8),
+                          NeoSafeColors.lightPink,
+                          NeoSafeColors.babyPink,
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,

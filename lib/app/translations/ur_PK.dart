@@ -4319,5 +4319,7 @@ final Map<String, String> urPK = {
   "gestational_age_format": "@weeks ہفتے @days دن",
   'due_date_format': '@day @month @year',
   'pregnancy_countdown_notification':
-      'زچگی کی متوقع تاریخ میں @days دن باقی ہیں۔ صحت کا خیال رکھیں!'
+      'زچگی کی متوقع تاریخ میں @days دن باقی ہیں۔ صحت کا خیال رکھیں!',
+  "age_day": "دن",
+  "age_days": "دن",
 };

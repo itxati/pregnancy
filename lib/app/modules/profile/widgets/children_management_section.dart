@@ -269,12 +269,19 @@ class ChildrenManagementSection extends StatelessWidget {
                         height: 56,
                         child: ElevatedButton.icon(
                           onPressed: () async {
+                            final now = DateTime.now();
+                            final earliestDate =
+                                DateTime(now.year - 8, now.month, now.day);
                             final DateTime? pickedDate = await showDatePicker(
                               context: context,
                               initialDate: dob ?? DateTime.now(),
-                              firstDate: DateTime.now()
-                                  .subtract(const Duration(days: 365 * 10)),
-                              lastDate: DateTime.now(),
+                              firstDate: earliestDate,
+                              lastDate: now,
+                              selectableDayPredicate: (day) {
+                                if (day.isAfter(now)) return false;
+                                if (day.isBefore(earliestDate)) return false;
+                                return true;
+                              },
                               builder: (context, child) {
                                 final themeService = Get.find<ThemeService>();
                                 return Theme(

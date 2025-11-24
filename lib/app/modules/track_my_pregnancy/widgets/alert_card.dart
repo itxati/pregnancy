@@ -2,44 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:babysafe/app/data/models/pregnancy_weeks.dart';
 import 'package:babysafe/app/modules/track_my_pregnancy/controllers/track_my_pregnancy_controller.dart';
-import 'package:babysafe/app/services/theme_service.dart';
+import 'package:babysafe/app/utils/neo_safe_theme.dart';
 
 class AlertCard extends StatelessWidget {
   final TrackMyPregnancyController controller;
 
   const AlertCard({super.key, required this.controller});
 
+
+
   @override
   Widget build(BuildContext context) {
-    final themeService = Get.find<ThemeService>();
     final currentWeek = controller.pregnancyWeekNumber.value;
-    final alerts = pregnancyWeeks[currentWeek]?.alerts;
+    final alerts = pregnancyWeeks[currentWeek].alerts;
 
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            themeService.getPaleColor().withOpacity(0.9),
-            themeService.getBabyColor().withOpacity(0.8),
-            themeService.getLightColor().withOpacity(0.7),
+            NeoSafeColors.palePink.withOpacity(0.9),
+            NeoSafeColors.babyPink.withOpacity(0.8),
+            NeoSafeColors.lightPink.withOpacity(0.7),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: themeService.getPrimaryColor().withOpacity(0.2),
+          color: NeoSafeColors.primaryPink.withOpacity(0.2),
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: themeService.getPrimaryColor().withOpacity(0.15),
+            color: NeoSafeColors.primaryPink.withOpacity(0.15),
             blurRadius: 20,
             offset: const Offset(0, 8),
             spreadRadius: 2,
           ),
           BoxShadow(
-            color: themeService.getPrimaryColor().withOpacity(0.05),
+            color: NeoSafeColors.primaryPink.withOpacity(0.05),
             blurRadius: 40,
             offset: const Offset(0, 16),
             spreadRadius: 4,
@@ -59,7 +60,7 @@ class AlertCard extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    themeService.getPrimaryColor().withOpacity(0.1),
+                    NeoSafeColors.primaryPink.withOpacity(0.1),
                     Colors.transparent,
                   ],
                 ),
@@ -99,15 +100,14 @@ class AlertCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
-                            themeService.getPrimaryColor().withOpacity(0.9),
-                            themeService.getAccentColor().withOpacity(0.8),
+                            NeoSafeColors.primaryPink.withOpacity(0.9),
+                            NeoSafeColors.roseAccent.withOpacity(0.8),
                           ],
                         ),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color:
-                                themeService.getPrimaryColor().withOpacity(0.3),
+                            color: NeoSafeColors.primaryPink.withOpacity(0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 4),
                           ),
@@ -158,7 +158,7 @@ class AlertCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: themeService.getPrimaryColor(),
+                          color: NeoSafeColors.primaryPink,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -190,15 +190,12 @@ class AlertCard extends StatelessWidget {
                         color: Colors.white.withOpacity(0.7),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color:
-                              themeService.getPrimaryColor().withOpacity(0.1),
+                          color: NeoSafeColors.primaryPink.withOpacity(0.1),
                           width: 1,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: themeService
-                                .getPrimaryColor()
-                                .withOpacity(0.08),
+                            color: NeoSafeColors.primaryPink.withOpacity(0.08),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
                           ),
@@ -215,15 +212,14 @@ class AlertCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
-                                  themeService.getPrimaryColor(),
-                                  themeService.getAccentColor(),
+                                  NeoSafeColors.primaryPink,
+                                  NeoSafeColors.roseAccent,
                                 ],
                               ),
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: themeService
-                                      .getPrimaryColor()
+                                  color: NeoSafeColors.primaryPink
                                       .withOpacity(0.4),
                                   blurRadius: 4,
                                   offset: const Offset(0, 1),
@@ -260,7 +256,7 @@ class AlertCard extends StatelessWidget {
                       color: Colors.white.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: themeService.getPrimaryColor().withOpacity(0.1),
+                        color: NeoSafeColors.primaryPink.withOpacity(0.1),
                         width: 1,
                       ),
                     ),

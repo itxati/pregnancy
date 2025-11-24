@@ -1201,6 +1201,8 @@ class GoalSelectionController extends GetxController {
   }
 
   void _showBabyBirthDateBottomSheet() {
+    final now = DateTime.now();
+    final earliestDate = DateTime(now.year - 8, now.month, now.day);
     final screenWidth = MediaQuery.of(Get.context!).size.width;
     final screenHeight = MediaQuery.of(Get.context!).size.height;
 
@@ -1410,9 +1412,13 @@ class GoalSelectionController extends GetxController {
                             final DateTime? pickedDate = await showDatePicker(
                               context: Get.context!,
                               initialDate: DateTime.now(),
-                              firstDate: DateTime.now()
-                                  .subtract(const Duration(days: 365 * 10)),
-                              lastDate: DateTime.now(),
+                              firstDate: earliestDate,
+                              lastDate: now,
+                              selectableDayPredicate: (day) {
+                                if (day.isAfter(now)) return false;
+                                if (day.isBefore(earliestDate)) return false;
+                                return true;
+                              },
                               builder: (context, child) {
                                 return Theme(
                                   data: ThemeData.light().copyWith(
@@ -1554,9 +1560,13 @@ class GoalSelectionController extends GetxController {
                             final DateTime? pickedDate = await showDatePicker(
                               context: Get.context!,
                               initialDate: DateTime.now(),
-                              firstDate: DateTime.now()
-                                  .subtract(const Duration(days: 365 * 10)),
-                              lastDate: DateTime.now(),
+                              firstDate: earliestDate,
+                              lastDate: now,
+                              selectableDayPredicate: (day) {
+                                if (day.isAfter(now)) return false;
+                                if (day.isBefore(earliestDate)) return false;
+                                return true;
+                              },
                               builder: (context, child) {
                                 return Theme(
                                   data: ThemeData.light().copyWith(

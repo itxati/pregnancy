@@ -261,19 +261,27 @@ class _PregnancyProfileHeader extends StatelessWidget {
 
     Get.dialog(
       AlertDialog(
-        title: Text('edit_name'.tr),
+        backgroundColor: NeoSafeColors.creamWhite,
+        title: Text('edit_name'.tr,
+            style: TextStyle(color: NeoSafeColors.primaryText)),
         content: TextField(
           controller: nameController,
           decoration: InputDecoration(
             labelText: 'name'.tr,
-            border: const OutlineInputBorder(),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(color: NeoSafeColors.primaryPink),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: NeoSafeColors.primaryPink),
+            ),
           ),
           autofocus: true,
         ),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: Text('cancel'.tr),
+            child: Text('cancel'.tr,
+                style: TextStyle(color: NeoSafeColors.primaryPink)),
           ),
           ElevatedButton(
             onPressed: () async {
@@ -551,12 +559,15 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
   void _showEditPurposeDialog(BuildContext context, String? currentPurpose) {
     Get.dialog(
       AlertDialog(
-        title: Text('edit_purpose'.tr),
+        backgroundColor: NeoSafeColors.creamWhite,
+        title: Text('edit_purpose'.tr,
+            style: TextStyle(color: NeoSafeColors.primaryText)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: Text('trying_to_conceive'.tr),
+              title: Text('trying_to_conceive'.tr,
+                  style: TextStyle(color: NeoSafeColors.primaryText)),
               leading: Radio<String>(
                 value: 'get_pregnant',
                 groupValue: currentPurpose,
@@ -567,7 +578,8 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('pregnant'.tr),
+              title: Text('pregnant'.tr,
+                  style: TextStyle(color: NeoSafeColors.primaryText)),
               leading: Radio<String>(
                 value: 'pregnant',
                 groupValue: currentPurpose,
@@ -578,7 +590,8 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('have_baby'.tr),
+              title: Text('have_baby'.tr,
+                  style: TextStyle(color: NeoSafeColors.primaryText)),
               leading: Radio<String>(
                 value: 'have_baby',
                 groupValue: currentPurpose,
@@ -601,7 +614,8 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: Text('cancel'.tr),
+            child: Text('cancel'.tr,
+                style: TextStyle(color: NeoSafeColors.primaryPink)),
           ),
         ],
       ),
@@ -641,12 +655,15 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
         : controller.userGender.value;
     Get.dialog(
       AlertDialog(
-        title: Text('edit_gender'.tr),
+        backgroundColor: NeoSafeColors.creamWhite,
+        title: Text('edit_gender'.tr,
+            style: TextStyle(color: NeoSafeColors.primaryText)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: Text('male'.tr),
+              title: Text('male'.tr,
+                  style: TextStyle(color: NeoSafeColors.primaryText)),
               leading: Radio<String>(
                 value: 'male',
                 groupValue: selectedValue,
@@ -661,7 +678,8 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('female'.tr),
+              title: Text('female'.tr,
+                  style: TextStyle(color: NeoSafeColors.primaryText)),
               leading: Radio<String>(
                 value: 'female',
                 groupValue: selectedValue,
@@ -680,7 +698,8 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: Text('cancel'.tr),
+            child: Text('cancel'.tr,
+                style: TextStyle(color: NeoSafeColors.primaryPink)),
           ),
         ],
       ),
@@ -723,12 +742,20 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('edit_age'.tr),
+        backgroundColor: NeoSafeColors.creamWhite,
+        title: Text('edit_age'.tr,
+            style: TextStyle(color: NeoSafeColors.primaryText)),
         content: TextField(
           controller: ageController,
           decoration: InputDecoration(
             labelText: 'age'.tr,
-            border: const OutlineInputBorder(),
+            labelStyle: TextStyle(color: NeoSafeColors.primaryPink),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(color: NeoSafeColors.primaryPink),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: NeoSafeColors.primaryPink),
+            ),
           ),
           keyboardType: TextInputType.number,
           autofocus: true,
@@ -736,7 +763,8 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('cancel'.tr),
+            child: Text('cancel'.tr,
+                style: TextStyle(color: NeoSafeColors.primaryPink)),
           ),
           TextButton(
             onPressed: () async {
@@ -762,7 +790,8 @@ class _PregnancyBasicDetailsSection extends StatelessWidget {
                 colorText: NeoSafeColors.success,
               );
             },
-            child: Text('save'.tr),
+            child: Text('save'.tr,
+                style: TextStyle(color: NeoSafeColors.primaryPink)),
           ),
         ],
       ),

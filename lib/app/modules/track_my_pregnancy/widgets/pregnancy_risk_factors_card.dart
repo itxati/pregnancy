@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:babysafe/app/utils/neo_safe_theme.dart';
 
 class PregnancyRiskFactorsCard extends StatefulWidget {
   const PregnancyRiskFactorsCard({Key? key}) : super(key: key);
@@ -49,24 +50,34 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        gradient: const LinearGradient(
-          colors: [Color(0xFFFFEBEE), Color(0xFFFFF5F5), Color(0xFFFFFFFF)],
+       
+       
+         gradient: LinearGradient(
+          colors: [
+            NeoSafeColors.palePink.withOpacity(0.9),
+            NeoSafeColors.babyPink.withOpacity(0.8),
+            NeoSafeColors.lightPink.withOpacity(0.7),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: NeoSafeColors.primaryPink.withOpacity(0.2),
+          width: 1.5,
+        ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFEF5350).withOpacity(0.15),
+            color: NeoSafeColors.primaryPink.withOpacity(0.15),
             blurRadius: 20,
             offset: const Offset(0, 8),
-            spreadRadius: -2,
+            spreadRadius: 2,
           ),
           BoxShadow(
-            color: const Color(0xFFE53935).withOpacity(0.06),
+            color: NeoSafeColors.primaryPink.withOpacity(0.05),
             blurRadius: 40,
             offset: const Offset(0, 16),
-            spreadRadius: -8,
+            spreadRadius: 4,
           ),
         ],
       ),
@@ -86,11 +97,15 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFFEF5350), Color(0xFFFF8A80)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
+                        color:NeoSafeColors.primaryPink,
+                        // gradient: const LinearGradient(
+                        //   colors: [
+                        //     NeoSafeColors.error,
+                        //     NeoSafeColors.primaryPink
+                        //   ],
+                        //   begin: Alignment.topLeft,
+                        //   end: Alignment.bottomRight,
+                        // ),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: const Icon(
@@ -105,8 +120,8 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                         'risk_factors_danger_signs'.tr,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Color(0xFFC62828),
+                          fontSize: 18,
+                          color: NeoSafeColors.primaryText,
                           letterSpacing: -0.5,
                         ),
                       ),
@@ -116,12 +131,12 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEF5350).withOpacity(0.11),
+                          color: NeoSafeColors.error.withOpacity(0.12),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
                           Icons.keyboard_arrow_down_rounded,
-                          color: Color(0xFFE53935),
+                         color: Color(0xFFD16B6B),
                           size: 24,
                         ),
                       ),
@@ -162,7 +177,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEF5350).withOpacity(0.10),
+                          color: NeoSafeColors.error.withOpacity(0.10),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Row(
@@ -172,7 +187,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                               'tap_to_learn_more'.tr,
                               style: const TextStyle(
                                 fontSize: 13,
-                                color: Color(0xFFC62828),
+                               color: Color(0xFFD16B6B),
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -180,7 +195,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                             Icon(
                               Icons.touch_app_rounded,
                               size: 16,
-                              color: Color(0xFFE53935),
+                              color: Color(0xFFD16B6B),
                             ),
                           ],
                         ),
@@ -201,12 +216,12 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: const Color(0xFFFF8A80).withOpacity(0.22),
+            color: NeoSafeColors.blushRose.withOpacity(0.22),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Icon(
             icon,
-            color: const Color(0xFFE53935),
+            color: NeoSafeColors.error,
             size: 20,
           ),
         ),
@@ -215,8 +230,8 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
           child: Text(
             text,
             style: const TextStyle(
-              fontSize: 15,
-              color: Color(0xFFB71C1C),
+              fontSize: 13,
+              color: NeoSafeColors.primaryText,
               fontWeight: FontWeight.w500,
               height: 1.3,
             ),
@@ -237,7 +252,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
             gradient: LinearGradient(
               colors: [
                 Colors.transparent,
-                const Color(0xFFEF5350).withOpacity(0.33),
+                NeoSafeColors.error.withOpacity(0.33),
                 Colors.transparent,
               ],
             ),
@@ -297,15 +312,15 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color(0xFFFF8A80).withOpacity(0.14),
-                const Color(0xFFEF5350).withOpacity(0.13),
+                NeoSafeColors.blushRose.withOpacity(0.14),
+                NeoSafeColors.error.withOpacity(0.13),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: const Color(0xFFEF5350).withOpacity(0.25),
+              color: NeoSafeColors.error.withOpacity(0.25),
               width: 1,
             ),
           ),
@@ -319,7 +334,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                 ),
                 child: const Icon(
                   Icons.emergency_rounded,
-                  color: Color(0xFFE53935),
+                  color: NeoSafeColors.error,
                   size: 24,
                 ),
               ),
@@ -328,9 +343,9 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                 child: Text(
                   'danger_signs_seek_medical_care'.tr,
                   style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFFC62828),
-                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: NeoSafeColors.primaryText,
+                    fontSize: 12,
                     height: 1.4,
                   ),
                 ),
@@ -350,7 +365,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
           height: 20,
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [Color(0xFFEF5350), Color(0xFFE53935)],
+              colors: [NeoSafeColors.error, NeoSafeColors.error],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -363,7 +378,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 17,
-            color: Color(0xFFE53935),
+            color: NeoSafeColors.primaryText,
             letterSpacing: -0.3,
           ),
         ),
@@ -379,7 +394,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
         style: const TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 15.5,
-          color: Color(0xFFC62828),
+          color: NeoSafeColors.primaryText,
         ),
       ),
     );
@@ -396,7 +411,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
         text,
         style: const TextStyle(
           fontSize: 14.5,
-          color: Color(0xFFB71C1C),
+          color: NeoSafeColors.error,
           height: 1.5,
         ),
       ),
@@ -418,7 +433,7 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                       height: 6,
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Color(0xFFEF5350), Color(0xFFE53935)],
+                          colors: [NeoSafeColors.error, NeoSafeColors.error],
                         ),
                         shape: BoxShape.circle,
                       ),
@@ -428,8 +443,8 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
                       child: Text(
                         item,
                         style: const TextStyle(
-                          fontSize: 14.5,
-                          color: Color(0xFFB71C1C),
+                          fontSize: 13,
+                          color: NeoSafeColors.primaryText,
                           height: 1.5,
                         ),
                       ),
@@ -440,4 +455,4 @@ class _PregnancyRiskFactorsCardState extends State<PregnancyRiskFactorsCard>
           .toList(),
     );
   }
-}
+} 

@@ -4375,5 +4375,7 @@ final Map<String, String> skrPK = {
   "gestational_age_format": "@weeks ہفتے @days دن",
   'due_date_format': '@day @month @year',
   'pregnancy_countdown_notification':
-      'زچگی دی متوقع تاریخ وچ @days دن باقی ہن۔ صحت دا خیال رکھیو!'
+      'زچگی دی متوقع تاریخ وچ @days دن باقی ہن۔ صحت دا خیال رکھیو!',
+  "age_day": "دن",
+  "age_days": "دن",
 };

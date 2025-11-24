@@ -4196,6 +4196,9 @@ final Map<String, String> enUS = {
   "age_week": "Week",
   "age_weeks": "Weeks",
 
+  "age_day": "Day",
+  "age_days": "Days",
+
   "milestone_newborn": "Newborn",
 
   "milestone_week": "Week",
@@ -4334,4 +4337,5 @@ final Map<String, String> enUS = {
   'due_date_format': '@day @month @year',
   'pregnancy_countdown_notification':
       '@days days left until your due date. Stay healthy!',
+
 };

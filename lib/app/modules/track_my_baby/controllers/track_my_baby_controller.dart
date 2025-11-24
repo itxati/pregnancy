@@ -379,6 +379,7 @@ class TrackMyBabyController extends GetxController {
 
     babyAgeInDays.value = difference.inDays;
     babyAgeInWeeks.value = (difference.inDays / 7).floor();
+
     babyAgeInMonths.value = _calculateMonths(birthDate.value, now);
   }
 
@@ -390,6 +391,7 @@ class TrackMyBabyController extends GetxController {
     }
     return months < 0 ? 0 : months;
   }
+
 
   String getGreeting() {
     final hour = DateTime.now().hour;
@@ -405,6 +407,7 @@ class TrackMyBabyController extends GetxController {
     int months = daysRemaining ~/ 30;
     daysRemaining = daysRemaining % 30;
     int weeks = daysRemaining ~/ 7;
+    int days = daysRemaining % 7;
 
     // List<String> parts = [];
     // if (years > 0) parts.add("$years year${years == 1 ? '' : 's'}");
@@ -421,6 +424,9 @@ class TrackMyBabyController extends GetxController {
     }
     if (weeks > 0) {
       parts.add("$weeks ${weeks == 1 ? 'age_week'.tr : 'age_weeks'.tr}");
+    }
+    if (days > 0) {
+      parts.add("$days ${days == 1 ? 'age_day'.tr : 'age_days'.tr}");
     }
 
     String ageText = parts.join(" ");

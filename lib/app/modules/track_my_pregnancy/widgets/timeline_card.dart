@@ -1,7 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import '../controllers/track_my_pregnancy_controller.dart';
-// import '../../timeline/controllers/timeline_controller.dart';
 // import '../../timeline/views/timeline_view.dart';
 
 // class TimelineCard extends StatelessWidget {
@@ -133,10 +132,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:babysafe/app/services/theme_service.dart';
+import 'package:babysafe/app/utils/neo_safe_theme.dart';
 import '../controllers/track_my_pregnancy_controller.dart';
-import '../../timeline/controllers/timeline_controller.dart';
-import '../../timeline/views/timeline_view.dart';
 
 class TimelineCard extends StatelessWidget {
   final TrackMyPregnancyController controller;
@@ -210,7 +207,6 @@ class TimelineCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Get.find<ThemeService>();
     print('TimelineCard is being built');
     return Obx(() {
       final progress = _calculateProgress();
@@ -221,15 +217,15 @@ class TimelineCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: const Color(0xFFFFFAFA), // NeoSafeColors.creamWhite
+            color: NeoSafeColors.creamWhite,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: themeService.getPrimaryColor().withOpacity(0.1),
+              color: NeoSafeColors.primaryPink.withOpacity(0.1),
               width: 1,
             ),
             boxShadow: [
               BoxShadow(
-                color: themeService.getPrimaryColor().withOpacity(0.1),
+                color: NeoSafeColors.primaryPink.withOpacity(0.1),
                 blurRadius: 15,
                 offset: const Offset(0, 5),
               ),
@@ -246,7 +242,7 @@ class TimelineCard extends StatelessWidget {
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 fontWeight: FontWeight.w700,
-                                color: const Color(0xFF3D2929),
+                                color: NeoSafeColors.primaryText,
                               ),
                     ),
                     const SizedBox(height: 4),
@@ -266,7 +262,7 @@ class TimelineCard extends StatelessWidget {
                           child: Container(
                             height: 6,
                             decoration: BoxDecoration(
-                              color: const Color(0xFFE8E8E8),
+                              color: NeoSafeColors.softGray,
                               borderRadius: BorderRadius.circular(3),
                             ),
                             child: FractionallySizedBox(
@@ -276,8 +272,8 @@ class TimelineCard extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      themeService.getPrimaryColor(),
-                                      themeService.getLightColor(),
+                                      NeoSafeColors.primaryPink,
+                                      NeoSafeColors.lightPink,
                                     ],
                                   ),
                                   borderRadius: BorderRadius.circular(3),
@@ -293,7 +289,7 @@ class TimelineCard extends StatelessWidget {
                           child: Container(
                             height: 6,
                             decoration: BoxDecoration(
-                              color: const Color(0xFFE8E8E8),
+                              color: NeoSafeColors.softGray,
                               borderRadius: BorderRadius.circular(3),
                             ),
                             child: FractionallySizedBox(
@@ -303,8 +299,8 @@ class TimelineCard extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      themeService.getAccentColor(),
-                                      themeService.getBabyColor(),
+                                      NeoSafeColors.roseAccent,
+                                      NeoSafeColors.coralPink,
                                     ],
                                   ),
                                   borderRadius: BorderRadius.circular(3),
@@ -320,7 +316,7 @@ class TimelineCard extends StatelessWidget {
                           child: Container(
                             height: 6,
                             decoration: BoxDecoration(
-                              color: const Color(0xFFE8E8E8),
+                              color: NeoSafeColors.softGray,
                               borderRadius: BorderRadius.circular(3),
                             ),
                             child: FractionallySizedBox(
@@ -330,11 +326,9 @@ class TimelineCard extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      themeService
-                                          .getPrimaryColor()
+                                      NeoSafeColors.lavenderPink
                                           .withOpacity(0.8),
-                                      themeService
-                                          .getAccentColor()
+                                      NeoSafeColors.softLavender
                                           .withOpacity(0.6),
                                     ],
                                   ),

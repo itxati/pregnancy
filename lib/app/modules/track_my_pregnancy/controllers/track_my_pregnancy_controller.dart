@@ -7,7 +7,6 @@ import '../../../data/models/pregnancy_week_data.dart';
 import '../../../utils/neo_safe_theme.dart';
 import '../../../services/notification_service.dart';
 import '../../../services/auth_service.dart';
-import '../../../services/theme_service.dart';
 import '../../weight_tracking/controllers/weight_tracking_controller.dart';
 import '../../profile/controllers/profile_controller.dart';
 
@@ -348,7 +347,6 @@ class TrackMyPregnancyController extends GetxController
   }
 
   void showWhereYouAreBottomSheet(BuildContext context) {
-    final themeService = Get.find<ThemeService>();
     Get.bottomSheet(
       Container(
         decoration: BoxDecoration(
@@ -377,7 +375,6 @@ class TrackMyPregnancyController extends GetxController
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header
                 Row(
                   children: [
                     Text(
@@ -391,14 +388,14 @@ class TrackMyPregnancyController extends GetxController
                     const Spacer(),
                     Container(
                       decoration: BoxDecoration(
-                        color: themeService.getPrimaryColor().withOpacity(0.1),
+                        color: NeoSafeColors.primaryPink.withOpacity(0.1),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
                         onPressed: () => Get.back(),
                         icon: Icon(
                           Icons.close,
-                          color: themeService.getPrimaryColor(),
+                          color: NeoSafeColors.primaryPink,
                           size: 20,
                         ),
                       ),
@@ -406,19 +403,17 @@ class TrackMyPregnancyController extends GetxController
                   ],
                 ),
                 const SizedBox(height: 24),
-
-                // Content
                 _buildInfoRow(
                   context,
                   icon: Icons.child_care,
-                  iconColor: themeService.getPrimaryColor(),
+                  iconColor: NeoSafeColors.primaryPink,
                   text: "estimated_due_date".trParams({"date": dueDate.value}),
                 ),
                 const SizedBox(height: 16),
                 _buildInfoRow(
                   context,
                   icon: Icons.pregnant_woman,
-                  iconColor: themeService.getPrimaryColor(),
+                  iconColor: NeoSafeColors.primaryPink,
                   text: "pregnancy_progress".trParams({
                     "weeks": "${pregnancyWeekNumber.value}",
                     "days": "${pregnancyDays.value % 7}"
@@ -435,21 +430,19 @@ class TrackMyPregnancyController extends GetxController
                   }),
                 ),
                 const SizedBox(height: 32),
-
-                // Edit button
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        themeService.getLightColor(),
-                        themeService.getPrimaryColor(),
+                        NeoSafeColors.lightPink,
+                        NeoSafeColors.primaryPink,
                       ],
                     ),
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: themeService.getPrimaryColor().withOpacity(0.3),
+                        color: NeoSafeColors.primaryPink.withOpacity(0.3),
                         blurRadius: 12,
                         offset: const Offset(0, 4),
                       ),
@@ -457,8 +450,8 @@ class TrackMyPregnancyController extends GetxController
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.back(); // Close bottom sheet first
-                      showDatePickerDialog(context); // Show date picker
+                      Get.back();
+                      showDatePickerDialog(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
@@ -584,7 +577,6 @@ class TrackMyPregnancyController extends GetxController
   void showBMIDialog(BuildContext context) async {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final themeService = Get.find<ThemeService>();
 
     // Load existing values
     final userId = authService.currentUser.value?.id;
@@ -716,7 +708,6 @@ class TrackMyPregnancyController extends GetxController
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Header
                     Row(
                       children: [
                         Text(
@@ -730,15 +721,14 @@ class TrackMyPregnancyController extends GetxController
                         const Spacer(),
                         Container(
                           decoration: BoxDecoration(
-                            color:
-                                themeService.getPrimaryColor().withOpacity(0.1),
+                            color: NeoSafeColors.primaryPink.withOpacity(0.1),
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
                             onPressed: () => Get.back(),
                             icon: Icon(
                               Icons.close,
-                              color: themeService.getPrimaryColor(),
+                              color: NeoSafeColors.primaryPink,
                               size: 20,
                             ),
                           ),
@@ -746,7 +736,6 @@ class TrackMyPregnancyController extends GetxController
                       ],
                     ),
                     SizedBox(height: screenHeight * 0.02),
-
                     // BMI Input Container
                     Container(
                       padding: EdgeInsets.all(screenWidth * 0.03),
@@ -992,7 +981,6 @@ class TrackMyPregnancyController extends GetxController
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.02),
-
                     // Save Button
                     SizedBox(
                       width: double.infinity,
@@ -1207,7 +1195,7 @@ class TrackMyPregnancyController extends GetxController
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: themeService.getPrimaryColor(),
+                          backgroundColor: NeoSafeColors.primaryPink,
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),

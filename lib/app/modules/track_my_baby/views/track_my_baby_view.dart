@@ -40,40 +40,201 @@ String _getMilestoneChipLabel(int month) {
 }
 
 // Helper function to get current milestone chip label based on baby age
+// String _getCurrentMilestoneChipLabel(TrackMyBabyController controller) {
+//   final days = controller.babyAgeInDays.value;
+//   final weekBasedIdx = _findWeekBasedMilestoneIndex(days);
+//   if (weekBasedIdx != null && weekBasedIdx >= 0) {
+//     return _getMilestoneChipLabel(babyMilestones[weekBasedIdx].month);
+//   }
+
+//   final months = controller.babyAgeInMonths.value;
+//   final monthIdx = _findMonthBasedMilestoneIndex(months);
+//   if (monthIdx != null && monthIdx >= 0) {
+//     return _getMilestoneChipLabel(babyMilestones[monthIdx].month);
+//   }
+
+//   return _getMilestoneChipLabel(babyMilestones.first.month);
+// }
+// String _getCurrentMilestoneChipLabel(TrackMyBabyController controller) {
+//   final days = controller.babyAgeInDays.value;
+  
+//   // For babies under 1 year, use week-based
+//   if (days < 365) {
+//     final weekBasedIdx = _findWeekBasedMilestoneIndex(days);
+//     if (weekBasedIdx != null && weekBasedIdx >= 0) {
+//       return _getMilestoneChipLabel(babyMilestones[weekBasedIdx].month);
+//     }
+//   }
+
+//   // Otherwise use month-based
+//   final months = controller.babyAgeInMonths.value;
+//   final monthIdx = _findMonthBasedMilestoneIndex(months);
+//   if (monthIdx != null && monthIdx >= 0) {
+//     return _getMilestoneChipLabel(babyMilestones[monthIdx].month);
+//   }
+
+//   // Fallback to first week milestone
+//   final firstWeek = babyMilestones.indexWhere((m) => m.month == 100);
+//   return _getMilestoneChipLabel(babyMilestones[firstWeek >= 0 ? firstWeek : 0].month);
+// }
+
+// String _getCurrentMilestoneChipLabel(TrackMyBabyController controller) {
+//   final days = controller.babyAgeInDays.value;
+  
+//   // For babies up to 364 days (52 weeks), use week-based
+//   if (days <= 364) {
+//     final weekBasedIdx = _findWeekBasedMilestoneIndex(days);
+//     if (weekBasedIdx != null && weekBasedIdx >= 0) {
+//       return _getMilestoneChipLabel(babyMilestones[weekBasedIdx].month);
+//     }
+//   }
+
+//   // Otherwise use month-based
+//   final months = controller.babyAgeInMonths.value;
+//   final monthIdx = _findMonthBasedMilestoneIndex(months);
+//   if (monthIdx != null && monthIdx >= 0) {
+//     return _getMilestoneChipLabel(babyMilestones[monthIdx].month);
+//   }
+
+//   // Fallback to first week milestone
+//   final firstWeek = babyMilestones.indexWhere((m) => m.month == 100);
+//   return _getMilestoneChipLabel(babyMilestones[firstWeek >= 0 ? firstWeek : 0].month);
+// }
+
 String _getCurrentMilestoneChipLabel(TrackMyBabyController controller) {
-  final weeks = controller.babyAgeInWeeks.value;
+  final days = controller.babyAgeInDays.value;
+  
+  // For babies up to 371 days, use week-based (capped at week 52)
+  if (days <= 371) {
+    final weekBasedIdx = _findWeekBasedMilestoneIndex(days);
+    if (weekBasedIdx != null && weekBasedIdx >= 0) {
+      return _getMilestoneChipLabel(babyMilestones[weekBasedIdx].month);
+    }
+  }
+
+  // Otherwise use month-based
   final months = controller.babyAgeInMonths.value;
-  BabyMilestone milestone;
+  final monthIdx = _findMonthBasedMilestoneIndex(months);
+  if (monthIdx != null && monthIdx >= 0) {
+    return _getMilestoneChipLabel(babyMilestones[monthIdx].month);
+  }
 
-  // Check for week-based milestones first (weeks 1-52, stored as month 100-151)
-  // Week 1 = month 100, Week 2 = month 101, ..., Week 52 = month 151
-  // Formula: month = 100 + (weeks - 1) = 99 + weeks
+  // Fallback to first week milestone
+  final firstWeek = babyMilestones.indexWhere((m) => m.month == 100);
+  return _getMilestoneChipLabel(babyMilestones[firstWeek >= 0 ? firstWeek : 0].month);
+}
+
+// int _getWeekNumberFromDays(int babyAgeInDays) {
+//   if (babyAgeInDays < 0) return 1;
+//   final adjustedDay = babyAgeInDays + 1; // convert zero-based day count
+//   return ((adjustedDay - 1) ~/ 7) + 1;
+// }
+
+// int _getWeekNumberFromDays(int babyAgeInDays) {
+//   if (babyAgeInDays < 0) return 1;
+//   // 0-7 days = week 1, 8-14 days = week 2, 15-21 days = week 3, etc.
+//   if (babyAgeInDays <= 7) {
+//     return 1;
+//   }
+//   return ((babyAgeInDays - 1) ~/ 7) + 1;
+// }
+int _getWeekNumberFromDays(int babyAgeInDays) {
+  if (babyAgeInDays < 0) return 1;
+  // 0-7 days = week 1, 8-14 days = week 2, 15-21 days = week 3, etc.
+  if (babyAgeInDays <= 7) {
+    return 1;
+  }
+  int weeks = ((babyAgeInDays - 1) ~/ 7) + 1;
+  // Cap at week 52
+  if (weeks > 52) {
+    weeks = 52;
+  }
+  return weeks;
+}
+
+// int? _findWeekBasedMilestoneIndex(int babyAgeInDays) {
+//   if (babyAgeInDays < 0) return null;
+//   if (babyAgeInDays < 7) {
+//     final newbornIdx = babyMilestones.indexWhere((m) => m.month == 0);
+//     if (newbornIdx != -1) return newbornIdx;
+//   }
+//   final weeks = _getWeekNumberFromDays(babyAgeInDays);
+//   if (weeks >= 1 && weeks <= 52) {
+//     final weekMonth = 99 + weeks;
+//     final idx = babyMilestones.indexWhere((m) => m.month == weekMonth);
+//     if (idx != -1) return idx;
+//   }
+//   return null;
+// }
+
+// int? _findWeekBasedMilestoneIndex(int babyAgeInDays) {
+//   if (babyAgeInDays < 0) return null;
+  
+//   // Calculate week number: 0-7 days = week 1, 8-14 days = week 2, etc.
+//   int weeks;
+//   if (babyAgeInDays <= 7) {
+//     weeks = 1;
+//   } else {
+//     weeks = ((babyAgeInDays - 1) ~/ 7) + 1;
+//   }
+  
+//   if (weeks >= 1 && weeks <= 52) {
+//     final weekMonth = 99 + weeks; // 100 = week 1, 101 = week 2, etc.
+//     final idx = babyMilestones.indexWhere((m) => m.month == weekMonth);
+//     if (idx != -1) return idx;
+//   }
+//   return null;
+// }
+
+int? _findWeekBasedMilestoneIndex(int babyAgeInDays) {
+  if (babyAgeInDays < 0) return null;
+  
+  // Calculate week number: 0-7 days = week 1, 8-14 days = week 2, etc.
+  int weeks;
+  if (babyAgeInDays <= 7) {
+    weeks = 1;
+  } else {
+    weeks = ((babyAgeInDays - 1) ~/ 7) + 1;
+  }
+  
+  // Cap at week 52 (max 364 days)
+  if (weeks > 52) {
+    weeks = 52;
+  }
+  
   if (weeks >= 1 && weeks <= 52) {
-    try {
-      milestone = babyMilestones.firstWhere((m) => m.month == (99 + weeks));
-      return _getMilestoneChipLabel(milestone.month);
-    } catch (e) {
-      // If week milestone not found, fall through to month-based
+    final weekMonth = 99 + weeks; // 100 = week 1, 101 = week 2, etc.
+    final idx = babyMilestones.indexWhere((m) => m.month == weekMonth);
+    if (idx != -1) return idx;
+  }
+  return null;
+}
+
+int? _findMonthBasedMilestoneIndex(int targetMonths) {
+  if (targetMonths <= 0) {
+    final newbornIdx = babyMilestones.indexWhere((m) => m.month == 0);
+    if (newbornIdx != -1) return newbornIdx;
+  }
+
+  int candidateIdx = -1;
+  int candidateMonth = -1;
+  for (int i = 0; i < babyMilestones.length; i++) {
+    final m = babyMilestones[i];
+    if (m.month > 0 && m.month < 100) {
+      if (m.month == targetMonths) {
+        return i;
+      }
+      if (m.month <= targetMonths && m.month > candidateMonth) {
+        candidateMonth = m.month;
+        candidateIdx = i;
+      }
+    } else if (m.month >= 100 && m.month < 152) {
+      // skip week milestones in this helper
     }
   }
 
-  // If no week milestone found or weeks > 52, check for month-based milestones
-  try {
-    milestone = babyMilestones.firstWhere((m) => m.month == months);
-    return _getMilestoneChipLabel(milestone.month);
-  } catch (e) {
-    // If no exact match, find the closest milestone
-    int closestIdx = 0;
-    int minDiff = (babyMilestones[0].month - months).abs();
-    for (int i = 1; i < babyMilestones.length; i++) {
-      final diff = (babyMilestones[i].month - months).abs();
-      if (diff < minDiff) {
-        minDiff = diff;
-        closestIdx = i;
-      }
-    }
-    return _getMilestoneChipLabel(babyMilestones[closestIdx].month);
-  }
+  if (candidateIdx != -1) return candidateIdx;
+  return null;
 }
 
 // TODO: Replace image placeholders with actual baby images from assets:
@@ -380,15 +541,17 @@ class _BabyOverviewCard extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 4),
-                  // Obx(() => Text(
-                  //       _getCurrentMilestoneChipLabel(controller),
-                  //       style:
-                  //           Theme.of(context).textTheme.titleMedium?.copyWith(
-                  //                 fontSize: 12,
-                  //                 color: NeoSafeColors.secondaryText,
-                  //               ),
-                  //     )),
-                  // const SizedBox(height: 8),
+                  Obx(() {
+                    final ageText = controller.getBabyAgeText();
+                    return Text(
+                      ageText,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontSize: 12,
+                            color: NeoSafeColors.secondaryText,
+                          ),
+                    );
+                  }),
+                  const SizedBox(height: 8),
                   Text(
                     controller.getTimelineSubtitle(),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -536,49 +699,96 @@ class _MilestonesDetailPageState extends State<MilestonesDetailPage> {
     });
     // Listen to changes in weeks/months/profile and update chip accordingly
     everAll([
+      controller.babyAgeInDays,
       controller.babyAgeInWeeks,
       controller.babyAgeInMonths,
       controller.selectedChildIndex
     ], (_) => _pickDefaultMilestone());
   }
 
-  void _pickDefaultMilestone() {
-    int idx = -1;
-    final weeks = controller.babyAgeInWeeks.value;
-    final months = controller.babyAgeInMonths.value;
+  // void _pickDefaultMilestone() {
+  //   int? idx = _findWeekBasedMilestoneIndex(controller.babyAgeInDays.value);
 
-    // Check for week-based milestones first (weeks 1-52, stored as month 100-151)
-    // Week 1 = month 100, Week 2 = month 101, ..., Week 52 = month 151
-    // Formula: month = 100 + (weeks - 1) = 99 + weeks
-    if (weeks >= 1 && weeks <= 52) {
-      idx = babyMilestones.indexWhere((m) => m.month == (99 + weeks));
-    }
+  //   if (idx == null || idx < 0) {
+  //     idx = _findMonthBasedMilestoneIndex(controller.babyAgeInMonths.value);
+  //   }
 
-    // If no week milestone found or weeks > 52, check for month-based milestones
-    if (idx == -1) {
-      idx = babyMilestones.indexWhere((m) => m.month == months);
-    }
+  //   idx ??= 0;
 
-    // If still not found, find the closest milestone
-    if (idx == -1) {
-      // Find the milestone with the closest month value
-      int closestIdx = 0;
-      int minDiff = (babyMilestones[0].month - months).abs();
-      for (int i = 1; i < babyMilestones.length; i++) {
-        final diff = (babyMilestones[i].month - months).abs();
-        if (diff < minDiff) {
-          minDiff = diff;
-          closestIdx = i;
-        }
-      }
-      idx = closestIdx;
-    }
+  //   _selectedIndex.value = idx;
+  //   _scrollToSelected();
+  // }
 
-    if (idx != -1) {
-      _selectedIndex.value = idx;
-      _scrollToSelected();
-    }
+//   void _pickDefaultMilestone() {
+//   int? idx;
+  
+//   // For babies under 52 weeks (1 year), use week-based milestones
+//   if (controller.babyAgeInDays.value < 365) {
+//     idx = _findWeekBasedMilestoneIndex(controller.babyAgeInDays.value);
+//   }
+  
+//   // If no week milestone found, try month-based
+//   if (idx == null || idx < 0) {
+//     idx = _findMonthBasedMilestoneIndex(controller.babyAgeInMonths.value);
+//   }
+
+//   // Fallback to first available milestone (excluding newborn)
+//   if (idx == null || idx < 0) {
+//     final sorted = _getSortedMilestoneIndexes();
+//     idx = sorted.isNotEmpty ? sorted.first : 0;
+//   }
+
+//   _selectedIndex.value = idx;
+//   _scrollToSelected();
+// }
+
+// void _pickDefaultMilestone() {
+//   int? idx;
+  
+//   // For babies under or equal to 52 weeks (364 days), use week-based milestones
+//   // 52 weeks * 7 days = 364 days, so up to 364 days we use weeks
+//   if (controller.babyAgeInDays.value <= 364) {
+//     idx = _findWeekBasedMilestoneIndex(controller.babyAgeInDays.value);
+//   }
+  
+//   // If no week milestone found, try month-based
+//   if (idx == null || idx < 0) {
+//     idx = _findMonthBasedMilestoneIndex(controller.babyAgeInMonths.value);
+//   }
+
+//   // Fallback to first available milestone (excluding newborn)
+//   if (idx == null || idx < 0) {
+//     final sorted = _getSortedMilestoneIndexes();
+//     idx = sorted.isNotEmpty ? sorted.first : 0;
+//   }
+
+//   _selectedIndex.value = idx;
+//   _scrollToSelected();
+// }
+
+void _pickDefaultMilestone() {
+  int? idx;
+  
+  // For babies up to 371 days (53 weeks - 1 day), show week 52
+  // This ensures week 52 is shown for days 358-371
+  if (controller.babyAgeInDays.value <= 371) {
+    idx = _findWeekBasedMilestoneIndex(controller.babyAgeInDays.value);
   }
+  
+  // If no week milestone found, try month-based
+  if (idx == null || idx < 0) {
+    idx = _findMonthBasedMilestoneIndex(controller.babyAgeInMonths.value);
+  }
+
+  // Fallback to first available milestone (excluding newborn)
+  if (idx == null || idx < 0) {
+    final sorted = _getSortedMilestoneIndexes();
+    idx = sorted.isNotEmpty ? sorted.first : 0;
+  }
+
+  _selectedIndex.value = idx;
+  _scrollToSelected();
+}
 
   void _scrollToSelected() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -1093,28 +1303,56 @@ class _MilestonesDetailPageState extends State<MilestonesDetailPage> {
     );
   }
 
-  List<int> _getSortedMilestoneIndexes() {
-    final weeks = <int>[];
-    final months = <int>[];
-    final years = <int>[];
-    for (int i = 0; i < babyMilestones.length; ++i) {
-      final m = babyMilestones[i];
-      if (m.month >= 100 && m.month < 152) {
-        weeks.add(i);
-      } else if (m.month > 0 && m.month < 24) {
-        months.add(i);
-      } else if (m.month >= 24) {
-        years.add(i);
-      }
+  // List<int> _getSortedMilestoneIndexes() {
+  //   final newborn = <int>[];
+  //   final weeks = <int>[];
+  //   final months = <int>[];
+  //   final years = <int>[];
+  //   for (int i = 0; i < babyMilestones.length; ++i) {
+  //     final m = babyMilestones[i];
+  //     if (m.month == 0) {
+  //       newborn.add(i);
+  //     } else if (m.month >= 100 && m.month < 152) {
+  //       weeks.add(i);
+  //     } else if (m.month > 0 && m.month < 24) {
+  //       months.add(i);
+  //     } else if (m.month >= 24) {
+  //       years.add(i);
+  //     }
+  //   }
+  //   weeks.sort(
+  //       (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
+  //   months.sort(
+  //       (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
+  //   years.sort(
+  //       (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
+  //   return [...newborn, ...weeks, ...months, ...years];
+  // }
+List<int> _getSortedMilestoneIndexes() {
+  final weeks = <int>[];
+  final months = <int>[];
+  final years = <int>[];
+  for (int i = 0; i < babyMilestones.length; ++i) {
+    final m = babyMilestones[i];
+    if (m.month == 0) {
+      // Skip newborn milestone - don't add to any list
+      continue;
+    } else if (m.month >= 100 && m.month < 152) {
+      weeks.add(i);
+    } else if (m.month > 0 && m.month < 24) {
+      months.add(i);
+    } else if (m.month >= 24) {
+      years.add(i);
     }
-    weeks.sort(
-        (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
-    months.sort(
-        (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
-    years.sort(
-        (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
-    return [...weeks, ...months, ...years];
   }
+  weeks.sort(
+      (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
+  months.sort(
+      (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
+  years.sort(
+      (a, b) => babyMilestones[a].month.compareTo(babyMilestones[b].month));
+  return [...weeks, ...months, ...years]; // Removed newborn from return
+}
 
 //   String _getMilestoneChipLabel(int month) {
 //     if (month >= 100 && month < 152) {

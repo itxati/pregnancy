@@ -74,7 +74,7 @@ class TrackMyPregnancyView extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
-                      color: themeService.getPrimaryColor(),
+                      color: NeoSafeColors.primaryPink,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
@@ -118,21 +118,17 @@ class TrackMyPregnancyView extends StatelessWidget {
                     return Container(
                       margin: horizontalMargin,
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            themeService.getLightColor(),
-                            themeService.getPrimaryColor(),
-                          ],
-                        ),
+                        color: NeoSafeColors.primaryPink,
+
                         shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color:
-                                themeService.getPrimaryColor().withOpacity(0.3),
-                            blurRadius: 8,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color:
+                        //         themeService.getPrimaryColor().withOpacity(0.3),
+                        //     blurRadius: 8,
+                        //     offset: const Offset(0, 2),
+                        //   ),
+                        // ],
                       ),
                       child: GestureDetector(
                         onTap: () {

@@ -557,6 +557,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:babysafe/app/utils/neo_safe_theme.dart';
 
 class MiscarriageAwarenessCard extends StatefulWidget {
   const MiscarriageAwarenessCard({Key? key}) : super(key: key);
@@ -606,24 +607,32 @@ class _MiscarriageAwarenessCardState extends State<MiscarriageAwarenessCard>
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        gradient: const LinearGradient(
-          colors: [Color(0xFFFFF0F0), Color(0xFFFFE5E5), Color(0xFFFFF8F8)],
+         gradient: LinearGradient(
+          colors: [
+            NeoSafeColors.palePink.withOpacity(0.9),
+            NeoSafeColors.babyPink.withOpacity(0.8),
+            NeoSafeColors.lightPink.withOpacity(0.7),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: NeoSafeColors.primaryPink.withOpacity(0.2),
+          width: 1.5,
+        ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFE8A5A5).withOpacity(0.2),
+            color: NeoSafeColors.primaryPink.withOpacity(0.15),
             blurRadius: 20,
             offset: const Offset(0, 8),
-            spreadRadius: -2,
+            spreadRadius: 2,
           ),
           BoxShadow(
-            color: const Color(0xFFFFB3BA).withOpacity(0.1),
+            color: NeoSafeColors.primaryPink.withOpacity(0.05),
             blurRadius: 40,
             offset: const Offset(0, 16),
-            spreadRadius: -8,
+            spreadRadius: 4,
           ),
         ],
       ),
@@ -669,8 +678,8 @@ class _MiscarriageAwarenessCardState extends State<MiscarriageAwarenessCard>
                         'miscarriage_awareness'.tr,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Color(0xFF8D3131),
+                          fontSize: 18,
+                          color: NeoSafeColors.primaryText,
                           letterSpacing: -0.5,
                         ),
                       ),
@@ -784,7 +793,7 @@ class _MiscarriageAwarenessCardState extends State<MiscarriageAwarenessCard>
           child: Text(
             text,
             style: const TextStyle(
-              fontSize: 15,
+              fontSize: 13,
               color: Color(0xFF423636),
               fontWeight: FontWeight.w500,
               height: 1.3,
