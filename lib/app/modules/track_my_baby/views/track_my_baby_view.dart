@@ -272,11 +272,11 @@ class TrackMyBabyView extends StatelessWidget {
               elevation: 0,
               backgroundColor: Colors.transparent,
               actions: [
-                GoToHomeIconButton(
-                  circleColor: themeService.getPrimaryColor(),
-                  iconColor: Colors.white,
-                  top: 0,
-                ),
+                Obx(() => GoToHomeIconButton(
+                      circleColor: themeService.getPrimaryColor(),
+                      iconColor: Colors.white,
+                      top: 0,
+                    )),
                 SizedBox(width: 12),
                 GetX<AuthService>(
                   builder: (authService) {
@@ -466,6 +466,115 @@ class TrackMyBabyView extends StatelessWidget {
   }
 }
 
+// class _BabyOverviewCard extends StatelessWidget {
+//   final TrackMyBabyController controller;
+
+//   const _BabyOverviewCard({required this.controller});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final themeService = Get.find<ThemeService>();
+//     // debugPrint("Baby age in weeks: ${controller.babyAgeInWeeks.value}");
+//     print(controller.babyName.value);
+//     return Container(
+//       decoration: BoxDecoration(
+//         gradient: LinearGradient(
+//           colors: [themeService.getLightColor(), themeService.getPaleColor()],
+//           begin: Alignment.topLeft,
+//           end: Alignment.bottomRight,
+//         ),
+//         borderRadius: BorderRadius.circular(24),
+//         boxShadow: [
+//           BoxShadow(
+//             color: themeService.getPrimaryColor().withOpacity(0.2),
+//             blurRadius: 12,
+//             offset: const Offset(0, 4),
+//           ),
+//         ],
+//       ),
+//       child: Padding(
+//         padding: const EdgeInsets.all(24),
+//         child: Row(
+//           children: [
+//             // Baby Image Placeholder - Replace with actual baby image later
+//             Container(
+//               width: 80,
+//               height: 80,
+//               decoration: BoxDecoration(
+//                 color: Colors.white.withOpacity(0.3),
+//                 borderRadius: BorderRadius.circular(40),
+//                 border: Border.all(
+//                   color: Colors.white.withOpacity(0.5),
+//                   width: 2,
+//                 ),
+//                 // TODO: Replace with actual baby image from assets
+//                 // image: DecorationImage(
+//                 //   image: AssetImage('assets/baby/baby_placeholder.jpg'),
+//                 //   fit: BoxFit.cover,
+//                 // ),
+//               ),
+//               child: const Icon(
+//                 Icons.child_care,
+//                 size: 40,
+//                 color: Colors.white,
+//               ),
+//             ),
+//             const SizedBox(width: 20),
+//             Expanded(
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   // Text(
+//                   //   controller.babyName.value,
+//                   //   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+//                   //         color: NeoSafeColors.primaryText,
+//                   //         fontWeight: FontWeight.bold,
+//                   //       ),
+//                   // ),
+//                   Obx(() {
+//                     return Text(
+//                       controller.babyName.value.isNotEmpty
+//                           ? controller.babyName.value[0].toUpperCase() +
+//                               controller.babyName.value.substring(1)
+//                           : '',
+//                       style:
+//                           Theme.of(context).textTheme.headlineMedium?.copyWith(
+//                                 color: NeoSafeColors.primaryText,
+//                                 fontWeight: FontWeight.bold,
+//                               ),
+//                     );
+//                   }),
+
+//                   const SizedBox(height: 4),
+//                   Obx(() {
+//                     final ageText = controller.getBabyAgeText();
+//                     return Text(
+//                       ageText,
+//                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
+//                             fontSize: 12,
+//                             color: NeoSafeColors.secondaryText,
+//                           ),
+//                     );
+//                   }),
+//                   const SizedBox(height: 8),
+//                   Obx(() {
+//                     return Text(
+//                       controller.getTimelineSubtitle(),
+//                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+//                             color: NeoSafeColors.lightText,
+//                           ),
+//                     );
+//                   }),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 class _BabyOverviewCard extends StatelessWidget {
   final TrackMyBabyController controller;
 
@@ -474,99 +583,101 @@ class _BabyOverviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeService = Get.find<ThemeService>();
-    // debugPrint("Baby age in weeks: ${controller.babyAgeInWeeks.value}");
 
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [themeService.getLightColor(), themeService.getPaleColor()],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: themeService.getPrimaryColor().withOpacity(0.2),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
+    return Obx(() {
+      // Access any observable from themeService to make this reactive
+      // This forces rebuild when theme changes
+      final primaryColor = themeService.getPrimaryColor();
+      final lightColor = themeService.getLightColor();
+      final paleColor = themeService.getPaleColor();
+
+      return Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [lightColor, paleColor],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Row(
-          children: [
-            // Baby Image Placeholder - Replace with actual baby image later
-            Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(40),
-                border: Border.all(
-                  color: Colors.white.withOpacity(0.5),
-                  width: 2,
-                ),
-                // TODO: Replace with actual baby image from assets
-                // image: DecorationImage(
-                //   image: AssetImage('assets/baby/baby_placeholder.jpg'),
-                //   fit: BoxFit.cover,
-                // ),
-              ),
-              child: const Icon(
-                Icons.child_care,
-                size: 40,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Text(
-                  //   controller.babyName.value,
-                  //   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  //         color: NeoSafeColors.primaryText,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  // ),
-                  Text(
-                    controller.babyName.value.isNotEmpty
-                        ? controller.babyName.value[0].toUpperCase() +
-                            controller.babyName.value.substring(1)
-                        : '',
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          color: NeoSafeColors.primaryText,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-
-                  const SizedBox(height: 4),
-                  Obx(() {
-                    final ageText = controller.getBabyAgeText();
-                    return Text(
-                      ageText,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontSize: 12,
-                            color: NeoSafeColors.secondaryText,
-                          ),
-                    );
-                  }),
-                  const SizedBox(height: 8),
-                  Text(
-                    controller.getTimelineSubtitle(),
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: NeoSafeColors.lightText,
-                        ),
-                  ),
-                ],
-              ),
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: primaryColor.withOpacity(0.2),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
-      ),
-    );
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Row(
+            children: [
+              // Baby Image Placeholder - Replace with actual baby image later
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(40),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.5),
+                    width: 2,
+                  ),
+                ),
+                child: const Icon(
+                  Icons.child_care,
+                  size: 40,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(width: 20),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Obx(() {
+                      return Text(
+                        controller.babyName.value.isNotEmpty
+                            ? controller.babyName.value[0].toUpperCase() +
+                                controller.babyName.value.substring(1)
+                            : '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(
+                              color: NeoSafeColors.primaryText,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      );
+                    }),
+                    const SizedBox(height: 4),
+                    Obx(() {
+                      final ageText = controller.getBabyAgeText();
+                      return Text(
+                        ageText,
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontSize: 12,
+                                  color: NeoSafeColors.secondaryText,
+                                ),
+                      );
+                    }),
+                    const SizedBox(height: 8),
+                    Obx(() {
+                      return Text(
+                        controller.getTimelineSubtitle(),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: NeoSafeColors.lightText,
+                            ),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
 
@@ -832,11 +943,11 @@ class _MilestonesDetailPageState extends State<MilestonesDetailPage> {
             elevation: 0,
             backgroundColor: Colors.transparent,
             actions: [
-              GoToHomeIconButton(
-                circleColor: themeService.getPrimaryColor(),
-                iconColor: Colors.white,
-                top: 0,
-              ),
+              Obx(() => GoToHomeIconButton(
+                    circleColor: themeService.getPrimaryColor(),
+                    iconColor: Colors.white,
+                    top: 0,
+                  )),
               SizedBox(width: 12),
               GetX<AuthService>(
                 builder: (authService) {
@@ -963,6 +1074,8 @@ class _MilestonesDetailPageState extends State<MilestonesDetailPage> {
                                   onChanged: (int? newIndex) {
                                     if (newIndex != null) {
                                       controller.selectChild(newIndex);
+                                      print(controller
+                                          .allChildren[newIndex].name);
                                     }
                                   },
                                 ),
@@ -982,7 +1095,11 @@ class _MilestonesDetailPageState extends State<MilestonesDetailPage> {
             padding: const EdgeInsets.all(20),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                _BabyOverviewCard(controller: controller),
+                GetBuilder<TrackMyBabyController>(
+                  builder: (controller) {
+                    return _BabyOverviewCard(controller: controller);
+                  },
+                ),
                 const SizedBox(height: 24),
               ]),
             ),
