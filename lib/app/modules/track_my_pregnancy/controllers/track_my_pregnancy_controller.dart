@@ -338,11 +338,20 @@ class TrackMyPregnancyController extends GetxController
           : ['Check your pregnancy alerts for today.'],
       hour: 9,
       minute: 0,
+      alertText: alerts.isNotEmpty && data?.alertText != null
+          ? data!.alertText!
+          : 'Stay informed about your pregnancy progress.',
+      week: pregnancyWeekNumber.value,
     );
 
     // In debug, show all alerts in a single expanded notification now (no extra scheduled immediate notif)
     if (kDebugMode && alerts.isNotEmpty) {
-      await NotificationService.instance.showAlertsListNow(alerts: alerts);
+      await NotificationService.instance.showAlertsListNow(
+        // alerts: alerts,
+        alertText:
+            data?.alertText ?? 'Stay informed about your pregnancy progress.',
+        week: pregnancyWeekNumber.value,
+      );
     }
   }
 

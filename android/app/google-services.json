@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:718958764929:android:1c4e08d1ac124d3fc43e80",
+        "mobilesdk_app_id": "1:718958764929:android:7835f4678c271d12c43e80",
         "android_client_info": {
-          "package_name": "com.example.babysafe"
+          "package_name": "com.sphere.babysafe"
         }
       },
       "oauth_client": [
         {
-          "client_id": "718958764929-0lg0t9ll4bsl2chke7a7cvobc9q1vadk.apps.googleusercontent.com",
+          "client_id": "718958764929-muoff3qjc6bc33q91q7etimrbpmmrjne.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.babysafe",
+            "package_name": "com.sphere.babysafe",
             "certificate_hash": "a4157e9682a4a6b6c468f56fd6029ff64c1b0c71"
           }
         },

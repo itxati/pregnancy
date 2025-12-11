@@ -749,8 +749,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_0_donts_4': "Pyridoxine ± Doxylamine",
   'pregnancy_week_0_suppliments_0': "Folic Acid",
   'pregnancy_week_0_suppliments_1': "Nausea Management",
-  'pregnancy_week_0_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_0_alerts_1': "Baseline screening",
+  // 'pregnancy_week_0_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_0_alerts_1': "Baseline screening",
 // Week 1
   'pregnancy_week_1_body':
       "Ovulation is an exciting time in your body. Even though there are many eggs inside a woman's ovaries, usually only one is released at a time. During ovulation, the egg is released through the ovarian wall and starts its journey through the fallopian tubes to meet the sperm. You may notice slight cramping in the abdomen around ovulation. An increase in cervical mucus, a slippery substance secreted from your vagina, is also a sign of ovulation. The cervical mucus is the sperm's best friend, creating a healthy environment for its travel and allowing it to live for several days in your body. Because your egg can live for only 24 hours after ovulation, timing is of utmost importance to ensure that conception occurs. The egg is usually fertilised in one of the fallopian tubes and travels to your uterus where implantation occurs.",
@@ -778,8 +778,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_1_donts_4': "Pyridoxine ± Doxylamine",
   'pregnancy_week_1_suppliments_0': "Folic Acid",
   'pregnancy_week_1_suppliments_1': "Nausea Management",
-  'pregnancy_week_1_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_1_alerts_1': "Baseline screening",
+  // 'pregnancy_week_1_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_1_alerts_1': "Baseline screening",
 // Week 2
   'pregnancy_week_2_body':
       "One of those millions of sperm has fertilised your egg. DNA from the egg and the sperm combine to form a new cell called a zygote. The zygote divides and keeps on dividing to form a solid mass of cells called the morula. The morula doubles in size about every 12 hours. The morula will change into a blastocyst, which is a fluid-filled space surrounded by hundreds of cells. The sex of your baby has already been determined, as well as the colour of your baby's eyes, hair, and maybe even some personality traits. During the change from zygote to blastocyst, the fertilised cell has moved down the fallopian tube to the uterus. The blastocyst will nestle in the uterine wall; a safe home for your baby's future development. You don't know it yet, but you're pregnant. If the fertilised egg splits into two, identical twins occur. Each baby will then have the same genes. They will be of the same sex and look very alike. Non-identical twins are the result of two eggs being fertilised by two sperms at the same time. The babies may be of the same sex or different sexes, and will probably look no more alike than any other siblings. One-third of all twins are identical, and two-thirds are non-identical.",
@@ -806,8 +806,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_2_donts_4': "Pyridoxine ± Doxylamine",
   'pregnancy_week_2_suppliments_0': "Folic Acid",
   'pregnancy_week_2_suppliments_1': "Nausea Management",
-  'pregnancy_week_2_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_2_alerts_1': "Baseline screening",
+  // 'pregnancy_week_2_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_2_alerts_1': "Baseline screening",
 // Week 3
   'pregnancy_week_3_body':
       "The blastocyst has reached the uterus and has now burrowed itself into your uterine lining. The cells within the blastocyst now start to separate into those that will become the embryo and those that will become the placenta and other support structures. The cells are continuing to rapidly divide to form the embryo. Your pregnancy can be measured in 'Gestational age' or 'Fetal age'. Gestational age is calculated from the first day of your last period. Whereas, fetal age is calculated from the date of conception.",
@@ -836,8 +836,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_3_donts_4': "Pyridoxine ± Doxylamine",
   'pregnancy_week_3_suppliments_0': "Folic Acid",
   'pregnancy_week_3_suppliments_1': "Nausea Management",
-  'pregnancy_week_3_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_3_alerts_1': "Baseline screening",
+  // 'pregnancy_week_3_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_3_alerts_1': "Baseline screening",
 // Week 4
   'pregnancy_week_4_body':
       "At this stage, cells within the blastocyst start to take on different roles. The placenta has started to develop, and three distinct layers of cells form in the embryo. The first layer will form the digestive system, liver and lungs of your baby; the second will form the heart, muscles, kidneys, reproductive organs and bones of your baby; and, the third will form their nervous system, hair, skin and eyes. The neural tube, which is the precursor to your baby's brain and spinal cord, forms from the ectoderm layer. Folic acid is vital in this process, and this is why it is recommended as a supplement.",
@@ -866,8 +866,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_4_donts_4': "Pyridoxine ± Doxylamine",
   'pregnancy_week_4_suppliments_0': "Folic Acid",
   'pregnancy_week_4_suppliments_1': "Nausea Management",
-  'pregnancy_week_4_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_4_alerts_1': "Baseline screening",
+  // 'pregnancy_week_4_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_4_alerts_1': "Baseline screening",
 // Week 5
   'pregnancy_week_5_body':
       "You've only known about your pregnancy for a week or two, but some amazing things are happening inside your body. Your little one now has a two-chambered heart, which looks like a tube that is twisted back onto itself. Although it is too early to hear, the heart starts beating on or around day 36 of pregnancy. Your baby's spinal cord is beginning to form, with the neural tube starting to close. Externally, things are really developing at a pace. Your baby is now shaped like a tadpole; a bump at one end will develop into the head and the tail will form the trunk. The earliest signs of those arms and legs, which will soon be wriggling around, can even be seen as tiny bulges on the side of their body. Your baby is also growing a thin layer of skin to cover everything up.",
@@ -889,8 +889,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_5_donts_0': "No Strenuous Activities or Heavy lifting",
   'pregnancy_week_5_suppliments_0': "Folic Acid",
   'pregnancy_week_5_suppliments_1': "Nausea Management",
-  'pregnancy_week_5_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_5_alerts_1': "Baseline screening",
+  // 'pregnancy_week_5_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_5_alerts_1': "Baseline screening",
 // Week 6
   'pregnancy_week_6_body':
       "Your baby is growing rapidly. Their brain is developing particularly fast, making their head much larger in proportion to the rest of their body. As the brain and head continue to develop, so do the eyes and ears. Your baby's eyes are visible and changing quickly. We can't see it yet, but the colour of your baby's eyes has already been determined, thanks to those good old chromosomes. Cartilage is starting to form in the arm and leg buds, which will eventually develop into strong bones. The belly is beginning to take shape, and inside it, your baby's kidneys are starting to develop. Internally, more and more of your baby's organs are forming, with a tiny digestive system beginning to link up with the mouth.",
@@ -912,8 +912,13 @@ final Map<String, String> enUS = {
   'pregnancy_week_6_donts_0': "No Strenuous Activities or Heavy lifting",
   'pregnancy_week_6_suppliments_0': "Folic Acid",
   'pregnancy_week_6_suppliments_1': "Nausea Management",
+  // 'pregnancy_week_6_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_6_alerts_1': "Baseline screening",
   'pregnancy_week_6_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_6_alerts_1': "Baseline screening",
+  'pregnancy_week_6_alerts_1': "Ultrasound",
+  'pregnancy_week_6_alerts_2': "Basic blood tests",
+  'pregnancy_week_6_alertText':
+      "First antenatal visit due — schedule scan and initial blood tests.",
 
   // --- Pregnancy Weeks Details (7-40) ---
 // Week 7
@@ -937,8 +942,13 @@ final Map<String, String> enUS = {
   'pregnancy_week_7_donts_0': "No Strenuous Activities or Heavy lifting",
   'pregnancy_week_7_suppliments_0': "Folic Acid",
   'pregnancy_week_7_suppliments_1': "Nausea Management",
+  // 'pregnancy_week_7_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_7_alerts_1': "Baseline screening",
   'pregnancy_week_7_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_7_alerts_1': "Baseline screening",
+  'pregnancy_week_7_alerts_1': "Ultrasound",
+  'pregnancy_week_7_alerts_2': "Basic blood tests",
+  'pregnancy_week_7_alertText':
+      "First antenatal visit due — schedule scan and initial blood tests.",
 
 // Week 8
   'pregnancy_week_8_body':
@@ -961,8 +971,13 @@ final Map<String, String> enUS = {
   'pregnancy_week_8_donts_0': "No Strenuous Activities or Heavy lifting",
   'pregnancy_week_8_suppliments_0': "Folic Acid",
   'pregnancy_week_8_suppliments_1': "Nausea Management",
+  // 'pregnancy_week_8_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_8_alerts_1': "Baseline screening",
   'pregnancy_week_8_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_8_alerts_1': "Baseline screening",
+  'pregnancy_week_8_alerts_1': "Ultrasound",
+  'pregnancy_week_8_alerts_2': "Basic blood tests",
+  'pregnancy_week_8_alertText':
+      "First antenatal visit due — schedule scan and initial blood tests.",
 
 // Week 9
   'pregnancy_week_9_body':
@@ -985,8 +1000,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_9_donts_0': "No Strenuous Activities or Heavy lifting",
   'pregnancy_week_9_suppliments_0': "Folic Acid",
   'pregnancy_week_9_suppliments_1': "Nausea Management",
-  'pregnancy_week_9_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_9_alerts_1': "Baseline screening",
+  // 'pregnancy_week_9_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_9_alerts_1': "Baseline screening",
 
 // Week 10
   'pregnancy_week_10_body':
@@ -1009,8 +1024,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_10_donts_0': "No Strenuous Activities or Heavy lifting",
   'pregnancy_week_10_suppliments_0': "Folic Acid",
   'pregnancy_week_10_suppliments_1': "Nausea Management",
-  'pregnancy_week_10_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_10_alerts_1': "Baseline screening",
+  // 'pregnancy_week_10_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_10_alerts_1': "Baseline screening",
 
 // Week 11
   'pregnancy_week_11_body':
@@ -1033,8 +1048,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_11_donts_0': "No Strenuous Activities or Heavy lifting",
   'pregnancy_week_11_suppliments_0': "Folic Acid",
   'pregnancy_week_11_suppliments_1': "Nausea Management",
-  'pregnancy_week_11_alerts_0': "Confirm pregnancy",
-  'pregnancy_week_11_alerts_1': "Baseline screening",
+  // 'pregnancy_week_11_alerts_0': "Confirm pregnancy",
+  // 'pregnancy_week_11_alerts_1': "Baseline screening",
 
 // Week 12
   'pregnancy_week_12_body':
@@ -1057,6 +1072,10 @@ final Map<String, String> enUS = {
   'pregnancy_week_12_donts_0': "No Strenuous Activities or Heavy lifting",
   'pregnancy_week_12_suppliments_0': "Folic Acid",
   'pregnancy_week_12_suppliments_1': "Nausea Management",
+  'pregnancy_week_12_alerts_0': "NT Scan",
+  'pregnancy_week_12_alerts_1': "Genetic screening",
+  'pregnancy_week_12_alertText':
+      "12-week scan due — important for baby’s development screening.",
 
 // Week 13
   'pregnancy_week_13_body':
@@ -1084,8 +1103,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_13_suppliments_0': "Iron 60–100 mg elemental Iron/Day",
   'pregnancy_week_13_suppliments_1': "Calcium 1–1.5 g/day",
   'pregnancy_week_13_suppliments_2': "Vitamin D if deficient",
-  'pregnancy_week_13_alerts_0': "Review investigations",
-  'pregnancy_week_13_alerts_1': "Anomaly screening",
+  // 'pregnancy_week_13_alerts_0': "Review investigations",
+  // 'pregnancy_week_13_alerts_1': "Anomaly screening",
 
 // Week 14
   'pregnancy_week_14_body':
@@ -1113,8 +1132,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_14_suppliments_0': "Iron 60–100 mg elemental Iron/Day",
   'pregnancy_week_14_suppliments_1': "Calcium 1–1.5 g/day",
   'pregnancy_week_14_suppliments_2': "Vitamin D if deficient",
-  'pregnancy_week_14_alerts_0': "Review investigations",
-  'pregnancy_week_14_alerts_1': "Anomaly screening",
+  // 'pregnancy_week_14_alerts_0': "Review investigations",
+  // 'pregnancy_week_14_alerts_1': "Anomaly screening",
 
 // Week 15
   'pregnancy_week_15_body':
@@ -1142,8 +1161,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_15_suppliments_0': "Iron 60–100 mg elemental Iron/Day",
   'pregnancy_week_15_suppliments_1': "Calcium 1–1.5 g/day",
   'pregnancy_week_15_suppliments_2': "Vitamin D if deficient",
-  'pregnancy_week_15_alerts_0': "Review investigations",
-  'pregnancy_week_15_alerts_1': "Anomaly screening",
+  // 'pregnancy_week_15_alerts_0': "Review investigations",
+  // 'pregnancy_week_15_alerts_1': "Anomaly screening",
 
 // Week 16
   'pregnancy_week_16_body':
@@ -1171,8 +1190,12 @@ final Map<String, String> enUS = {
   'pregnancy_week_16_suppliments_0': "Iron 60–100 mg elemental Iron/Day",
   'pregnancy_week_16_suppliments_1': "Calcium 1–1.5 g/day",
   'pregnancy_week_16_suppliments_2': "Vitamin D if deficient",
-  'pregnancy_week_16_alerts_0': "Review investigations",
-  'pregnancy_week_16_alerts_1': "Anomaly screening",
+  // 'pregnancy_week_16_alerts_0': "Review investigations",
+  // 'pregnancy_week_16_alerts_1': "Anomaly screening",
+  'pregnancy_week_16_alerts_0': "Follow-up checkup",
+  'pregnancy_week_16_alerts_1': "Tetanus/Tdap vaccine dose 1",
+  'pregnancy_week_16_alertText':
+      "16-week antenatal checkup due. Tdap vaccination recommended.",
 
 // Week 17
   'pregnancy_week_17_body':
@@ -1281,8 +1304,11 @@ final Map<String, String> enUS = {
   'pregnancy_week_20_suppliments_0': "Iron 60–100 mg elemental Iron/Day",
   'pregnancy_week_20_suppliments_1': "Calcium 1–1.5 g/day",
   'pregnancy_week_20_suppliments_2': "Vitamin D if deficient",
-  'pregnancy_week_20_alerts_0': "Anomaly scan",
-  'pregnancy_week_20_alerts_1': "Fudal height",
+  // 'pregnancy_week_20_alerts_0': "Anomaly scan",
+  // 'pregnancy_week_20_alerts_1': "Fudal height",
+  'pregnancy_week_20_alerts_0': "Detailed Anomaly Scan",
+  'pregnancy_week_20_alertText':
+      "20-week anomaly scan — major fetal development assessment.",
 
 // Week 21
   'pregnancy_week_21_body':
@@ -1391,6 +1417,9 @@ final Map<String, String> enUS = {
   'pregnancy_week_24_suppliments_0': "Iron 60–100 mg elemental Iron/Day",
   'pregnancy_week_24_suppliments_1': "Calcium 1–1.5 g/day",
   'pregnancy_week_24_suppliments_2': "Vitamin D if deficient",
+  'pregnancy_week_24_alerts_0': "GTT (Sugar test)",
+  'pregnancy_week_24_alerts_1': "Fetal growth check",
+  'pregnancy_week_24_alertText': "24-week glucose tolerance test due.",
 
 // Week 25
   'pregnancy_week_25_body':
@@ -1445,8 +1474,8 @@ final Map<String, String> enUS = {
   'pregnancy_week_26_suppliments_0': "Iron 60–100 mg elemental Iron/Day",
   'pregnancy_week_26_suppliments_1': "Calcium 1–1.5 g/day",
   'pregnancy_week_26_suppliments_2': "Vitamin D if deficient",
-  'pregnancy_week_26_alerts_0': "GDM screening",
-  'pregnancy_week_26_alerts_1': "Vaccination",
+  // 'pregnancy_week_26_alerts_0': "GDM screening",
+  // 'pregnancy_week_26_alerts_1': "Vaccination",
 
 // Week 27
   'pregnancy_week_27_body':
@@ -1501,6 +1530,11 @@ final Map<String, String> enUS = {
   'pregnancy_week_28_suppliments_0': "Iron 60–100 mg elemental Iron/Day",
   'pregnancy_week_28_suppliments_1': "Calcium 1–1.5 g/day",
   'pregnancy_week_28_suppliments_2': "Vitamin D if deficient",
+  'pregnancy_week_28_alerts_0': "Start 3rd trimester checkups",
+  'pregnancy_week_28_alerts_1': "Iron levels",
+  'pregnancy_week_28_alerts_2': "Tdap Dose 2",
+  'pregnancy_week_28_alertText':
+      "28-week antenatal checkup + Tdap dose 2 reminder.",
 
 // Week 29
   'pregnancy_week_29_body':
@@ -1551,7 +1585,7 @@ final Map<String, String> enUS = {
   'pregnancy_week_30_donts_0': "Stress and anxiety – Encourage support system",
   'pregnancy_week_30_suppliments_0': "Continue Iron + Calcium",
   'pregnancy_week_30_suppliments_1': "Prenatal multivitamin – Treat Anemia",
-  'pregnancy_week_30_alerts_0': "Growth Monitoring",
+  // 'pregnancy_week_30_alerts_0': "Growth Monitoring",
 
 // Week 31
   'pregnancy_week_31_body':
@@ -1602,6 +1636,10 @@ final Map<String, String> enUS = {
   'pregnancy_week_32_donts_0': "Stress and anxiety – Encourage support system",
   'pregnancy_week_32_suppliments_0': "Continue Iron + Calcium",
   'pregnancy_week_32_suppliments_1': "Prenatal multivitamin – Treat Anemia",
+  'pregnancy_week_32_alerts_0': "Baby position",
+  'pregnancy_week_32_alerts_1': "Scans if needed",
+  'pregnancy_week_32_alertText':
+      "32-week hospital visit due — check baby’s position and well-being.",
 
 // Week 33
   'pregnancy_week_33_body':
@@ -1652,8 +1690,13 @@ final Map<String, String> enUS = {
   'pregnancy_week_34_donts_0': "Stress and anxiety – Encourage support system",
   'pregnancy_week_34_suppliments_0': "Continue Iron + Calcium",
   'pregnancy_week_34_suppliments_1': "Prenatal multivitamin – Treat Anemia",
-  'pregnancy_week_34_alerts_0': "Birth Plan",
-  'pregnancy_week_34_alerts_1': "Fatal Well-being",
+  // 'pregnancy_week_34_alerts_0': "Birth Plan",
+  // 'pregnancy_week_34_alerts_1': "Fatal Well-being",
+  'pregnancy_week_34_alerts_0': "Blood pressure",
+  'pregnancy_week_34_alerts_1': "Fetal heart",
+  'pregnancy_week_34_alerts_2': "Weight monitoring",
+  'pregnancy_week_34_alertText':
+      "34-week antenatal visit due — routine checkup.",
 
 // Week 35
   'pregnancy_week_35_body':
@@ -1704,8 +1747,11 @@ final Map<String, String> enUS = {
   'pregnancy_week_36_donts_0': "Stress and anxiety – Encourage support system",
   'pregnancy_week_36_suppliments_0': "Continue Iron + Calcium",
   'pregnancy_week_36_suppliments_1': "Prenatal multivitamin – Treat Anemia",
-  'pregnancy_week_36_alerts_0': "Palvic Exam",
-  'pregnancy_week_36_alerts_1': "Labor Discussion",
+  // 'pregnancy_week_36_alerts_0': "Palvic Exam",
+  // 'pregnancy_week_36_alerts_1': "Labor Discussion",
+  'pregnancy_week_36_alerts_0': "Growth scan",
+  'pregnancy_week_36_alerts_1': "Birth plan discussion",
+  'pregnancy_week_36_alertText': "36-week growth scan & birth plan discussion.",
 
 // Week 37
   'pregnancy_week_37_body':
@@ -1731,8 +1777,10 @@ final Map<String, String> enUS = {
   'pregnancy_week_37_donts_1': "Don't ignore signs of labor",
   'pregnancy_week_37_suppliments_0': "Continue Iron + Calcium",
   'pregnancy_week_37_suppliments_1': "Prenatal multivitamin – Treat Anemia",
+  // 'pregnancy_week_37_alerts_0': "Weekly visits start",
+  // 'pregnancy_week_37_alerts_1': "Labor signs monitoring",
   'pregnancy_week_37_alerts_0': "Weekly visits start",
-  'pregnancy_week_37_alerts_1': "Labor signs monitoring",
+  'pregnancy_week_37_alertText': "Weekly antenatal checkups begin.",
 
 // Week 38
   'pregnancy_week_38_body':
@@ -1758,7 +1806,10 @@ final Map<String, String> enUS = {
   'pregnancy_week_38_donts_1': "Don't travel far from hospital",
   'pregnancy_week_38_suppliments_0': "Continue Iron + Calcium",
   'pregnancy_week_38_suppliments_1': "Prenatal multivitamin – Treat Anemia",
-  'pregnancy_week_38_alerts_0': "Final Assessment before delivery",
+  // 'pregnancy_week_38_alerts_0': "Final Assessment before delivery",
+  'pregnancy_week_38_alerts_0': "Baby position confirmation",
+  'pregnancy_week_38_alertText':
+      "38-week checkup — monitor fetal heart rate & position.",
 
 // Week 39
   'pregnancy_week_39_body':
@@ -1785,8 +1836,12 @@ final Map<String, String> enUS = {
       "Avoid inducing labor without medical supervision",
   'pregnancy_week_39_suppliments_0': "Continue Iron + Calcium",
   'pregnancy_week_39_suppliments_1': "Prenatal multivitamin",
-  'pregnancy_week_39_alerts_0': "Ready for delivery any time",
-  'pregnancy_week_39_alerts_1': "Monitor labor signs closely",
+  // 'pregnancy_week_39_alerts_0': "Ready for delivery any time",
+  // 'pregnancy_week_39_alerts_1': "Monitor labor signs closely",
+  'pregnancy_week_39_alerts_0': "Cervical check",
+  'pregnancy_week_39_alerts_1': "Labor signs",
+  'pregnancy_week_39_alertText':
+      "39-week antenatal visit — look out for labor signs.",
 
 // Week 40
   'pregnancy_week_40_body':
@@ -1812,9 +1867,12 @@ final Map<String, String> enUS = {
       "Avoid self-inducing labor without medical guidance",
   'pregnancy_week_40_suppliments_0': "Continue prenatal vitamins",
   'pregnancy_week_40_suppliments_1': "Maintain Iron and Calcium intake",
-  'pregnancy_week_40_alerts_0': "Due date reached - monitor closely",
-  'pregnancy_week_40_alerts_1':
-      "Discuss post-date pregnancy plans with provider",
+  // 'pregnancy_week_40_alerts_0': "Due date reached - monitor closely",
+  // 'pregnancy_week_40_alerts_1':
+  //     "Discuss post-date pregnancy plans with provider",
+  'pregnancy_week_40_alerts_0': "Due date visit",
+  'pregnancy_week_40_alertText':
+      "40-week checkup — due date assessment & induction discussion.",
 
   //risk factors
   "looking_good": "Looking Good!",
@@ -4337,5 +4395,4 @@ final Map<String, String> enUS = {
   'due_date_format': '@day @month @year',
   'pregnancy_countdown_notification':
       '@days days left until your due date. Stay healthy!',
-
 };

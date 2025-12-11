@@ -55,7 +55,7 @@ class PregnancySplashController extends GetxController {
                 if (GlobalGoal().goal == "get_pregnant") {
                   Get.toNamed('/get_pregnant_requirements');
                 } else if (GlobalGoal().goal == "track_pregnancy") {
-                  Get.put(TrackMyPregnancyController());
+                  Get.put(TrackMyPregnancyController()); 
                   Get.to(() => const WeeklyDetailsPage());
                 } else if (GlobalGoal().goal == "track_baby") {
                   Get.put(TrackMyBabyController());

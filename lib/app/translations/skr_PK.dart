@@ -738,8 +738,8 @@ final Map<String, String> skrPK = {
 
   'pregnancy_week_0_suppliments_0': "فولک ایسڈ",
   'pregnancy_week_0_suppliments_1': "متلی دا علاج",
-  'pregnancy_week_0_alerts_0': "حمل دی تصدیق کرو",
-  'pregnancy_week_0_alerts_1': "ابتدائی چیک اپ کرو",
+  // 'pregnancy_week_0_alerts_0': "حمل دی تصدیق کرو",
+  // 'pregnancy_week_0_alerts_1': "ابتدائی چیک اپ کرو",
 
 // ہفتہ 1
   'pregnancy_week_1_body':
@@ -774,8 +774,8 @@ final Map<String, String> skrPK = {
 
   'pregnancy_week_1_suppliments_0': "فولک ایسڈ",
   'pregnancy_week_1_suppliments_1': "متلی دا علاج",
-  'pregnancy_week_1_alerts_0': "حمل دی تصدیق کرو",
-  'pregnancy_week_1_alerts_1': "ابتدائی چیک اپ کرو",
+  // 'pregnancy_week_1_alerts_0': "حمل دی تصدیق کرو",
+  // 'pregnancy_week_1_alerts_1': "ابتدائی چیک اپ کرو",
 
   // Week 2
   'pregnancy_week_2_body':
@@ -803,8 +803,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_2_donts_4': "پائریڈوکسین ± ڈوکسیلامین احتیاط نال",
   'pregnancy_week_2_suppliments_0': "فولوک ایسڈ",
   'pregnancy_week_2_suppliments_1': "متلی دا علاج",
-  'pregnancy_week_2_alerts_0': "حمل دی تصدیق کرو",
-  'pregnancy_week_2_alerts_1': "ابتدائی سکریننگ کرو",
+  // 'pregnancy_week_2_alerts_0': "حمل دی تصدیق کرو",
+  // 'pregnancy_week_2_alerts_1': "ابتدائی سکریننگ کرو",
 
 // Week 3
   'pregnancy_week_3_body':
@@ -834,8 +834,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_3_donts_4': "پائریڈوکسین ± ڈوکسیلامین احتیاط نال",
   'pregnancy_week_3_suppliments_0': "فولوک ایسڈ",
   'pregnancy_week_3_suppliments_1': "متلی دا علاج",
-  'pregnancy_week_3_alerts_0': "حمل دی تصدیق کرو",
-  'pregnancy_week_3_alerts_1': "ابتدائی سکریننگ کرو",
+  // 'pregnancy_week_3_alerts_0': "حمل دی تصدیق کرو",
+  // 'pregnancy_week_3_alerts_1': "ابتدائی سکریننگ کرو",
 
 // Week 4
   'pregnancy_week_4_body':
@@ -869,8 +869,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_4_donts_4': "پائریڈوکسین ± ڈوکسیلامین احتیاط نال لو",
   'pregnancy_week_4_suppliments_0': "فولِک ایسِڈ",
   'pregnancy_week_4_suppliments_1': "متلی دا علاج",
-  'pregnancy_week_4_alerts_0': "حمل دی تصدیق کرو",
-  'pregnancy_week_4_alerts_1': "ابتدائی ٹیسٹ کرو",
+  // 'pregnancy_week_4_alerts_0': "حمل دی تصدیق کرو",
+  // 'pregnancy_week_4_alerts_1': "ابتدائی ٹیسٹ کرو",
 
 // Week 5
   'pregnancy_week_5_body':
@@ -897,8 +897,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_5_donts_0': "وزنی کم یا سخت ورزش نہ کرو۔",
   'pregnancy_week_5_suppliments_0': "فولِک ایسِڈ۔",
   'pregnancy_week_5_suppliments_1': "متلی دا علاج۔",
-  'pregnancy_week_5_alerts_0': "حمل دی تصدیق کرو۔",
-  'pregnancy_week_5_alerts_1': "ابتدائی ٹیسٹ کرو۔",
+  // 'pregnancy_week_5_alerts_0': "حمل دی تصدیق کرو۔",
+  // 'pregnancy_week_5_alerts_1': "ابتدائی ٹیسٹ کرو۔",
 
 // Week 6
   'pregnancy_week_6_body':
@@ -925,8 +925,13 @@ final Map<String, String> skrPK = {
   'pregnancy_week_6_donts_0': "وزنی کم یا سخت ورزش نہ کرو۔",
   'pregnancy_week_6_suppliments_0': "فولِک ایسِڈ۔",
   'pregnancy_week_6_suppliments_1': "متلی دا علاج۔",
-  'pregnancy_week_6_alerts_0': "حمل دی تصدیق کرو۔",
-  'pregnancy_week_6_alerts_1': "ابتدائی ٹیسٹ کرو۔",
+  // 'pregnancy_week_6_alerts_0': "حمل دی تصدیق کرو۔",
+  // 'pregnancy_week_6_alerts_1': "ابتدائی ٹیسٹ کرو۔",
+  'pregnancy_week_6_alerts_0': "حمل دی تصدیق",
+  'pregnancy_week_6_alerts_1': "الٹراساؤنڈ",
+  'pregnancy_week_6_alerts_2': "بنیادی خون دے ٹیسٹ",
+  'pregnancy_week_6_alertText':
+      "پہلا قبل از ولادت معائنہ مقرر ہے — اسکین تے ابتدائی خون دے ٹیسٹ شیڈول کرو۔",
 
 // Week 7
   'pregnancy_week_7_body':
@@ -953,8 +958,14 @@ final Map<String, String> skrPK = {
   'pregnancy_week_7_donts_0': "وزنی کم یا سخت ورزش نہ کرو۔",
   'pregnancy_week_7_suppliments_0': "فولِک ایسِڈ۔",
   'pregnancy_week_7_suppliments_1': "متلی دا علاج۔",
-  'pregnancy_week_7_alerts_0': "حمل دی تصدیق کرو۔",
-  'pregnancy_week_7_alerts_1': "ابتدائی ٹیسٹ کرو۔",
+  // 'pregnancy_week_7_alerts_0': "حمل دی تصدیق کرو۔",
+  // 'pregnancy_week_7_alerts_1': "ابتدائی ٹیسٹ کرو۔",
+  'pregnancy_week_7_alerts_0': "حمل دی تصدیق",
+  'pregnancy_week_7_alerts_1': "الٹراساؤنڈ",
+  'pregnancy_week_7_alerts_2': "بنیادی خون دے ٹیسٹ",
+  'pregnancy_week_7_alertText':
+      "پہلا قبل از ولادت معائنہ مقرر ہے — اسکین تے ابتدائی خون دے ٹیسٹ شیڈول کرو۔",
+
   'pregnancy_week_8_body':
       "تہاڈے بچے دے اندراں جلدی جلدی تیار تھی رھے ن۔ دل چار حصیاں وچ تقسیم تھی ڳئے ن تے باقاعدہ طور تے ڌڙڪݨ شروع تھی ڳئی اے۔ آڱھلاں تے آڱھٹھا بنݨ شروع تھی ڳئے ن، تے پُڇ ہݨ لگ بھڳ ختم تھی ڳئی اے۔ تساں محسوس کری سڳدے او تہاڈی ڪمر ٿوری موٹی تھی ڳئی اے تے سُڱھن دی حِس وڌيڪ تيز تھی ڳئی اے۔",
   'pregnancy_week_8_healthTips':
@@ -975,8 +986,13 @@ final Map<String, String> skrPK = {
   'pregnancy_week_8_donts_0': "ڀاری ڪم يا سخت مشقت نه کرو",
   'pregnancy_week_8_suppliments_0': "فوليک ايسڊ",
   'pregnancy_week_8_suppliments_1': "متلي گھٽاون لئی دوا يا مشوره",
-  'pregnancy_week_8_alerts_0': "حمل دی تصديق کرواؤ",
-  'pregnancy_week_8_alerts_1': "پهلاں چيڪ اپ تے رپورٽس کرواؤ",
+  // 'pregnancy_week_8_alerts_0': "حمل دی تصديق کرواؤ",
+  // 'pregnancy_week_8_alerts_1': "پهلاں چيڪ اپ تے رپورٽس کرواؤ",
+  'pregnancy_week_8_alerts_0': "حمل دی تصدیق",
+  'pregnancy_week_8_alerts_1': "الٹراساؤنڈ",
+  'pregnancy_week_8_alerts_2': "بنیادی خون دے ٹیسٹ",
+  'pregnancy_week_8_alertText':
+      "پہلا قبل از ولادت معائنہ مقرر ہے — اسکین تے ابتدائی خون دے ٹیسٹ شیڈول کرو۔",
 
   'pregnancy_week_9_body':
       "تہاڈا بچہ هݨ انگور دے دانے جيتنا ہو ڳيو اے۔ چهرا وڌيڪ نمايان تھی ڳيو اے، آکھاں بن ڳیاں ن پر بند ن۔ ٻانھاں تے ٽنگاں لمبیاں تھی ڳیاں ن تے ننڍے عضواں دی ٺهڻ شروع تھی ڳئی اے۔ تساں موڊ بدلن، خوراڪ توں نفرت يا وڌيڪ پيشاب آون محسوس کری سڳدے او۔",
@@ -998,8 +1014,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_9_donts_0': "ڀاری ڪم يا سخت مشقت نه کرو",
   'pregnancy_week_9_suppliments_0': "فوليک ايسڊ",
   'pregnancy_week_9_suppliments_1': "متلي گھٽاون لئی دوا يا مشوره",
-  'pregnancy_week_9_alerts_0': "حمل دی تصديق کرواؤ",
-  'pregnancy_week_9_alerts_1': "پهلاں چيڪ اپ تے رپورٽس کرواؤ",
+  // 'pregnancy_week_9_alerts_0': "حمل دی تصديق کرواؤ",
+  // 'pregnancy_week_9_alerts_1': "پهلاں چيڪ اپ تے رپورٽس کرواؤ",
   'pregnancy_week_10_body':
       "تہاڈے بچے دے اهم اندراں مکمل طور تے ٺه ڳئے ن تے ڪم کرݨ شروع کر ڳئے ن۔ ناخن تے وار بنݨ شروع تھی ڳئے ن۔ تساں محسوس کری سڳدے او کہ توانائی واپس آندی پئی اے، پر ٿڪاوٽ تے متلي اڃا وی رہ سڳدی اے۔",
   'pregnancy_week_10_healthTips':
@@ -1020,8 +1036,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_10_donts_0': "ڀاری ڪم يا سخت مشقت نه کرو",
   'pregnancy_week_10_suppliments_0': "فوليک ايسڊ",
   'pregnancy_week_10_suppliments_1': "متلي گھٽاون لئی دوا يا مشوره",
-  'pregnancy_week_10_alerts_0': "حمل دی تصديق کرواؤ",
-  'pregnancy_week_10_alerts_1': "پهلاں چيڪ اپ تے رپورٽس کرواؤ",
+  // 'pregnancy_week_10_alerts_0': "حمل دی تصديق کرواؤ",
+  // 'pregnancy_week_10_alerts_1': "پهلاں چيڪ اپ تے رپورٽس کرواؤ",
   'pregnancy_week_11_body':
       "تہاڈا بچہ هݨ تقريباً مڪمل بن ڳيو اے۔ سِر اڃا وڏا اے پر جسم جلدي برابر تھی رھيا اے۔ آڱھلاں تے آڱھٹھا جدا تھی ڳئے ن تے ننڍے ناخن ٺهݨ شروع تھی ڳئے ن۔ جگر، گردے، آنڙھاں تے دماغ ڪم کر رھے ن۔ متلي ٿوری گھٽ تھی سڳدی اے پر ٿڪاوٽ تے جذباتی احساسات اڃا وی ٿي سڳدن۔",
   'pregnancy_week_11_healthTips':
@@ -1042,8 +1058,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_11_donts_0': "ڀاری ڪم يا سخت مشقت نه کرو",
   'pregnancy_week_11_suppliments_0': "فوليک ايسڊ",
   'pregnancy_week_11_suppliments_1': "متلي گھٽاون لئی دوا يا مشوره",
-  'pregnancy_week_11_alerts_0': "حمل دی تصديق کرواؤ",
-  'pregnancy_week_11_alerts_1': "پهلاں چيڪ اپ تے رپورٽس کرواؤ",
+  // 'pregnancy_week_11_alerts_0': "حمل دی تصديق کرواؤ",
+  // 'pregnancy_week_11_alerts_1': "پهلاں چيڪ اپ تے رپورٽس کرواؤ",
   'pregnancy_week_12_body':
       "تہاڈے بچے دے اندراں هݨ مڪمل طور تے ٺه ڳئے ن تے اوه ترقي جاری رکھن گے۔ هاضمي دا نظام حرڪتاں دی مشق شروع کر رھيا اے تے چوسڻ جهڙیاں حرکات پيدا تھی رہیاں ن۔ تساں محسوس کری سڳدے او کہ توانائی واپس آندی پئی اے جڏوں پهلا ٽرميسٽر ختم تھی رھيا اے۔",
   'pregnancy_week_12_healthTips':
@@ -1064,6 +1080,11 @@ final Map<String, String> skrPK = {
   'pregnancy_week_12_donts_0': "ڀاری ڪم يا سخت مشقت نه کرو",
   'pregnancy_week_12_suppliments_0': "فوليک ايسڊ",
   'pregnancy_week_12_suppliments_1': "متلي گھٽاون لئی دوا يا مشوره",
+  'pregnancy_week_12_alerts_0': "این ٹی اسکین",
+  'pregnancy_week_12_alerts_1': "جینیاتی اسکریننگ",
+  'pregnancy_week_12_alertText':
+      "12 ہفتے دا اسکین مقرر ہے — بچے دی نشوونما دی اسکریننگ لئی اہم۔",
+
   'pregnancy_week_13_body':
       "ٻئي ٽرميسٽر وچ خوش آمديد! تہاڈے بچے دا جسم جلدي نال وڌ رھيا اے، تے سِر جسم دے لحاظ نال برابر تھی رھيا اے۔ آواز دے تارا ٺه رھے ن، تے بچہ نگلڻ دی مشق شروع کر سڳدا اے۔ تساں محسوس کری سڳدے او کہ متلي گھٽ تھی ڳئی اے تے بک وڌ گئی اے۔",
   'pregnancy_week_13_healthTips':
@@ -1090,8 +1111,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_13_suppliments_0': "لوہا 60–100 mg روزانہ",
   'pregnancy_week_13_suppliments_1': "ڪيلشيم 1–1.5 g روزانہ",
   'pregnancy_week_13_suppliments_2': "وٹامن D جے گهٽت اے تاں استعمال کرو",
-  'pregnancy_week_13_alerts_0': "ٽيسٽن دا جائزو لو",
-  'pregnancy_week_13_alerts_1': "انوملي اسڪريننگ کرواؤ",
+  // 'pregnancy_week_13_alerts_0': "ٽيسٽن دا جائزو لو",
+  // 'pregnancy_week_13_alerts_1': "انوملي اسڪريننگ کرواؤ",
 // Week 14 (Saraiki)
   'pregnancy_week_14_body_saraiki':
       "تہاڈے بچے دی گردن ہݨ لمی تھی رہی اے، تے ٹھوڈی ہݨ چھاتی تے نہی لگدی۔ بازو لمے تھی رہین پئے نیں تے جسم دے نال برابر تھی رہین نیں۔ بچے دے سر، بھوواں تے جسم تے ہݨ بال اُگݨ شروع تھی گئے نیں۔ تساں ہݨ زیادہ توانائی محسوس کر سڳدے ہو تے متلی گھٹ تھی سڳدی اے۔",
@@ -1119,95 +1140,93 @@ final Map<String, String> skrPK = {
   'pregnancy_week_14_suppliments_0_saraiki': "لوہا 60–100 ملی گرام روزانہ۔",
   'pregnancy_week_14_suppliments_1_saraiki': "کیلشیم 1–1.5 گرام روزانہ۔",
   'pregnancy_week_14_suppliments_2_saraiki': "وٹامن D جے کمی ہووے تاں۔",
-  'pregnancy_week_14_alerts_0_saraiki': "تمام رپورٹس چیک کرو۔",
-  'pregnancy_week_14_alerts_1_saraiki': "انیوملی سکیننگ۔",
+  // 'pregnancy_week_14_alerts_0_saraiki': "تمام رپورٹس چیک کرو۔",
+  // 'pregnancy_week_14_alerts_1_saraiki': "انیوملی سکیننگ۔",
 
 // Week 15 (Saraiki)
-  'pregnancy_week_15_body_saraiki':
+  'pregnancy_week_15_body':
       "تہاڈے بچے دیاں ہڈیاں سخت تھی رہیاں نیں تے ٹنگاں لمیاں تھی رہیاں نیں۔ او دے کَن ہݨ اپنی اصلی جگہ تے پہنچ رہیاں نیں تے بچہ روشنی محسوس کر سڳدا اے۔ تہاڈا پیٹ ہݨ زیادہ نمایاں تھی سڳدا اے تے تھکاوٹ گھٹ محسوس تھی سی۔",
-  'pregnancy_week_15_healthTips_saraiki':
+  'pregnancy_week_15_healthTips':
       "پری نیٹل وٹامنز لینا جاری رکھو تے کیلشیم تے وٹامن D والی خوراک کھاؤ۔ سرگرم رہو تے مناسب آرام کرو۔",
-  'pregnancy_week_15_partnersInfo_saraiki':
+  'pregnancy_week_15_partnersInfo':
       "اپݨی شریک حیات دی مدد کرو جیویں او دا جسم بدل رہیا اے۔ گھریلو کم وچ ہاتھ بٹھاؤ تے اون٘ہنوں آرام دا موقع دو۔",
-  'pregnancy_week_15_twinsInfo_saraiki':
+  'pregnancy_week_15_twinsInfo':
       "جے تساں جڑواں بچے دی امید رکھدے او تاں زیادہ آرام دی ضرورت ہوسی۔ اپنے ڈاکٹر نال ضرورتاں تے گل کرو۔",
-  'pregnancy_week_15_details_0_saraiki':
+  'pregnancy_week_15_details_0':
       "حرکت: تہاڈا بچہ ہݨ ہلݨ جلݨ وچ مصروف اے، پر تساں کجھ ہفتیاں بعد ایہ محسوس کرو گے۔",
-  'pregnancy_week_15_details_1_saraiki':
+  'pregnancy_week_15_details_1':
       "ہڈی دی نشوونما: بچے دیاں ہڈیاں سخت تھی رہیاں نیں تے او دے بازو تے ٹنگاں مکمل بنی چکیاں نیں۔",
-  'pregnancy_week_15_details_2_saraiki':
+  'pregnancy_week_15_details_2':
       "سر: بچے دا سر ہݨ زیادہ گول تھی رہیا اے تے جسم دے نال تناسب وچ آ رہیا اے۔",
-  'pregnancy_week_15_dos_0_saraiki': "لوہا تے کیلشیم والی خوراک کھاؤ۔",
-  'pregnancy_week_15_dos_1_saraiki': "انیوملی سکین (ہفتہ 18 – 22) کراؤ۔",
-  'pregnancy_week_15_dos_2_saraiki':
-      "کواڈروپل یا ٹرپل مارکر ٹیسٹ (ہفتہ 15 – 20)۔",
-  'pregnancy_week_15_dos_3_saraiki': "آرام دہ مٹرنٹی کپڑے پہنو۔",
-  'pregnancy_week_15_dos_4_saraiki': "GDM سکیننگ (ہفتہ 24 – 28)۔",
-  'pregnancy_week_15_donts_0_saraiki': "اپݨی مرضی نال دوا نہ استعمال کرو۔",
-  'pregnancy_week_15_donts_1_saraiki':
-      "زیادہ پارہ والی مچھلی یا کچا کھانا نہ کھاؤ۔",
-  'pregnancy_week_15_suppliments_0_saraiki': "لوہا 60–100 ملی گرام روزانہ۔",
-  'pregnancy_week_15_suppliments_1_saraiki': "کیلشیم 1–1.5 گرام روزانہ۔",
-  'pregnancy_week_15_suppliments_2_saraiki': "وٹامن D جے کمی ہووے تاں۔",
-  'pregnancy_week_15_alerts_0_saraiki': "تمام رپورٹس چیک کرو۔",
-  'pregnancy_week_15_alerts_1_saraiki': "انیوملی سکیننگ۔",
+  'pregnancy_week_15_dos_0': "لوہا تے کیلشیم والی خوراک کھاؤ۔",
+  'pregnancy_week_15_dos_1': "انیوملی سکین (ہفتہ 18 – 22) کراؤ۔",
+  'pregnancy_week_15_dos_2': "کواڈروپل یا ٹرپل مارکر ٹیسٹ (ہفتہ 15 – 20)۔",
+  'pregnancy_week_15_dos_3': "آرام دہ مٹرنٹی کپڑے پہنو۔",
+  'pregnancy_week_15_dos_4': "GDM سکیننگ (ہفتہ 24 – 28)۔",
+  'pregnancy_week_15_donts_0': "اپݨی مرضی نال دوا نہ استعمال کرو۔",
+  'pregnancy_week_15_donts_1': "زیادہ پارہ والی مچھلی یا کچا کھانا نہ کھاؤ۔",
+  'pregnancy_week_15_suppliments_0': "لوہا 60–100 ملی گرام روزانہ۔",
+  'pregnancy_week_15_suppliments_1': "کیلشیم 1–1.5 گرام روزانہ۔",
+  'pregnancy_week_15_suppliments_2': "وٹامن D جے کمی ہووے تاں۔",
+  // 'pregnancy_week_15_alerts_0': "تمام رپورٹس چیک کرو۔",
+  // 'pregnancy_week_15_alerts_1': "انیوملی سکیننگ۔",
 // Week 16 (Saraiki)
-  'pregnancy_week_16_body_saraiki':
+  'pregnancy_week_16_body':
       "تہاڈے بچے دیاں پٹھیاں تے ہڈیاں ہݨ مضبوط تھی رہیاں نیں۔ اکھاں آہستہ آہستہ حرکت کر رہیاں نیں تے کَن اپنی آخری جگہ دے نیڑے پہنچ گئے نیں۔ تساں ہݨ بچے دیاں ہلکی ہلکی حرکات محسوس کر سڳدے او، جنھیں 'Quickening' آکھیا ویندا اے۔",
-  'pregnancy_week_16_healthTips_saraiki':
+  'pregnancy_week_16_healthTips':
       "لوہا تے پروٹین والی خوراک کھاؤ۔ جے ہݨ تائیں نہ کرایا تاں وچلے حمل دا الٹراساؤنڈ لازمی شیڈیول کرو۔",
-  'pregnancy_week_16_partnersInfo_saraiki':
+  'pregnancy_week_16_partnersInfo':
       "اپݨی شریک حیات نوں آرام کرݨ تے چنگی خوراک کھاݨ دا کہو۔ بچے دیاں حرکتاں دا حساب اکٹھے رکھݨ وچ مدد کرو۔",
-  'pregnancy_week_16_twinsInfo_saraiki':
+  'pregnancy_week_16_twinsInfo':
       "جے تساں جڑواں بچے دی امید رکھدے او تاں تہاڈے نوں حرکت جلد محسوس تھی سڳدی اے۔ کسے وی پریشانی تے ڈاکٹر نال گل کرو۔",
-  'pregnancy_week_16_details_0_saraiki':
+  'pregnancy_week_16_details_0':
       "چر بی بنݨا: بچے دی جلد وچوں دکھݨ والیاں رگاں ہݨ چر بی بنݨ نال گھٹ نمایاں تھی رہیاں نیں۔",
-  'pregnancy_week_16_details_1_saraiki':
+  'pregnancy_week_16_details_1':
       "دل: بچے دا دل روزانہ تقریباً 50 پائنٹ خون پمپ کر رہیا اے۔",
-  'pregnancy_week_16_details_2_saraiki':
+  'pregnancy_week_16_details_2':
       "میکونیم: میکونیم (او پہلا فضلہ جو بچہ پیدا تھیندے بعد نکسی) بچے دیاں آنتاں وچ بنݨ شروع تھی رہیا اے۔",
-  'pregnancy_week_16_dos_0_saraiki': "لوہا تے کیلشیم والی خوراک کھاؤ۔",
-  'pregnancy_week_16_dos_1_saraiki': "انیوملی سکین (ہفتہ 18 – 22) کراؤ۔",
-  'pregnancy_week_16_dos_2_saraiki':
-      "کواڈروپل یا ٹرپل مارکر ٹیسٹ (ہفتہ 15 – 20)۔",
-  'pregnancy_week_16_dos_3_saraiki': "آرام دہ مٹرنٹی کپڑے پہنو۔",
-  'pregnancy_week_16_dos_4_saraiki': "GDM سکیننگ (ہفتہ 24 – 28)۔",
-  'pregnancy_week_16_donts_0_saraiki': "اپݨی مرضی نال دوا نہ استعمال کرو۔",
-  'pregnancy_week_16_donts_1_saraiki':
-      "زیادہ پارہ والی مچھلی یا کچا کھانا نہ کھاؤ۔",
-  'pregnancy_week_16_suppliments_0_saraiki': "لوہا 60–100 ملی گرام روزانہ۔",
-  'pregnancy_week_16_suppliments_1_saraiki': "کیلشیم 1–1.5 گرام روزانہ۔",
-  'pregnancy_week_16_suppliments_2_saraiki': "وٹامن D جے کمی ہووے تاں۔",
-  'pregnancy_week_16_alerts_0_saraiki': "تمام رپورٹس چیک کرو۔",
-  'pregnancy_week_16_alerts_1_saraiki': "انیوملی سکیننگ۔",
+  'pregnancy_week_16_dos_0': "لوہا تے کیلشیم والی خوراک کھاؤ۔",
+  'pregnancy_week_16_dos_1': "انیوملی سکین (ہفتہ 18 – 22) کراؤ۔",
+  'pregnancy_week_16_dos_2': "کواڈروپل یا ٹرپل مارکر ٹیسٹ (ہفتہ 15 – 20)۔",
+  'pregnancy_week_16_dos_3': "آرام دہ مٹرنٹی کپڑے پہنو۔",
+  'pregnancy_week_16_dos_4': "GDM سکیننگ (ہفتہ 24 – 28)۔",
+  'pregnancy_week_16_donts_0': "اپݨی مرضی نال دوا نہ استعمال کرو۔",
+  'pregnancy_week_16_donts_1': "زیادہ پارہ والی مچھلی یا کچا کھانا نہ کھاؤ۔",
+  'pregnancy_week_16_suppliments_0': "لوہا 60–100 ملی گرام روزانہ۔",
+  'pregnancy_week_16_suppliments_1': "کیلشیم 1–1.5 گرام روزانہ۔",
+  'pregnancy_week_16_suppliments_2': "وٹامن D جے کمی ہووے تاں۔",
+  // 'pregnancy_week_16_alerts_0_saraiki': "تمام رپورٹس چیک کرو۔",
+  // 'pregnancy_week_16_alerts_1_saraiki': "انیوملی سکیننگ۔",
+  'pregnancy_week_16_alerts_0': "فالواپ چیک اپ",
+  'pregnancy_week_16_alerts_1': "ٹیٹنس / ٹی ڈی اے پی ویکسین خوراک 1",
+  'pregnancy_week_16_alertText':
+      "16 ہفتے دی قبل از ولادت چیک اپ ضروری۔ ٹی ڈی اے پی ویکسینیشن دی سفارش کیتی جاندی اے۔",
 
 // Week 17 (Saraiki)
-  'pregnancy_week_17_body_saraiki':
+  'pregnancy_week_17_body':
       "تہاڈے بچے دا ڈھانچہ ہݨ نرم کارٹلیج کنوں اصلی ہڈی وچ تبدیل تھی رہیا اے۔ پسینہ بنݨ والے غدود (Sweat Glands) وی بنݨ شروع تھی گئے نیں۔ تہاڈی بھُکھ ودھ سڳدی اے تے پیٹ نمایاں تھی رہیا اے۔",
-  'pregnancy_week_17_healthTips_saraiki':
+  'pregnancy_week_17_healthTips':
       "صحت مند خوراک جاری رکھو تے پانی زیادہ پیو۔ جے ٹنگاں وچ کھچاؤ یا درد محسوس تھیندا اے تاں نرم کھچاؤ والے ورزش کرو۔",
-  'pregnancy_week_17_partnersInfo_saraiki':
+  'pregnancy_week_17_partnersInfo':
       "اپݨی شریک حیات دے روزمرہ دے کم وچ مدد کرو تے اون٘ہنوں آرام کرݨ دا موقع دو۔ جے ممکن ہووے تاں پری نیٹل اپوائنٹمنٹس اکٹھے کرو۔",
-  'pregnancy_week_17_twinsInfo_saraiki':
+  'pregnancy_week_17_twinsInfo':
       "جے تساں جڑواں بچے دی امید رکھدے او تاں تہاڈے نوں اضافی خوراک تے غذائیت دی ضرورت ہوسی۔ ڈاکٹر نال گل کرو۔",
-  'pregnancy_week_17_details_0_saraiki':
+  'pregnancy_week_17_details_0':
       "ڈایافرام: بچے دا ڈایافرام (او عضلہ جو سینے تے پیٹ نوں جدا رکھدا اے) تقریباً مکمل بن چکیا اے۔",
-  'pregnancy_week_17_details_1_saraiki':
+  'pregnancy_week_17_details_1':
       "فنگر پرنٹس: ہݨ تہاڈے بچے دیاں اپنی منفرد انگلیاں دیاں نشانیاں (Fingerprints) بن چکیاں نیں۔",
-  'pregnancy_week_17_details_2_saraiki':
+  'pregnancy_week_17_details_2':
       "مایلِن: نرواں دے گرد حفاظتی تہ (Myelin) بنݨ شروع تھی گئی اے۔",
-  'pregnancy_week_17_dos_0_saraiki': "لوہا تے کیلشیم والی خوراک کھاؤ۔",
-  'pregnancy_week_17_dos_1_saraiki': "انیوملی سکین (ہفتہ 18 – 22) کراؤ۔",
-  'pregnancy_week_17_dos_2_saraiki':
-      "کواڈروپل یا ٹرپل مارکر ٹیسٹ (ہفتہ 15 – 20)۔",
-  'pregnancy_week_17_dos_3_saraiki': "آرام دہ مٹرنٹی کپڑے پہنو۔",
-  'pregnancy_week_17_dos_4_saraiki': "GDM سکیننگ (ہفتہ 24 – 28)۔",
-  'pregnancy_week_17_donts_0_saraiki': "اپݨی مرضی نال دوا نہ استعمال کرو۔",
-  'pregnancy_week_17_donts_1_saraiki':
-      "زیادہ پارہ والی مچھلی یا کچا کھانا نہ کھاؤ۔",
-  'pregnancy_week_17_suppliments_0_saraiki': "لوہا 60–100 ملی گرام روزانہ۔",
-  'pregnancy_week_17_suppliments_1_saraiki': "کیلشیم 1–1.5 گرام روزانہ۔",
-  'pregnancy_week_17_suppliments_2_saraiki': "وٹامن D جے کمی ہووے تاں۔",
+  'pregnancy_week_17_dos_0': "لوہا تے کیلشیم والی خوراک کھاؤ۔",
+  'pregnancy_week_17_dos_1': "انیوملی سکین (ہفتہ 18 – 22) کراؤ۔",
+  'pregnancy_week_17_dos_2': "کواڈروپل یا ٹرپل مارکر ٹیسٹ (ہفتہ 15 – 20)۔",
+  'pregnancy_week_17_dos_3': "آرام دہ مٹرنٹی کپڑے پہنو۔",
+  'pregnancy_week_17_dos_4': "GDM سکیننگ (ہفتہ 24 – 28)۔",
+  'pregnancy_week_17_donts_0': "اپݨی مرضی نال دوا نہ استعمال کرو۔",
+  'pregnancy_week_17_donts_1': "زیادہ پارہ والی مچھلی یا کچا کھانا نہ کھاؤ۔",
+  'pregnancy_week_17_suppliments_0': "لوہا 60–100 ملی گرام روزانہ۔",
+  'pregnancy_week_17_suppliments_1': "کیلشیم 1–1.5 گرام روزانہ۔",
+  'pregnancy_week_17_suppliments_2': "وٹامن D جے کمی ہووے تاں۔",
 // Week 18
   'pregnancy_week_18_body':
       "تہاݙے نکے دے کن ہݨ اپݨی تھاں تے آ گئے ہن تے آوازاں سݨ سڳدے ہن۔ اعصابی نظام تیزی نال ترقی کر رہیا ہے۔ تُساں نکے دیاں ہلچلاں زیادہ محسوس کر سڳدے ہو۔",
@@ -1288,8 +1307,11 @@ final Map<String, String> skrPK = {
   'pregnancy_week_20_suppliments_0': "لوہا 60-100 ملی گرام ایلیمنٹل آئرن/دن",
   'pregnancy_week_20_suppliments_1': "کیلشیم 1-1.5 گرام/دن",
   'pregnancy_week_20_suppliments_2': "وٹامن ڈی جے کمی ہووے",
-  'pregnancy_week_20_alerts_0': "انومیلی سکین",
-  'pregnancy_week_20_alerts_1': "فنڈل اُچائی",
+  // 'pregnancy_week_20_alerts_0': "انومیلی سکین",
+  // 'pregnancy_week_20_alerts_1': "فنڈل اُچائی",
+  'pregnancy_week_20_alerts_0': "تفصیلی اینوملی اسکین",
+  'pregnancy_week_20_alertText':
+      "20 ہفتے دی اینوملی اسکین — بچڑے دی وڈی ترقی دا جائزہ۔",
 
 // Week 21
   'pregnancy_week_21_body':
@@ -1398,6 +1420,10 @@ final Map<String, String> skrPK = {
   'pregnancy_week_24_suppliments_0': "لوہا 60-100 ملی گرام ایلیمنٹل آئرن/دن",
   'pregnancy_week_24_suppliments_1': "کیلشیم 1-1.5 گرام/دن",
   'pregnancy_week_24_suppliments_2': "وٹامن ڈی جے کمی ہووے",
+  // Week 24
+  'pregnancy_week_24_alerts_0': "گلوکوز ٹیسٹ (شوگر ٹیسٹ)",
+  'pregnancy_week_24_alerts_1': "بچڑے دی نشوونما دی جانچ",
+  'pregnancy_week_24_alertText': "24 ہفتے دا گلوکوز ٹیسٹ مقرر اے۔",
 
 // Week 25
   'pregnancy_week_25_body':
@@ -1452,8 +1478,8 @@ final Map<String, String> skrPK = {
   'pregnancy_week_26_suppliments_0': "لوہا 60-100 ملی گرام ایلیمنٹل آئرن/دن",
   'pregnancy_week_26_suppliments_1': "کیلشیم 1-1.5 گرام/دن",
   'pregnancy_week_26_suppliments_2': "وٹامن ڈی جے کمی ہووے",
-  'pregnancy_week_26_alerts_0': "GDM سکریننگ",
-  'pregnancy_week_26_alerts_1': "ٹیکہ کاری",
+  // 'pregnancy_week_26_alerts_0': "GDM سکریننگ",
+  // 'pregnancy_week_26_alerts_1': "ٹیکہ کاری",
 
 // Week 27
   'pregnancy_week_27_body':
@@ -1508,6 +1534,12 @@ final Map<String, String> skrPK = {
   'pregnancy_week_28_suppliments_0': "لوہا 60-100 ملی گرام ایلیمنٹل آئرن/دن",
   'pregnancy_week_28_suppliments_1': "کیلشیم 1-1.5 گرام/دن",
   'pregnancy_week_28_suppliments_2': "وٹامن ڈی جے کمی ہووے",
+  // Week 28
+  'pregnancy_week_28_alerts_0': "تیسرے سہ ماہی دا چیک اپ شروع کرو",
+  'pregnancy_week_28_alerts_1': "لوہے دی سطح دی جانچ",
+  'pregnancy_week_28_alerts_2': "ٹی ڈی اے پی ویکسین خوراک 2",
+  'pregnancy_week_28_alertText':
+      "28 ہفتے دا اینٹینیٹل چیک اپ + ٹی ڈی اے پی خوراک 2 دی یاد دہانی۔",
 
   // Week 29
   'pregnancy_week_29_body':
@@ -1560,7 +1592,7 @@ final Map<String, String> skrPK = {
   'pregnancy_week_30_suppliments_0': "لوہا + کیلشیم جاری رکھو",
   'pregnancy_week_30_suppliments_1':
       "پیدائش توں پہلاں دا ملٹی وٹامن – خون دی کمی دا علاج کرو",
-  'pregnancy_week_30_alerts_0': "ودھݨ دی نگرانی",
+  // 'pregnancy_week_30_alerts_0': "ودھݨ دی نگرانی",
 
 // Week 31
   'pregnancy_week_31_body':
@@ -1613,6 +1645,10 @@ final Map<String, String> skrPK = {
   'pregnancy_week_32_suppliments_0': "لوہا + کیلشیم جاری رکھو",
   'pregnancy_week_32_suppliments_1':
       "پیدائش توں پہلاں دا ملٹی وٹامن – خون دی کمی دا علاج کرو",
+  'pregnancy_week_32_alerts_0': "بچڑے دی پوزیشن دی تصدیق",
+  'pregnancy_week_32_alerts_1': "ضرورت مطابق اسکین",
+  'pregnancy_week_32_alertText':
+      "32 ہفتے دا ہسپتال دا دورہ — بچڑے دی پوزیشن تے صحت دی جانچ کرو۔",
 
 // Week 33
   'pregnancy_week_33_body':
@@ -1665,8 +1701,13 @@ final Map<String, String> skrPK = {
   'pregnancy_week_34_suppliments_0': "لوہا + کیلشیم جاری رکھو",
   'pregnancy_week_34_suppliments_1':
       "پیدائش توں پہلاں دا ملٹی وٹامن – خون دی کمی دا علاج کرو",
-  'pregnancy_week_34_alerts_0': "پیدائش دا منصوبہ",
-  'pregnancy_week_34_alerts_1': "جنین دی بہتری",
+  // 'pregnancy_week_34_alerts_0': "پیدائش دا منصوبہ",
+  // 'pregnancy_week_34_alerts_1': "جنین دی بہتری",
+  'pregnancy_week_34_alerts_0': "بلڈ پریشر",
+  'pregnancy_week_34_alerts_1': "جنینی دل دی دھڑکن",
+  'pregnancy_week_34_alerts_2': "وزن دی نگرانی",
+  'pregnancy_week_34_alertText':
+      "34 ہفتے دا قبل از ولادت چیک اپ — معمولی جانچ کرو۔",
 
 // Week 35
   'pregnancy_week_35_body':
@@ -1719,8 +1760,12 @@ final Map<String, String> skrPK = {
   'pregnancy_week_36_suppliments_0': "لوہا + کیلشیم جاری رکھو",
   'pregnancy_week_36_suppliments_1':
       "پیدائش توں پہلاں دا ملٹی وٹامن – خون دی کمی دا علاج کرو",
-  'pregnancy_week_36_alerts_0': "شرونی دا معائنہ",
-  'pregnancy_week_36_alerts_1': "زچگی دی گل بات",
+  // 'pregnancy_week_36_alerts_0': "شرونی دا معائنہ",
+  // 'pregnancy_week_36_alerts_1': "زچگی دی گل بات",
+  'pregnancy_week_36_alerts_0': "بچڑے دی نمو دا اسکین",
+  'pregnancy_week_36_alerts_1': "ولادت دے منصوبے تے گل بات",
+  'pregnancy_week_36_alertText':
+      "36 ہفتے دا نمو اسکین تے ولادت دے منصوبے تے گل بات کرو۔",
 
 // Week 37
   'pregnancy_week_37_body':
@@ -1749,8 +1794,11 @@ final Map<String, String> skrPK = {
   'pregnancy_week_37_suppliments_0': "لوہا + کیلشیم جاری رکھو",
   'pregnancy_week_37_suppliments_1':
       "پیدائش توں پہلاں دا ملٹی وٹامن – خون دی کمی دا علاج کرو",
-  'pregnancy_week_37_alerts_0': "ہفتہ وار ملاقاتاں شروع تھیندیاں ہن",
-  'pregnancy_week_37_alerts_1': "زچگی دیاں نشانیاں دی نگرانی",
+  // 'pregnancy_week_37_alerts_0': "ہفتہ وار ملاقاتاں شروع تھیندیاں ہن",
+  // 'pregnancy_week_37_alerts_1': "زچگی دیاں نشانیاں دی نگرانی",
+  'pregnancy_week_37_alerts_0': "ہفتہ وار قبل از پیدائش معائنہ شروع",
+  'pregnancy_week_37_alertText':
+      "ہفتہ وار قبل از پیدائش دے معائنے شروع ہو گئے نیں۔",
 
 // Week 38
   'pregnancy_week_38_body':
@@ -1777,7 +1825,10 @@ final Map<String, String> skrPK = {
   'pregnancy_week_38_suppliments_0': "لوہا + کیلشیم جاری رکھو",
   'pregnancy_week_38_suppliments_1':
       "پیدائش توں پہلاں دا ملٹی وٹامن – خون دی کمی دا علاج کرو",
-  'pregnancy_week_38_alerts_0': "ترسیل توں پہلاں آخری تشخیص",
+  // 'pregnancy_week_38_alerts_0': "ترسیل توں پہلاں آخری تشخیص",
+  'pregnancy_week_38_alerts_0': "بچڑے دی پوزیشن دی تصدیق",
+  'pregnancy_week_38_alertText':
+      "38 ہفتے دا معائنہ — بچڑے دی دل دی دھڑکن تے پوزیشن دی نگرانی کرو۔",
 
 // Week 39
   'pregnancy_week_39_body':
@@ -1804,8 +1855,12 @@ final Map<String, String> skrPK = {
       "طبی نگرانی دے بغیر زچگی شروع کراوݨ توں پرہیز کرو",
   'pregnancy_week_39_suppliments_0': "لوہا + کیلشیم جاری رکھو",
   'pregnancy_week_39_suppliments_1': "پیدائش توں پہلاں دا ملٹی وٹامن",
-  'pregnancy_week_39_alerts_0': "کݙے وی ترسیل لئی تیار",
-  'pregnancy_week_39_alerts_1': "زچگی دیاں نشانیاں دی قریب توں نگرانی",
+  // 'pregnancy_week_39_alerts_0': "کݙے وی ترسیل لئی تیار",
+  // 'pregnancy_week_39_alerts_1': "زچگی دیاں نشانیاں دی قریب توں نگرانی",
+  'pregnancy_week_39_alerts_0': "گردن دا معائنہ",
+  'pregnancy_week_39_alerts_1': "زچگی دیاں علامات",
+  'pregnancy_week_39_alertText':
+      "39 ہفتے دا قبل از ولادت معائنہ — زچگی دیاں علامات تے نظر رکھو۔",
 
 // Week 40
   'pregnancy_week_40_body':
@@ -1832,9 +1887,12 @@ final Map<String, String> skrPK = {
       "طبی رہنمائی دے بغیر خود زچگی شروع کراوݨ توں پرہیز کرو",
   'pregnancy_week_40_suppliments_0': "پیدائش توں پہلاں دے وٹامن جاری رکھو",
   'pregnancy_week_40_suppliments_1': "لوہا تے کیلشیم دی مقدار برقرار رکھو",
-  'pregnancy_week_40_alerts_0': "مقررہ تاریخ پہنچ گئی - قریب توں نگرانی کرو",
-  'pregnancy_week_40_alerts_1':
-      "تاریخ مگروں حمل دے منصوبیاں بارے فراہم کنندہ نال گل کرو",
+  // 'pregnancy_week_40_alerts_0': "مقررہ تاریخ پہنچ گئی - قریب توں نگرانی کرو",
+  // 'pregnancy_week_40_alerts_1':
+  //     "تاریخ مگروں حمل دے منصوبیاں بارے فراہم کنندہ نال گل کرو",
+  'pregnancy_week_40_alerts_0': "متوقع تاریخ مطابق معائنہ",
+  'pregnancy_week_40_alertText':
+      "40 ہفتے دا معائنہ — متوقع تاریخ دا جائزہ تے ولادت دی تیاری تے گل بات کرو۔",
 
   //risk factors
   "looking_good": "چنگا لگدا پئے!",

@@ -734,8 +734,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_0_suppliments_0': "فولک ایسڈ",
   'pregnancy_week_0_suppliments_1': "متلی کے علاج کی ادویات",
 
-  'pregnancy_week_0_alerts_0': "حمل کی تصدیق کریں",
-  'pregnancy_week_0_alerts_1': "ابتدائی ٹیسٹ اور اسکریننگ",
+  // 'pregnancy_week_0_alerts_0': "حمل کی تصدیق کریں",
+  // 'pregnancy_week_0_alerts_1': "ابتدائی ٹیسٹ اور اسکریننگ",
   'pregnancy_week_0_twinsInfo': '',
 
   // Week 1 (Urdu)
@@ -764,8 +764,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_1_donts_4': 'پائریڈوکسین ± ڈوکسیلامین',
   'pregnancy_week_1_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_1_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_1_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_1_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_1_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_1_alerts_1': 'بنیادی اسکریننگ',
   'pregnancy_week_1_twinsInfo': '',
   // Week 2 (Urdu)
   'pregnancy_week_2_body':
@@ -791,8 +791,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_2_donts_4': 'پائریڈوکسین ± ڈوکسیلامین',
   'pregnancy_week_2_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_2_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_2_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_2_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_2_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_2_alerts_1': 'بنیادی اسکریننگ',
   'pregnancy_week_2_twinsInfo': '',
   // Week 3 (Urdu)
   'pregnancy_week_3_body':
@@ -820,8 +820,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_3_donts_4': 'پائریڈوکسین ± ڈوکسیلامین',
   'pregnancy_week_3_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_3_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_3_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_3_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_3_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_3_alerts_1': 'بنیادی اسکریننگ',
   // Week 4 (Urdu)
   'pregnancy_week_4_body':
       'اس مرحلے پر بلاسٹوسسٹ کے خلیات مختلف کردار اختیار کرتے ہیں۔ پلیسینٹا بننا شروع ہو جاتا ہے اور ایمبریو میں تین ابتدائی تہیں بنتی ہیں: پہلی ہاضمہ نظام، جگر اور پھیپھڑے؛ دوسری دل، عضلات، گردے، تولیدی اعضا اور ہڈیاں؛ تیسری اعصابی نظام، بال، جلد اور آنکھیں۔ نیورل ٹیوب (دماغ اور ریڑھ کی ابتدائی شکل) ایکٹوڈرم سے بنتی ہے، جس میں فولک ایسڈ اہم ہے۔',
@@ -848,8 +848,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_4_donts_4': 'پائریڈوکسین ± ڈوکسیلامین',
   'pregnancy_week_4_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_4_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_4_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_4_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_4_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_4_alerts_1': 'بنیادی اسکریننگ',
   // Week 5 (Urdu)
   'pregnancy_week_5_body':
       'اس ہفتے بچے کا دو خانوں والا دل بن چکا ہے اور دھڑکنا شروع ہو جاتا ہے (تقریباً دن 36)۔ ریڑھ کی ہڈی کی نیورل ٹیوب بند ہو رہی ہے۔ بچے کی شکل ٹیڈپول جیسی لگتی ہے اور بازو ٹانگوں کی ابتدائی جھٹکیاں ظاہر ہوتی ہیں۔ جلد کی باریک تہہ بنتی ہے۔',
@@ -868,8 +868,9 @@ final Map<String, String> urPK = {
   'pregnancy_week_5_donts_0': 'سخت سرگرمی/بھاری وزن سے پرہیز',
   'pregnancy_week_5_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_5_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_5_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_5_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_5_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_5_alerts_1': 'بنیادی اسکریننگ',
+
   // Week 6 (Urdu)
   'pregnancy_week_6_body':
       'اس ہفتے بچے کی دماغی نشوونما بہت تیز ہے جس سے سر جسم کے مقابلے میں بڑا نظر آتا ہے۔ آنکھیں اور کان بننا شروع ہو گئے ہیں۔ بازو اور ٹانگیں کے نرم ٹشوز سے ہڈیاں بننے کی تیاری ہے۔ پیٹ کی ساخت بنتی ہے اور گردے بن رہے ہیں۔',
@@ -888,8 +889,14 @@ final Map<String, String> urPK = {
   'pregnancy_week_6_donts_0': 'سخت سرگرمی/بھاری وزن سے پرہیز',
   'pregnancy_week_6_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_6_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_6_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_6_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_6_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_6_alerts_1': 'بنیادی اسکریننگ',
+  // Week 6
+  'pregnancy_week_6_alerts_0': "حمل کی تصدیق",
+  'pregnancy_week_6_alerts_1': "الٹراساؤنڈ",
+  'pregnancy_week_6_alerts_2': "بنیادی خون کے ٹیسٹ",
+  'pregnancy_week_6_alertText':
+      "پہلا قبل از ولادت معائنہ مقرر ہے — اسکین اور ابتدائی خون کے ٹیسٹ شیڈول کریں۔",
 
   // Week 7 (Urdu)
   'pregnancy_week_7_body':
@@ -912,8 +919,14 @@ final Map<String, String> urPK = {
   'pregnancy_week_7_donts_0': 'سخت سرگرمی یا بھاری وزن اٹھانے سے پرہیز',
   'pregnancy_week_7_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_7_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_7_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_7_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_7_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_7_alerts_1': 'بنیادی اسکریننگ',
+
+  'pregnancy_week_7_alerts_0': "حمل کی تصدیق",
+  'pregnancy_week_7_alerts_1': "الٹراساؤنڈ",
+  'pregnancy_week_7_alerts_2': "بنیادی خون کے ٹیسٹ",
+  'pregnancy_week_7_alertText':
+      "پہلا قبل از ولادت معائنہ مقرر ہے — اسکین اور ابتدائی خون کے ٹیسٹ شیڈول کریں۔",
 
 // Week 8 (Urdu)
   'pregnancy_week_8_body':
@@ -936,8 +949,14 @@ final Map<String, String> urPK = {
   'pregnancy_week_8_donts_0': 'سخت سرگرمی یا بھاری وزن اٹھانے سے پرہیز',
   'pregnancy_week_8_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_8_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_8_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_8_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_8_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_8_alerts_1': 'بنیادی اسکریننگ',
+
+  'pregnancy_week_8_alerts_0': "حمل کی تصدیق",
+  'pregnancy_week_8_alerts_1': "الٹراساؤنڈ",
+  'pregnancy_week_8_alerts_2': "بنیادی خون کے ٹیسٹ",
+  'pregnancy_week_8_alertText':
+      "پہلا قبل از ولادت معائنہ مقرر ہے — اسکین اور ابتدائی خون کے ٹیسٹ شیڈول کریں۔",
 
 // Week 9 (Urdu)
   'pregnancy_week_9_body':
@@ -960,8 +979,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_9_donts_0': 'سخت سرگرمی یا بھاری وزن اٹھانے سے پرہیز',
   'pregnancy_week_9_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_9_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_9_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_9_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_9_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_9_alerts_1': 'بنیادی اسکریننگ',
 
 // Week 10 (Urdu)
   'pregnancy_week_10_body':
@@ -984,8 +1003,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_10_donts_0': 'سخت سرگرمی یا بھاری وزن اٹھانے سے پرہیز',
   'pregnancy_week_10_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_10_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_10_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_10_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_10_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_10_alerts_1': 'بنیادی اسکریننگ',
 
 // Week 11 (Urdu)
   'pregnancy_week_11_body':
@@ -1008,8 +1027,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_11_donts_0': 'سخت سرگرمی یا بھاری وزن اٹھانے سے پرہیز',
   'pregnancy_week_11_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_11_suppliments_1': 'متلی کی روک تھام',
-  'pregnancy_week_11_alerts_0': 'حمل کی تصدیق',
-  'pregnancy_week_11_alerts_1': 'بنیادی اسکریننگ',
+  // 'pregnancy_week_11_alerts_0': 'حمل کی تصدیق',
+  // 'pregnancy_week_11_alerts_1': 'بنیادی اسکریننگ',
 
 // Week 12 (Urdu)
   'pregnancy_week_12_body':
@@ -1032,6 +1051,11 @@ final Map<String, String> urPK = {
   'pregnancy_week_12_donts_0': 'سخت سرگرمی یا بھاری وزن اٹھانے سے پرہیز',
   'pregnancy_week_12_suppliments_0': 'فولک ایسڈ',
   'pregnancy_week_12_suppliments_1': 'متلی کی روک تھام',
+  // Week 12
+  'pregnancy_week_12_alerts_0': "این ٹی اسکین",
+  'pregnancy_week_12_alerts_1': "جینیاتی اسکریننگ",
+  'pregnancy_week_12_alertText':
+      "12 ہفتے کا اسکین مقرر ہے — بچے کی نشوونما کی اسکریننگ کے لیے اہم۔",
 
 // Week 13 (Urdu)
   'pregnancy_week_13_body':
@@ -1059,8 +1083,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_13_suppliments_0': 'آئرن 60–100 mg عنصری آئرن/دن',
   'pregnancy_week_13_suppliments_1': 'کیلشیم 1–1.5 گرام/دن',
   'pregnancy_week_13_suppliments_2': 'وٹامن ڈی اگر کمی ہے',
-  'pregnancy_week_13_alerts_0': 'تحقیقات کا جائزہ',
-  'pregnancy_week_13_alerts_1': 'اینومالی اسکریننگ',
+  // 'pregnancy_week_13_alerts_0': 'تحقیقات کا جائزہ',
+  // 'pregnancy_week_13_alerts_1': 'اینومالی اسکریننگ',
 
 // Week 14 (Urdu)
   'pregnancy_week_14_body':
@@ -1088,8 +1112,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_14_suppliments_0': 'آئرن 60–100 mg عنصری آئرن/دن',
   'pregnancy_week_14_suppliments_1': 'کیلشیم 1–1.5 گرام/دن',
   'pregnancy_week_14_suppliments_2': 'وٹامن ڈی اگر کمی ہے',
-  'pregnancy_week_14_alerts_0': 'تحقیقات کا جائزہ',
-  'pregnancy_week_14_alerts_1': 'اینومالی اسکریننگ',
+  // 'pregnancy_week_14_alerts_0': 'تحقیقات کا جائزہ',
+  // 'pregnancy_week_14_alerts_1': 'اینومالی اسکریننگ',
 
 // Week 15 (Urdu)
   'pregnancy_week_15_body':
@@ -1117,8 +1141,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_15_suppliments_0': 'آئرن 60–100 mg عنصری آئرن/دن',
   'pregnancy_week_15_suppliments_1': 'کیلشیم 1–1.5 گرام/دن',
   'pregnancy_week_15_suppliments_2': 'وٹامن ڈی اگر کمی ہے',
-  'pregnancy_week_15_alerts_0': 'تحقیقات کا جائزہ',
-  'pregnancy_week_15_alerts_1': 'اینومالی اسکریننگ',
+  // 'pregnancy_week_15_alerts_0': 'تحقیقات کا جائزہ',
+  // 'pregnancy_week_15_alerts_1': 'اینومالی اسکریننگ',
 
 // Week 16 (Urdu)
   'pregnancy_week_16_body':
@@ -1146,8 +1170,13 @@ final Map<String, String> urPK = {
   'pregnancy_week_16_suppliments_0': 'آئرن 60–100 mg عنصری آئرن/دن',
   'pregnancy_week_16_suppliments_1': 'کیلشیم 1–1.5 گرام/دن',
   'pregnancy_week_16_suppliments_2': 'وٹامن ڈی اگر کمی ہے',
-  'pregnancy_week_16_alerts_0': 'تحقیقات کا جائزہ',
-  'pregnancy_week_16_alerts_1': 'اینومالی اسکریننگ',
+  // 'pregnancy_week_16_alerts_0': 'تحقیقات کا جائزہ',
+  // 'pregnancy_week_16_alerts_1': 'اینومالی اسکریننگ',
+  // Week 16
+  'pregnancy_week_16_alerts_0': "فالواپ چیک اپ",
+  'pregnancy_week_16_alerts_1': "ٹیٹنس / ٹی ڈی اے پی ویکسین خوراک 1",
+  'pregnancy_week_16_alertText':
+      "16 ہفتے کی قبل از پیدائش چیک اپ ضروری۔ ٹی ڈی اے پی ویکسینیشن کی سفارش کی جاتی ہے۔",
 
 // Week 17 (Urdu)
   'pregnancy_week_17_body':
@@ -1256,8 +1285,12 @@ final Map<String, String> urPK = {
   'pregnancy_week_20_suppliments_0': 'آئرن 60–100 mg عنصری آئرن/دن',
   'pregnancy_week_20_suppliments_1': 'کیلشیم 1–1.5 گرام/دن',
   'pregnancy_week_20_suppliments_2': 'وٹامن ڈی اگر کمی ہے',
-  'pregnancy_week_20_alerts_0': 'جسمانی ساخت کا سکین',
-  'pregnancy_week_20_alerts_1': 'فیڈل ہائٹ',
+  // 'pregnancy_week_20_alerts_0': 'جسمانی ساخت کا سکین',
+  // 'pregnancy_week_20_alerts_1': 'فیڈل ہائٹ',
+  // Week 20
+  'pregnancy_week_20_alerts_0': "تفصیلی اینوملی اسکین",
+  'pregnancy_week_20_alertText':
+      "20 ہفتے کی اینوملی اسکین — جنین کی اہم ترقی کا جائزہ۔",
 
 // Week 21 (Urdu)
   'pregnancy_week_21_body':
@@ -1366,6 +1399,10 @@ final Map<String, String> urPK = {
   'pregnancy_week_24_suppliments_0': 'آئرن 60–100 mg عنصری آئرن/دن',
   'pregnancy_week_24_suppliments_1': 'کیلشیم 1–1.5 گرام/دن',
   'pregnancy_week_24_suppliments_2': 'وٹامن ڈی اگر کمی ہے',
+  // Week 24
+  'pregnancy_week_24_alerts_0': "گلوکوز ٹولیرنس ٹیسٹ (شوگر ٹیسٹ)",
+  'pregnancy_week_24_alerts_1': "بچے کی نشوونما کی جانچ",
+  'pregnancy_week_24_alertText': "24 ہفتے کا گلوکوز ٹولرنس ٹیسٹ مقرر ہے۔",
 
 // Week 25 (Urdu)
   'pregnancy_week_25_body':
@@ -1420,8 +1457,8 @@ final Map<String, String> urPK = {
   'pregnancy_week_26_suppliments_0': 'آئرن 60–100 mg عنصری آئرن/دن',
   'pregnancy_week_26_suppliments_1': 'کیلشیم 1–1.5 گرام/دن',
   'pregnancy_week_26_suppliments_2': 'وٹامن ڈی اگر کمی ہے',
-  'pregnancy_week_26_alerts_0': 'حملی ذیابیطس اسکریننگ',
-  'pregnancy_week_26_alerts_1': 'ویکسینیشن',
+  // 'pregnancy_week_26_alerts_0': 'حملی ذیابیطس اسکریننگ',
+  // 'pregnancy_week_26_alerts_1': 'ویکسینیشن',
 
 // 27 week
 
@@ -1478,6 +1515,12 @@ final Map<String, String> urPK = {
   'pregnancy_week_28_suppliments_0': 'آئرن 60–100 mg عنصری آئرن/دن',
   'pregnancy_week_28_suppliments_1': 'کیلشیم 1–1.5 گرام/دن',
   'pregnancy_week_28_suppliments_2': 'وٹامن ڈی اگر کمی ہے',
+  // Week 28
+  'pregnancy_week_28_alerts_0': "تیسرے سہ ماہی کے چیک اپ شروع کریں",
+  'pregnancy_week_28_alerts_1': "آئرن کی سطح کی جانچ",
+  'pregnancy_week_28_alerts_2': "ٹی ڈی اے پی ویکسین خوراک 2",
+  'pregnancy_week_28_alertText':
+      "28 ہفتے کا اینٹینیٹل چیک اپ + ٹی ڈی اے پی خوراک 2 کی یاد دہانی۔",
 
   // 29 week
   'pregnancy_week_29_body':
@@ -1530,7 +1573,7 @@ final Map<String, String> urPK = {
   'pregnancy_week_30_suppliments_0': 'آئرن + کیلشیم جاری رکھیں',
   'pregnancy_week_30_suppliments_1':
       'قبل از پیدائش ملٹی وٹامن – خون کی کمی کا علاج کریں',
-  'pregnancy_week_30_alerts_0': 'نشوونما کی نگرانی',
+  // 'pregnancy_week_30_alerts_0': 'نشوونما کی نگرانی',
 
   // 31 week
   'pregnancy_week_31_body':
@@ -1584,6 +1627,11 @@ final Map<String, String> urPK = {
   'pregnancy_week_32_suppliments_0': 'آئرن + کیلشیم جاری رکھیں',
   'pregnancy_week_32_suppliments_1':
       'قبل از پیدائش ملٹی وٹامن – خون کی کمی کا علاج کریں',
+  // Week 32
+  'pregnancy_week_32_alerts_0': "بچے کی پوزیشن کی تصدیق",
+  'pregnancy_week_32_alerts_1': "ضرورت کے مطابق اسکین",
+  'pregnancy_week_32_alertText':
+      "32 ہفتے کا ہسپتال کا دورہ — بچے کی پوزیشن اور صحت کی جانچ کریں۔",
 
   // 33 week
 
@@ -1646,8 +1694,14 @@ final Map<String, String> urPK = {
   'pregnancy_week_34_suppliments_1':
       'قبل از پیدائش ملٹی وٹامن – خون کی کمی کا علاج کریں',
 
-  'pregnancy_week_34_alerts_0': 'پیدائش کا منصوبہ',
-  'pregnancy_week_34_alerts_1': 'جنین کی صحت کی نگرانی',
+  // 'pregnancy_week_34_alerts_0': 'پیدائش کا منصوبہ',
+  // 'pregnancy_week_34_alerts_1': 'جنین کی صحت کی نگرانی',
+  // Week 34
+  'pregnancy_week_34_alerts_0': "بلڈ پریشر",
+  'pregnancy_week_34_alerts_1': "جنینی دل کی دھڑکن",
+  'pregnancy_week_34_alerts_2': "وزن کی نگرانی",
+  'pregnancy_week_34_alertText':
+      "34ویں ہفتے کا قبل از ولادت چیک اپ — معمول کی جانچ۔",
 
 // Week 35 in Urdu
   'pregnancy_week_35_body':
@@ -1717,8 +1771,13 @@ final Map<String, String> urPK = {
   'pregnancy_week_36_suppliments_1':
       'قبل از پیدائش ملٹی وٹامن – خون کی کمی کا علاج کریں',
 
-  'pregnancy_week_36_alerts_0': 'شرونی (Pelvic) معائنہ',
-  'pregnancy_week_36_alerts_1': 'درد زہ پر گفتگو',
+  // 'pregnancy_week_36_alerts_0': 'شرونی (Pelvic) معائنہ',
+  // 'pregnancy_week_36_alerts_1': 'درد زہ پر گفتگو',
+  // Week 36
+  'pregnancy_week_36_alerts_0': "بچّے کی نمو کا اسکین",
+  'pregnancy_week_36_alerts_1': "ولادت کے منصوبے پر گفتگو",
+  'pregnancy_week_36_alertText':
+      "36ویں ہفتے کا نمو اسکین اور ولادت کے منصوبے پر گفتگو۔",
 
 // Week 37 in Urdu
   'pregnancy_week_37_body':
@@ -1753,8 +1812,12 @@ final Map<String, String> urPK = {
   'pregnancy_week_37_suppliments_1':
       'قبل از پیدائش ملٹی وٹامن – خون کی کمی کا علاج کریں',
 
-  'pregnancy_week_37_alerts_0': 'ہفتہ وار وزٹ شروع کریں',
-  'pregnancy_week_37_alerts_1': 'درد زہ کی علامات کی نگرانی کریں',
+  // 'pregnancy_week_37_alerts_0': 'ہفتہ وار وزٹ شروع کریں',
+  // 'pregnancy_week_37_alerts_1': 'درد زہ کی علامات کی نگرانی کریں',
+  // Week 37
+  'pregnancy_week_37_alerts_0': "ہفتہ وار قبل از پیدائش معائنہ شروع",
+  'pregnancy_week_37_alertText':
+      "ہفتہ وار قبل از پیدائش کے معائنے شروع ہو گئے ہیں۔",
 
 // Week 38 in Urdu
   'pregnancy_week_38_body':
@@ -1789,7 +1852,11 @@ final Map<String, String> urPK = {
   'pregnancy_week_38_suppliments_1':
       'قبل از پیدائش ملٹی وٹامن – خون کی کمی کا علاج کریں',
 
-  'pregnancy_week_38_alerts_0': 'پیدائش سے پہلے آخری معائنہ',
+  // 'pregnancy_week_38_alerts_0': 'پیدائش سے پہلے آخری معائنہ',
+  // Week 38
+  'pregnancy_week_38_alerts_0': "بچے کی پوزیشن کی تصدیق",
+  'pregnancy_week_38_alertText':
+      "38ویں ہفتے کا معائنہ — بچے کی دل کی دھڑکن اور پوزیشن کی نگرانی کریں۔",
 
 // Week 39 in Urdu
   'pregnancy_week_39_body':
@@ -1823,8 +1890,13 @@ final Map<String, String> urPK = {
   'pregnancy_week_39_suppliments_0': 'آئرن + کیلشیم جاری رکھیں',
   'pregnancy_week_39_suppliments_1': 'قبل از پیدائش ملٹی وٹامن',
 
-  'pregnancy_week_39_alerts_0': 'کسی بھی وقت پیدائش کے لیے تیار رہیں',
-  'pregnancy_week_39_alerts_1': 'درد زہ کی علامات پر قریبی نگرانی کریں',
+  // 'pregnancy_week_39_alerts_0': 'کسی بھی وقت پیدائش کے لیے تیار رہیں',
+  // 'pregnancy_week_39_alerts_1': 'درد زہ کی علامات پر قریبی نگرانی کریں',
+  // Week 39
+  'pregnancy_week_39_alerts_0': "گردن کا معائنہ",
+  'pregnancy_week_39_alerts_1': "زچگی کی علامات",
+  'pregnancy_week_39_alertText':
+      "39ویں ہفتے کا قبل از ولادت معائنہ — زچگی کی علامات پر نظر رکھیں۔",
 
 // Week 40 in Urdu
   'pregnancy_week_40_body':
@@ -1858,9 +1930,13 @@ final Map<String, String> urPK = {
   'pregnancy_week_40_suppliments_0': 'آئرن + کیلشیم جاری رکھیں',
   'pregnancy_week_40_suppliments_1': 'قبل از پیدائش ملٹی وٹامن – زچگی تک',
 
-  'pregnancy_week_40_alerts_0': 'کسی بھی وقت پیدائش کے لیے تیار رہیں',
-  'pregnancy_week_40_alerts_1':
-      'متوقع تاریخ گزرنے پر قریبی طبی نگرانی ضروری ہے',
+  // 'pregnancy_week_40_alerts_0': 'کسی بھی وقت پیدائش کے لیے تیار رہیں',
+  // 'pregnancy_week_40_alerts_1':
+  //     'متوقع تاریخ گزرنے پر قریبی طبی نگرانی ضروری ہے',
+  // Week 40
+  'pregnancy_week_40_alerts_0': "متوقع تاریخ کے مطابق معائنہ",
+  'pregnancy_week_40_alertText':
+      "40ویں ہفتے کا معائنہ — متوقع تاریخ کا جائزہ اور لیبر کی تیاری پر بات چیت۔",
 
   //risk factors
 

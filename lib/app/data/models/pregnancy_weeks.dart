@@ -39,10 +39,11 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
-    alerts: [
-      "Confirm pregnancy",
-      "Baseline screening",
-    ],
+    // alerts: [
+
+    //   // "Confirm pregnancy",
+    //   // "Baseline screening",
+    // ],
   ),
   // Week 1
   PregnancyWeekData(
@@ -82,10 +83,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
-    alerts: [
-      "Confirm pregnancy",
-      "Baseline screening",
-    ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
   ),
   // Week 2
   PregnancyWeekData(
@@ -125,10 +126,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
-    alerts: [
-      "Confirm pregnancy",
-      "Baseline screening",
-    ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
   ),
   // Week 3
   PregnancyWeekData(
@@ -170,10 +171,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
-    alerts: [
-      "Confirm pregnancy",
-      "Baseline screening",
-    ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
   ),
   // Week 4
   PregnancyWeekData(
@@ -254,10 +255,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
-    alerts: [
-      "Confirm pregnancy",
-      "Baseline screening",
-    ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
   ),
   // Week 6
   PregnancyWeekData(
@@ -293,10 +294,17 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
     alerts: [
       "Confirm pregnancy",
-      "Baseline screening",
+      "Ultrasound",
+      "Basic blood tests",
     ],
+    alertText:
+        "First antenatal visit due — schedule scan and initial blood tests.",
   ),
   // Week 7
   PregnancyWeekData(
@@ -332,10 +340,17 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
     alerts: [
       "Confirm pregnancy",
-      "Baseline screening",
+      "Ultrasound",
+      "Basic blood tests",
     ],
+    alertText:
+        "First antenatal visit due — schedule scan and initial blood tests.",
   ),
   // Week 8
   PregnancyWeekData(
@@ -371,10 +386,17 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
     alerts: [
       "Confirm pregnancy",
-      "Baseline screening",
+      "Ultrasound",
+      "Basic blood tests",
     ],
+    alertText:
+        "First antenatal visit due — schedule scan and initial blood tests.",
   ),
   // Week 9
   PregnancyWeekData(
@@ -410,10 +432,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
-    alerts: [
-      "Confirm pregnancy",
-      "Baseline screening",
-    ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
   ),
   // Week 10
   PregnancyWeekData(
@@ -449,10 +471,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
-    alerts: [
-      "Confirm pregnancy",
-      "Baseline screening",
-    ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
   ),
   // Week 11
   PregnancyWeekData(
@@ -488,10 +510,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
-    alerts: [
-      "Confirm pregnancy",
-      "Baseline screening",
-    ],
+    // alerts: [
+    //   "Confirm pregnancy",
+    //   "Baseline screening",
+    // ],
   ),
   // Week 12
   PregnancyWeekData(
@@ -527,6 +549,11 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Folic Acid",
       "Nausea Management",
     ],
+    alerts: [
+      "NT Scan",
+      "Genetic screening",
+    ],
+    alertText: "12-week scan due — important for baby’s development screening.",
   ),
   // Week 13
   PregnancyWeekData(
@@ -566,10 +593,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Calcium 1–1.5 g/day",
       "Vitamin D if deficient",
     ],
-    alerts: [
-      "Review investigations",
-      "Anomaly screening",
-    ],
+    // alerts: [
+    //   "Review investigations",
+    //   "Anomaly screening",
+    // ],
   ),
   // Week 14
   PregnancyWeekData(
@@ -609,10 +636,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Calcium 1–1.5 g/day",
       "Vitamin D if deficient",
     ],
-    alerts: [
-      "Review investigations",
-      "Anomaly screening",
-    ],
+    // alerts: [
+    //   "Review investigations",
+    //   "Anomaly screening",
+    // ],
   ),
   // Week 15
   PregnancyWeekData(
@@ -652,10 +679,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Calcium 1–1.5 g/day",
       "Vitamin D if deficient",
     ],
-    alerts: [
-      "Review investigations",
-      "Anomaly screening",
-    ],
+    // alerts: [
+    //   "Review investigations",
+    //   "Anomaly screening",
+    // ],
   ),
   // Week 16
   PregnancyWeekData(
@@ -695,10 +722,15 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Calcium 1–1.5 g/day",
       "Vitamin D if deficient",
     ],
+    // alerts: [
+    //   "Review investigations",
+    //   "Anomaly screening",
+    // ],
     alerts: [
-      "Review investigations",
-      "Anomaly screening",
+      "Follow-up checkup",
+      "Tetanus/Tdap vaccine dose 1",
     ],
+    alertText: "16-week antenatal checkup due. Tdap vaccination recommended.",
   ),
   // Week 17
   PregnancyWeekData(
@@ -855,10 +887,14 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Calcium 1–1.5 g/day",
       "Vitamin D if deficient",
     ],
+    // alerts: [
+    //   "Anomaly scan",
+    //   "Fudal height",
+    // ],
     alerts: [
-      "Anomaly scan",
-      "Fudal height",
+      "Detailed Anomaly Scan",
     ],
+    alertText: "20-week anomaly scan — major fetal development assessment.",
   ),
   // Week 21
   PregnancyWeekData(
@@ -1015,6 +1051,11 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Calcium 1–1.5 g/day",
       "Vitamin D if deficient",
     ],
+    alerts: [
+      "GTT (Sugar test)",
+      "Fetal growth check",
+    ],
+    alertText: "24-week glucose tolerance test due.",
   ),
   // Week 25
   PregnancyWeekData(
@@ -1093,10 +1134,10 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Calcium 1–1.5 g/day",
       "Vitamin D if deficient",
     ],
-    alerts: [
-      "GDM screening",
-      "Vaccination",
-    ],
+    // alerts: [
+    //   "GDM screening",
+    //   "Vaccination",
+    // ],
   ),
   // Week 27
   PregnancyWeekData(
@@ -1175,6 +1216,12 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Calcium 1–1.5 g/day",
       "Vitamin D if deficient",
     ],
+    alerts: [
+      "Start 3rd trimester checkups",
+      "Iron levels",
+      "Tdap Dose 2",
+    ],
+    alertText: "28-week antenatal checkup + Tdap dose 2 reminder.",
   ),
   // Week 29
   PregnancyWeekData(
@@ -1247,9 +1294,9 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Continue Iron + Calcium",
       "Prenatal multivitamin – Treat Anemia",
     ],
-    alerts: [
-      "Growth Monitoring",
-    ],
+    // alerts: [
+    //   "Growth Monitoring",
+    // ],
   ),
   // Week 31
   PregnancyWeekData(
@@ -1322,6 +1369,12 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Continue Iron + Calcium",
       "Prenatal multivitamin – Treat Anemia",
     ],
+    alerts: [
+      "Baby position",
+      "Scans if needed",
+    ],
+    alertText:
+        "32-week hospital visit due — check baby’s position and well-being.",
   ),
   // Week 33
   PregnancyWeekData(
@@ -1394,10 +1447,16 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Continue Iron + Calcium",
       "Prenatal multivitamin – Treat Anemia",
     ],
+    // alerts: [
+    //   "Birth Plan",
+    //   "Fatal Well-being",
+    // ],
     alerts: [
-      "Birth Plan",
-      "Fatal Well-being",
+      "Blood pressure",
+      "Fetal heart",
+      "Weight monitoring",
     ],
+    alertText: "34-week antenatal visit due — routine checkup.",
   ),
   // Week 35
   PregnancyWeekData(
@@ -1470,10 +1529,15 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Continue Iron + Calcium",
       "Prenatal multivitamin – Treat Anemia",
     ],
+    // alerts: [
+    //   "Palvic Exam",
+    //   "Labor Discussion",
+    // ],
     alerts: [
-      "Palvic Exam",
-      "Labor Discussion",
+      "Growth scan",
+      "Birth plan discussion",
     ],
+    alertText: "36-week growth scan & birth plan discussion.",
   ),
   // Week 37
   PregnancyWeekData(
@@ -1510,109 +1574,129 @@ const List<PregnancyWeekData> pregnancyWeeks = [
       "Continue Iron + Calcium",
       "Prenatal multivitamin – Treat Anemia",
     ],
+    alerts: [
+      "Weekly visits start",
+    ],
+    alertText: "Weekly antenatal checkups begin.",
   ),
   // Week 38
   PregnancyWeekData(
-      week: 38,
-      comparison: null,
-      emoji: null,
-      whatsHappening: "38 weeks pregnant",
-      body:
-          "Your baby’s body is becoming plumper, and the skin is becoming smoother. The lungs are almost fully developed. You may notice more pronounced movements and changes in your body, such as Braxton Hicks contractions and difficulty sleeping.",
-      healthTips:
-          "Stay hydrated and rest when needed. If you experience regular contractions, contact your healthcare provider.",
-      partnersInfo:
-          "Help your partner with daily tasks and encourage her to rest. Attend prenatal appointments together if possible.",
-      twinsInfo:
-          "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
-      weight: "3.23kg",
-      size: "49.2cm",
-      length: 'pregnancy_baby_length_2',
-      details: [
-        "Weight Gain: Your baby weights about 7.1 lb (3.23kg) this week, and is continuing to build up fat",
-        "Digestive System: The digestive system is now capable of digesting liquid foods, and your baby is urinating at regular intervals",
-        "Lanugo: Most of lanugo(body hair) is now gone, and any remaining will fall out soon after birth",
-      ],
-      dos: [
-        "Monitor fetal well-being moments (kick ≥ 10 movements in 2 hours. Count from Week 28)",
-        "Prepare Birth Plan",
-        "Receive Tdap Vaccine (Week 27 – 36)",
-        "Monitor signs of preterm labor (manage with corticosteroids – betamethasone 12 mg IM ×2 doses, 24 hours apart, between Week 34)",
-      ],
-      donts: [
-        "Stress and anxiety – Encourage support system",
-      ],
-      suppliments: [
-        "Continue Iron + Calcium",
-        "Prenatal multivitamin – Treat Anemia",
-      ],
-      alerts: [
-        "Final Assessment before delivery",
-      ]),
+    week: 38,
+    comparison: null,
+    emoji: null,
+    whatsHappening: "38 weeks pregnant",
+    body:
+        "Your baby’s body is becoming plumper, and the skin is becoming smoother. The lungs are almost fully developed. You may notice more pronounced movements and changes in your body, such as Braxton Hicks contractions and difficulty sleeping.",
+    healthTips:
+        "Stay hydrated and rest when needed. If you experience regular contractions, contact your healthcare provider.",
+    partnersInfo:
+        "Help your partner with daily tasks and encourage her to rest. Attend prenatal appointments together if possible.",
+    twinsInfo:
+        "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
+    weight: "3.23kg",
+    size: "49.2cm",
+    length: 'pregnancy_baby_length_2',
+    details: [
+      "Weight Gain: Your baby weights about 7.1 lb (3.23kg) this week, and is continuing to build up fat",
+      "Digestive System: The digestive system is now capable of digesting liquid foods, and your baby is urinating at regular intervals",
+      "Lanugo: Most of lanugo(body hair) is now gone, and any remaining will fall out soon after birth",
+    ],
+    dos: [
+      "Monitor fetal well-being moments (kick ≥ 10 movements in 2 hours. Count from Week 28)",
+      "Prepare Birth Plan",
+      "Receive Tdap Vaccine (Week 27 – 36)",
+      "Monitor signs of preterm labor (manage with corticosteroids – betamethasone 12 mg IM ×2 doses, 24 hours apart, between Week 34)",
+    ],
+    donts: [
+      "Stress and anxiety – Encourage support system",
+    ],
+    suppliments: [
+      "Continue Iron + Calcium",
+      "Prenatal multivitamin – Treat Anemia",
+    ],
+    // alerts: [
+    //   "Final Assessment before delivery",
+    // ]
+    alerts: [
+      "Baby position confirmation",
+    ],
+    alertText: "38-week checkup — monitor fetal heart rate & position.",
+  ),
   // Week 39
   PregnancyWeekData(
-      week: 39,
-      comparison: null,
-      emoji: null,
-      whatsHappening: "39 weeks pregnant",
-      body:
-          "Your baby is considered full term. The organs are fully developed and ready for life outside the womb. You may notice more pronounced movements and changes in your body, such as Braxton Hicks contractions and difficulty sleeping.",
-      healthTips:
-          "Stay hydrated and rest when needed. If you experience regular contractions, contact your healthcare provider.",
-      partnersInfo:
-          "Help your partner with daily tasks and encourage her to rest. Attend prenatal appointments together if possible.",
-      twinsInfo:
-          "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
-      weight: "3.49kg",
-      size: "50.1cm",
-      length: 'pregnancy_baby_length_2',
-      dos: [
-        "Monitor fetal well-being moments (kick ≥ 10 movements in 2 hours. Count from Week 28)",
-        "Prepare Birth Plan",
-        "Receive Tdap Vaccine (Week 27 – 36)",
-        "Monitor signs of preterm labor (manage with corticosteroids – betamethasone 12 mg IM ×2 doses, 24 hours apart, between Week 34)",
-      ],
-      donts: [
-        "Stress and anxiety – Encourage support system",
-      ],
-      suppliments: [
-        "Continue Iron + Calcium",
-        "Prenatal multivitamin – Treat Anemia",
-      ],
-      alerts: [
-        "Final Assessment before delivery",
-      ]),
+    week: 39,
+    comparison: null,
+    emoji: null,
+    whatsHappening: "39 weeks pregnant",
+    body:
+        "Your baby is considered full term. The organs are fully developed and ready for life outside the womb. You may notice more pronounced movements and changes in your body, such as Braxton Hicks contractions and difficulty sleeping.",
+    healthTips:
+        "Stay hydrated and rest when needed. If you experience regular contractions, contact your healthcare provider.",
+    partnersInfo:
+        "Help your partner with daily tasks and encourage her to rest. Attend prenatal appointments together if possible.",
+    twinsInfo:
+        "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
+    weight: "3.49kg",
+    size: "50.1cm",
+    length: 'pregnancy_baby_length_2',
+    dos: [
+      "Monitor fetal well-being moments (kick ≥ 10 movements in 2 hours. Count from Week 28)",
+      "Prepare Birth Plan",
+      "Receive Tdap Vaccine (Week 27 – 36)",
+      "Monitor signs of preterm labor (manage with corticosteroids – betamethasone 12 mg IM ×2 doses, 24 hours apart, between Week 34)",
+    ],
+    donts: [
+      "Stress and anxiety – Encourage support system",
+    ],
+    suppliments: [
+      "Continue Iron + Calcium",
+      "Prenatal multivitamin – Treat Anemia",
+    ],
+    // alerts: [
+    //   "Final Assessment before delivery",
+    // ],
+    alerts: [
+      "Cervical check",
+      "Labor signs",
+    ],
+    alertText: "39-week antenatal visit — look out for labor signs.",
+  ),
   // Week 40
   PregnancyWeekData(
-      week: 40,
-      comparison: null,
-      emoji: null,
-      whatsHappening: "40 weeks pregnant",
-      body:
-          "Congratulations! Your baby is ready to be born. The organs are fully developed, and your baby is ready for life outside the womb. You may notice more pronounced movements and changes in your body, such as Braxton Hicks contractions and difficulty sleeping.",
-      healthTips:
-          "Stay hydrated and rest when needed. If you experience regular contractions, contact your healthcare provider.",
-      partnersInfo:
-          "Help your partner with daily tasks and encourage her to rest. Attend prenatal appointments together if possible.",
-      twinsInfo:
-          "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
-      weight: "3.61kg",
-      size: "51.0cm",
-      length: 'pregnancy_baby_length_2',
-      dos: [
-        "Monitor fetal well-being moments (kick ≥ 10 movements in 2 hours. Count from Week 28)",
-        "Prepare Birth Plan",
-        "Receive Tdap Vaccine (Week 27 – 36)",
-        "Monitor signs of preterm labor (manage with corticosteroids – betamethasone 12 mg IM ×2 doses, 24 hours apart, between Week 34)",
-      ],
-      donts: [
-        "Stress and anxiety – Encourage support system",
-      ],
-      suppliments: [
-        "Continue Iron + Calcium",
-        "Prenatal multivitamin – Treat Anemia",
-      ],
-      alerts: [
-        "Final Assessment before delivery",
-      ]),
+    week: 40,
+    comparison: null,
+    emoji: null,
+    whatsHappening: "40 weeks pregnant",
+    body:
+        "Congratulations! Your baby is ready to be born. The organs are fully developed, and your baby is ready for life outside the womb. You may notice more pronounced movements and changes in your body, such as Braxton Hicks contractions and difficulty sleeping.",
+    healthTips:
+        "Stay hydrated and rest when needed. If you experience regular contractions, contact your healthcare provider.",
+    partnersInfo:
+        "Help your partner with daily tasks and encourage her to rest. Attend prenatal appointments together if possible.",
+    twinsInfo:
+        "If you’re carrying twins, you may need extra rest and support. Discuss your needs with your healthcare provider.",
+    weight: "3.61kg",
+    size: "51.0cm",
+    length: 'pregnancy_baby_length_2',
+    dos: [
+      "Monitor fetal well-being moments (kick ≥ 10 movements in 2 hours. Count from Week 28)",
+      "Prepare Birth Plan",
+      "Receive Tdap Vaccine (Week 27 – 36)",
+      "Monitor signs of preterm labor (manage with corticosteroids – betamethasone 12 mg IM ×2 doses, 24 hours apart, between Week 34)",
+    ],
+    donts: [
+      "Stress and anxiety – Encourage support system",
+    ],
+    suppliments: [
+      "Continue Iron + Calcium",
+      "Prenatal multivitamin – Treat Anemia",
+    ],
+    // alerts: [
+    //   "Final Assessment before delivery",
+    // ]
+    alerts: [
+      "Due date visit",
+    ],
+    alertText: "40-week checkup — due date assessment & induction discussion.",
+  ),
 ];

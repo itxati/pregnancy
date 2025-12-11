@@ -221,8 +221,14 @@ class _GetPregnantRequirementsViewState
                         ),
                       ),
                       const SizedBox(height: 24),
-                      if (controller.selectedDay.value != null)
-                        DayInfoWidget(controller: controller, theme: theme),
+                      Obx(
+                        () => controller.selectedDay.value != null
+                            ? DayInfoWidget(
+                                controller: controller, theme: theme)
+                            : const SizedBox.shrink(),
+                      ),
+                      // if (controller.selectedDay.value != null)
+                      //   DayInfoWidget(controller: controller, theme: theme),
                       const SizedBox(height: 24),
                       if (controller.periodStart.value != null) ...[
                         CycleInfoWidget(controller: controller, theme: theme),

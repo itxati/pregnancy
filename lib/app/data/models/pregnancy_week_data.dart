@@ -15,6 +15,7 @@ class PregnancyWeekData {
   final List<String> donts;
   final List<String> suppliments;
   final List<String>? alerts;
+  final String? alertText;
 
   const PregnancyWeekData({
     required this.week,
@@ -33,5 +34,6 @@ class PregnancyWeekData {
     required this.donts,
     required this.suppliments,
     this.alerts,
+    this.alertText,
   });
 }

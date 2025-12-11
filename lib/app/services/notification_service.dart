@@ -208,15 +208,20 @@ class NotificationService {
   Future<void> scheduleDailyWeekAlerts({
     required int startDayIndex,
     required List<String> alerts,
+    required String alertText,
+    required int week,
     int hour = 9,
     int minute = 0,
   }) async {
     // Schedule up to 7 notifications, repeating daily for one week window from startDayIndex.
     for (int i = 0; i < 7; i++) {
-      final int alertIndex = i % alerts.length;
-      final String body = alerts.isNotEmpty
-          ? alerts[alertIndex]
-          : 'Check your pregnancy alerts for today.';
+      // final int alertIndex = i % alerts.length;
+      // final String body = alerts.isNotEmpty
+      //     ? alerts[alertIndex]
+      //     : 'Check your pregnancy alerts for today.';
+
+      // final String body = alertText;
+      final body = 'pregnancy_week_${week}_alertText'.tr;
 
       final tz.TZDateTime scheduled = _nextInstanceOfTime(
         dayOffset: i,
@@ -264,20 +269,54 @@ class NotificationService {
     );
   }
 
+  // Future<void> showAlertsBurstNow({
+  //   required List<String> alerts,
+  //   int initialDelaySeconds = 1,
+  //   required String alertText,
+  //   int gapSeconds = 2,
+  // }) async {
+  //   final tz.TZDateTime base = tz.TZDateTime.now(tz.local).add(
+  //     Duration(seconds: initialDelaySeconds),
+  //   );
+  //   for (int i = 0; i < alerts.length; i++) {
+  //     final tz.TZDateTime at = base.add(Duration(seconds: i * gapSeconds));
+  //     await _plugin.zonedSchedule(
+  //       2000 + i,
+  //       'Pregnancy alert',
+  //       alerts[i],
+  //       at,
+  //       const NotificationDetails(
+  //         android: AndroidNotificationDetails(
+  //           'pregnancy_alerts',
+  //           'Pregnancy Alerts',
+  //           channelDescription: 'Daily alerts for the current pregnancy week',
+  //           importance: Importance.high,
+  //           priority: Priority.high,
+  //         ),
+  //       ),
+  //       payload: _trackRoute,
+  //       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+  //     );
+  //   }
+  // }
+
   Future<void> showAlertsBurstNow({
-    required List<String> alerts,
+    required String alertText,
+    required int week,
     int initialDelaySeconds = 1,
     int gapSeconds = 2,
   }) async {
     final tz.TZDateTime base = tz.TZDateTime.now(tz.local).add(
       Duration(seconds: initialDelaySeconds),
     );
-    for (int i = 0; i < alerts.length; i++) {
+    for (int i = 0; i < 1; i++) {
+      // only one notification
       final tz.TZDateTime at = base.add(Duration(seconds: i * gapSeconds));
       await _plugin.zonedSchedule(
         2000 + i,
         'Pregnancy alert',
-        alerts[i],
+        'pregnancy_week_${week}_alertText'.tr,
+        // alertText,
         at,
         const NotificationDetails(
           android: AndroidNotificationDetails(
@@ -294,13 +333,43 @@ class NotificationService {
     }
   }
 
+  // Future<void> showAlertsListNow({
+  //   required List<String> alerts,
+  // }) async {
+  //   final String title = "This week's alerts (${alerts.length})";
+  //   final String bigText = alerts.isNotEmpty
+  //       ? alerts.map((a) => '• ' + a).join('\n')
+  //       : 'No alerts for this week.';
+
+  //   final androidDetails = AndroidNotificationDetails(
+  //     'pregnancy_alerts',
+  //     'Pregnancy Alerts',
+  //     channelDescription: 'Daily alerts for the current pregnancy week',
+  //     importance: Importance.high,
+  //     priority: Priority.high,
+  //     styleInformation: BigTextStyleInformation(
+  //       bigText,
+  //       contentTitle: title,
+  //       summaryText: 'Pregnancy Alerts',
+  //     ),
+  //   );
+
+  //   await _plugin.show(
+  //     3000,
+  //     title,
+  //     null,
+  //     NotificationDetails(android: androidDetails),
+  //     payload: _trackRoute,
+  //   );
+  // }
+
   Future<void> showAlertsListNow({
-    required List<String> alerts,
+    required String alertText,
+    required int week,
   }) async {
-    final String title = "This week's alerts (${alerts.length})";
-    final String bigText = alerts.isNotEmpty
-        ? alerts.map((a) => '• ' + a).join('\n')
-        : 'No alerts for this week.';
+    final String title = "This week's alert";
+    // final String bigText = alertText;
+    final String bigText = 'pregnancy_week_${week}_alertText'.tr;
 
     final androidDetails = AndroidNotificationDetails(
       'pregnancy_alerts',
@@ -311,7 +380,7 @@ class NotificationService {
       styleInformation: BigTextStyleInformation(
         bigText,
         contentTitle: title,
-        summaryText: 'Pregnancy Alerts',
+        summaryText: 'Pregnancy Alert',
       ),
     );
 
